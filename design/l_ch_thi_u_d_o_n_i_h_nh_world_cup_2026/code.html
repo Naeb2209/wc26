@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lịch Thi Đấu - FIFA World Cup 2026</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;800&amp;family=Hanken+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#5530ff",
+                        "on-tertiary-fixed": "#112000",
+                        "on-tertiary-container": "#8fdb00",
+                        "tertiary-fixed-dim": "#8fdb00",
+                        "primary-fixed-dim": "#c7bfff",
+                        "secondary-container": "#00e3fd",
+                        "outline": "#787589",
+                        "on-secondary-container": "#00616d",
+                        "on-primary-fixed-variant": "#3d00dd",
+                        "on-tertiary-fixed-variant": "#314f00",
+                        "surface-container-high": "#ebe7e7",
+                        "on-background": "#1c1b1b",
+                        "surface-variant": "#e5e2e1",
+                        "on-surface": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#4800ff",
+                        "background": "#fcf9f8",
+                        "secondary": "#006875",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-container": "#f0edec",
+                        "on-surface-variant": "#474557",
+                        "on-primary-container": "#c7c0ff",
+                        "outline-variant": "#c8c4db",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#00daf3",
+                        "primary": "#3400bf",
+                        "on-primary-fixed": "#170065",
+                        "tertiary-container": "#3a5c00",
+                        "primary-fixed": "#e4dfff",
+                        "inverse-primary": "#c7bfff",
+                        "on-primary": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "on-secondary-fixed": "#001f24",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed": "#a8f928",
+                        "secondary-fixed": "#9cf0ff",
+                        "tertiary": "#294300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "base": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Be Vietnam Pro"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "data-mono": ["Hanken Grotesk"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .kinetic-bg {
+            background: linear-gradient(135deg, #fcf9f8 0%, #f0edec 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .kinetic-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(85, 48, 255, 0.03) 0%, transparent 60%);
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+        .match-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #E9ECEF;
+        }
+        .match-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 8px 24px rgba(72, 0, 255, 0.08);
+            border-color: #3400bf;
+        }
+        .stadium-bg {
+            background: #170065;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: relative;
+            border: 2px solid #3400bf;
+            border-radius: 8px;
+        }
+        .stadium-lines {
+            position: absolute;
+            inset: 10px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .center-circle {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px; height: 80px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+        }
+        .penalty-box-left {
+            position: absolute;
+            top: 25%; left: 0;
+            width: 40px; height: 50%;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-left: none;
+        }
+        .penalty-box-right {
+            position: absolute;
+            top: 25%; right: 0;
+            width: 40px; height: 50%;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-right: none;
+        }
+        .player-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+        .player-dot.team-a { background: #00daf3; border: 2px solid #fff; }
+        .player-dot.team-b { background: #ffdad6; border: 2px solid #ba1a1a; }
+        .player-name-tag {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            color: #fff;
+            font-size: 10px;
+            font-family: 'Hanken Grotesk', sans-serif;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md kinetic-bg min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface-dim docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-surface-tint uppercase tracking-tighter">
+                FIFA World Cup 2026
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-caps text-label-caps uppercase" href="#">Standings</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-caps text-label-caps uppercase" href="#">Teams</a>
+<a class="text-primary font-bold border-b-4 border-primary pb-2 font-label-caps text-label-caps uppercase" href="#">Schedule</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-caps text-label-caps uppercase" href="#">Live Stream</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2">
+<button class="hover:bg-surface-container-low transition-all duration-200 p-2 rounded-full scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant">language</span>
+</button>
+<button class="hover:bg-surface-container-low transition-all duration-200 p-2 rounded-full scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-6 py-3 rounded-full hover:bg-primary-fixed-dim transition-colors scale-95 active:opacity-80">
+                    Tickets
+                </button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<!-- Header -->
+<header class="mb-12">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4">Lịch Thi Đấu</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Theo dõi toàn bộ hành trình của 48 đội tuyển quốc gia tại FIFA World Cup 2026. Từ vòng bảng đầy kịch tính đến trận chung kết lịch sử.</p>
+</header>
+<!-- Stage Navigation Tabs -->
+<div class="flex overflow-x-auto pb-4 mb-12 border-b border-surface-variant hide-scrollbar gap-8">
+<button class="font-headline-md text-headline-md text-primary border-b-4 border-primary pb-2 whitespace-nowrap px-4">Vòng Bảng</button>
+<button class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap px-4 opacity-60">Vòng 32 Đội</button>
+<button class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap px-4 opacity-60">Vòng 16 Đội</button>
+<button class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap px-4 opacity-60">Tứ Kết</button>
+<button class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap px-4 opacity-60">Bán Kết</button>
+<button class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap px-4 opacity-60">Chung Kết</button>
+</div>
+<!-- Sub Tabs for Group Stage -->
+<div class="flex gap-4 mb-8">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-full">Lượt 1</button>
+<button class="bg-surface text-on-surface border border-outline-variant hover:bg-surface-container-low font-label-caps text-label-caps px-4 py-2 rounded-full transition-colors">Lượt 2</button>
+<button class="bg-surface text-on-surface border border-outline-variant hover:bg-surface-container-low font-label-caps text-label-caps px-4 py-2 rounded-full transition-colors">Lượt 3</button>
+</div>
+<!-- Bento Grid Layout for Matches -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Match List Column -->
+<div class="md:col-span-7 flex flex-col gap-6">
+<!-- Match 1 (Active) -->
+<div class="match-card bg-surface rounded-xl p-6 relative overflow-hidden cursor-pointer border-primary shadow-[0_8px_24px_rgba(72,0,255,0.08)]">
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-caps text-label-caps text-primary bg-primary-fixed px-3 py-1 rounded-full inline-block">Bảng A • Lượt 1</div>
+<div class="text-right">
+<div class="font-data-mono text-data-mono text-on-surface">11 Tháng 6, 2026</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant flex items-center justify-end gap-1 mt-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">stadium</span>
+                                Estadio Azteca, Mexico City
+                            </div>
+</div>
+</div>
+<div class="flex items-center justify-between my-6">
+<div class="flex flex-col items-center gap-2 w-1/3">
+<div class="w-16 h-16 rounded-full bg-surface-container-high border-2 border-secondary-container overflow-hidden">
+<img alt="Cờ quốc kỳ Mexico. Nền trắng sáng với màu sắc rực rỡ. Độ tương phản cao, phong cách thể thao hiện đại chuyên nghiệp. Không gian ánh sáng rõ ràng." class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb4EcZ8xm8iQcmNeDhut6aTFtYpfoACuCPsNfbitkgRCH2ceSCV5MVm53jJnjHVGNDQGp5PFbHWus4EqohuvYcC3ga5ZxuPh98XI2Z6Qp2nvf3AeXsZukbI6Sjnsrq22bToSxaIEB5zJjlVY6MUxNZgPww0wKlCNRdYr-GWa4L_HSAiQZKnN3w7guuwjJYpcC60I7B-WfZubU62t0FzMBFXJePXzJIMNU0fFWN-RSdL9Xv_u0Xeg-Tzxih5TgYYL2mbnbh3PbK517f"/>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">MEX</span>
+</div>
+<div class="flex flex-col items-center w-1/3">
+<span class="font-display-lg-mobile text-display-lg-mobile text-on-surface-variant opacity-20">VS</span>
+<span class="font-data-mono text-data-mono text-primary mt-2">20:00 (Local)</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-1/3">
+<div class="w-16 h-16 rounded-full bg-surface-container-high border-2 border-outline-variant overflow-hidden">
+<img alt="Cờ quốc kỳ Canada. Nền trắng sáng với màu sắc rực rỡ. Độ tương phản cao, phong cách thể thao hiện đại chuyên nghiệp. Không gian ánh sáng rõ ràng." class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGFOxgeEyncYyZrBUqydQlV01JkN2yLJeeLSl4XTqGSVNMyZLkcYCvacMobCokC-6tq17VxZHTt3NVFxGcgBvRc5vScBPVQd9EpGXPEGiUrohVNu3QipjNIJOiIGPVBPzP3NxsSyXg8QWnjJ_2ZjjKqsO0gf9BWrFRgINLjUFkbkg9VM3P9BomOa0WpsS_U17emZJdDg2ySjAQ-vK86KEtZ4nwrFrMPJRbzAsUIQNc2ejaOsnjgVMgBZaqL_mzzwV5zfzoFb990pDR"/>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">CAN</span>
+</div>
+</div>
+<div class="flex justify-center mt-4">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-6 py-3 rounded-full hover:bg-primary-fixed-dim transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 16px;">strategy</span>
+                            Dự Đoán Đội Hình
+                        </button>
+</div>
+</div>
+<!-- Match 2 -->
+<div class="match-card bg-surface rounded-xl p-6 relative overflow-hidden cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-3 py-1 rounded-full inline-block">Bảng A • Lượt 1</div>
+<div class="text-right">
+<div class="font-data-mono text-data-mono text-on-surface">12 Tháng 6, 2026</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant flex items-center justify-end gap-1 mt-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">stadium</span>
+                                BMO Field, Toronto
+                            </div>
+</div>
+</div>
+<div class="flex items-center justify-between my-6">
+<div class="flex flex-col items-center gap-2 w-1/3">
+<div class="w-16 h-16 rounded-full bg-surface-container-high border-2 border-outline-variant overflow-hidden">
+<img alt="Cờ quốc kỳ Hàn Quốc. Nền trắng sáng với màu sắc rực rỡ. Độ tương phản cao, phong cách thể thao hiện đại chuyên nghiệp. Không gian ánh sáng rõ ràng." class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUF5Q5leRAHnMVL_QFWwy3OuEIc0dZ687phCpTBykuAkq4322dhpqv08wJQ_xawO5Sn3_phaHOfg8d11ZMoUsINVq821MedO-sn9n2ni2n_QmleR_X7jkQ9Cgul2YeD3471nWwv_rCM7mixRTqC6dOgZ-jZxD2Jql6yeLzBAvKhsUjgHk67ZKQMU5mNbr91LvnsUIPB6qPkxwuHdTRr9TgpnCfVdd_h5fJmlogaT1TSSxrVQ07_4Z1f5exBbcduZH1A9WD99SelFx6"/>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">KOR</span>
+</div>
+<div class="flex flex-col items-center w-1/3">
+<span class="font-display-lg-mobile text-display-lg-mobile text-on-surface-variant opacity-20">VS</span>
+<span class="font-data-mono text-data-mono text-on-surface-variant mt-2">15:00 (Local)</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-1/3">
+<div class="w-16 h-16 rounded-full bg-surface-container-high border-2 border-outline-variant overflow-hidden">
+<img alt="Cờ quốc kỳ Nigeria. Nền trắng sáng với màu sắc rực rỡ. Độ tương phản cao, phong cách thể thao hiện đại chuyên nghiệp. Không gian ánh sáng rõ ràng." class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaEQ5kif3aolQ6rJjKrNcwPOjq-1I9R2smg0tnh90b_lUKyjpDqTdHJXC9Uq2NfMzXa_ye6AVEz9OC_BFfgtp4dGFhthXETvE3MzawxUsHObzWObj-XkIBU57BMZIO7eBxcYK89QSXE_aDISnHciqkmNqfcs6LU8huewY9mHfgR4Te1CdFd0m246kSoQpaFw094HNR5waiqSrI1-xy6tmj3HBGmqvOabGgGc7FxOQkPMrNpkeghhAP7etNkr3kRRzvt0hs0lkcjpBp"/>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">NGA</span>
+</div>
+</div>
+<div class="flex justify-center mt-4">
+<button class="bg-transparent text-primary border-2 border-primary font-label-caps text-label-caps uppercase px-6 py-2.5 rounded-full hover:bg-primary hover:text-on-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 16px;">strategy</span>
+                            Xem Đội Hình
+                        </button>
+</div>
+</div>
+</div>
+<!-- Formation Preview Panel (Sticky Desktop) -->
+<div class="md:col-span-5 h-full">
+<div class="sticky top-24 glass-panel rounded-2xl p-6 shadow-xl border border-surface-variant">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Đội Hình Dự Kiến</h3>
+<div class="flex gap-2">
+<div class="flex items-center gap-1 font-label-caps text-label-caps"><span class="w-3 h-3 rounded-full bg-secondary-container inline-block"></span> MEX</div>
+<div class="flex items-center gap-1 font-label-caps text-label-caps"><span class="w-3 h-3 rounded-full bg-error-container inline-block border border-error"></span> CAN</div>
+</div>
+</div>
+<!-- Soccer Pitch -->
+<div class="stadium-bg w-full aspect-[2/3] md:aspect-[3/4] rounded-lg overflow-hidden relative">
+<div class="stadium-lines"></div>
+<div class="center-circle"></div>
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-[rgba(255,255,255,0.2)] transform -translate-y-1/2"></div>
+<div class="absolute top-0 left-1/4 w-1/2 h-[40px] border-2 border-[rgba(255,255,255,0.2)] border-top-0"></div>
+<div class="absolute bottom-0 left-1/4 w-1/2 h-[40px] border-2 border-[rgba(255,255,255,0.2)] border-bottom-0"></div>
+<!-- Team A (MEX) - Top Half 4-3-3 -->
+<!-- GK -->
+<div class="player-dot team-a" style="top: 8%; left: 50%;"><span class="player-name-tag">Ochoa</span></div>
+<!-- DEF -->
+<div class="player-dot team-a" style="top: 20%; left: 20%;"><span class="player-name-tag">Gallardo</span></div>
+<div class="player-dot team-a" style="top: 18%; left: 40%;"><span class="player-name-tag">Moreno</span></div>
+<div class="player-dot team-a" style="top: 18%; left: 60%;"><span class="player-name-tag">Montes</span></div>
+<div class="player-dot team-a" style="top: 20%; left: 80%;"><span class="player-name-tag">Sanchez</span></div>
+<!-- MID -->
+<div class="player-dot team-a" style="top: 35%; left: 30%;"><span class="player-name-tag">Chavez</span></div>
+<div class="player-dot team-a" style="top: 32%; left: 50%;"><span class="player-name-tag">Alvarez</span></div>
+<div class="player-dot team-a" style="top: 35%; left: 70%;"><span class="player-name-tag">Herrera</span></div>
+<!-- FWD -->
+<div class="player-dot team-a" style="top: 45%; left: 25%;"><span class="player-name-tag">Vega</span></div>
+<div class="player-dot team-a" style="top: 42%; left: 50%;"><span class="player-name-tag">Martin</span></div>
+<div class="player-dot team-a" style="top: 45%; left: 75%;"><span class="player-name-tag">Lozano</span></div>
+<!-- Team B (CAN) - Bottom Half 3-4-3 -->
+<!-- GK -->
+<div class="player-dot team-b" style="top: 92%; left: 50%;"><span class="player-name-tag">Borjan</span></div>
+<!-- DEF -->
+<div class="player-dot team-b" style="top: 82%; left: 30%;"><span class="player-name-tag">Miller</span></div>
+<div class="player-dot team-b" style="top: 85%; left: 50%;"><span class="player-name-tag">Vitoria</span></div>
+<div class="player-dot team-b" style="top: 82%; left: 70%;"><span class="player-name-tag">Johnston</span></div>
+<!-- MID -->
+<div class="player-dot team-b" style="top: 65%; left: 20%;"><span class="player-name-tag">Davies</span></div>
+<div class="player-dot team-b" style="top: 68%; left: 40%;"><span class="player-name-tag">Eustaquio</span></div>
+<div class="player-dot team-b" style="top: 68%; left: 60%;"><span class="player-name-tag">Hutchinson</span></div>
+<div class="player-dot team-b" style="top: 65%; left: 80%;"><span class="player-name-tag">Laryea</span></div>
+<!-- FWD -->
+<div class="player-dot team-b" style="top: 55%; left: 35%;"><span class="player-name-tag">Hoilett</span></div>
+<div class="player-dot team-b" style="top: 58%; left: 50%;"><span class="player-name-tag">David</span></div>
+<div class="player-dot team-b" style="top: 55%; left: 65%;"><span class="player-name-tag">Buchanan</span></div>
+</div>
+<div class="mt-4 p-4 bg-surface-container-low rounded-lg border border-surface-variant">
+<div class="font-data-mono text-data-mono text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">info</span> Nhận định
+                        </div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Mexico dự kiến tung ra đội hình tấn công mạnh mẽ 4-3-3 để áp đảo ngay từ đầu, trong khi Canada sử dụng hàng phòng ngự 3 người linh hoạt chờ cơ hội phản công từ hai cánh tốc độ.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-on-surface dark:bg-inverse-surface full-width py-16 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter mt-auto">
+<div class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-primary uppercase tracking-tighter">
+            FIFA World Cup 2026
+        </div>
+<div class="text-surface-variant font-body-md text-body-md text-center md:text-left">
+            © 2026 FIFA World Cup. All Rights Reserved. Official Broadcaster: VTV.
+        </div>
+<div class="flex flex-wrap justify-center md:justify-end gap-6">
+<a class="text-surface-variant font-label-caps text-label-caps uppercase hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-surface-variant font-label-caps text-label-caps uppercase hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-surface-variant font-label-caps text-label-caps uppercase hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Sponsorships</a>
+<a class="text-surface-variant font-label-caps text-label-caps uppercase hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Contact Us</a>
+<a class="text-surface-variant font-label-caps text-label-caps uppercase hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Media Kit</a>
+</div>
+</footer>
+</body></html>

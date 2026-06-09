@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;800&family=Hanken+Grotesk:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Standings ---- */
+.table-zebra:nth-child(even) {
+  background-color: #f6f3f2;
+}
+.qualified-border {
+  border-left: 4px solid #a8f928;
+}
+
+/* ---- Team detail ---- */
+.spotlight-gradient {
+  background: radial-gradient(circle at center, rgba(173, 255, 47, 0.1) 0%, transparent 70%);
+}
+.gold-glow {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  border-color: #ffd700;
+}
+
+/* ---- Schedule (kinetic + pitch) ---- */
+.kinetic-bg {
+  background: linear-gradient(135deg, #fcf9f8 0%, #f0edec 100%);
+  position: relative;
+  overflow: hidden;
+}
+.kinetic-bg::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(29, 78, 216, 0.04) 0%, transparent 60%);
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+.match-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #e9ecef;
+}
+.match-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 24px rgba(29, 78, 216, 0.12);
+  border-color: #1d4ed8;
+}
+.stadium-bg {
+  background: #172554;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  position: relative;
+  border: 2px solid #1d4ed8;
+  border-radius: 8px;
+}
+.stadium-lines {
+  position: absolute;
+  inset: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+.center-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+.player-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.player-dot.team-a {
+  background: #00daf3;
+  border: 2px solid #fff;
+}
+.player-dot.team-b {
+  background: #ffdad6;
+  border: 2px solid #ba1a1a;
+}
+.player-name-tag {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: #fff;
+  font-size: 10px;
+  font-family: "Hanken Grotesk", sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+/* ---- Live stream ---- */
+.glass-panel {
+  background: rgba(31, 30, 30, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.video-container {
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+}
+.live-spotlight {
+  background: radial-gradient(circle at top right, rgba(173, 255, 47, 0.1), transparent 70%);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

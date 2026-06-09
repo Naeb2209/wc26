@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bảng đấu World Cup 2026</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;800&amp;family=Hanken+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#5530ff",
+                        "on-tertiary-fixed": "#112000",
+                        "on-tertiary-container": "#8fdb00",
+                        "tertiary-fixed-dim": "#8fdb00",
+                        "primary-fixed-dim": "#c7bfff",
+                        "secondary-container": "#00e3fd",
+                        "outline": "#787589",
+                        "on-secondary-container": "#00616d",
+                        "on-primary-fixed-variant": "#3d00dd",
+                        "on-tertiary-fixed-variant": "#314f00",
+                        "surface-container-high": "#ebe7e7",
+                        "on-background": "#1c1b1b",
+                        "surface-variant": "#e5e2e1",
+                        "on-surface": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "surface-dim": "#dcd9d9",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#4800ff",
+                        "background": "#fcf9f8",
+                        "secondary": "#006875",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-container": "#f0edec",
+                        "on-surface-variant": "#474557",
+                        "on-primary-container": "#c7c0ff",
+                        "outline-variant": "#c8c4db",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#00daf3",
+                        "primary": "#3400bf",
+                        "on-primary-fixed": "#170065",
+                        "tertiary-container": "#3a5c00",
+                        "primary-fixed": "#e4dfff",
+                        "inverse-primary": "#c7bfff",
+                        "on-primary": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "on-secondary-fixed": "#001f24",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "tertiary-fixed": "#a8f928",
+                        "secondary-fixed": "#9cf0ff",
+                        "tertiary": "#294300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "base": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Be Vietnam Pro"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "data-mono": ["Hanken Grotesk"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-mono": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .spotlight-bg {
+            background: radial-gradient(circle at center, rgba(173, 255, 47, 0.1) 0%, transparent 70%);
+        }
+        .table-zebra:nth-child(even) {
+            background-color: #f6f3f2; /* surface-container-low */
+        }
+        .qualified-border {
+            border-left: 4px solid #a8f928; /* tertiary-fixed */
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar Component -->
+<header class="bg-surface dark:bg-surface-dim flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20 border-b border-outline-variant dark:border-outline flat no shadows sticky top-0 z-50">
+<div class="flex items-center gap-gutter">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-surface-tint uppercase tracking-tighter">FIFA World Cup 2026</h1>
+<nav class="hidden md:flex gap-6 ml-8">
+<a class="text-primary font-bold border-b-4 border-primary pb-2 font-headline-md text-headline-md hover:bg-surface-container-low transition-all duration-200 scale-95 active:opacity-80" href="#">Standings</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-headline-md text-headline-md hover:bg-surface-container-low transition-all duration-200 scale-95 active:opacity-80" href="#">Teams</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-headline-md text-headline-md hover:bg-surface-container-low transition-all duration-200 scale-95 active:opacity-80" href="#">Schedule</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-headline-md text-headline-md hover:bg-surface-container-low transition-all duration-200 scale-95 active:opacity-80" href="#">Live Stream</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary dark:text-primary-fixed-dim bg-surface-container-low p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">language</span>
+</button>
+<button class="text-primary dark:text-primary-fixed-dim bg-surface-container-low p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</button>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-6 py-2 rounded-full hover:bg-primary-container transition-colors">Tickets</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<section class="mb-16">
+<div class="flex flex-col md:flex-row justify-between items-end mb-8 border-b-2 border-surface-variant pb-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Vòng Bảng</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Cập nhật bảng xếp hạng liên tục từ các trận đấu.</p>
+</div>
+</div>
+<!-- Bento Grid for Groups -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Group A Card -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden hover:shadow-[0px_8px_24px_rgba(72,0,255,0.08)] hover:border-primary transition-all duration-300">
+<div class="bg-primary-fixed-dim p-4 flex justify-between items-center border-b border-surface-variant">
+<h3 class="font-headline-md text-headline-md text-on-primary-fixed">Bảng A</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[500px]">
+<thead class="bg-primary text-on-primary font-label-caps text-label-caps">
+<tr>
+<th class="py-3 px-4 w-12 text-center">VT</th>
+<th class="py-3 px-4">Đội</th>
+<th class="py-3 px-2 text-center" title="Trận">T</th>
+<th class="py-3 px-2 text-center" title="Thắng">Th</th>
+<th class="py-3 px-2 text-center" title="Hòa">H</th>
+<th class="py-3 px-2 text-center" title="Thua">B</th>
+<th class="py-3 px-2 text-center" title="Hiệu số">HS</th>
+<th class="py-3 px-4 text-center font-bold">Đ</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono">
+<!-- Team 1 (Qualified) -->
+<tr class="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors qualified-border">
+<td class="py-3 px-4 text-center font-bold">1</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<img alt="Cờ Mexico" class="w-6 h-4 object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3TiZM_jgZ5i59xHEStZQDip02NyhJfyMfSNMR0eYxUTjR8Cz0d9IbDZUOYd0iGE1J8ymEky5kyU2U8JDAavOIALS-oKh9NfLzXjPBeGP4Iub2-nc1DWmUR55XHDxPD7x_uGUtur5yxonbhx-abjYhxZEJ9DR77YzljH9h4quW85e780ImAaSo4BXY_vFiPobjdiC7rIfqwRXSdjLPJzcqem8WCgyxXFpLOt1cOhPM0zkJfbMSNxJyRnBHTB08JmVes-hgx6Lv6Mm1"/>
+<span class="font-bold">Mexico</span>
+<span class="text-[10px] bg-surface-variant text-on-surface-variant px-1 rounded ml-1" title="Thứ hạng FIFA">#14</span>
+</div>
+</td>
+<td class="py-3 px-2 text-center">3</td>
+<td class="py-3 px-2 text-center">2</td>
+<td class="py-3 px-2 text-center">1</td>
+<td class="py-3 px-2 text-center">0</td>
+<td class="py-3 px-2 text-center">+4</td>
+<td class="py-3 px-4 text-center font-bold text-primary">7</td>
+</tr>
+<!-- Team 2 (Qualified) -->
+<tr class="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors qualified-border">
+<td class="py-3 px-4 text-center font-bold">2</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<img alt="Cờ Ý" class="w-6 h-4 object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1qEmPFnWi-yHyYV6qc1tcoIQnJeitPbqcmcCxFNbwnUwPlYFEUYk5OLB4sJn5U3Ar0gdd0pb6cAczzkMXHE6guY_utQc1wKfEHBRzhN4HwDN100Q1Z_IgZjPQF3M-jdRW3Z4zhO35fKKxtOUBdSoUH4d0Xtd0Opf_SxJI0eA-DYQPhkiJi7sHZ0p0QKTKexO_qSe1R5pfNpNdgHYN2_g8Fq1QRewSfm0bNNIIWLY6eB1LHHvzUjmGpA3AI0338APz6M2OR9qV-tew"/>
+<span class="font-bold">Ý</span>
+<span class="text-[10px] bg-surface-variant text-on-surface-variant px-1 rounded ml-1" title="Thứ hạng FIFA">#9</span>
+</div>
+</td>
+<td class="py-3 px-2 text-center">3</td>
+<td class="py-3 px-2 text-center">1</td>
+<td class="py-3 px-2 text-center">2</td>
+<td class="py-3 px-2 text-center">0</td>
+<td class="py-3 px-2 text-center">+1</td>
+<td class="py-3 px-4 text-center font-bold text-primary">5</td>
+</tr>
+<!-- Team 3 -->
+<tr class="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors">
+<td class="py-3 px-4 text-center">3</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<img alt="Cờ Nigeria" class="w-6 h-4 object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCidIqrWg6PsFYRYFkeAohm0n1gqIWwpwAl1Sr0gxx1vLjQqFUkKBc9mTVLIkS8xJ9mLZan6mqn-VcCZMm19HN9mDBqdzknm6ItWUeYwshgtp_icdPF2SO1dwOw5op49oElcP6_br6E2dXXgOYSZsI-z9lMLjkCo1M1xB-PxJsJ50U6heM002jln-xQ_ZuQwwfXEeeTSO0HyqtaYPsXI66XhsMhEJ5TubnRPbG924fzVMexHC-SVwi8_lnR2cfHS9gi9TytRigmXOI"/>
+<span>Nigeria</span>
+<span class="text-[10px] bg-surface-variant text-on-surface-variant px-1 rounded ml-1" title="Thứ hạng FIFA">#28</span>
+</div>
+</td>
+<td class="py-3 px-2 text-center">3</td>
+<td class="py-3 px-2 text-center">1</td>
+<td class="py-3 px-2 text-center">0</td>
+<td class="py-3 px-2 text-center">2</td>
+<td class="py-3 px-2 text-center">-2</td>
+<td class="py-3 px-4 text-center font-bold">3</td>
+</tr>
+<!-- Team 4 -->
+<tr class="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors">
+<td class="py-3 px-4 text-center">4</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<img alt="Cờ New Zealand" class="w-6 h-4 object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX6uPGbE9J3b_q8MHuc5ePOexrUtvdtaYDSZeU8JyxL9yHah9VhuZ8fhkJGIAs3uRcYDLtP1JC4WsoEYYkDKtSqld0qdPbU_PC9b63oYqui45qukxy7wVoFCSx6mzfIgcShZk9yJtUbPRx2Al8P0eEzaXuVmGZ81LqjXu7XMye2xE9-rlL56BpsMYEZnG0wT6QlrX4oorEGMY1nXdtWZQXJKuJmXFMELpPsMmiLD89hXEG6QQZcXXbGCcW4OAl4noOkEf_o5o6t4_h"/>
+<span>New Zealand</span>
+<span class="text-[10px] bg-surface-variant text-on-surface-variant px-1 rounded ml-1" title="Thứ hạng FIFA">#104</span>
+</div>
+</td>
+<td class="py-3 px-2 text-center">3</td>
+<td class="py-3 px-2 text-center">0</td>
+<td class="py-3 px-2 text-center">1</td>
+<td class="py-3 px-2 text-center">2</td>
+<td class="py-3 px-2 text-center">-3</td>
+<td class="py-3 px-4 text-center font-bold">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Group B Card -->
+<div class="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden hover:shadow-[0px_8px_24px_rgba(72,0,255,0.08)] hover:border-primary transition-all duration-300">
+<div class="bg-primary-fixed-dim p-4 flex justify-between items-center border-b border-surface-variant">
+<h3 class="font-headline-md text-headline-md text-on-primary-fixed">Bảng B</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[500px]">
+<thead class="bg-primary text-on-primary font-label-caps text-label-caps">
+<tr>
+<th class="py-3 px-4 w-12 text-center">VT</th>
+<th class="py-3 px-4">Đội</th>
+<th class="py-3 px-2 text-center" title="Trận">T</th>
+<th class="py-3 px-2 text-center" title="Thắng">Th</th>
+<th class="py-3 px-2 text-center" title="Hòa">H</th>
+<th class="py-3 px-2 text-center" title="Thua">B</th>
+<th class="py-3 px-2 text-center" title="Hiệu số">HS</th>
+<th class="py-3 px-4 text-center font-bold">Đ</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-data-mono">
+<!-- Team 1 (Qualified) -->
+<tr class="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors qualified-border">
+<td class="py-3 px-4 text-center font-bold">1</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<img alt="Cờ Mỹ" class="w-6 h-4 object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAxQ7nMpkBYI2dKNgC9ih1kYv31zjG1M7cFhCVwyDMCqSrBV7_T20wtwikGlRQMpica8Vhi6cUovsL-2ooqJ-2Iv8ncnhfulsuNdlSxaLqWXctvLWmmnSSfYaRN-BTOgXVZN6KnwExy5z6RJnMYdqhZ0OeldnHOYLl_bIMTV9FIp3Ro_LPubiLMWcDeKmqF8KtvvlI6p3kosXiTd25_5DmU2ec1IcmQXfDuMePooiDCAoRZ0MrGIP4fdiCBKcrXl6f5y6kFTE7YO8d"/>
+<span class="font-bold">Mỹ</span>
+<span class="text-[10px] bg-surface-variant text-on-surface-variant px-1 rounded ml-1" title="Thứ hạng FIFA">#11</span>
+</div>
+</td>
+<td class="py-3 px-2 text-center">3</td>
+<td class="py-3 px-2 text-center">2</td>
+<td class="py-3 px-2 text-center">1</td>
+<td class="py-3 px-2 text-center">0</td>
+<td class="py-3 px-2 text-center">+3</td>
+<td class="py-3 px-4 text-center font-bold text-primary">7</td>
+</tr>
+<!-- Team 2 (Qualified) -->
+<tr class="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors qualified-border">
+<td class="py-3 px-4 text-center font-bold">2</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<img alt="Cờ Senegal" class="w-6 h-4 object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBdtqhIU4slahTdOx8kHut8w-lVQsLgcOdbB-OzG79_lFzFPkykqlUIUbIc90GakmBrovUTUhxE5cnPrE5kySG4Zw2cRLzgiOITiextqSornQSd9T2aVuv7ynDv8NQwghHnD_Sb3DyzkcwIo3QebxPwDMQ5qSGvnB9U4xoZcd0AvQJZ2coydbzw3xYxPaQchbRiVdhUfLnmM2PGYqLoVwWeMDWIv5K8rcXcLF0ZnYcwltrZ_eu3Vnv81jXp0nNdvvBJjo1FXUO1tWf"/>
+<span class="font-bold">Senegal</span>
+<span class="text-[10px] bg-surface-variant text-on-surface-variant px-1 rounded ml-1" title="Thứ hạng FIFA">#17</span>
+</div>
+</td>
+<td class="py-3 px-2 text-center">3</td>
+<td class="py-3 px-2 text-center">1</td>
+<td class="py-3 px-2 text-center">2</td>
+<td class="py-3 px-2 text-center">0</td>
+<td class="py-3 px-2 text-center">+2</td>
+<td class="py-3 px-4 text-center font-bold text-primary">5</td>
+</tr>
+<!-- Team 3 -->
+<tr class="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors">
+<td class="py-3 px-4 text-center">3</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<img alt="Cờ Hàn Quốc" class="w-6 h-4 object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe2P4qkFJxdabz_Iw0YKB1jEZ2MeuWoLWG4MlJbP7uJGFaj7YqbSwxmDn_4yOds8hy069C7lRiYyekr6FhY5nbVMDtaGPcJ4PwcR49hsaEKrIh_K1YSbZP6VcNunu0rP_PgcXOenDlOXJF95sGxStQNymTzm66gmZUOy4iuyak_MqDUqUo0wKBKf8p78UvQoIBP5mkBz48JiT6rikC7s95yoNDFSufoD3px-_Y-nAC-uE42wEoUofQxVcUj4VmlBJtnC5Skq0IAn7x"/>
+<span>Hàn Quốc</span>
+<span class="text-[10px] bg-surface-variant text-on-surface-variant px-1 rounded ml-1" title="Thứ hạng FIFA">#22</span>
+</div>
+</td>
+<td class="py-3 px-2 text-center">3</td>
+<td class="py-3 px-2 text-center">1</td>
+<td class="py-3 px-2 text-center">0</td>
+<td class="py-3 px-2 text-center">2</td>
+<td class="py-3 px-2 text-center">-1</td>
+<td class="py-3 px-4 text-center font-bold">3</td>
+</tr>
+<!-- Team 4 -->
+<tr class="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors">
+<td class="py-3 px-4 text-center">4</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<img alt="Cờ Chile" class="w-6 h-4 object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7HtEOhylPxIIzeafQ5PQPJBxHwIFrNvbawAt9LQpgXu2FuwQPJUTsgO-6lLPVafXZd8LRQttNVgFDrsVa0HNf7yOO-fq4NRppwoflhbn2e8w410ei7QAWy5399zzylkScIjyyvwUmQru2lEpyAy3R9Wt9IS8-quSTe7w_LUeAk7Jk_GnSMNFxtF5zqmiO17KfdhQ8rYGZnJfTHvv63wkc7bINCWTSkc7M094XaXu_-EOBjtoibA7Z-tRJ914rFlv74aU2z3GhJ3rW"/>
+<span>Chile</span>
+<span class="text-[10px] bg-surface-variant text-on-surface-variant px-1 rounded ml-1" title="Thứ hạng FIFA">#42</span>
+</div>
+</td>
+<td class="py-3 px-2 text-center">3</td>
+<td class="py-3 px-2 text-center">0</td>
+<td class="py-3 px-2 text-center">1</td>
+<td class="py-3 px-2 text-center">2</td>
+<td class="py-3 px-2 text-center">-4</td>
+<td class="py-3 px-4 text-center font-bold">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-on-surface dark:bg-inverse-surface w-full py-16 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter flat mt-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<h2 class="font-display-lg text-display-lg-mobile text-on-primary">FIFA World Cup 2026</h2>
+<p class="font-body-md text-body-md text-surface-variant">© 2026 FIFA World Cup. All Rights Reserved. Official Broadcaster: VTV.</p>
+</div>
+<nav class="flex flex-wrap justify-center md:justify-end gap-6 mt-8 md:mt-0">
+<a class="font-label-caps text-label-caps text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-label-caps text-label-caps text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Sponsorships</a>
+<a class="font-label-caps text-label-caps text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Contact Us</a>
+<a class="font-label-caps text-label-caps text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100" href="#">Media Kit</a>
+</nav>
+</footer>
+</body></html>

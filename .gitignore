@@ -1,0 +1,12 @@
+node_modules/
+.next/
+dev.log
+*.log
+.DS_Store
+
+# biến môi trường (chứa API key) — không commit
+.env.local
+.env*.local
+
+# Vercel
+.vercel

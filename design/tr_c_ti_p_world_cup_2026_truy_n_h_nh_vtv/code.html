@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trực Tiếp FIFA World Cup 2026 - VTV</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;800&amp;family=Hanken+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#5530ff",
+                      "on-tertiary-fixed": "#112000",
+                      "on-tertiary-container": "#8fdb00",
+                      "tertiary-fixed-dim": "#8fdb00",
+                      "primary-fixed-dim": "#c7bfff",
+                      "secondary-container": "#00e3fd",
+                      "outline": "#787589",
+                      "on-secondary-container": "#00616d",
+                      "on-primary-fixed-variant": "#3d00dd",
+                      "on-tertiary-fixed-variant": "#314f00",
+                      "surface-container-high": "#ebe7e7",
+                      "on-background": "#1c1b1b",
+                      "surface-variant": "#e5e2e1",
+                      "on-surface": "#1c1b1b",
+                      "surface-bright": "#fcf9f8",
+                      "surface-dim": "#dcd9d9",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#4800ff",
+                      "background": "#fcf9f8",
+                      "secondary": "#006875",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#313030",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-container": "#f0edec",
+                      "on-surface-variant": "#474557",
+                      "on-primary-container": "#c7c0ff",
+                      "outline-variant": "#c8c4db",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#00daf3",
+                      "primary": "#3400bf",
+                      "on-primary-fixed": "#170065",
+                      "tertiary-container": "#3a5c00",
+                      "primary-fixed": "#e4dfff",
+                      "inverse-primary": "#c7bfff",
+                      "on-primary": "#ffffff",
+                      "surface": "#fcf9f8",
+                      "on-secondary-fixed-variant": "#004f58",
+                      "on-secondary-fixed": "#001f24",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-error-container": "#93000a",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f6f3f2",
+                      "tertiary-fixed": "#a8f928",
+                      "secondary-fixed": "#9cf0ff",
+                      "tertiary": "#294300"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "base": "4px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "display-lg-mobile": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-caps": [
+                              "Hanken Grotesk"
+                      ],
+                      "data-mono": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "display-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #F8F9FA;
+        }
+        .spotlight-gradient {
+            background: radial-gradient(circle at top right, rgba(173, 255, 47, 0.1), transparent 70%);
+        }
+        .glass-panel {
+            background: rgba(31, 30, 30, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .video-container {
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+        }
+      </style>
+</head>
+<body class="font-body-md text-body-md text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<nav class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="font-display-lg text-display-lg text-surface-tint uppercase tracking-tighter">
+                FIFA World Cup 2026
+            </div>
+<ul class="hidden md:flex items-center gap-6">
+<li><a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Standings</a></li>
+<li><a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Teams</a></li>
+<li><a class="text-on-surface-variant font-medium hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Schedule</a></li>
+<li><a class="text-primary font-bold border-b-4 border-primary pb-2 font-label-caps text-label-caps" href="#">Live Stream</a></li>
+</ul>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-4 py-2 rounded hover:bg-on-primary-fixed-variant transition-colors">Tickets</button>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:bg-surface-container-low rounded-full transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:bg-surface-container-low rounded-full transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: Video & Match Details (Spans 8 columns on desktop) -->
+<div class="col-span-1 md:col-span-8 flex flex-col gap-6">
+<!-- Video Player -->
+<div class="relative w-full rounded-xl overflow-hidden video-container shadow-[0px_8px_24px_rgba(72,0,255,0.08)] border border-outline-variant">
+<img alt="Trực tiếp trận đấu bóng đá" class="absolute inset-0 w-full h-full object-cover" data-alt="A dynamic action shot of a soccer match in a massive, brightly lit stadium. High-contrast bold lighting highlights the players on the vibrant green pitch. The atmosphere is electric and fast-paced, capturing the kinetic energy of the FIFA World Cup. Corporate modern aesthetic, sharp focus, vibrant colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDZ4QXToqida861a6ljWUXhuwUp4rSrkax7VSBGoD3qsMADN7Ek3O0mHCrWU518ObYCz0f_bsf3qo9dFHUL2qzJMWJZJKnd-bgHM2sqaLDkBKjji4XRAQZS2zQehvJLjYE2YbIuriSYRaGe3IdAUT1DBkRAra4MYtF-oVPj46Nh98gCpW1plTg83CIjQP19wDXgmZCjXJ74rYOMNdAACQqnF9sPhsQ43dEEF0l66dEDQ6Y1-mzNbuGLzTv3WRYmP5bLyQQ_XgmiLyQ"/>
+<!-- Video Controls Overlay (Glassmorphism) -->
+<div class="absolute bottom-0 inset-x-0 glass-panel p-4 flex items-center justify-between text-on-secondary">
+<div class="flex items-center gap-4">
+<button class="hover:text-tertiary-fixed transition-colors">
+<span class="material-symbols-outlined" data-weight="fill">play_arrow</span>
+</button>
+<button class="hover:text-tertiary-fixed transition-colors">
+<span class="material-symbols-outlined" data-weight="fill">volume_up</span>
+</button>
+<span class="font-data-mono text-data-mono">45:12 / Live</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-caps text-label-caps px-2 py-1 rounded">TRỰC TIẾP</span>
+<button class="hover:text-tertiary-fixed transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="hover:text-tertiary-fixed transition-colors">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Match Header -->
+<div class="bg-surface rounded-xl p-6 border border-outline-variant shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-6">
+<div class="text-center">
+<img alt="Brazil Flag" class="w-16 h-12 rounded shadow-sm object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3rBBCfmiKXpH_5Fh9Cz1uTy-GQUIQg8JGO6D2Nsn2TgNxVFCKongHFlR1SvQWGoM9dPhuohUvsHC_tmbZHiC6V8y5WmXxvxLoi_ScAT_4TBVo7vF8P1mN7iHA34LhFiUBUL43mdc2-0VGCxpSvGCNoCbF0V-D_ytRKWCwMNa65u64bzAKNXjEjGwX2l19FwGKuJUurXEZ6bQ2K-F-x-aaVxv6ENqDrQki52MfigPufygb0MkZgccGrS1y_Pats4LSDWrcbPwGafeT"/>
+<div class="font-headline-md text-headline-md mt-2">BRA</div>
+</div>
+<div class="flex flex-col items-center justify-center">
+<div class="font-data-mono text-data-mono text-on-surface-variant">BẢNG G - HIỆP 1</div>
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary my-2">2 - 0</div>
+<div class="font-data-mono text-data-mono text-secondary">45' + 2'</div>
+</div>
+<div class="text-center">
+<img alt="Serbia Flag" class="w-16 h-12 rounded shadow-sm object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIIEUWSEWhJch0ZuN5YzdmLyvG_HeBe918wl1ZuxJJKgBBAH5vOG1ZS8K9cBQFwnrzeU-4l4m5IaseCWTJXLr88-b8l-CIbCVKKHPFNemRVRig9JPvEri0nAUl7pAVl4KrBKNGtc7f9DQIzTqSfz68q7mWtvW5NK71jzgIGrXzpVlFZ412PvxQC9zWISxTliFi2Zuqbo6wL4FjMY3jxJzjq3pP3nd4elCQaRy5IzBqsdy2JK_tskYFmWOSNRsJLY1R8SMcPNRXciWN"/>
+<div class="font-headline-md text-headline-md mt-2">SRB</div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="bg-transparent border-2 border-secondary-container text-secondary font-label-caps text-label-caps px-4 py-2 rounded hover:bg-secondary-container hover:text-on-secondary-container transition-all">Chi Tiết</button>
+<button class="bg-transparent border-2 border-secondary-container text-secondary font-label-caps text-label-caps px-4 py-2 rounded hover:bg-secondary-container hover:text-on-secondary-container transition-all">Đội Hình</button>
+</div>
+</div>
+<!-- Live Stats Bento Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface border border-outline-variant rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
+<div class="font-data-mono text-data-mono text-on-surface-variant mb-1">Kiểm Soát Bóng</div>
+<div class="w-full flex items-center justify-between mt-2">
+<span class="font-headline-md text-headline-md text-primary">62%</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant">38%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full mt-2 overflow-hidden flex">
+<div class="h-full bg-primary" style="width: 62%;"></div>
+<div class="h-full bg-outline" style="width: 38%;"></div>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
+<div class="font-data-mono text-data-mono text-on-surface-variant mb-1">Cú Sút</div>
+<div class="font-headline-md text-headline-md text-on-surface">14 - 3</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
+<div class="font-data-mono text-data-mono text-on-surface-variant mb-1">Phạt Góc</div>
+<div class="font-headline-md text-headline-md text-on-surface">6 - 1</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded-lg p-4 flex flex-col items-center justify-center shadow-sm">
+<div class="font-data-mono text-data-mono text-on-surface-variant mb-1">Phạm Lỗi</div>
+<div class="font-headline-md text-headline-md text-on-surface">8 - 12</div>
+</div>
+</div>
+<!-- Live Commentary -->
+<div class="bg-surface border border-outline-variant rounded-xl p-6 shadow-sm">
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4 border-b border-outline-variant pb-2">Bình Luận Trực Tiếp</h3>
+<div class="space-y-4 max-h-80 overflow-y-auto pr-2">
+<div class="flex gap-4 items-start border-l-2 border-primary pl-4">
+<div class="font-data-mono text-data-mono text-secondary mt-1">45'</div>
+<div>
+<div class="font-bold text-on-surface">VÀOOOOO! Richarlison (Brazil)</div>
+<p class="text-on-surface-variant mt-1">Một cú ngả bàn đèn tuyệt đẹp tung lưới Serbia. Bàn thắng thứ hai cho đội tuyển Brazil!</p>
+</div>
+</div>
+<div class="flex gap-4 items-start border-l-2 border-outline-variant pl-4 opacity-80">
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-1">42'</div>
+<div>
+<div class="font-bold text-on-surface">Thẻ vàng cho S. Pavlovic (Serbia)</div>
+<p class="text-on-surface-variant mt-1">Phạm lỗi nguy hiểm với Neymar.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start border-l-2 border-outline-variant pl-4 opacity-80">
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-1">35'</div>
+<div>
+<div class="font-bold text-on-surface">Cơ hội bị bỏ lỡ</div>
+<p class="text-on-surface-variant mt-1">Raphinha dứt điểm quá nhẹ, thủ môn Milinkovic-Savic dễ dàng bắt gọn.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Channel Selection (Spans 4 columns on desktop) -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-6">
+<div class="bg-surface border border-outline-variant rounded-xl p-4 shadow-sm h-full flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Chọn Kênh Phát Sóng</h3>
+<div class="flex flex-col gap-3 overflow-y-auto flex-grow pr-2">
+<!-- Active Channel -->
+<div class="flex items-center p-3 rounded-lg border-2 border-secondary-container bg-surface-container-low cursor-pointer shadow-[0px_8px_24px_rgba(72,0,255,0.08)] relative overflow-hidden group">
+<div class="spotlight-gradient absolute inset-0 opacity-50"></div>
+<div class="relative z-10 flex w-full items-center gap-4">
+<div class="w-16 h-16 bg-white rounded flex items-center justify-center font-display-lg text-headline-md text-primary border border-outline-variant shrink-0">
+                                VTV3
+                            </div>
+<div class="flex-grow">
+<div class="font-bold text-on-surface">VTV3 HD</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-sm truncate">Brazil vs Serbia</div>
+</div>
+<div class="shrink-0">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-label-caps text-label-caps px-2 py-1 rounded animate-pulse">ĐANG PHÁT</span>
+</div>
+</div>
+</div>
+<!-- Inactive Channels -->
+<div class="flex items-center p-3 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="w-16 h-16 bg-white rounded flex items-center justify-center font-display-lg text-headline-md text-on-surface-variant border border-outline-variant shrink-0">
+                            VTV1
+                        </div>
+<div class="flex-grow ml-4">
+<div class="font-bold text-on-surface group-hover:text-primary transition-colors">VTV1 HD</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-sm truncate">Bình luận trước trận</div>
+</div>
+</div>
+<div class="flex items-center p-3 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="w-16 h-16 bg-white rounded flex items-center justify-center font-display-lg text-headline-md text-on-surface-variant border border-outline-variant shrink-0">
+                            VTV2
+                        </div>
+<div class="flex-grow ml-4">
+<div class="font-bold text-on-surface group-hover:text-primary transition-colors">VTV2 HD</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-sm truncate">Chuyên mục: Ngôi sao WC</div>
+</div>
+</div>
+<div class="flex items-center p-3 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="w-16 h-16 bg-white rounded flex items-center justify-center font-display-lg text-headline-md text-on-surface-variant border border-outline-variant shrink-0">
+                            VTV7
+                        </div>
+<div class="flex-grow ml-4">
+<div class="font-bold text-on-surface group-hover:text-primary transition-colors">VTV7 HD</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-sm truncate">Bồ Đào Nha vs Ghana (Phát lại)</div>
+</div>
+</div>
+<div class="flex items-center p-3 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="w-16 h-16 bg-white rounded flex items-center justify-center font-display-lg text-headline-md text-on-surface-variant border border-outline-variant shrink-0">
+                            VTV9
+                        </div>
+<div class="flex-grow ml-4">
+<div class="font-bold text-on-surface group-hover:text-primary transition-colors">VTV9 HD</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-sm truncate">Tin tức World Cup 24/7</div>
+</div>
+</div>
+<div class="flex items-center p-3 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="w-16 h-16 bg-white rounded flex items-center justify-center font-display-lg text-headline-md text-on-surface-variant border border-outline-variant shrink-0">
+                            VTV10
+                        </div>
+<div class="flex-grow ml-4">
+<div class="font-bold text-on-surface group-hover:text-primary transition-colors">VTV10 HD</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-sm truncate">Giao lưu Fan Hâm mộ</div>
+</div>
+</div>
+<div class="flex items-center p-3 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container-low cursor-pointer transition-colors group">
+<div class="w-16 h-16 bg-white rounded flex items-center justify-center font-display-lg text-headline-md text-on-surface-variant border border-outline-variant shrink-0">
+                            VTV CT
+                        </div>
+<div class="flex-grow ml-4">
+<div class="font-bold text-on-surface group-hover:text-primary transition-colors">VTV Cần Thơ</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-sm truncate">Brazil vs Serbia (Bình luận địa phương)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-on-surface w-full py-16 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter mt-16">
+<div class="font-display-lg text-display-lg-mobile text-on-primary">
+            FIFA World Cup 2026
+        </div>
+<ul class="flex flex-wrap justify-center gap-6">
+<li><a class="text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100 font-label-caps text-label-caps" href="#">Privacy Policy</a></li>
+<li><a class="text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100 font-label-caps text-label-caps" href="#">Terms of Service</a></li>
+<li><a class="text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100 font-label-caps text-label-caps" href="#">Sponsorships</a></li>
+<li><a class="text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100 font-label-caps text-label-caps" href="#">Contact Us</a></li>
+<li><a class="text-surface-variant hover:text-tertiary-fixed-dim transition-colors opacity-90 hover:opacity-100 font-label-caps text-label-caps" href="#">Media Kit</a></li>
+</ul>
+<div class="text-tertiary-fixed font-body-md text-body-md text-center md:text-right">
+            © 2026 FIFA World Cup. All Rights Reserved. Official Broadcaster: VTV.
+        </div>
+</footer>
+</body></html>
