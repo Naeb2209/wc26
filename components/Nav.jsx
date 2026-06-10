@@ -9,6 +9,7 @@ const LINKS = [
   { href: "/teams", label: "Đội bóng" },
   { href: "/schedule", label: "Lịch thi đấu" },
   { href: "/live", label: "Trực tiếp" },
+  { href: "/fantasy", label: "Fantasy" },
 ];
 
 export default function Nav() {

@@ -10,3 +10,6 @@ dev.log
 
 # Vercel
 .vercel
+
+# Playwright FIFA session (chứa cookie đăng nhập — KHÔNG commit)
+.playwright-fifa/

@@ -22,6 +22,20 @@ async function ping(provider) {
   if (!key) return { provider, ok: false, status: 0, message: `thiếu ${cfg.keyEnv}` };
   try {
     const r = await fetch(cfg.url, { headers: cfg.header(key), cache: "no-store" });
+    const h = r.headers;
+    let quota;
+    if (provider === "football-data") {
+      quota = {
+        conLaiTrongPhut: h.get("X-Requests-Available-Minute"),
+        resetSauGiay: h.get("X-RequestCounter-Reset"),
+      };
+    } else {
+      quota = {
+        conLaiTrongNgay: h.get("x-ratelimit-requests-remaining"),
+        gioiHanNgay: h.get("x-ratelimit-requests-limit"),
+        conLaiTrongPhut: h.get("X-RateLimit-Remaining"),
+      };
+    }
     let message = "OK";
     if (!r.ok) {
       message = await r.text().then((t) => t.slice(0, 160)).catch(() => "");
@@ -29,9 +43,9 @@ async function ping(provider) {
       const j = await r.json();
       const errs = j.errors;
       const n = Array.isArray(errs) ? errs.length : errs ? Object.keys(errs).length : 0;
-      if (n) return { provider, ok: false, status: r.status, message: `quota/errors ${JSON.stringify(errs).slice(0, 140)}` };
+      if (n) return { provider, ok: false, status: r.status, quota, message: `quota/errors ${JSON.stringify(errs).slice(0, 140)}` };
     }
-    return { provider, ok: r.ok, status: r.status, message };
+    return { provider, ok: r.ok, status: r.status, quota, message };
   } catch (e) {
     return { provider, ok: false, status: 0, message: `mạng lỗi: ${e.message}` };
   }

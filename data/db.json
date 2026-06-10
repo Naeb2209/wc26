@@ -1,121 +1,689 @@
 {
   "fifaRanks": {
-    "ARG": 1, "FRA": 2, "ESP": 3, "ENG": 4, "BRA": 5, "POR": 6, "NED": 7,
-    "BEL": 8, "GER": 10, "USA": 11, "CRO": 12, "MAR": 13, "MEX": 14,
-    "COL": 15, "URU": 16, "SEN": 17, "JPN": 18, "SUI": 19, "IRN": 21,
-    "KOR": 22, "ECU": 23, "AUT": 24, "AUS": 25, "TUR": 27, "NOR": 29,
-    "PAN": 30, "CAN": 32, "EGY": 33, "QAT": 35, "SWE": 36, "ALG": 37,
-    "SCO": 39, "CZE": 40, "PAR": 41, "CIV": 44, "TUN": 45, "UZB": 52,
-    "KSA": 56, "COD": 57, "IRQ": 58, "RSA": 60, "JOR": 62, "CPV": 70,
-    "GHA": 73, "BIH": 74, "CUW": 82, "HAI": 83, "NZL": 104
+    "ARG": 1,
+    "FRA": 2,
+    "ESP": 3,
+    "ENG": 4,
+    "BRA": 5,
+    "POR": 6,
+    "NED": 7,
+    "BEL": 8,
+    "GER": 10,
+    "USA": 11,
+    "CRO": 12,
+    "MAR": 13,
+    "MEX": 14,
+    "COL": 15,
+    "URU": 16,
+    "SEN": 17,
+    "JPN": 18,
+    "SUI": 19,
+    "IRN": 21,
+    "KOR": 22,
+    "ECU": 23,
+    "AUT": 24,
+    "AUS": 25,
+    "TUR": 27,
+    "NOR": 29,
+    "PAN": 30,
+    "CAN": 32,
+    "EGY": 33,
+    "QAT": 35,
+    "SWE": 36,
+    "ALG": 37,
+    "SCO": 39,
+    "CZE": 40,
+    "PAR": 41,
+    "CIV": 44,
+    "TUN": 45,
+    "UZB": 52,
+    "KSA": 56,
+    "COD": 57,
+    "IRQ": 58,
+    "RSA": 60,
+    "JOR": 62,
+    "CPV": 70,
+    "GHA": 73,
+    "BIH": 74,
+    "CUW": 82,
+    "HAI": 83,
+    "NZL": 104
   },
   "groups": [
     {
       "name": "Bảng A",
       "rows": [
-        { "team": "Mexico", "code": "MEX", "iso": "mx", "fifaRank": 14, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Hàn Quốc", "code": "KOR", "iso": "kr", "fifaRank": 22, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "CH Séc", "code": "CZE", "iso": "cz", "fifaRank": 40, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Nam Phi", "code": "RSA", "iso": "za", "fifaRank": 60, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Mexico",
+          "code": "MEX",
+          "iso": "mx",
+          "fifaRank": 14,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Hàn Quốc",
+          "code": "KOR",
+          "iso": "kr",
+          "fifaRank": 22,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "CH Séc",
+          "code": "CZE",
+          "iso": "cz",
+          "fifaRank": 40,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Nam Phi",
+          "code": "RSA",
+          "iso": "za",
+          "fifaRank": 60,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng B",
       "rows": [
-        { "team": "Thụy Sĩ", "code": "SUI", "iso": "ch", "fifaRank": 19, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Canada", "code": "CAN", "iso": "ca", "fifaRank": 32, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Qatar", "code": "QAT", "iso": "qa", "fifaRank": 35, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Bosnia & H.", "code": "BIH", "iso": "ba", "fifaRank": 74, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Thụy Sĩ",
+          "code": "SUI",
+          "iso": "ch",
+          "fifaRank": 19,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Canada",
+          "code": "CAN",
+          "iso": "ca",
+          "fifaRank": 32,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Qatar",
+          "code": "QAT",
+          "iso": "qa",
+          "fifaRank": 35,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Bosnia & H.",
+          "code": "BIH",
+          "iso": "ba",
+          "fifaRank": 74,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng C",
       "rows": [
-        { "team": "Brazil", "code": "BRA", "iso": "br", "fifaRank": 5, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Maroc", "code": "MAR", "iso": "ma", "fifaRank": 13, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Scotland", "code": "SCO", "iso": "gb-sct", "fifaRank": 39, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Haiti", "code": "HAI", "iso": "ht", "fifaRank": 83, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Brazil",
+          "code": "BRA",
+          "iso": "br",
+          "fifaRank": 5,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Maroc",
+          "code": "MAR",
+          "iso": "ma",
+          "fifaRank": 13,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Scotland",
+          "code": "SCO",
+          "iso": "gb-sct",
+          "fifaRank": 39,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Haiti",
+          "code": "HAI",
+          "iso": "ht",
+          "fifaRank": 83,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng D",
       "rows": [
-        { "team": "Mỹ", "code": "USA", "iso": "us", "fifaRank": 11, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Úc", "code": "AUS", "iso": "au", "fifaRank": 25, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Thổ Nhĩ Kỳ", "code": "TUR", "iso": "tr", "fifaRank": 27, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Paraguay", "code": "PAR", "iso": "py", "fifaRank": 41, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Mỹ",
+          "code": "USA",
+          "iso": "us",
+          "fifaRank": 11,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Úc",
+          "code": "AUS",
+          "iso": "au",
+          "fifaRank": 25,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Thổ Nhĩ Kỳ",
+          "code": "TUR",
+          "iso": "tr",
+          "fifaRank": 27,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Paraguay",
+          "code": "PAR",
+          "iso": "py",
+          "fifaRank": 41,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng E",
       "rows": [
-        { "team": "Đức", "code": "GER", "iso": "de", "fifaRank": 10, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Ecuador", "code": "ECU", "iso": "ec", "fifaRank": 23, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Bờ Biển Ngà", "code": "CIV", "iso": "ci", "fifaRank": 44, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Curaçao", "code": "CUW", "iso": "cw", "fifaRank": 82, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Đức",
+          "code": "GER",
+          "iso": "de",
+          "fifaRank": 10,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Ecuador",
+          "code": "ECU",
+          "iso": "ec",
+          "fifaRank": 23,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Bờ Biển Ngà",
+          "code": "CIV",
+          "iso": "ci",
+          "fifaRank": 44,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Curaçao",
+          "code": "CUW",
+          "iso": "cw",
+          "fifaRank": 82,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng F",
       "rows": [
-        { "team": "Hà Lan", "code": "NED", "iso": "nl", "fifaRank": 7, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Nhật Bản", "code": "JPN", "iso": "jp", "fifaRank": 18, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Thụy Điển", "code": "SWE", "iso": "se", "fifaRank": 36, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Tunisia", "code": "TUN", "iso": "tn", "fifaRank": 45, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Hà Lan",
+          "code": "NED",
+          "iso": "nl",
+          "fifaRank": 7,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Nhật Bản",
+          "code": "JPN",
+          "iso": "jp",
+          "fifaRank": 18,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Thụy Điển",
+          "code": "SWE",
+          "iso": "se",
+          "fifaRank": 36,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Tunisia",
+          "code": "TUN",
+          "iso": "tn",
+          "fifaRank": 45,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng G",
       "rows": [
-        { "team": "Bỉ", "code": "BEL", "iso": "be", "fifaRank": 8, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Iran", "code": "IRN", "iso": "ir", "fifaRank": 21, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Ai Cập", "code": "EGY", "iso": "eg", "fifaRank": 33, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "New Zealand", "code": "NZL", "iso": "nz", "fifaRank": 104, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Bỉ",
+          "code": "BEL",
+          "iso": "be",
+          "fifaRank": 8,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Iran",
+          "code": "IRN",
+          "iso": "ir",
+          "fifaRank": 21,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Ai Cập",
+          "code": "EGY",
+          "iso": "eg",
+          "fifaRank": 33,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "New Zealand",
+          "code": "NZL",
+          "iso": "nz",
+          "fifaRank": 104,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng H",
       "rows": [
-        { "team": "Tây Ban Nha", "code": "ESP", "iso": "es", "fifaRank": 3, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Uruguay", "code": "URU", "iso": "uy", "fifaRank": 16, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Ả Rập Xê Út", "code": "KSA", "iso": "sa", "fifaRank": 56, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Cabo Verde", "code": "CPV", "iso": "cv", "fifaRank": 70, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Tây Ban Nha",
+          "code": "ESP",
+          "iso": "es",
+          "fifaRank": 3,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Uruguay",
+          "code": "URU",
+          "iso": "uy",
+          "fifaRank": 16,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Ả Rập Xê Út",
+          "code": "KSA",
+          "iso": "sa",
+          "fifaRank": 56,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Cabo Verde",
+          "code": "CPV",
+          "iso": "cv",
+          "fifaRank": 70,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng I",
       "rows": [
-        { "team": "Pháp", "code": "FRA", "iso": "fr", "fifaRank": 2, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Senegal", "code": "SEN", "iso": "sn", "fifaRank": 17, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Na Uy", "code": "NOR", "iso": "no", "fifaRank": 29, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Iraq", "code": "IRQ", "iso": "iq", "fifaRank": 58, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Pháp",
+          "code": "FRA",
+          "iso": "fr",
+          "fifaRank": 2,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Senegal",
+          "code": "SEN",
+          "iso": "sn",
+          "fifaRank": 17,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Na Uy",
+          "code": "NOR",
+          "iso": "no",
+          "fifaRank": 29,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Iraq",
+          "code": "IRQ",
+          "iso": "iq",
+          "fifaRank": 58,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng J",
       "rows": [
-        { "team": "Argentina", "code": "ARG", "iso": "ar", "fifaRank": 1, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Áo", "code": "AUT", "iso": "at", "fifaRank": 24, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Algeria", "code": "ALG", "iso": "dz", "fifaRank": 37, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Jordan", "code": "JOR", "iso": "jo", "fifaRank": 62, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Argentina",
+          "code": "ARG",
+          "iso": "ar",
+          "fifaRank": 1,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Áo",
+          "code": "AUT",
+          "iso": "at",
+          "fifaRank": 24,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Algeria",
+          "code": "ALG",
+          "iso": "dz",
+          "fifaRank": 37,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Jordan",
+          "code": "JOR",
+          "iso": "jo",
+          "fifaRank": 62,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng K",
       "rows": [
-        { "team": "Bồ Đào Nha", "code": "POR", "iso": "pt", "fifaRank": 6, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Colombia", "code": "COL", "iso": "co", "fifaRank": 15, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Uzbekistan", "code": "UZB", "iso": "uz", "fifaRank": 52, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "CHDC Congo", "code": "COD", "iso": "cd", "fifaRank": 57, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Bồ Đào Nha",
+          "code": "POR",
+          "iso": "pt",
+          "fifaRank": 6,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Colombia",
+          "code": "COL",
+          "iso": "co",
+          "fifaRank": 15,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Uzbekistan",
+          "code": "UZB",
+          "iso": "uz",
+          "fifaRank": 52,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "CHDC Congo",
+          "code": "COD",
+          "iso": "cd",
+          "fifaRank": 57,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     },
     {
       "name": "Bảng L",
       "rows": [
-        { "team": "Anh", "code": "ENG", "iso": "gb-eng", "fifaRank": 4, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Croatia", "code": "CRO", "iso": "hr", "fifaRank": 12, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Panama", "code": "PAN", "iso": "pa", "fifaRank": 30, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 },
-        { "team": "Ghana", "code": "GHA", "iso": "gh", "fifaRank": 73, "p": 0, "w": 0, "d": 0, "l": 0, "gd": 0, "pts": 0 }
+        {
+          "team": "Anh",
+          "code": "ENG",
+          "iso": "gb-eng",
+          "fifaRank": 4,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Croatia",
+          "code": "CRO",
+          "iso": "hr",
+          "fifaRank": 12,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Panama",
+          "code": "PAN",
+          "iso": "pa",
+          "fifaRank": 30,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        },
+        {
+          "team": "Ghana",
+          "code": "GHA",
+          "iso": "gh",
+          "fifaRank": 73,
+          "p": 0,
+          "w": 0,
+          "d": 0,
+          "l": 0,
+          "gd": 0,
+          "pts": 0
+        }
       ]
     }
   ],
@@ -127,19 +695,93 @@
       "fifaRank": 1,
       "titles": "3x Vô địch",
       "confederation": "Nam Mỹ (CONMEBOL)",
-      "stats": { "goals": 28, "conceded": 8, "possession": 62 },
+      "stats": {
+        "goals": 28,
+        "conceded": 8,
+        "possession": 62
+      },
       "players": [
-        { "name": "Lionel Messi", "number": 10, "position": "Tiền Đạo", "ovr": 94, "goals": 108, "assists": 56, "isStar": true },
-        { "name": "Julian Alvarez", "number": 9, "position": "Tiền Đạo", "ovr": 88, "goals": 35, "assists": 8, "isStar": false },
-        { "name": "Enzo Fernandez", "number": 24, "position": "Tiền Vệ", "ovr": 85, "goals": 12, "assists": 15, "isStar": false },
-        { "name": "Alexis Mac Allister", "number": 20, "position": "Tiền Vệ", "ovr": 84, "goals": 8, "assists": 10, "isStar": false },
-        { "name": "Cristian Romero", "number": 13, "position": "Hậu Vệ", "ovr": 83, "goals": 2, "assists": 1, "isStar": false },
-        { "name": "Nicolas Otamendi", "number": 19, "position": "Hậu Vệ", "ovr": 82, "goals": 4, "assists": 0, "isStar": false },
-        { "name": "Emi Martinez", "number": 23, "position": "Thủ Môn", "ovr": 85, "cleanSheets": 12, "assists": 0, "isStar": true }
+        {
+          "name": "Lionel Messi",
+          "number": 10,
+          "position": "Tiền Đạo",
+          "ovr": 94,
+          "goals": 108,
+          "assists": 56,
+          "isStar": true
+        },
+        {
+          "name": "Julian Alvarez",
+          "number": 9,
+          "position": "Tiền Đạo",
+          "ovr": 88,
+          "goals": 35,
+          "assists": 8,
+          "isStar": false
+        },
+        {
+          "name": "Enzo Fernandez",
+          "number": 24,
+          "position": "Tiền Vệ",
+          "ovr": 85,
+          "goals": 12,
+          "assists": 15,
+          "isStar": false
+        },
+        {
+          "name": "Alexis Mac Allister",
+          "number": 20,
+          "position": "Tiền Vệ",
+          "ovr": 84,
+          "goals": 8,
+          "assists": 10,
+          "isStar": false
+        },
+        {
+          "name": "Cristian Romero",
+          "number": 13,
+          "position": "Hậu Vệ",
+          "ovr": 83,
+          "goals": 2,
+          "assists": 1,
+          "isStar": false
+        },
+        {
+          "name": "Nicolas Otamendi",
+          "number": 19,
+          "position": "Hậu Vệ",
+          "ovr": 82,
+          "goals": 4,
+          "assists": 0,
+          "isStar": false
+        },
+        {
+          "name": "Emi Martinez",
+          "number": 23,
+          "position": "Thủ Môn",
+          "ovr": 85,
+          "cleanSheets": 12,
+          "assists": 0,
+          "isStar": true
+        }
       ],
       "schedule": [
-        { "round": "Vòng Bảng - Lượt 1", "date": "15 Thg 6, 2026", "homeCode": "ARG", "awayCode": "JOR", "time": "20:00", "venue": "Hard Rock Stadium" },
-        { "round": "Vòng Bảng - Lượt 2", "date": "20 Thg 6, 2026", "homeCode": "ALG", "awayCode": "ARG", "time": "22:00", "venue": "" }
+        {
+          "round": "Vòng Bảng - Lượt 1",
+          "date": "15 Thg 6, 2026",
+          "homeCode": "ARG",
+          "awayCode": "JOR",
+          "time": "20:00",
+          "venue": "Hard Rock Stadium"
+        },
+        {
+          "round": "Vòng Bảng - Lượt 2",
+          "date": "20 Thg 6, 2026",
+          "homeCode": "ALG",
+          "awayCode": "ARG",
+          "time": "22:00",
+          "venue": ""
+        }
       ]
     },
     {
@@ -149,17 +791,76 @@
       "fifaRank": 5,
       "titles": "5x Vô địch",
       "confederation": "Nam Mỹ (CONMEBOL)",
-      "stats": { "goals": 24, "conceded": 6, "possession": 60 },
+      "stats": {
+        "goals": 24,
+        "conceded": 6,
+        "possession": 60
+      },
       "players": [
-        { "name": "Vinicius Jr", "number": 7, "position": "Tiền Đạo", "ovr": 92, "goals": 24, "assists": 18, "isStar": true },
-        { "name": "Rodrygo", "number": 11, "position": "Tiền Đạo", "ovr": 86, "goals": 16, "assists": 9, "isStar": false },
-        { "name": "Richarlison", "number": 9, "position": "Tiền Đạo", "ovr": 83, "goals": 19, "assists": 4, "isStar": false },
-        { "name": "Bruno Guimaraes", "number": 5, "position": "Tiền Vệ", "ovr": 85, "goals": 6, "assists": 12, "isStar": false },
-        { "name": "Marquinhos", "number": 4, "position": "Hậu Vệ", "ovr": 86, "goals": 5, "assists": 2, "isStar": false },
-        { "name": "Alisson", "number": 1, "position": "Thủ Môn", "ovr": 89, "cleanSheets": 15, "assists": 0, "isStar": true }
+        {
+          "name": "Vinicius Jr",
+          "number": 7,
+          "position": "Tiền Đạo",
+          "ovr": 92,
+          "goals": 24,
+          "assists": 18,
+          "isStar": true
+        },
+        {
+          "name": "Rodrygo",
+          "number": 11,
+          "position": "Tiền Đạo",
+          "ovr": 86,
+          "goals": 16,
+          "assists": 9,
+          "isStar": false
+        },
+        {
+          "name": "Richarlison",
+          "number": 9,
+          "position": "Tiền Đạo",
+          "ovr": 83,
+          "goals": 19,
+          "assists": 4,
+          "isStar": false
+        },
+        {
+          "name": "Bruno Guimaraes",
+          "number": 5,
+          "position": "Tiền Vệ",
+          "ovr": 85,
+          "goals": 6,
+          "assists": 12,
+          "isStar": false
+        },
+        {
+          "name": "Marquinhos",
+          "number": 4,
+          "position": "Hậu Vệ",
+          "ovr": 86,
+          "goals": 5,
+          "assists": 2,
+          "isStar": false
+        },
+        {
+          "name": "Alisson",
+          "number": 1,
+          "position": "Thủ Môn",
+          "ovr": 89,
+          "cleanSheets": 15,
+          "assists": 0,
+          "isStar": true
+        }
       ],
       "schedule": [
-        { "round": "Vòng Bảng - Lượt 1", "date": "14 Thg 6, 2026", "homeCode": "BRA", "awayCode": "MAR", "time": "23:00", "venue": "SoFi Stadium" }
+        {
+          "round": "Vòng Bảng - Lượt 1",
+          "date": "14 Thg 6, 2026",
+          "homeCode": "BRA",
+          "awayCode": "MAR",
+          "time": "23:00",
+          "venue": "SoFi Stadium"
+        }
       ]
     }
   ],
@@ -173,7 +874,11 @@
   ],
   "schedule": {
     "Vòng Bảng": {
-      "rounds": ["Lượt 1", "Lượt 2", "Lượt 3"],
+      "rounds": [
+        "Lượt 1",
+        "Lượt 2",
+        "Lượt 3"
+      ],
       "matches": {
         "Lượt 1": [
           {
@@ -191,33 +896,121 @@
               "home": {
                 "formation": "4-3-3",
                 "players": [
-                  { "name": "Ochoa", "top": 8, "left": 50 },
-                  { "name": "Gallardo", "top": 20, "left": 20 },
-                  { "name": "Moreno", "top": 18, "left": 40 },
-                  { "name": "Montes", "top": 18, "left": 60 },
-                  { "name": "Sanchez", "top": 20, "left": 80 },
-                  { "name": "Chavez", "top": 35, "left": 30 },
-                  { "name": "Alvarez", "top": 32, "left": 50 },
-                  { "name": "Herrera", "top": 35, "left": 70 },
-                  { "name": "Vega", "top": 45, "left": 25 },
-                  { "name": "Gimenez", "top": 42, "left": 50 },
-                  { "name": "Lozano", "top": 45, "left": 75 }
+                  {
+                    "name": "Ochoa",
+                    "top": 8,
+                    "left": 50
+                  },
+                  {
+                    "name": "Gallardo",
+                    "top": 20,
+                    "left": 20
+                  },
+                  {
+                    "name": "Moreno",
+                    "top": 18,
+                    "left": 40
+                  },
+                  {
+                    "name": "Montes",
+                    "top": 18,
+                    "left": 60
+                  },
+                  {
+                    "name": "Sanchez",
+                    "top": 20,
+                    "left": 80
+                  },
+                  {
+                    "name": "Chavez",
+                    "top": 35,
+                    "left": 30
+                  },
+                  {
+                    "name": "Alvarez",
+                    "top": 32,
+                    "left": 50
+                  },
+                  {
+                    "name": "Herrera",
+                    "top": 35,
+                    "left": 70
+                  },
+                  {
+                    "name": "Vega",
+                    "top": 45,
+                    "left": 25
+                  },
+                  {
+                    "name": "Gimenez",
+                    "top": 42,
+                    "left": 50
+                  },
+                  {
+                    "name": "Lozano",
+                    "top": 45,
+                    "left": 75
+                  }
                 ]
               },
               "away": {
                 "formation": "4-2-3-1",
                 "players": [
-                  { "name": "Kim S.G.", "top": 92, "left": 50 },
-                  { "name": "Kim M.J.", "top": 82, "left": 30 },
-                  { "name": "Kim Y.G.", "top": 85, "left": 50 },
-                  { "name": "Lee", "top": 82, "left": 70 },
-                  { "name": "Seol", "top": 84, "left": 85 },
-                  { "name": "Hwang I.B.", "top": 68, "left": 38 },
-                  { "name": "Won", "top": 68, "left": 62 },
-                  { "name": "Son", "top": 55, "left": 25 },
-                  { "name": "Lee K.I.", "top": 58, "left": 50 },
-                  { "name": "Hwang H.C.", "top": 55, "left": 72 },
-                  { "name": "Cho", "top": 48, "left": 50 }
+                  {
+                    "name": "Kim S.G.",
+                    "top": 92,
+                    "left": 50
+                  },
+                  {
+                    "name": "Kim M.J.",
+                    "top": 82,
+                    "left": 30
+                  },
+                  {
+                    "name": "Kim Y.G.",
+                    "top": 85,
+                    "left": 50
+                  },
+                  {
+                    "name": "Lee",
+                    "top": 82,
+                    "left": 70
+                  },
+                  {
+                    "name": "Seol",
+                    "top": 84,
+                    "left": 85
+                  },
+                  {
+                    "name": "Hwang I.B.",
+                    "top": 68,
+                    "left": 38
+                  },
+                  {
+                    "name": "Won",
+                    "top": 68,
+                    "left": 62
+                  },
+                  {
+                    "name": "Son",
+                    "top": 55,
+                    "left": 25
+                  },
+                  {
+                    "name": "Lee K.I.",
+                    "top": 58,
+                    "left": 50
+                  },
+                  {
+                    "name": "Hwang H.C.",
+                    "top": 55,
+                    "left": 72
+                  },
+                  {
+                    "name": "Cho",
+                    "top": 48,
+                    "left": 50
+                  }
                 ]
               }
             }
@@ -242,14 +1035,190 @@
     }
   },
   "channels": [
-    { "code": "VTV1", "label": "VTV1", "name": "VTV1 HD", "program": "Bình luận trước trận" },
-    { "code": "VTV2", "label": "VTV2", "name": "VTV2 HD", "program": "Chuyên mục: Ngôi sao WC" },
-    { "code": "VTV3", "label": "VTV3", "name": "VTV3 HD", "program": "Brazil vs Maroc" },
-    { "code": "VTV7", "label": "VTV7", "name": "VTV7 HD", "program": "Bồ Đào Nha vs Colombia (Phát lại)" },
-    { "code": "VTV9", "label": "VTV9", "name": "VTV9 HD", "program": "Tin tức World Cup 24/7" },
-    { "code": "VTV10", "label": "VTV10", "name": "VTV10 HD", "program": "Giao lưu Fan Hâm mộ" },
-    { "code": "VTVCT", "label": "VTV CT", "name": "VTV Cần Thơ", "program": "Brazil vs Maroc (Bình luận địa phương)" }
+    {
+      "code": "VTV1",
+      "label": "VTV1",
+      "name": "VTV1 HD",
+      "program": "Thời sự & các trận tâm điểm",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/VTV1_logo_2013_final.svg/250px-VTV1_logo_2013_final.svg.png",
+      "watchUrl": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv1-1.html"
+    },
+    {
+      "code": "VTV2",
+      "label": "VTV2",
+      "name": "VTV2 HD",
+      "program": "Khoa giáo & chuyên đề",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/VTV2_logo_2013_final.svg/250px-VTV2_logo_2013_final.svg.png",
+      "watchUrl": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv2-2.html"
+    },
+    {
+      "code": "VTV3",
+      "label": "VTV3",
+      "name": "VTV3 HD",
+      "program": "Thể thao & giải trí — kênh chính World Cup",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/VTV3_logo_2013_final.svg/250px-VTV3_logo_2013_final.svg.png",
+      "watchUrl": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv3-3.html"
+    },
+    {
+      "code": "VTV7",
+      "label": "VTV7",
+      "name": "VTV7 HD",
+      "program": "Giáo dục",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/VTV7_logo_2016_final.svg/250px-VTV7_logo_2016_final.svg.png",
+      "watchUrl": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv7-27.html"
+    },
+    {
+      "code": "VTV9",
+      "label": "VTV9",
+      "name": "VTV9 HD",
+      "program": "Khu vực phía Nam",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/VTV9_logo_2013_final.svg/250px-VTV9_logo_2013_final.svg.png",
+      "watchUrl": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv9-39.html"
+    },
+    {
+      "code": "VTV10",
+      "label": "VTV10",
+      "name": "VTV10",
+      "program": "Khu vực ĐBSCL",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/VTV10_logo_2026.png/250px-VTV10_logo_2026.png",
+      "watchUrl": "https://vtvgo.vn/xem-truc-tuyen-kenh-vtv-c%E1%BA%A7n-th%C6%A1-6.html"
+    }
   ],
+  "broadcast": {
+    "_note": "Ánh xạ trận -> kênh VTV. default = kênh mặc định (VTV3 là kênh tâm điểm). byMatch theo cặp 'MÃ_NHÀ-MÃ_KHÁCH' (mã 3 chữ của API). Chỉnh theo lịch phát sóng VTV công bố cho các trận trùng giờ.",
+    "default": "VTV3",
+    "byMatch": {
+      "MEX-KOR": "VTV3",
+      "CZE-RSA": "VTV2",
+      "BRA-MAR": "VTV3"
+    }
+  },
+  "fantasy": {
+    "leagueName": "DC42 World Cup 2026",
+    "leagueId": 1090,
+    "leagueUrl": "https://play.fifa.com/fantasy/leagues",
+    "updatedRound": "Cập nhật 11:33:53 10/6/2026",
+    "_note": "Tự cập nhật bằng: node scripts/sync-fantasy.mjs (cần FIFA_LEAGUE_ID + FIFA_COOKIE trong .env.local). Hoặc sửa tay standings ở đây.",
+    "standings": [
+      {
+        "rank": 1,
+        "manager": "tanhung0209",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 1,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 2,
+        "manager": "tnhai",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 2,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 3,
+        "manager": "no more opportunities",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 3,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 4,
+        "manager": "villaduong95",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 4,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 5,
+        "manager": "Tai Nguy",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 5,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 6,
+        "manager": "LONDON is Red so do Viet Nam",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 6,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 7,
+        "manager": "ViTran",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 7,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 8,
+        "manager": "TeoEm",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 8,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 9,
+        "manager": "zafus",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 9,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 10,
+        "manager": "TuNgoo",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 10,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 11,
+        "manager": "KhHi",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 11,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 12,
+        "manager": "SonHoang",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 12,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      },
+      {
+        "rank": 13,
+        "manager": "Guanhnangtho",
+        "team": "",
+        "gw": 0,
+        "total": 0,
+        "prev": 13,
+        "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
+      }
+    ]
+  },
   "live": {
     "group": "BẢNG C - HIỆP 1",
     "minute": "45' + 2'",
@@ -260,15 +1229,33 @@
     "homeScore": 2,
     "awayScore": 0,
     "stats": {
-      "possession": [62, 38],
+      "possession": [
+        62,
+        38
+      ],
       "shots": "14 - 3",
       "corners": "6 - 1",
       "fouls": "8 - 12"
     },
     "commentary": [
-      { "minute": "45'", "title": "VÀOOOOO! Richarlison (Brazil)", "text": "Một cú ngả bàn đèn tuyệt đẹp tung lưới Maroc. Bàn thắng thứ hai cho đội tuyển Brazil!", "highlight": true },
-      { "minute": "42'", "title": "Thẻ vàng cho Maroc", "text": "Phạm lỗi nguy hiểm với Vinicius Jr.", "highlight": false },
-      { "minute": "35'", "title": "Cơ hội bị bỏ lỡ", "text": "Raphinha dứt điểm quá nhẹ, thủ môn Maroc dễ dàng bắt gọn.", "highlight": false }
+      {
+        "minute": "45'",
+        "title": "VÀOOOOO! Richarlison (Brazil)",
+        "text": "Một cú ngả bàn đèn tuyệt đẹp tung lưới Maroc. Bàn thắng thứ hai cho đội tuyển Brazil!",
+        "highlight": true
+      },
+      {
+        "minute": "42'",
+        "title": "Thẻ vàng cho Maroc",
+        "text": "Phạm lỗi nguy hiểm với Vinicius Jr.",
+        "highlight": false
+      },
+      {
+        "minute": "35'",
+        "title": "Cơ hội bị bỏ lỡ",
+        "text": "Raphinha dứt điểm quá nhẹ, thủ môn Maroc dễ dàng bắt gọn.",
+        "highlight": false
+      }
     ],
     "activeChannel": "VTV3",
     "clock": "45:12 / Live"

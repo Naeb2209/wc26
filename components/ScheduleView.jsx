@@ -161,6 +161,14 @@ export default function ScheduleView({ stages, schedule }) {
                         <span className="font-headline-md text-headline-md text-on-surface">{m.awayCode}</span>
                       </div>
                     </div>
+                    {m.channel && (
+                      <div className="flex justify-center mb-3">
+                        <span className="inline-flex items-center gap-1 bg-error/10 text-error font-label-caps text-label-caps uppercase px-3 py-1 rounded-full">
+                          <span className="material-symbols-outlined text-[14px]">live_tv</span>
+                          Trực tiếp: {m.channel}
+                        </span>
+                      </div>
+                    )}
                     <div className="flex justify-center mt-4">
                       <span
                         className={

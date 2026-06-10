@@ -195,6 +195,13 @@ export default async function TeamDetailPage({ params }) {
                         <span className="material-symbols-outlined text-[14px]">stadium</span> {m.venue}
                       </div>
                     )}
+                    {m.channel && (
+                      <div className="mt-2 text-center">
+                        <span className="inline-flex items-center gap-1 bg-error/10 text-error font-label-caps text-label-caps uppercase px-2 py-0.5 rounded-full">
+                          <span className="material-symbols-outlined text-[14px]">live_tv</span> Trực tiếp: {m.channel}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 ))
               ) : (
