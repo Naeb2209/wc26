@@ -3,6 +3,17 @@
 import { useState } from "react";
 import { flagUrl } from "@/lib/flags";
 
+function Jersey({ number }) {
+  return (
+    <span className="player-jersey-wrap">
+      <svg className="player-jersey" viewBox="0 0 64 64" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M22 6 L8 14 L14 27 L20 23 L20 58 L44 58 L44 23 L50 27 L56 14 L42 6 L32 13 Z" />
+      </svg>
+      {number != null && <span className="player-jersey-num">{number}</span>}
+    </span>
+  );
+}
+
 function Pitch({ match }) {
   if (!match) {
     return (
@@ -38,11 +49,13 @@ function Pitch({ match }) {
         <div className="absolute top-1/2 left-0 w-full h-[2px] bg-[rgba(255,255,255,0.2)] -translate-y-1/2" />
         {home.players.map((p, i) => (
           <div key={`a${i}`} className="player-dot team-a" style={{ top: `${p.top}%`, left: `${p.left}%` }}>
+            <Jersey number={p.number ?? i + 1} />
             <span className="player-name-tag">{p.name}</span>
           </div>
         ))}
         {away.players.map((p, i) => (
           <div key={`b${i}`} className="player-dot team-b" style={{ top: `${p.top}%`, left: `${p.left}%` }}>
+            <Jersey number={p.number ?? i + 1} />
             <span className="player-name-tag">{p.name}</span>
           </div>
         ))}
@@ -149,6 +162,14 @@ export default function ScheduleView({ stages, schedule }) {
                           <img src={m.homeFlag || flagUrl(m.homeIso, 160)} alt={m.homeCode} className="w-full h-full object-contain" />
                         </div>
                         <span className="font-headline-md text-headline-md text-on-surface">{m.homeCode}</span>
+                        {m.homeRank != null && (
+                          <span
+                            className="text-[10px] bg-surface-variant text-on-surface-variant px-1.5 rounded"
+                            title="Thứ hạng FIFA"
+                          >
+                            #{m.homeRank}
+                          </span>
+                        )}
                       </div>
                       <div className="flex flex-col items-center w-1/3">
                         <span className="font-display-lg-mobile text-display-lg-mobile text-on-surface-variant opacity-20">VS</span>
@@ -159,6 +180,14 @@ export default function ScheduleView({ stages, schedule }) {
                           <img src={m.awayFlag || flagUrl(m.awayIso, 160)} alt={m.awayCode} className="w-full h-full object-contain" />
                         </div>
                         <span className="font-headline-md text-headline-md text-on-surface">{m.awayCode}</span>
+                        {m.awayRank != null && (
+                          <span
+                            className="text-[10px] bg-surface-variant text-on-surface-variant px-1.5 rounded"
+                            title="Thứ hạng FIFA"
+                          >
+                            #{m.awayRank}
+                          </span>
+                        )}
                       </div>
                     </div>
                     {m.channel && (

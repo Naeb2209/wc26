@@ -92,25 +92,56 @@ body {
   border-radius: 50%;
 }
 .player-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.player-dot.team-a {
-  background: #00daf3;
-  border: 2px solid #fff;
+.player-jersey-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.player-dot.team-b {
-  background: #ffdad6;
-  border: 2px solid #ba1a1a;
+.player-jersey {
+  width: 48px;
+  height: 36px;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+}
+.player-jersey path {
+  vector-effect: non-scaling-stroke;
+}
+.player-jersey-num {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 700;
+  font-family: "Roboto Mono", monospace;
+  pointer-events: none;
+}
+.player-dot.team-a .player-jersey {
+  fill: #00daf3;
+  stroke: #ffffff;
+}
+.player-dot.team-a .player-jersey-num {
+  color: #00343c;
+}
+.player-dot.team-b .player-jersey {
+  fill: #ffdad6;
+  stroke: #ba1a1a;
+}
+.player-dot.team-b .player-jersey-num {
+  color: #ba1a1a;
 }
 .player-name-tag {
   position: absolute;
-  top: 10px;
+  top: calc(100% + 1px);
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
