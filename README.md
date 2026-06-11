@@ -24,12 +24,13 @@ Mọi người trong công ty mở `http://<IP-máy-chủ>:3000`.
 ## Các trang
 | Đường dẫn | Mô tả |
 |-----------|-------|
-| `/`              | Bảng đấu 12 bảng + thứ hạng FIFA (top 2 viền xanh lá = đi tiếp) |
+| `/`              | Bảng đấu 12 bảng + thứ hạng FIFA; đội trong bảng **tự xếp theo điểm → hiệu số → hạng FIFA** (top 2 viền xanh lá = đi tiếp) |
 | `/teams`         | Danh sách 48 đội tuyển, nhóm theo bảng |
 | `/teams/[code]`  | Chi tiết đội: cầu thủ, lịch, thống kê — vd `/teams/ARG` |
-| `/schedule`      | Lịch thi đấu theo vòng + sơ đồ đội hình dự kiến |
+| `/schedule`      | Lịch thi đấu theo vòng (hiện **hạng FIFA** mỗi đội) + sơ đồ đội hình dự kiến với **icon áo đấu** theo màu đội |
 | `/live`          | Trực tiếp: trận đang diễn ra lấy từ API, chọn kênh VTV (tự cập nhật 10s) |
 | `/fantasy`       | BXH người chơi FIFA Fantasy (league nội bộ): podium top 3 + bảng điểm |
+| `/api/live`      | API tỉ số trực tiếp (trận live + kênh) — trang `/live` polling endpoint này mỗi 10s |
 | `/api/health`    | Chẩn đoán nguồn dữ liệu: thứ tự ưu tiên, ping từng API, nguồn đang dùng |
 
 ## Nguồn dữ liệu & failover
@@ -40,6 +41,11 @@ football-data.org  →  API-Football  →  dữ liệu mẫu (data/db.json)
 ```
 
 Nguồn nào lỗi / hết quota (429) → tự nhảy sang nguồn kế tiếp. Kiểm tra tình trạng tại `/api/health`.
+
+Các biến env liên quan (xem `.env.local.example`):
+- `FOOTBALL_DATA_TOKEN` / `API_FOOTBALL_KEY` — key 2 nguồn (điền 1 hoặc cả 2).
+- `FOOTBALL_API_PROVIDER` — ép nguồn nào ưu tiên lên đầu (bỏ trống = football-data trước).
+- `FOOTBALL_API_REVALIDATE` — thời gian cache dữ liệu (giây, mặc định `3600` = 1 giờ).
 
 - **football-data.org** (ưu tiên): token free tại https://www.football-data.org/client/register
 - **API-Football** (dự phòng): key tại https://www.api-football.com/ — *lưu ý gói free thường giới hạn mùa giải, có thể không có 2026*
@@ -105,7 +111,9 @@ Script tự đổi refresh → access token mới mỗi lần chạy, và **tự
 - Không cấu hình gì → trang dùng `fantasy.standings` tĩnh trong db.json.
 
 ## Dữ liệu mẫu / hạng FIFA
-- `data/db.json` chứa: 12 bảng thật (fallback), hồ sơ mẫu vài đội, danh sách kênh VTV, bảng tra `fifaRanks` (API không cung cấp hạng FIFA — chỉnh trong file này).
+- `data/db.json` chứa: 12 bảng thật (fallback), hồ sơ mẫu vài đội, danh sách kênh VTV (`channels`), bảng tra `fifaRanks` (API không cung cấp hạng FIFA — chỉnh trong file này), bảng `broadcast` (trận → kênh VTV), BXH `fantasy`, và dữ liệu trận `live` mẫu.
+- `stages` + `schedule`: khung lịch theo vòng cho trang `/schedule`. `stages` = `Vòng Bảng → Vòng 32 Đội → Vòng 16 Đội → Tứ Kết → Bán Kết → Chung Kết`; `schedule` chứa data từng vòng (hiện có sẵn "Vòng Bảng", các vòng knock-out để trống chờ điền sau khi bốc thăm). API có thì tự ghi đè, không có thì dùng data này.
+- `fifaRanks` (mã đội → hạng) dùng cho: badge hạng ở bảng đấu & lịch thi đấu, và làm tiêu chí xếp hạng trong bảng khi các đội bằng điểm/hiệu số. Cập nhật theo bảng xếp hạng FIFA mới nhất; `getStandings()`/`getSchedule()` ([lib/fifa-api.js](lib/fifa-api.js)) tự gắn hạng vào từng đội/trận.
 - Cờ quốc gia: `flagcdn.com` theo mã ISO (fallback); khi dùng API thì lấy crest/logo từ API.
 
 ## Trực tiếp VTV (link ra VTVGo)
