@@ -44,7 +44,10 @@ body {
 /* ---- Collectible player cards ---- */
 .player-card-shell {
   position: relative;
-  min-height: 250px;
+  min-height: 290px;
+  width: 100%;
+  max-width: 280px;
+  margin-inline: auto;
   padding: 3px;
   overflow: hidden;
   border-radius: 22px 22px 32px 32px;
@@ -83,7 +86,7 @@ body {
 .player-card-inner {
   position: relative;
   z-index: 1;
-  min-height: 244px;
+  min-height: 284px;
   overflow: hidden;
   border: 1px solid rgba(255, 245, 187, 0.75);
   border-radius: 19px 19px 29px 29px;
@@ -215,16 +218,40 @@ body {
 .player-card-stats {
   position: absolute;
   z-index: 7;
-  left: 12px;
-  right: 12px;
-  bottom: 50px;
-  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 52px;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: 16px;
-  padding: 4px 8px;
+  gap: 12px;
+  padding: 3px 12px;
   border-radius: 999px;
-  background: rgba(255, 246, 196, 0.72);
-  backdrop-filter: blur(5px);
+  background: rgba(255, 246, 196, 0.78);
+  box-shadow: 0 3px 10px rgba(35, 21, 1, 0.18);
+  backdrop-filter: blur(6px);
+}
+.player-card-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.player-card-stat-icon {
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.75;
+}
+.player-card-stat-value {
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+}
+.player-card-stats-divider {
+  width: 1px;
+  height: 14px;
+  background: currentColor;
+  opacity: 0.2;
 }
 
 /* Dark player-card treatment inspired by the EU24 database. */
@@ -261,7 +288,7 @@ body {
   background: transparent;
 }
 .player-card-inner {
-  min-height: 234px;
+  min-height: 284px;
   border-color: rgba(104, 142, 156, 0.42);
   background:
     radial-gradient(circle at 70% 32%, rgba(66, 96, 107, 0.3), transparent 34%),
@@ -275,19 +302,20 @@ body {
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
 }
 .player-card-portrait {
-  top: 9px;
-  right: 8px;
-  width: 55%;
-  height: 120px;
+  top: -14px;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150%;
+  height: 268px;
 }
 .player-card-portrait > img {
   filter: drop-shadow(0 8px 7px rgba(0, 0, 0, 0.42));
 }
 .player-card-portrait-eu24 {
-  top: 6px;
-  right: 5%;
-  width: 59%;
-  height: 125px;
+  top: -16px;
+  width: 156%;
+  height: 272px;
 }
 .player-card-silhouette {
   background: linear-gradient(160deg, rgba(78, 109, 120, 0.75), rgba(12, 29, 36, 0.85));
@@ -311,14 +339,9 @@ body {
 }
 .player-card-stats {
   color: #eaf3f6;
-  background: rgba(8, 24, 31, 0.76);
+  background: rgba(8, 24, 31, 0.8);
+  box-shadow: 0 6px 16px rgba(4, 16, 21, 0.45);
   bottom: 58px;
-}
-.player-card-stats p {
-  color: inherit;
-}
-.player-card-stats > div {
-  min-width: 68px;
 }
 
 /* ---- Schedule (kinetic + pitch) ---- */

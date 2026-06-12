@@ -12,11 +12,13 @@ const POSITION_ICON = {
   "Thủ Môn": "front_hand",
 };
 
-function StatTile({ value, label }) {
+function StatTile({ icon, value, label }) {
   return (
-    <div className="text-center">
-      <p className="font-data-mono text-on-surface font-bold text-[14px]">{value}</p>
-      <p className="font-label-caps text-[8px] text-on-surface-variant uppercase">{label}</p>
+    <div className="player-card-stat" title={label}>
+      <span className="material-symbols-outlined player-card-stat-icon" aria-hidden="true">
+        {icon}
+      </span>
+      <span className="player-card-stat-value">{value}</span>
     </div>
   );
 }
@@ -33,13 +35,13 @@ function PlayerCard({ p, team }) {
   const isGK = p.position === "Thủ Môn";
   const portrait = p.avatar || p.image || "";
   const portraitClass = p.avatarSource === "fifaaddict-eu24" ? "player-card-portrait-eu24" : "";
-  const rating = p.ovr ?? p.number ?? "--";
+  const rating = p.ovr ?? p.number ?? null;
 
   return (
     <article className={`player-card-shell ${p.isStar ? "player-card-star" : ""}`}>
       <div className="player-card-inner">
         <div className="player-card-rating">
-          <strong>{rating}</strong>
+          {rating != null && <strong>{rating}</strong>}
           <span>{positionCode(p.position)}</span>
           {team.flag && <img src={team.flag} alt="" />}
         </div>
@@ -67,8 +69,9 @@ function PlayerCard({ p, team }) {
 
         {!isGK && (
           <div className="player-card-stats">
-            <StatTile value={p.goals ?? 0} label="Bàn thắng" />
-            <StatTile value={p.assists ?? 0} label="Kiến tạo" />
+            <StatTile icon="sports_soccer" value={p.goals ?? 0} label="Bàn thắng" />
+            <span className="player-card-stats-divider" aria-hidden="true" />
+            <StatTile icon="handshake" value={p.assists ?? 0} label="Kiến tạo" />
           </div>
         )}
       </div>
@@ -158,7 +161,7 @@ export default async function TeamDetailPage({ params }) {
                 <h3 className="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
                   <span className="material-symbols-outlined">{POSITION_ICON[g.pos]}</span> {g.pos}
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {g.players.map((p, i) => (
                     <PlayerCard key={p.number ?? i} p={p} team={team} />
                   ))}
