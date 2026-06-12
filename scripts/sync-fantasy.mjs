@@ -164,6 +164,24 @@ async function main() {
   });
 
   db.fantasy.standings = standings;
+
+  const roundWinner =
+  [...standings]
+    .sort((a,b)=>b.roundPoints-a.roundPoints)[0];
+
+  const seasonLeader =
+    [...standings]
+      .sort((a,b)=>b.totalPoints-a.totalPoints)[0];
+
+  const roundBottom =
+    [...standings]
+      .sort((a,b)=>a.roundPoints-b.roundPoints)[0];
+
+  db.fantasy.summary = {
+    roundWinner,
+    seasonLeader,
+    roundBottom
+  };
   
   db.fantasy.updatedRound = `Cập nhật ${new Date().toLocaleString("vi-VN")}`;
 
