@@ -21,6 +21,35 @@ function Movement({ rank, prev }) {
   );
 }
 
+function SummaryCard({
+  icon,
+  title,
+  value,
+  subtitle,
+  color = "text-primary",
+}) {
+  return (
+    <div className="bg-surface-container-low border border-outline-variant rounded-xl p-4">
+      <div className="flex items-center gap-2 text-on-surface-variant text-sm">
+        <span className={`material-symbols-outlined ${color}`}>
+          {icon}
+        </span>
+        {title}
+      </div>
+
+      <div className="mt-2 font-bold text-xl text-on-surface truncate">
+        {value}
+      </div>
+
+      {subtitle && (
+        <div className="text-sm text-on-surface-variant mt-1">
+          {subtitle}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function PodiumCard({ p }) {
   const m = MEDAL[p.rank];
   return (
@@ -65,10 +94,7 @@ export default async function FantasyPage() {
       (a, b) => (b.totalPoints ?? 0) - (a.totalPoints ?? 0)
     )[0];
 
-  const roundBottom =
-    [...standings].sort(
-      (a, b) => (a.roundPoints ?? 0) - (b.roundPoints ?? 0)
-    )[0];
+  const roundBottom = standings.at(-1);
 
   return (
     <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
@@ -94,6 +120,30 @@ export default async function FantasyPage() {
           </a>
         )}
       </header>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
+        <SummaryCard
+          icon="emoji_events"
+          title="Round Winner"
+          value={roundLeader?.manager || "-"}
+          subtitle={`${roundLeader?.roundPoints || 0} pts`}
+        />
+
+        <SummaryCard
+          icon="military_tech"
+          title="Season Leader"
+          value={seasonLeader?.manager || "-"}
+          subtitle={`${seasonLeader?.totalPoints || 0} pts`}
+        />
+
+        <SummaryCard
+          icon="sentiment_very_dissatisfied"
+          title="Bottom"
+          value={roundBottom?.manager || "-"}
+          subtitle={`${roundBottom?.roundPoints || 0} pts`}
+          color="text-error"
+        />
+      </div>
 
       {standings.length === 0 ? (
         <div className="bg-surface-container-low border border-outline-variant rounded-xl p-10 text-center">
