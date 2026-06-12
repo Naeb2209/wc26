@@ -142,18 +142,29 @@ async function main() {
   for (const s of db.fantasy.standings || []) oldRank[s.manager] = s.rank;
 
   db.fantasy.leagueId = Number(leagueId);
-  db.fantasy.standings = ranks.map((r, i) => {
+  
+  const standings = ranks.map((r, i) => {
     const manager = r.userName || `User ${r.userId}`;
+
     return {
+      userId: r.userId,
       rank: r.overallRank ?? i + 1,
+      roundRank: r.roundRank ?? i + 1,
+
       manager,
-      team: "",
-      gw: r.roundPoints ?? 0,
-      total: r.overallPoints ?? 0,
-      prev: r.overallRankPrevious ?? oldRank[manager] ?? null,
+
+      roundPoints: r.roundPoints ?? 0,
+      totalPoints: r.overallPoints ?? 0,
+
       avatar: r.avatar || "",
+
+      roundWins: 0,
+      bottoms: 0
     };
   });
+
+  db.fantasy.standings = standings;
+  
   db.fantasy.updatedRound = `Cập nhật ${new Date().toLocaleString("vi-VN")}`;
 
   writeFileSync(DB_PATH, JSON.stringify(db, null, 2), "utf8");
