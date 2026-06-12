@@ -43,8 +43,9 @@ function PodiumCard({ p }) {
         <div className="font-bold text-on-surface">{p.manager}</div>
         {p.team && <div className="font-data-mono text-data-mono text-on-surface-variant">{p.team}</div>}
       </div>
-      <div className="font-display-lg text-display-lg-mobile text-primary leading-none mt-1">{p.total}</div>
+      <div className="font-display-lg text-display-lg-mobile text-primary leading-none mt-1">{p.totalPoints}</div>
       <div className="font-label-caps text-label-caps text-on-surface-variant uppercase">Tổng điểm</div>
+      <div className="font-data-mono text-[12px] text-on-surface-variant">Vòng này: {p.roundPoints}</div>
     </div>
   );
 }
@@ -53,6 +54,21 @@ export default async function FantasyPage() {
   const data = await getFantasy();
   const standings = data.standings || [];
   const top3 = standings.slice(0, 3);
+
+  const roundLeader =
+    [...standings].sort(
+      (a, b) => (b.roundPoints ?? 0) - (a.roundPoints ?? 0)
+    )[0];
+
+  const seasonLeader =
+    [...standings].sort(
+      (a, b) => (b.totalPoints ?? 0) - (a.totalPoints ?? 0)
+    )[0];
+
+  const roundBottom =
+    [...standings].sort(
+      (a, b) => (a.roundPoints ?? 0) - (b.roundPoints ?? 0)
+    )[0];
 
   return (
     <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
@@ -80,8 +96,18 @@ export default async function FantasyPage() {
       </header>
 
       {standings.length === 0 ? (
-        <div className="bg-surface-container-low border border-outline-variant rounded-xl p-10 text-center text-on-surface-variant">
-          Chưa có dữ liệu bảng xếp hạng. Cập nhật trong <code>data/db.json</code> → <code>fantasy.standings</code>.
+        <div className="bg-surface-container-low border border-outline-variant rounded-xl p-10 text-center">
+          <span className="material-symbols-outlined text-[40px] text-primary">
+            leaderboard
+          </span>
+
+          <p className="mt-3 font-bold text-on-surface">
+            Fantasy League Empty
+          </p>
+
+          <p className="text-sm text-on-surface-variant">
+            Sync FIFA Fantasy to get started.
+          </p>
         </div>
       ) : (
         <>
@@ -143,8 +169,8 @@ export default async function FantasyPage() {
                             </div>
                           </div>
                         </td>
-                        <td className="py-3 px-2 text-center text-on-surface-variant">{p.gw}</td>
-                        <td className="py-3 px-4 text-center font-bold text-primary text-[16px]">{p.total}</td>
+                        <td className="py-3 px-2 text-center text-on-surface-variant">{p.roundPoints}</td>
+                        <td className="py-3 px-4 text-center font-bold text-primary text-[16px]">{p.totalPoints ?? p.total ?? 0}</td>
                       </tr>
                     );
                   })}
