@@ -70,6 +70,7 @@ function GroupCard({ group }) {
 const SOURCE_LABEL = {
   "football-data": { text: "Dữ liệu trực tiếp · football-data.org", live: true },
   "api-football": { text: "Dữ liệu trực tiếp · API-Football", live: true },
+  snapshot: { text: "Dữ liệu đã đồng bộ · db.json", live: false },
   sample: { text: "Dữ liệu mẫu (chưa kết nối API)", live: false },
 };
 
