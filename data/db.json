@@ -842,8 +842,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/9ix3pk1630065438.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/luca-zidane.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34175251"
         },
         {
@@ -857,8 +857,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/zz809b1780303370.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/melvin-mastil.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34436062"
         },
         {
@@ -866,8 +866,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/u0lyro1766078291.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/aissa-mandi.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34152909"
         },
         {
@@ -881,8 +881,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/z5sfyp1756326052.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/ramy-bensebaini.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34166996"
         },
         {
@@ -890,8 +890,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/whj4ft1766329012.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/samir-chergui.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34195246"
         },
         {
@@ -899,8 +899,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/rsozw71681388411.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/jaouen-hadjam.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34174799"
         },
         {
@@ -908,8 +908,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/zj4a661759162161.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/rafik-belghali.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34220638"
         },
         {
@@ -929,8 +929,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/a1t0961780303119.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/achref-abada.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34231344"
         },
         {
@@ -938,8 +938,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ryrkw41766077386.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/nabil-bentaleb.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146211"
         },
         {
@@ -947,8 +947,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hm39tt1681230801.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/houssem-aouar.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34163670"
         },
         {
@@ -956,8 +956,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/pkjb4y1766319645.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/hicham-boudaoui.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173880"
         },
         {
@@ -965,8 +965,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/22jlww1759840799.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/ramiz-zerrouki.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34176063"
         },
         {
@@ -974,8 +974,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/736ole1762287487.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/fares-chaibi.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34200627"
         },
         {
@@ -983,8 +983,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/pp1m6o1756315346.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/ibrahim-maza.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34219244"
         },
         {
@@ -992,8 +992,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/u8k8vz1767730925.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/yacine-titraoui.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34231444"
         },
         {
@@ -1001,8 +1001,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/oguuj51780303291.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/adil-boulbina.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34234198"
         },
         {
@@ -1010,8 +1010,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/g0ay2p1771662753.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/riyad-mahrez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34145708"
         },
         {
@@ -1019,8 +1019,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/74eam91766152411.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/amine-gouiri.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34163672"
         },
         {
@@ -1034,8 +1034,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/49wume1780303249.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/nadhir-benbouali.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34241121"
         },
         {
@@ -1049,8 +1049,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/4agbqr1780303327.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ALG/fares-ghedjemis.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34228039"
         }
       ]
@@ -1073,8 +1073,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/cpkkmg1766153528.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/geronimo-rulli.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34149700"
         },
         {
@@ -1082,8 +1082,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ffr5xx1756984715.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/emiliano-martinez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34145423"
         },
         {
@@ -1100,8 +1100,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ifxn6x1632995975.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/nicolas-otamendi.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34149734"
         },
         {
@@ -1109,8 +1109,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/4z43fy1766146600.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/nicolas-tagliafico.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34167125"
         },
         {
@@ -1118,8 +1118,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/perteu1750270994.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/gonzalo-montiel.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34174112"
         },
         {
@@ -1127,8 +1127,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/dme7x81757016317.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/christian-romero.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34164243"
         },
         {
@@ -1145,8 +1145,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/mqcogi1766826879.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/lisandro-martinez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34167150"
         },
         {
@@ -1154,8 +1154,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/36bdni1762288498.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/nahuel-molina.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172405"
         },
         {
@@ -1172,8 +1172,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/9yluhs1766053865.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/valentin-barco.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34231622"
         },
         {
@@ -1181,8 +1181,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/n7z5lr1773999437.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/rodrigo-de-paul.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34149739"
         },
         {
@@ -1190,8 +1190,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/chsspk1763384490.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/leandro-paredes.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34147236"
         },
         {
@@ -1199,8 +1199,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/yge8gq1762602923.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/giovani-lo-celso.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34162096"
         },
         {
@@ -1208,8 +1208,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/oby41y1756316369.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/exequiel-palacios.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169228"
         },
         {
@@ -1217,8 +1217,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/96dmuf1757087513.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/alexis-mac-allister.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34170133"
         },
         {
@@ -1226,8 +1226,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ffqi3i1762288171.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/thiago-almada.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34197736"
         },
         {
@@ -1235,8 +1235,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/b71vun1757003115.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/enzo-fernandez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34198448"
         },
         {
@@ -1244,8 +1244,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hfv6uz1764278372.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/nico-paz.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34222648"
         },
         {
@@ -1253,8 +1253,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": true,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/e0i2051750317027.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/lionel-messi.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146370"
         },
         {
@@ -1262,8 +1262,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/vwxq811759408924.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/lautaro-martinez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34164252"
         },
         {
@@ -1271,8 +1271,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/e6mhnz1762288376.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/nicolas-gonzalez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173115"
         },
         {
@@ -1280,8 +1280,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/91pla41762288186.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/julian-alvarez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34174250"
         },
         {
@@ -1298,8 +1298,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/j97npy1762288635.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/ARG/giuliano-simeone.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34228685"
         }
       ],
@@ -1332,15 +1332,17 @@
           "name": "Maty Ryan",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/AUS/maty-ryan.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Paul Izzo",
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/c9dkvl1765626331.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/paul-izzo.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34218218"
         },
         {
@@ -1348,8 +1350,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/eoiezy1748713226.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/patrick-beach.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34292393"
         },
         {
@@ -1363,8 +1365,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/6r7kub1780308375.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/milos-degenek.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34155221"
         },
         {
@@ -1372,8 +1374,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/31j0fa1778272651.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/kai-trewin.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34177265"
         },
         {
@@ -1381,8 +1383,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/i6ol421769372005.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/jacob-italiano.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34247882"
         },
         {
@@ -1390,8 +1392,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/maa37o1761234599.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/cameron-burgess.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34148631"
         },
         {
@@ -1399,8 +1401,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/219opn1761861817.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/harry-souttar.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34161588"
         },
         {
@@ -1408,8 +1410,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ey7rxf1715970804.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/jason-geria.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34219307"
         },
         {
@@ -1417,8 +1419,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/u0rnwo1758189333.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/jordan-bos.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34198695"
         },
         {
@@ -1426,8 +1428,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/6lkqvz1759779806.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/alessandro-circati.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34229943"
         },
         {
@@ -1435,8 +1437,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/eqxbrs1776500448.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/lucas-herrington.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34347220"
         },
         {
@@ -1444,8 +1446,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ujzu6w1684838424.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/mathew-leckie.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169196"
         },
         {
@@ -1453,8 +1455,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/bx4oi71763567546.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/jackson-irvine.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34158358"
         },
         {
@@ -1462,8 +1464,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/8xb0sq1756311214.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/connor-metcalfe.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173980"
         },
         {
@@ -1471,8 +1473,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/kqi6wn1759840572.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/ajdin-hrustic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34170413"
         },
         {
@@ -1480,8 +1482,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/28x1kl1778529144.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/aiden-oneill.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34275048"
         },
         {
@@ -1489,8 +1491,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/ezim591780306970.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/awer-mabil.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34149194"
         },
         {
@@ -1504,8 +1506,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/x7oiku1765623798.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/paul-okonengstler.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34433191"
         },
         {
@@ -1513,8 +1515,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/chv5eq1780308514.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/mohamed-toure.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173976"
         },
         {
@@ -1522,8 +1524,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/zi32h91765899271.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/nishan-velupillay.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34227114"
         },
         {
@@ -1531,8 +1533,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/4bnrnn1765728994.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/cristian-volpato.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34432980"
         },
         {
@@ -1546,8 +1548,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/9zjt6e1780306728.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUS/tete-yengi.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34258660"
         }
       ]
@@ -1562,8 +1564,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ib5u2k1769721863.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/alexander-schlager.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172281"
         },
         {
@@ -1571,8 +1573,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/4p78sd1765317561.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/patrick-pentz.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34175395"
         },
         {
@@ -1580,8 +1582,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/spj3yt1779185089.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/florian-wiegele.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34346932"
         },
         {
@@ -1589,8 +1591,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/wprznalak.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/AUT/david-alaba.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146689",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidwprznalak"
         },
@@ -1599,8 +1601,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqkpokl.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/AUT/stefan-posch.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169216",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqkpokl"
         },
@@ -1615,8 +1617,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/unhinl1739274856.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/kevin-danso.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34170160"
         },
         {
@@ -1624,8 +1626,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/k2wp561763666046.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/marco-friedl.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34162102"
         },
         {
@@ -1633,8 +1635,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/3scndj1763328973.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/philipp-lienhart.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34164029"
         },
         {
@@ -1642,8 +1644,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/sw0w2q1633104637.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/michael-svoboda.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34174583"
         },
         {
@@ -1651,8 +1653,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/1iv3r61763494556.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/alexander-prass.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34198800"
         },
         {
@@ -1666,8 +1668,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/0bk2ad1709933135.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/florian-grillitsch.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169207"
         },
         {
@@ -1675,8 +1677,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ogm41e1770391582.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/alessandro-schopf.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34149659"
         },
         {
@@ -1684,8 +1686,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/dzukrz1756409157.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/konrad-laimer.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34164105"
         },
         {
@@ -1693,8 +1695,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/nbymjnjwm.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/AUT/marcel-sabitzer.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34164093",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidnbymjnjwm"
         },
@@ -1703,8 +1705,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/gorjzjaow.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/AUT/xaver-schlager.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169339",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidgorjzjaow"
         },
@@ -1713,8 +1715,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/pc39yd1763666231.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/romano-schmid.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173889"
         },
         {
@@ -1722,8 +1724,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/bgvrmplwr.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/AUT/christoph-baumgartner.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169209",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidbgvrmplwr"
         },
@@ -1732,8 +1734,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/h7mvys1763561377.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/nicolas-seiwald.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34192204"
         },
         {
@@ -1741,8 +1743,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/4vcyyu1763669658.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/patrick-wimmer.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34175401"
         },
         {
@@ -1750,8 +1752,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/oa3p4i1741868651.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/carney-chukwuemeka.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34180739"
         },
         {
@@ -1759,8 +1761,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/rbijya1764608918.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/paul-wanner.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34195960"
         },
         {
@@ -1768,8 +1770,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/mqgvzandy.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/AUT/michael-gregoritsch.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34155160",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidmqgvzandy"
         },
@@ -1778,8 +1780,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/gnkzom1697979946.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/marko-arnautovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34145959"
         },
         {
@@ -1787,8 +1789,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/3i5yu71769635904.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/AUT/sasa-kalajdzic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173886"
         }
       ]
@@ -1803,8 +1805,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/592mar1733653475.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/thibaut-courtois.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34145514"
         },
         {
@@ -1812,8 +1814,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/8xh9d61766826762.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/senne-lammens.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34183209"
         },
         {
@@ -1830,8 +1832,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/uc84ft1757070324.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/timothy-castagne.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34153355"
         },
         {
@@ -1839,8 +1841,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/r7zcgl1766077606.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/thomas-meunier.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34149005"
         },
         {
@@ -1857,8 +1859,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/yo44zc1756993970.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/maxim-de-cuyper.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34177927"
         },
         {
@@ -1866,8 +1868,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/tr7ftn1762287457.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/arthur-theate.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34175702"
         },
         {
@@ -1875,8 +1877,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/zl0vt51758893255.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/koni-de-winter.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34200352"
         },
         {
@@ -1884,8 +1886,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/xlp81e1716408284.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/zeno-debast.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34179957"
         },
         {
@@ -1893,8 +1895,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/dj91a01766077637.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/nathan-ngoy.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34218008"
         },
         {
@@ -1911,8 +1913,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/o4flia1764089447.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/kevin-de-bruyne.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34155057"
         },
         {
@@ -1920,8 +1922,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/13uvke1762457461.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/axel-witsel.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146809"
         },
         {
@@ -1929,8 +1931,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/dvyawe1756987280.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/youri-tielemans.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34153488"
         },
         {
@@ -1938,23 +1940,25 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/335dwm1724784475.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/dodi-lukebakio.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169189"
         },
         {
           "name": "Alexis Saelemaekers",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/BEL/alexis-saelemaekers.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Hans Vanaken",
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/r681jn1767640917.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/hans-vanaken.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34153313"
         },
         {
@@ -1962,8 +1966,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/zdlxoe1701946661.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/nicolas-raskin.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34175584"
         },
         {
@@ -1971,8 +1975,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/tehbsx1769183074.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/jeremy-doku.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172198"
         },
         {
@@ -1980,8 +1984,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/q2bvps1725359471.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/amadou-onana.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34174589"
         },
         {
@@ -1989,8 +1993,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/eyaz0q1766053833.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/diego-moreira.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34220275"
         },
         {
@@ -1998,8 +2002,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/mqgvzdkdd.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/BEL/romelu-lukaku.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34145819",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidmqgvzdkdd"
         },
@@ -2008,8 +2012,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/07fzpg1769331977.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/leandro-trossard.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34153358"
         },
         {
@@ -2017,8 +2021,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/wqo9ia1695157273.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/charles-de-ketelaere.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34171323"
         },
         {
@@ -2026,8 +2030,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/8vhxnr1766077473.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BEL/matias-fernandezpardo.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34347284"
         }
       ]
@@ -2042,8 +2046,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/nabcnf1779016971.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/martin-zlomislic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34246713"
         },
         {
@@ -2051,8 +2055,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/85qp2e1763567779.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/nikola-vasilj.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34181676"
         },
         {
@@ -2060,8 +2064,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/7fx34a1780503468.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/mladen-jurkas.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34436135"
         },
         {
@@ -2069,8 +2073,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ae2jmk1695157289.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/sead-kolasinac.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34161349"
         },
         {
@@ -2078,8 +2082,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/sz222f1678829240.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/dennis-hadzikadunic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34178095"
         },
         {
@@ -2087,8 +2091,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/b961ge1779017042.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/nihad-mujakic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34217208"
         },
         {
@@ -2096,8 +2100,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/tnvi3o1773611092.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/nikola-katic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34165450"
         },
         {
@@ -2105,8 +2109,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/umezbz1779017106.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/stjepan-radeljic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34196375"
         },
         {
@@ -2114,8 +2118,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/3qhv951758216357.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/amar-dedic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34200483"
         },
         {
@@ -2123,8 +2127,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/zrpkc31764106120.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/tarik-muharemovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34242621"
         },
         {
@@ -2132,8 +2136,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/6gk0ur1779017519.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/nidal-celik.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34235387"
         },
         {
@@ -2141,8 +2145,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/mohhc51773244613.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/dzenis-burnic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34163471"
         },
         {
@@ -2150,8 +2154,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/13uqrz1694550036.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/ivan-sunjic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173586"
         },
         {
@@ -2159,8 +2163,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/d701ms1761922073.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/amir-hadziahmetovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34178568"
         },
         {
@@ -2168,8 +2172,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/esyc771742067604.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/armin-gigovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34176155"
         },
         {
@@ -2177,8 +2181,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/247gi31726000720.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/ivan-basic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34234180"
         },
         {
@@ -2186,8 +2190,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/wrr6m21765376681.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/benjamin-tahirovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34202662"
         },
         {
@@ -2195,8 +2199,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/tgoi7x1779017253.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/ermin-mahmic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34432522"
         },
         {
@@ -2204,8 +2208,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/bcyk9s1779017172.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/amar-memic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34237758"
         },
         {
@@ -2213,8 +2217,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/0jo14d1773611434.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/edin-dzeko.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34145609"
         },
         {
@@ -2222,23 +2226,25 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/finvmi1721292254.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/jovo-lukic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34235294"
         },
         {
           "name": "Ermedin Demirovic",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/BIH/ermedin-demirovic.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Haris Tabaković",
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/rjvats1756313128.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/haris-tabakovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34216099"
         },
         {
@@ -2246,8 +2252,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/o3tqwz1779017584.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/samed-bazdar.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34258975"
         },
         {
@@ -2255,8 +2261,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/896xbs1764594499.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/esmir-bajraktarevic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34199499"
         },
         {
@@ -2264,8 +2270,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/sfkv2p1769721901.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BIH/kerim-alajbegovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34302067"
         }
       ]
@@ -2297,8 +2303,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/8amq961757087569.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/alisson-becker.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34163551"
         },
         {
@@ -2306,8 +2312,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/xhlait1769179027.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/ederson.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146911"
         },
         {
@@ -2315,8 +2321,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/v5oj711771663666.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/roger-ibanez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169366"
         },
         {
@@ -2324,8 +2330,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/3qx4p71759224866.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/bremer.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34164383"
         },
         {
@@ -2342,8 +2348,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/7x9gtl1766335348.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/marquinhos.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34152561"
         },
         {
@@ -2351,8 +2357,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/w5w8j71692197353.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/douglas-santos.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34149477"
         },
         {
@@ -2375,23 +2381,25 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/trz5x71769331076.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/gabriel-magalhaes.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172252"
         },
         {
           "name": "Wesley",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/BRA/wesley.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Lucas Paquetá",
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/wz75kq1770378434.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/lucas-paqueta.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34164922"
         },
         {
@@ -2399,8 +2407,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/qr8gk01766824971.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/bruno-guimaraes.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172187"
         },
         {
@@ -2408,8 +2416,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ydr3j41766826524.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/casemiro.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146573"
         },
         {
@@ -2417,8 +2425,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/0llctp1632777025.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/fabinho.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34152714"
         },
         {
@@ -2432,8 +2440,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ejuxsh1750271859.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/vinicius-junior.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34161324"
         },
         {
@@ -2441,8 +2449,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/av4ar01767782947.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/neymar.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146371"
         },
         {
@@ -2450,8 +2458,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/29x61e1762020281.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/matheus-cunha.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169290"
         },
         {
@@ -2459,29 +2467,33 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/w94spe1726510018.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/raphinha.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34163304"
         },
         {
           "name": "Martinelli",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/BRA/martinelli.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Thiago",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/BRA/thiago.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Luiz Henrique",
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/9ymdxw1673688657.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/luiz-henrique.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34196649"
         },
         {
@@ -2489,15 +2501,17 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/5yb3rv1733653315.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/BRA/endrick.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34219641"
         },
         {
           "name": "Rayan",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/BRA/rayan.png",
+          "avatarSource": "local-xlsx"
         }
       ],
       "schedule": [
@@ -2528,8 +2542,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/at1um91776499323.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/dayne-st-clair.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34165162"
         },
         {
@@ -2537,8 +2551,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/wqc8cd1766145439.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/owen-goodman.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34222280"
         },
         {
@@ -2546,8 +2560,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/11afh31756409066.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/alphonso-davies.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34164270"
         },
         {
@@ -2555,8 +2569,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/milfrs1766575517.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/richie-laryea.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34180209"
         },
         {
@@ -2564,8 +2578,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/xop3tf1761830137.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/alfie-jones.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34179408"
         },
         {
@@ -2573,8 +2587,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/c73cn41766490474.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/joel-waterman.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172704"
         },
         {
@@ -2582,8 +2596,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/8ifr0w1777017367.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/derek-cornelius.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34200757"
         },
         {
@@ -2591,8 +2605,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/g6eohm1701350643.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/alistair-johnston.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34180906"
         },
         {
@@ -2600,8 +2614,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/pz6zo51766319628.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/moise-bombito.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34218463"
         },
         {
@@ -2609,8 +2623,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/phdusb1767621327.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/luc-de-fougerolles.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34222598"
         },
         {
@@ -2618,8 +2632,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/j30x9f1766575844.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/jonathan-osorio.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34180980"
         },
         {
@@ -2627,8 +2641,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/4q6t9d1778157858.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/stephen-eustaquio.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34163158"
         },
         {
@@ -2636,8 +2650,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/6mihaf1759501166.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/mathieu-choiniere.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34195775"
         },
         {
@@ -2645,8 +2659,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ar6mwv1762888718.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/tajon-buchanan.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173210"
         },
         {
@@ -2654,8 +2668,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/cmcklc1780138452.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/marcelo-flores.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34221227"
         },
         {
@@ -2669,8 +2683,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/kiabdn1764106047.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/ismael-kone.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34196613"
         },
         {
@@ -2684,8 +2698,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/bpkmh91780138915.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/niko-sigur.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34236351"
         },
         {
@@ -2693,8 +2707,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/nyd9d91759225738.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/jonathan-david.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172150"
         },
         {
@@ -2702,8 +2716,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/bgse2n1777485421.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/cyle-larin.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34162178"
         },
         {
@@ -2711,8 +2725,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/i9obah1761922181.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/liam-millar.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34177860"
         },
         {
@@ -2720,8 +2734,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/rj1wn11778158071.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/jacob-shaffelburg.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34180821"
         },
         {
@@ -2729,8 +2743,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/6kcri81762889021.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CAN/tani-oluwaseyi.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34197853"
         },
         {
@@ -2751,8 +2765,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/9j7xgs1779196866.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/marcio-rosa.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34251826"
         },
         {
@@ -2760,8 +2774,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/tpnrqy1705487023.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/vozinha.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34228061"
         },
         {
@@ -2775,8 +2789,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/2mxyy11766428190.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/steven-moreira.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34152505"
         },
         {
@@ -2784,8 +2798,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/tia4oq1762888798.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/logan-costa.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34216644"
         },
         {
@@ -2805,8 +2819,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/mtv4pd1779198227.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/stopira.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34420892"
         },
         {
@@ -2814,8 +2828,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/cci2o11779193731.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/sidny-lopes-cabral.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34419643"
         },
         {
@@ -2823,8 +2837,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/9rfm5e1779195483.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/wagner-pina.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34234365"
         },
         {
@@ -2832,8 +2846,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/mlg1651779196241.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/kelvin-pires.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34240997"
         },
         {
@@ -2841,8 +2855,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/0sfigd1700769748.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/deroy-duarte.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34174204"
         },
         {
@@ -2850,8 +2864,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/a5dkph1669547130.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/garry-rodrigues.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34200572"
         },
         {
@@ -2859,8 +2873,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/utdzem1705487819.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/kevin-pina.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34217327"
         },
         {
@@ -2868,8 +2882,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/1vfffl1779198707.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/laros-duarte.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34178305"
         },
         {
@@ -2877,8 +2891,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/b4l7cr1779197962.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/yannick-semedo.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34419644"
         },
         {
@@ -2886,8 +2900,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/r671mi1779192802.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/telmo-arcanjo.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34191701"
         },
         {
@@ -2895,8 +2909,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/2uh5az1764539734.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/jamiro-monteiro.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34180931"
         },
         {
@@ -2910,8 +2924,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/58xrid1779197428.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/willy-semedo.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34174913"
         },
         {
@@ -2925,8 +2939,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/b4t16t1707691652.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/jovane-cabral.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34191424"
         },
         {
@@ -2940,8 +2954,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/qoetyz1680955675.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/nuno-da-costa.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169674"
         },
         {
@@ -2955,8 +2969,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/znj0qi1767870998.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CPV/helio-varela.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34222449"
         }
       ]
@@ -2971,8 +2985,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ej38x01648634661.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/camilo-vargas.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34191368"
         },
         {
@@ -2980,8 +2994,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/emhx261610362216.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/david-ospina.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34145434"
         },
         {
@@ -2989,8 +3003,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/3zayx21777984375.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/alvaro-montero.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34196652"
         },
         {
@@ -2998,8 +3012,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/8989q21763831492.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/santiago-arias.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34155713"
         },
         {
@@ -3007,8 +3021,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/8uf3w61762524256.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/johan-mojica.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146436"
         },
         {
@@ -3016,8 +3030,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/9gq0ca1764336694.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/yerry-mina.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34162095"
         },
         {
@@ -3025,8 +3039,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/fwqgth1769178122.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/davinson-sanchez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34161358"
         },
         {
@@ -3034,8 +3048,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/lgl06t1765877830.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/deiver-machado.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34193281"
         },
         {
@@ -3043,8 +3057,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/qoxqre1761492462.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/daniel-munoz.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34175627"
         },
         {
@@ -3052,8 +3066,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/kifz5o1758896707.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/jhon-lucumi.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34175625"
         },
         {
@@ -3061,8 +3075,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/q2axbg1642975667.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/willer-ditta.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34180028"
         },
         {
@@ -3070,8 +3084,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/2604ez1778161086.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/james-rodriguez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146289"
         },
         {
@@ -3079,8 +3093,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/5h7eyz1772141174.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/jefferson-lerma.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34163807"
         },
         {
@@ -3088,8 +3102,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/z3xhar1777628018.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/jhon-arias.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34196662"
         },
         {
@@ -3103,8 +3117,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/7e88si1750270583.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/kevin-castano.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34221188"
         },
         {
@@ -3118,8 +3132,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/rw6zrc1765295874.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/jaminton-campaz.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34191384"
         },
         {
@@ -3127,8 +3141,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/tszmsw1758216058.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/richard-rios.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34222522"
         },
         {
@@ -3136,8 +3150,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/rp7j8m1769773989.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/juan-portilla.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34347172"
         },
         {
@@ -3145,8 +3159,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/o2v48u1779828408.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/gustavo-puerta.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34222028"
         },
         {
@@ -3154,8 +3168,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/6g14e01691161946.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/jhon-cordoba.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34149480"
         },
         {
@@ -3163,8 +3177,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/emmcyf1756408968.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/luis-diaz.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34171827"
         },
         {
@@ -3172,8 +3186,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/vfjd0w1750315193.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/luis-suarez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146348"
         },
         {
@@ -3181,8 +3195,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/xvpcrx1762603023.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COL/cucho-hernandez.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34170279"
         },
         {
@@ -3203,8 +3217,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/a4de3o1779188452.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/timothy-fayulu.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34245532"
         },
         {
@@ -3212,8 +3226,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/so1nnt1765990609.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/lionel-mpasi.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34175006"
         },
         {
@@ -3221,8 +3235,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/04atud1767187496.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/matthieu-epolo.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34237862"
         },
         {
@@ -3230,8 +3244,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/4u651u1765971647.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/axel-tuanzebe.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34160942"
         },
         {
@@ -3239,8 +3253,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/t1hca41766077569.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/chancel-mbemba.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34153479"
         },
         {
@@ -3248,8 +3262,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/xdt9hb1756984581.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/aaron-wanbissaka.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34167575"
         },
         {
@@ -3257,8 +3271,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/4lhdt21757073530.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/arthur-masuaku.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34156289"
         },
         {
@@ -3266,8 +3280,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ojo1q21767641872.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/joris-kayembe.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34175563"
         },
         {
@@ -3275,8 +3289,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/tr6fom1717144516.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/dylan-batubinsika.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34200491"
         },
         {
@@ -3284,8 +3298,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/kgtlzz1765969492.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/gedeon-kalulu.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34174850"
         },
         {
@@ -3293,8 +3307,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/71g6vr1779192490.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/steve-kapuadi.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34221918"
         },
         {
@@ -3302,8 +3316,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/h422wa1608329703.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/gael-kakuta.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173423"
         },
         {
@@ -3311,8 +3325,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/6it2ci1674746503.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/samuel-moutoussamy.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173289"
         },
         {
@@ -3320,8 +3334,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/asfa151761216515.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/edo-kayembe.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172196"
         },
         {
@@ -3329,8 +3343,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/mjd2xq1779357699.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/aaron-tshibola.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146263"
         },
         {
@@ -3338,8 +3352,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/6yag2x1762378828.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/charles-pickel.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34174910"
         },
         {
@@ -3347,8 +3361,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/at6ofk1756903685.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/noah-sadiki.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34220648"
         },
         {
@@ -3356,8 +3370,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/grieht1766077620.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/ngalayel-mukau.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34220629"
         },
         {
@@ -3365,8 +3379,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ye9inj1766824633.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/yoane-wissa.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173364"
         },
         {
@@ -3380,8 +3394,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/y4468m1762602877.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/cedric-bakambu.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34196334"
         },
         {
@@ -3389,8 +3403,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/l8hn6u1608329377.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/simon-banza.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173413"
         },
         {
@@ -3398,8 +3412,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/a661rc1680190507.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/nathanael-mbuku.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34173551"
         },
         {
@@ -3413,8 +3427,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/ge8mdw1779188106.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/brian-cipenga.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34258167"
         },
         {
@@ -3422,8 +3436,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/px5jnt1779189866.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/COD/fiston-mayele.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34178384"
         }
       ]
@@ -3438,8 +3452,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqkblzz.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/CRO/dominik-livakovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172215",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqkblzz"
         },
@@ -3448,8 +3462,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ofz5zx1761922463.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/ivor-pandur.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172348"
         },
         {
@@ -3457,8 +3471,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/ee49f41765382007.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/dominik-kotarski.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34170359"
         },
         {
@@ -3466,8 +3480,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/625eso1762709855.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/duje-caletacar.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172218"
         },
         {
@@ -3475,8 +3489,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/siq0vs1758892100.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/marin-pongracic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34169590"
         },
         {
@@ -3484,8 +3498,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/x8wkr01765385467.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/martin-erlic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172617"
         },
         {
@@ -3493,8 +3507,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/m1kqf11756416127.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/josip-stanisic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34178966"
         },
         {
@@ -3502,8 +3516,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/oarndylql.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/CRO/josko-gvardiol.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172387",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidoarndylql"
         },
@@ -3512,8 +3526,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/avbrdvqak.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/CRO/josip-sutalo.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34196387",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidavbrdvqak"
         },
@@ -3522,8 +3536,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/bw06uk1765729531.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/luka-vuskovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34433004"
         },
         {
@@ -3531,8 +3545,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqkkzpz.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/CRO/luka-modric.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34146306",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqkkzpz"
         },
@@ -3541,8 +3555,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/m5jml31769183827.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/mateo-kovacic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34147074"
         },
         {
@@ -3550,8 +3564,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/akmxr91695157400.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/mario-pasalic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34145537"
         },
         {
@@ -3559,8 +3573,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/tmii4q1758814229.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/nikola-vlasic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34161382"
         },
         {
@@ -3568,8 +3582,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/5el95a1678801446.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/nikola-moro.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34172238"
         },
         {
@@ -3577,8 +3591,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/tj2frb1763034190.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/kristijan-jakic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34177773"
         },
         {
@@ -3586,8 +3600,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/pmp5rt1762709318.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/luka-sucic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34176818"
         },
         {
@@ -3595,8 +3609,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/b4nmhd1759408181.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/petar-sucic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34221301"
         },
         {
@@ -3604,8 +3618,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/bb3ntq1764278109.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/martin-baturina.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34200040"
         },
         {
@@ -3613,8 +3627,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://www.thesportsdb.com/images/media/player/cutout/tl6y141779217408.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/toni-fruk.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34236432"
         },
         {
@@ -3622,8 +3636,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqklzny.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/CRO/andrej-kramaric.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34167060",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqklzny"
         },
@@ -3632,8 +3646,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/qmbaywdmz.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/CRO/ivan-perisic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34155055",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidqmbaywdmz"
         },
@@ -3642,8 +3656,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/8v3s2w1762531932.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/ante-budimir.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34167652"
         },
         {
@@ -3651,8 +3665,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/x4vrsj1716621267.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/petar-musa.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34177276"
         },
         {
@@ -3660,8 +3674,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/p3ix6j1746347736.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/marco-pasalic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34236430"
         },
         {
@@ -3669,8 +3683,8 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/lm6j0a1763329018.png",
-          "avatarSource": "thesportsdb",
+          "avatar": "/players/CRO/igor-matanovic.png",
+          "avatarSource": "local-xlsx",
           "sportsDbId": "34177548"
         }
       ]
@@ -3853,7 +3867,9 @@
           "name": "Matej Kovar",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CZE/matej-kovar.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Lukáš Horníček",
@@ -3877,15 +3893,17 @@
           "name": "Vladimir Coufal",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CZE/vladimir-coufal.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Tomáš Holeš",
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/jpvzqjrgj.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/CZE/tomas-holes.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidjpvzqjrgj"
         },
         {
@@ -3923,8 +3941,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/qmbayqlrj.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/CZE/tomas-soucek.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidqmbayqlrj"
         },
         {
@@ -3949,7 +3967,9 @@
           "name": "Pavel Šulc",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CZE/pavel-sulc.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Lukáš Červ",
@@ -3979,7 +3999,9 @@
           "name": "Patrik Schick",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CZE/patrik-schick.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Tomáš Chorý",
@@ -4052,7 +4074,9 @@
           "name": "William Pacho",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ECU/william-pacho.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jackson Porozo",
@@ -4064,7 +4088,9 @@
           "name": "Piero Hincapié",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ECU/piero-hincapie.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Joel Ordoñez",
@@ -4100,7 +4126,9 @@
           "name": "Moisés Caicedo",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ECU/moises-caicedo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Pedro Vite",
@@ -4136,7 +4164,9 @@
           "name": "Enner Valencia",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ECU/enner-valencia.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "John Yeboah",
@@ -4305,13 +4335,17 @@
           "name": "Mohamed Salah",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/EGY/mohamed-salah.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Omar Marmoush",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/EGY/omar-marmoush.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Haissem Hassan",
@@ -4343,150 +4377,188 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/zmvjlglag.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ENG/jordan-pickford.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidzmvjlglag"
         },
         {
           "name": "Dean Henderson",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/dean-henderson.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "James Trafford",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/james-trafford.webp",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "John Stones",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/john-stones.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Dan Burn",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/dan-burn.webp",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ezri Konsa",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/ezri-konsa.webp",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Reece James",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/reece-james.webp",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Djed Spence",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/djed-spence.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Marc Guéhi",
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/avbrajzgy.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ENG/marc-guehi.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidavbrajzgy"
         },
         {
           "name": "Valentino Livramento",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/valentino-livramento.webp",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jarell Quansah",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/jarell-quansah.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Nico O'Reilly",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/nico-oreilly.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jordan Henderson",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/jordan-henderson.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Eberechi Eze",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/eberechi-eze.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Anthony Gordon",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/anthony-gordon.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Declan Rice",
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/gorjzwzvk.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ENG/declan-rice.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidgorjzwzvk"
         },
         {
           "name": "Morgan Rogers",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/morgan-rogers.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Elliot Anderson",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/elliot-anderson.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jude Bellingham",
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqydqzn.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ENG/jude-bellingham.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqydqzn"
         },
         {
           "name": "Kobbie Mainoo",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/kobbie-mainoo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Marcus Rashford",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/marcus-rashford.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ollie Watkins",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/ollie-watkins.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ivan Toney",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/ivan-toney.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Harry Kane",
@@ -4494,7 +4566,7 @@
           "position": "Tiền Đạo",
           "isStar": false,
           "avatar": "/players/ENG/harry-kane.webp",
-          "avatarSource": "fifaaddict-eu24",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidkgnbjarqm"
         },
         {
@@ -4502,15 +4574,17 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/zmvjlvwpd.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ENG/bukayo-saka.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidzmvjlvwpd"
         },
         {
           "name": "Noni Madueke",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ENG/noni-madueke.png",
+          "avatarSource": "local-xlsx"
         }
       ]
     },
@@ -4523,51 +4597,59 @@
           "name": "Brice Samba",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/brice-samba.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Mike Maignan",
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/ddaryonpo.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/FRA/mike-maignan.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidddaryonpo"
         },
         {
           "name": "Robin Risser",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/robin-risser.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Theo Hernández",
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/mqgvzvvwz.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/FRA/theo-hernandez.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidmqgvzvvwz"
         },
         {
           "name": "Lucas Digne",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/lucas-digne.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Lucas Hernández",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/lucas-hernandez.webp",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jules Koundé",
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/zmvjlyqjq.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/FRA/jules-kounde.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidzmvjlyqjq"
         },
         {
@@ -4575,8 +4657,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/qmbayayzp.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/FRA/dayot-upamecano.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidqmbayayzp"
         },
         {
@@ -4584,41 +4666,49 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/gorjzwjpn.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/FRA/ibrahima-konate.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidgorjzwjpn"
         },
         {
           "name": "William Saliba",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/william-saliba.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Maxence Lacroix",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/maxence-lacroix.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Malo Gusto",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/malo-gusto.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "N'Golo Kanté",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/ngolo-kante.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Adrien Rabiot",
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/avbraoamj.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/FRA/adrien-rabiot.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidavbraoamj"
         },
         {
@@ -4626,78 +4716,98 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqkblgz.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/FRA/aurelien-tchouameni.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqkblgz"
         },
         {
           "name": "Manu Koné",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/manu-kone.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Rayan Cherki",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/rayan-cherki.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Maghnes Akliouche",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/maghnes-akliouche.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Desire Doue",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/desire-doue.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Warren Zaïre-Emery",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/warren-zaireemery.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jean-Philippe Mateta",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/jeanphilippe-mateta.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ousmane Dembélé",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/ousmane-dembele.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Kylian Mbappé",
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/ddaryrodb.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/FRA/kylian-mbappe.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidddaryrodb"
         },
         {
           "name": "Marcus Thuram-Ulien",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/marcus-thuramulien.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Michael Olise",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/michael-olise.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Bradley Barcola",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/FRA/bradley-barcola.png",
+          "avatarSource": "local-xlsx"
         }
       ]
     },
@@ -4710,163 +4820,211 @@
           "name": "Oliver Baumann",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/oliver-baumann.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Manuel Neuer",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/manuel-neuer.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Alexander Nübel",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/alexander-nubel.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jonathan Tah",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/jonathan-tah.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Waldemar Anton",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/waldemar-anton.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Antonio Rüdiger",
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/zmvjlgzmy.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/GER/antonio-rudiger.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidzmvjlgzmy"
         },
         {
           "name": "David Raum",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/david-raum.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Nico Schlotterbeck",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/nico-schlotterbeck.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Malick Thiaw",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/malick-thiaw.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Nathaniel Brown",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/nathaniel-brown.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Nadiem Amiri",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/nadiem-amiri.webp",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Joshua Kimmich",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/joshua-kimmich.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Leon Goretzka",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/leon-goretzka.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Pascal Groß",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/pascal-gro.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Florian Wirtz",
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/ddarwdbwg.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/GER/florian-wirtz.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidddarwdbwg"
         },
         {
           "name": "Felix Kalu Nmecha",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/felix-kalu-nmecha.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Angelo Stiller",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/angelo-stiller.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jamal Musiala",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/jamal-musiala.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Aleksandar Pavlović",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/aleksandar-pavlovic.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Assan Ouédraogo",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/assan-ouedraogo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Kai Havertz",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/kai-havertz.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Leroy Sané",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/leroy-sane.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Deniz Undav",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/deniz-undav.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jamie Leweling",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/jamie-leweling.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Nick Woltemade",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/nick-woltemade.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Maximilian Beier",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GER/maximilian-beier.png",
+          "avatarSource": "local-xlsx"
         }
       ]
     },
@@ -4981,7 +5139,9 @@
           "name": "Antoine Semenyo",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GHA/antoine-semenyo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Brandon Thomas-Asante",
@@ -4999,7 +5159,9 @@
           "name": "Iñaki Williams",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/GHA/inaki-williams.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Kamal Deen Sulemana",
@@ -5156,7 +5318,9 @@
           "name": "Frantzdy Pierrot",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/HAI/frantzdy-pierrot.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Yassin Fortune",
@@ -5639,7 +5803,9 @@
           "name": "Nicolas Pépé",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CIV/nicolas-pepe.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Evann Guessand",
@@ -5700,7 +5866,9 @@
           "name": "Zion Suzuki",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/zion-suzuki.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Tomoki Hayakawa",
@@ -5724,7 +5892,9 @@
           "name": "Hiroki Ito",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/hiroki-ito.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Yukinari Sugawara",
@@ -5736,7 +5906,9 @@
           "name": "Ko Itakura",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/ko-itakura.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Shogo Taniguchi",
@@ -5748,7 +5920,9 @@
           "name": "Ayumu Seko",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/ayumu-seko.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Tsuyoshi Watanabe",
@@ -5778,7 +5952,9 @@
           "name": "Takefusa Kubo",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/takefusa-kubo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Keito Nakamura",
@@ -5790,13 +5966,17 @@
           "name": "Ao Tanaka",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/ao-tanaka.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Kaishu Sano",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/kaishu-sano.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Yuito Suzuki",
@@ -5814,7 +5994,9 @@
           "name": "Daizen Maeda",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/daizen-maeda.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Koki Ogawa",
@@ -5832,7 +6014,9 @@
           "name": "Ayase Ueda",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/ayase-ueda.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Kento Shiogai",
@@ -6038,7 +6222,9 @@
           "name": "Min-Jae Kim",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/KOR/minjae-kim.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Moon-hwan Kim",
@@ -6056,7 +6242,9 @@
           "name": "Young-woo Seol",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/KOR/youngwoo-seol.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jin-seob Park",
@@ -6092,7 +6280,9 @@
           "name": "Jens Castrop",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/KOR/jens-castrop.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "In-beom Hwang",
@@ -6122,13 +6312,17 @@
           "name": "Seung-Ho Paik",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/KOR/seungho-paik.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Kang-in Lee",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/KOR/kangin-lee.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Joon-ho Bae",
@@ -6146,7 +6340,9 @@
           "name": "Heung-min Son",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/KOR/heungmin-son.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Hyun-jun Yang",
@@ -6158,7 +6354,9 @@
           "name": "Gue-Sung Cho",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/KOR/guesung-cho.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Hyun-Gyu Oh",
@@ -6183,127 +6381,169 @@
           "name": "Guillermo Ochoa",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/guillermo-ochoa.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Carlos Acevedo",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/carlos-acevedo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "José Rangel",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/jose-rangel.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jesús Gallardo",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/jesus-gallardo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "César Montes",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/cesar-montes.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Johan Vásquez",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/johan-vasquez.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jorge Sánchez",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/jorge-sanchez.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Israel Reyes",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/israel-reyes.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Mateo Chávez",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/mateo-chavez.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Edson Álvarez",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/edson-alvarez.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Orbelín Pineda",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/orbelin-pineda.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Luis Chávez",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/luis-chavez.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Luis Romo",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/luis-romo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Erik Lira",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/erik-lira.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Álvaro Fidalgo",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/alvaro-fidalgo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Brian Gutiérrez",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/brian-gutierrez.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Obed Vargas",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/obed-vargas.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Gilberto Mora",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/gilberto-mora.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Raúl Jiménez",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/raul-jimenez.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Julián Quiñones",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/julian-quinones.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Roberto Alvarado",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/roberto-alvarado.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Santiago Giménez",
@@ -6315,7 +6555,9 @@
           "name": "Alexis Vega",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MEX/alexis-vega.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Guillermo Martínez",
@@ -6352,7 +6594,9 @@
           "name": "Yassine Bounou",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/yassine-bounou.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ahmed Reda Tagnaouti",
@@ -6364,13 +6608,17 @@
           "name": "Achraf Hakimi",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/achraf-hakimi.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Noussair Mazraoui",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/noussair-mazraoui.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Issa Diop",
@@ -6382,7 +6630,9 @@
           "name": "Nayef Aguerd",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/nayef-aguerd.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Anass Salah-Eddine",
@@ -6394,7 +6644,9 @@
           "name": "Chadi Riad",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/chadi-riad.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Redouane Halhal",
@@ -6418,25 +6670,33 @@
           "name": "Sofyan Amrabat",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/sofyan-amrabat.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Brahim Diaz",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/brahim-diaz.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Azzedine Ounahi",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/azzedine-ounahi.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ismael Saibari",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/ismael-saibari.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Neil El Aynaoui",
@@ -6454,7 +6714,9 @@
           "name": "Chemsdine Talbi",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/chemsdine-talbi.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ayyoub Bouaddi",
@@ -6484,13 +6746,17 @@
           "name": "Abdessamad Ezzalzouli",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/abdessamad-ezzalzouli.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Gessime Yassine",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/MAR/gessime-yassine.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ayoube Amaimouni-Echghouyab",
@@ -6509,42 +6775,50 @@
           "name": "Mark Flekken",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/mark-flekken.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Bart Verbruggen",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/bart-verbruggen.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Robin Roefs",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/robin-roefs.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Denzel Dumfries",
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/wprznzdzm.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/NED/denzel-dumfries.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidwprznzdzm"
         },
         {
           "name": "Virgil van Dijk",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/virgil-van-dijk.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Nathan Aké",
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqkjovb.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/NED/nathan-ake.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqkjovb"
         },
         {
@@ -6557,13 +6831,17 @@
           "name": "Jurrien Timber",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/jurrien-timber.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Mickey van de Ven",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/mickey-van-de-ven.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jorrel Hato",
@@ -6575,49 +6853,65 @@
           "name": "Marten de Roon",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/marten-de-roon.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Donyell Malen",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/donyell-malen.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Frenkie de Jong",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/frenkie-de-jong.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Noa Lang",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/noa-lang.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Guus Til",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/guus-til.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Teun Koopmeiners",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/teun-koopmeiners.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Tijjani Reijnders",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/tijjani-reijnders.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ryan Gravenberch",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/ryan-gravenberch.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Mats Wieffer",
@@ -6642,15 +6936,17 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/jpvzgwzkg.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/NED/cody-gakpo.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidjpvzgwzkg"
         },
         {
           "name": "Justin Kluivert",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/justin-kluivert.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Wout Weghorst",
@@ -6662,13 +6958,17 @@
           "name": "Memphis Depay",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/memphis-depay.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Brian Brobbey",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/brian-brobbey.png",
+          "avatarSource": "local-xlsx"
         }
       ]
     },
@@ -6777,7 +7077,9 @@
           "name": "Joe Bell",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NZL/joe-bell.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Marko Stamenic",
@@ -6880,7 +7182,9 @@
           "name": "Marcus Pedersen",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NOR/marcus-pedersen.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Julian Ryerson",
@@ -6922,7 +7226,9 @@
           "name": "Martin Ødegaard",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NOR/martin-degaard.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Sander Berge",
@@ -6940,7 +7246,9 @@
           "name": "Fredrik Aursnes",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NOR/fredrik-aursnes.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Kristian Thorstvedt",
@@ -6964,25 +7272,33 @@
           "name": "Oscar Bobb",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NOR/oscar-bobb.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Alexander Sørloth",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NOR/alexander-srloth.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jens Hauge",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NOR/jens-hauge.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Erling Haaland",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NOR/erling-haaland.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Andreas Schjelderup",
@@ -6994,7 +7310,9 @@
           "name": "Jørgen Strand Larsen",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NOR/jrgen-strand-larsen.png",
+          "avatarSource": "local-xlsx"
         }
       ]
     },
@@ -7085,7 +7403,9 @@
           "name": "Adalberto Carrasquilla",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/PAN/adalberto-carrasquilla.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "José Luis Rodríguez",
@@ -7206,7 +7526,9 @@
           "name": "Omar Alderete",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/PAR/omar-alderete.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Juan Cáceres",
@@ -7248,7 +7570,9 @@
           "name": "Miguel Almirón",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/PAR/miguel-almiron.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Mauricio",
@@ -7346,8 +7670,8 @@
           "number": null,
           "position": "Thủ Môn",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/kgnbjzjyj.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/POR/diogo-costa.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidkgnbjzjyj"
         },
         {
@@ -7355,8 +7679,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/rnvkorzlm.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/POR/joao-cancelo.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidrnvkorzlm"
         },
         {
@@ -7364,39 +7688,49 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/zmvjlyznd.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/POR/ruben-dias.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidzmvjlyznd"
         },
         {
           "name": "Nélson Semedo",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/nelson-semedo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Diogo Dalot",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/diogo-dalot.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Matheus Nunes",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/matheus-nunes.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Nuno Mendes",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/nuno-mendes.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Gonçalo Inácio",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/goncalo-inacio.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Tomas Araujo",
@@ -7408,37 +7742,43 @@
           "name": "Renato Veiga",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/renato-veiga.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Bernardo Silva",
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/jpvzgnwom.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/POR/bernardo-silva.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidjpvzgnwom"
         },
         {
           "name": "Rúben Neves",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/ruben-neves.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Bruno Fernandes",
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/ddarypokl.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/POR/bruno-fernandes.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidddarypokl"
         },
         {
           "name": "Gonçalo Guedes",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/goncalo-guedes.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Samuel Almeida Costa",
@@ -7450,58 +7790,74 @@
           "name": "Vitinha",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/vitinha.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Joao Neves",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/joao-neves.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Cristiano Ronaldo",
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/zmvjnzrom.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/POR/cristiano-ronaldo.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidzmvjnzrom"
         },
         {
           "name": "Pedro Neto",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/pedro-neto.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Rafael Leão",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/rafael-leao.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Trincão",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/trincao.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "João Félix",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/joao-felix.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Gonçalo Ramos",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/goncalo-ramos.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Francisco Conceição",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/POR/francisco-conceicao.png",
+          "avatarSource": "local-xlsx"
         }
       ]
     },
@@ -7634,13 +7990,17 @@
           "name": "Akram Afif",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/QAT/akram-afif.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Almoez Ali",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/QAT/almoez-ali.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Mohammed Muntari",
@@ -7749,7 +8109,9 @@
           "name": "Salem Al Dawsari",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/KSA/salem-al-dawsari.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Abdullah Al Khaibari",
@@ -7871,15 +8233,17 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/jpvzgnyrp.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/SCO/andrew-robertson.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidjpvzgnyrp"
         },
         {
           "name": "Kieran Tierney",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SCO/kieran-tierney.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jack Hendry",
@@ -7922,8 +8286,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/vmyogjwmk.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/SCO/scott-mctominay.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidvmyogjwmk"
         },
         {
@@ -7936,7 +8300,9 @@
           "name": "Ryan Christie",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SCO/ryan-christie.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Lewis Ferguson",
@@ -7949,8 +8315,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/ddarypnmq.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/SCO/john-mcginn.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidddarypnmq"
         },
         {
@@ -8072,7 +8438,9 @@
           "name": "Pape Gueye",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SEN/pape-gueye.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Idrissa Gana Guèye",
@@ -8307,7 +8675,9 @@
           "name": "Oswin Appollis",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/RSA/oswin-appollis.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Iqraam Rayners",
@@ -8325,7 +8695,9 @@
           "name": "Relebohile Mofokeng",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/RSA/relebohile-mofokeng.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Tshepang Moremi",
@@ -8344,52 +8716,66 @@
           "name": "David Raya",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/david-raya.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Unai Simón",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/unai-simon.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Joan García",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/joan-garcia.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Aymeric Laporte",
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/zmvjlqwgy.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ESP/aymeric-laporte.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidzmvjlqwgy"
         },
         {
           "name": "Cucurella",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/cucurella.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Alejandro Grimaldo",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/alejandro-grimaldo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Pedro Porro",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/pedro-porro.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Eric García",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/eric-garcia.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Marc Pubill",
@@ -8401,15 +8787,17 @@
           "name": "Pau Cubarsí",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/pau-cubarsi.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Fabián Ruiz",
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqkmjkr.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ESP/fabian-ruiz.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqkmjkr"
         },
         {
@@ -8423,8 +8811,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/lnapopjvg.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ESP/rodri.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidlnapopjvg"
         },
         {
@@ -8432,33 +8820,41 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/avbralwka.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ESP/mikel-merino.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidavbralwka"
         },
         {
           "name": "Dani Olmo",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/dani-olmo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Ferrán Torres",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/ferran-torres.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Martín Zubimendi",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/martin-zubimendi.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Pedri",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/pedri.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Pablo Gavira",
@@ -8470,7 +8866,9 @@
           "name": "Mikel Oyarzabal",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/mikel-oyarzabal.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Álex Baena",
@@ -8482,28 +8880,34 @@
           "name": "Borja Iglesias",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/borja-iglesias.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Yeremi Pino",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/yeremi-pino.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Nico Williams",
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/jpvzqpnza.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/ESP/nico-williams.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidjpvzqpnza"
         },
         {
           "name": "Lamine Yamal",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/ESP/lamine-yamal.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Víctor Muñoz",
@@ -8642,13 +9046,17 @@
           "name": "Alexander Isak",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SWE/alexander-isak.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Viktor Gyökeres",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SWE/viktor-gyokeres.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Gustaf Nilsson",
@@ -8672,7 +9080,9 @@
           "name": "Anthony Elanga",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SWE/anthony-elanga.png",
+          "avatarSource": "local-xlsx"
         }
       ]
     },
@@ -8685,7 +9095,9 @@
           "name": "Gregor Kobel",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SUI/gregor-kobel.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Yvon Mvogo",
@@ -8704,8 +9116,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqkqvzd.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/SUI/manuel-akanji.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqkqvzd"
         },
         {
@@ -8767,8 +9179,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/pvoqkzdjo.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/SUI/granit-xhaka.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqkzdjo"
         },
         {
@@ -8781,7 +9193,9 @@
           "name": "Michel Aebischer",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SUI/michel-aebischer.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Djibril Sow",
@@ -8800,8 +9214,8 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/ddaryjalb.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/SUI/ruben-vargas.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidddaryjalb"
         },
         {
@@ -8832,7 +9246,9 @@
           "name": "Noah Okafor",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SUI/noah-okafor.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Cédric Itten",
@@ -8844,7 +9260,9 @@
           "name": "Dan Ndoye",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/SUI/dan-ndoye.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Zeki Amdouni",
@@ -9059,13 +9477,17 @@
           "name": "Ferdi Kadıoğlu",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/ferdi-kadoglu.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Mert Müldür",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/mert-muldur.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Zeki Çelik",
@@ -9090,8 +9512,8 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/kgnbjzymy.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/TUR/merih-demiral.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidkgnbjzymy"
         },
         {
@@ -9104,7 +9526,9 @@
           "name": "Evren Eren Elmalı",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/evren-eren-elmal.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Salih Özcan",
@@ -9117,39 +9541,49 @@
           "number": null,
           "position": "Tiền Vệ",
           "isStar": false,
-          "avatar": "https://s1.fifaaddict.com/fo4/players/wprznqzaw.png?20250613",
-          "avatarSource": "fifaaddict-eu24",
+          "avatar": "/players/TUR/hakan-calhanoglu.png",
+          "avatarSource": "local-xlsx",
           "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidwprznqzaw"
         },
         {
           "name": "Orkun Kökçü",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/orkun-kokcu.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "İsmail Yüksek",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/ismail-yuksek.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Arda Guler",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/arda-guler.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Oguz Aydin",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/oguz-aydin.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Baris Yilmaz",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/baris-yilmaz.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "İrfan Kahveci",
@@ -9161,13 +9595,17 @@
           "name": "Yunus Akgün",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/yunus-akgun.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Muhammed Kerem Aktürkoğlu",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/muhammed-kerem-akturkoglu.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Deniz Gul",
@@ -9179,7 +9617,9 @@
           "name": "Kenan Yıldız",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/TUR/kenan-yldz.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Can Uzun",
@@ -9198,7 +9638,9 @@
           "name": "Fernando Muslera",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/URY/fernando-muslera.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Santiago Mele",
@@ -9222,7 +9664,9 @@
           "name": "Ronald Araújo",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/URY/ronald-araujo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Sebastían Cáceres",
@@ -9246,7 +9690,9 @@
           "name": "Maximiliano Araújo",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/URY/maximiliano-araujo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Mathías Olivera",
@@ -9270,13 +9716,17 @@
           "name": "Federico Valverde",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/URY/federico-valverde.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Giorgian De Arrascaeta",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/URY/giorgian-de-arrascaeta.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Rodrigo Bentancur",
@@ -9288,7 +9738,9 @@
           "name": "Manuel Ugarte",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/URY/manuel-ugarte.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Brian Rodríguez",
@@ -9336,7 +9788,9 @@
           "name": "Darwin Núñez",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/URY/darwin-nunez.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Agustín Canobbio",
@@ -9367,7 +9821,9 @@
           "name": "Matt Freese",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/matt-freese.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Chris Brady",
@@ -9385,7 +9841,9 @@
           "name": "Tim Ream",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/tim-ream.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Miles Robinson",
@@ -9421,7 +9879,9 @@
           "name": "Chris Richards",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/chris-richards.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Alex Freeman",
@@ -9433,7 +9893,9 @@
           "name": "Weston McKennie",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/weston-mckennie.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Alejandro Zendejas",
@@ -9451,13 +9913,17 @@
           "name": "Tyler Adams",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/tyler-adams.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Brenden Aaronson",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/brenden-aaronson.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Gio Reyna",
@@ -9475,19 +9941,25 @@
           "name": "Malik Tillman",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/malik-tillman.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Christian Pulisic",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/christian-pulisic.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Tim Weah",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/tim-weah.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Haji Wright",
@@ -9499,13 +9971,17 @@
           "name": "Ricardo Pepi",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/ricardo-pepi.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Folarin Balogun",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/USA/folarin-balogun.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Max Arfsten",
@@ -9554,7 +10030,9 @@
           "name": "Abdukodir Khusanov",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/UZB/abdukodir-khusanov.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jakhongir O'rozov",
@@ -9656,7 +10134,9 @@
           "name": "Eldor Shomurodov",
           "number": null,
           "position": "Tiền Đạo",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/UZB/eldor-shomurodov.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jaloliddin Masharipov",
