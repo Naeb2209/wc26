@@ -1096,7 +1096,7 @@
   "fantasy": {
     "leagueName": "DC42 World Cup 2026",
     "leagueId": 1090,
-    "leagueUrl": "https://play.fifa.com/fantasy/leagues",
+    "leagueUrl": "https://play.fifa.com/fantasy/leagues/1090/table",
     "updatedRound": "Cập nhật 11:33:53 10/6/2026",
     "_note": "Tự cập nhật bằng: node scripts/sync-fantasy.mjs (cần FIFA_LEAGUE_ID + FIFA_COOKIE trong .env.local). Hoặc sửa tay standings ở đây.",
     "standings": [
