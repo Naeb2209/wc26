@@ -1,17 +1,44 @@
 # WC26 — Pitch Pulse 2026
 
-Web nội bộ theo dõi FIFA World Cup 2026: bảng đấu (hạng FIFA), đội bóng, lịch thi đấu + đội hình dự kiến, và trực tiếp theo kênh VTV. **Toàn bộ dữ liệu lấy tự động từ API bóng đá** (có cache + failover), tự fallback về `data/db.json` khi chưa có key.
+Web nội bộ theo dõi FIFA World Cup 2026: bảng đấu (hạng FIFA), đội bóng, lịch thi đấu + đội hình dự kiến, và trực tiếp theo kênh VTV. Bảng đấu, đội bóng và lịch thi đấu được đồng bộ thủ công một lần vào `data/db.json`; các trang web không gọi lại API cho các dữ liệu này.
 
 ## Công nghệ
 - **Next.js 14** (App Router) + **React 18**
 - **TailwindCSS** với design system *Pitch Pulse 2026*
-- Dữ liệu từ API (football-data.org / API-Football), cache `revalidate`, fallback `data/db.json`
+- Snapshot đội bóng/lịch đấu từ football-data.org vào `data/db.json`; live score có API + fallback
 
 ## Chạy local
 ```bash
 npm install
 cp .env.local.example .env.local   # rồi điền API key
 npm run dev                         # http://localhost:3000
+```
+
+## Đồng bộ đội bóng và lịch thi đấu
+Điền `FOOTBALL_DATA_TOKEN` trong `.env.local`, sau đó chạy khi cần cập nhật:
+
+```bash
+npm run sync-football
+```
+
+Lệnh này lấy standings, danh sách/squad đội tuyển và lịch vòng bảng rồi ghi vào `data/db.json`. Sau khi sync xong, web chỉ đọc file local và không dùng token để tự cập nhật lại các phần này.
+
+Ảnh cầu thủ được đồng bộ riêng từ TheSportsDB và cũng lưu vào `data/db.json`:
+
+```bash
+npm run sync-player-images -- ARG   # một đội
+npm run sync-player-images -- all   # tất cả đội, khá lâu với gói free
+npm run sync-eu24-images            # ưu tiên ảnh cutout mùa EU24 từ FIFA Addict
+npm run sync-wikimedia-images       # bổ sung nhanh ảnh còn thiếu theo batch
+```
+
+Script ưu tiên ảnh cutout PNG nền trong suốt. Những cầu thủ TheSportsDB chưa có ảnh vẫn dùng silhouette.
+
+Nếu đang chạy production, build và khởi động lại để Next.js đóng gói snapshot mới:
+
+```bash
+npm run build
+npm run start -- -H 0.0.0.0 -p 3000
 ```
 
 ## Chạy cho nội bộ công ty (cùng mạng LAN)
@@ -31,24 +58,12 @@ Mọi người trong công ty mở `http://<IP-máy-chủ>:3000`.
 | `/live`          | Trực tiếp: trận đang diễn ra lấy từ API, chọn kênh VTV (tự cập nhật 10s) |
 | `/fantasy`       | BXH người chơi FIFA Fantasy (league nội bộ): podium top 3 + bảng điểm |
 | `/api/live`      | API tỉ số trực tiếp (trận live + kênh) — trang `/live` polling endpoint này mỗi 10s |
-| `/api/health`    | Chẩn đoán nguồn dữ liệu: thứ tự ưu tiên, ping từng API, nguồn đang dùng |
+| `/api/health`    | Kiểm tra snapshot local: thời điểm sync, số bảng, đội và trận |
 
-## Nguồn dữ liệu & failover
-Cấu hình trong `.env.local` (xem `.env.local.example`). Web thử lần lượt:
-
-```
-football-data.org  →  API-Football  →  dữ liệu mẫu (data/db.json)
-```
-
-Nguồn nào lỗi / hết quota (429) → tự nhảy sang nguồn kế tiếp. Kiểm tra tình trạng tại `/api/health`.
-
-Các biến env liên quan (xem `.env.local.example`):
-- `FOOTBALL_DATA_TOKEN` / `API_FOOTBALL_KEY` — key 2 nguồn (điền 1 hoặc cả 2).
-- `FOOTBALL_API_PROVIDER` — ép nguồn nào ưu tiên lên đầu (bỏ trống = football-data trước).
-- `FOOTBALL_API_REVALIDATE` — thời gian cache dữ liệu (giây, mặc định `3600` = 1 giờ).
-
-- **football-data.org** (ưu tiên): token free tại https://www.football-data.org/client/register
-- **API-Football** (dự phòng): key tại https://www.api-football.com/ — *lưu ý gói free thường giới hạn mùa giải, có thể không có 2026*
+## Nguồn dữ liệu
+- Bảng đấu, đội tuyển và lịch thi đấu: chỉ đọc từ `data/db.json`; cập nhật thủ công bằng `npm run sync-football`.
+- Tỉ số live: thử API đã cấu hình rồi fallback về trận mẫu trong `data/db.json`.
+- Fantasy: đọc `data/db.json` hoặc gọi FIFA khi có cookie/access token.
 
 ## Giới hạn của gói API free
 - Bảng xếp hạng, lịch thi đấu, tỉ số trực tiếp: **có** (tỉ số free có độ trễ vài phút).
@@ -110,9 +125,9 @@ Script tự đổi refresh → access token mới mỗi lần chạy, và **tự
 - `getFantasy()` ([lib/fifa-api.js](lib/fifa-api.js)) cũng tự gọi endpoint nếu env có cookie/access token, nhưng **server (Vercel) dễ bị Akamai chặn + không lưu được refresh token xoay** → ưu tiên `npm run sync-fantasy` (local).
 - Không cấu hình gì → trang dùng `fantasy.standings` tĩnh trong db.json.
 
-## Dữ liệu mẫu / hạng FIFA
-- `data/db.json` chứa: 12 bảng thật (fallback), hồ sơ mẫu vài đội, danh sách kênh VTV (`channels`), bảng tra `fifaRanks` (API không cung cấp hạng FIFA — chỉnh trong file này), bảng `broadcast` (trận → kênh VTV), BXH `fantasy`, và dữ liệu trận `live` mẫu.
-- `stages` + `schedule`: khung lịch theo vòng cho trang `/schedule`. `stages` = `Vòng Bảng → Vòng 32 Đội → Vòng 16 Đội → Tứ Kết → Bán Kết → Chung Kết`; `schedule` chứa data từng vòng (hiện có sẵn "Vòng Bảng", các vòng knock-out để trống chờ điền sau khi bốc thăm). API có thì tự ghi đè, không có thì dùng data này.
+## Dữ liệu local / hạng FIFA
+- `data/db.json` chứa snapshot bảng đấu, đội tuyển và lịch thi đấu; danh sách kênh VTV (`channels`); bảng tra `fifaRanks`; bảng `broadcast`; BXH `fantasy`; và dữ liệu trận `live` fallback.
+- `stages` + `schedule`: khung lịch theo vòng cho trang `/schedule`. `npm run sync-football` cập nhật vòng bảng và giữ lại đội hình dự đoán đã nhập thủ công cho các cặp đấu trùng khớp.
 - `fifaRanks` (mã đội → hạng) dùng cho: badge hạng ở bảng đấu & lịch thi đấu, và làm tiêu chí xếp hạng trong bảng khi các đội bằng điểm/hiệu số. Cập nhật theo bảng xếp hạng FIFA mới nhất; `getStandings()`/`getSchedule()` ([lib/fifa-api.js](lib/fifa-api.js)) tự gắn hạng vào từng đội/trận.
 - Cờ quốc gia: `flagcdn.com` theo mã ISO (fallback); khi dùng API thì lấy crest/logo từ API.
 

@@ -12,61 +12,70 @@ const POSITION_ICON = {
   "Thủ Môn": "front_hand",
 };
 
-function StatTile({ value, label }) {
+function StatTile({ icon, value, label }) {
   return (
-    <div className="text-center">
-      <p className="font-data-mono text-on-surface font-bold text-[14px]">{value}</p>
-      <p className="font-label-caps text-[8px] text-on-surface-variant uppercase">{label}</p>
+    <div className="player-card-stat" title={label}>
+      <span className="material-symbols-outlined player-card-stat-icon" aria-hidden="true">
+        {icon}
+      </span>
+      <span className="player-card-stat-value">{value}</span>
     </div>
   );
 }
 
-function PlayerCard({ p }) {
+function positionCode(position) {
+  if (position === "Thủ Môn") return "GK";
+  if (position === "Hậu Vệ") return "DEF";
+  if (position === "Tiền Vệ") return "MID";
+  if (position === "Tiền Đạo") return "FWD";
+  return "XI";
+}
+
+function PlayerCard({ p, team }) {
   const isGK = p.position === "Thủ Môn";
-  const hasStats = p.ovr != null || p.goals != null || p.cleanSheets != null || p.assists != null;
+  const portrait = p.avatar || p.image || "";
+  const portraitClass = p.avatarSource === "fifaaddict-eu24" ? "player-card-portrait-eu24" : "";
+  const rating = p.ovr ?? p.number ?? null;
+
   return (
-    <div
-      className={`relative bg-surface rounded-lg border border-outline-variant overflow-hidden group hover:border-primary transition-all duration-300 ${
-        p.isStar ? "gold-glow" : ""
-      }`}
-    >
-      <div className="flex items-center p-3 gap-4">
-        <div
-          className={`relative w-16 h-16 shrink-0 rounded-full overflow-hidden bg-surface-dim flex items-center justify-center ${
-            p.isStar ? "border-2 border-[#ffd700]" : ""
-          }`}
-        >
-          <span className="material-symbols-outlined text-2xl text-outline">person</span>
-          {p.isStar && (
-            <div className="absolute bottom-0 right-0 bg-[#ffd700] rounded-full p-0.5 flex items-center justify-center">
-              <span className="material-symbols-outlined text-[12px] text-black font-bold">star</span>
-            </div>
-          )}
+    <article className={`player-card-shell ${p.isStar ? "player-card-star" : ""}`}>
+      <div className="player-card-inner">
+        <div className="player-card-rating">
+          {rating != null && <strong>{rating}</strong>}
+          <span>{positionCode(p.position)}</span>
+          {team.flag && <img src={team.flag} alt="" />}
         </div>
-        <div className="flex-grow min-w-0">
-          <div>
-            {p.number != null && <span className="text-outline font-data-mono text-[12px]">#{p.number}</span>}
-            <h4 className="font-bold text-on-surface uppercase text-[15px] leading-tight">{p.name}</h4>
-          </div>
-          {hasStats ? (
-            <div className="flex gap-3 mt-1">
-              {p.ovr != null && (
-                <div className="text-center">
-                  <p className="font-data-mono text-primary font-bold text-[14px]">{p.ovr}</p>
-                  <p className="font-label-caps text-[8px] text-on-surface-variant">OVR</p>
-                </div>
-              )}
-              {isGK
-                ? p.cleanSheets != null && <StatTile value={p.cleanSheets} label="Sạch Lưới" />
-                : p.goals != null && <StatTile value={p.goals} label="Bàn" />}
-              {p.assists != null && <StatTile value={p.assists} label="Kiến Tạo" />}
-            </div>
+
+        <div className={`player-card-portrait ${portraitClass}`}>
+          {portrait ? (
+            <img src={portrait} alt={p.name} />
           ) : (
-            <p className="font-label-caps text-label-caps text-on-surface-variant mt-1 uppercase">{p.position}</p>
+            <div className="player-card-silhouette" aria-hidden="true">
+              <span className="material-symbols-outlined">person</span>
+            </div>
           )}
         </div>
+
+        {p.isStar && (
+          <span className="player-card-star-badge" title="Cầu thủ nổi bật">
+            <span className="material-symbols-outlined">star</span>
+          </span>
+        )}
+
+        <div className="player-card-name">
+          <h4>{p.name}</h4>
+          <p>{p.position}</p>
+        </div>
+
+        {!isGK && (
+          <div className="player-card-stats">
+            <StatTile icon="sports_soccer" value={p.goals ?? 0} label="Bàn thắng" />
+            <span className="player-card-stats-divider" aria-hidden="true" />
+            <StatTile icon="handshake" value={p.assists ?? 0} label="Kiến tạo" />
+          </div>
+        )}
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -152,9 +161,9 @@ export default async function TeamDetailPage({ params }) {
                 <h3 className="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
                   <span className="material-symbols-outlined">{POSITION_ICON[g.pos]}</span> {g.pos}
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {g.players.map((p, i) => (
-                    <PlayerCard key={p.number ?? i} p={p} />
+                    <PlayerCard key={p.number ?? i} p={p} team={team} />
                   ))}
                 </div>
               </section>
