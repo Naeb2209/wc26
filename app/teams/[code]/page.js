@@ -31,6 +31,14 @@ function positionCode(position) {
   return "XI";
 }
 
+function positionClass(position) {
+  if (position === "Thủ Môn") return "pos-gk";
+  if (position === "Hậu Vệ") return "pos-def";
+  if (position === "Tiền Vệ") return "pos-mid";
+  if (position === "Tiền Đạo") return "pos-fwd";
+  return "";
+}
+
 function PlayerCard({ p, team }) {
   const isGK = p.position === "Thủ Môn";
   const portrait = p.avatar || p.image || "";
@@ -42,16 +50,18 @@ function PlayerCard({ p, team }) {
       <div className="player-card-inner">
         <div className="player-card-rating">
           {rating != null && <strong>{rating}</strong>}
-          <span>{positionCode(p.position)}</span>
-          {team.flag && <img src={team.flag} alt="" />}
+          <span className={positionClass(p.position)}>{positionCode(p.position)}</span>
         </div>
+        {team.flag && (
+          <img className="player-card-flag" src={team.flag} alt={team.name} />
+        )}
 
         <div className={`player-card-portrait ${portraitClass}`}>
           {portrait ? (
             <img src={portrait} alt={p.name} />
           ) : (
-            <div className="player-card-silhouette" aria-hidden="true">
-              <span className="material-symbols-outlined">person</span>
+            <div className="player-card-jersey" aria-hidden="true">
+              <img src="/players/image.png" alt="" />
             </div>
           )}
         </div>
@@ -64,7 +74,6 @@ function PlayerCard({ p, team }) {
 
         <div className="player-card-name">
           <h4>{p.name}</h4>
-          <p>{p.position}</p>
         </div>
 
         {!isGK && (
@@ -94,7 +103,8 @@ function StatBar({ label, value, pct, color }) {
 }
 
 export default async function TeamDetailPage({ params }) {
-  const team = await getTeam(params.code);
+  const { code } = await params;
+  const team = await getTeam(code);
   if (!team) notFound();
 
   const grouped = POSITION_ORDER.map((pos) => ({

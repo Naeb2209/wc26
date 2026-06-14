@@ -1,0 +1,73 @@
+{
+  "_note": "Dữ liệu mẫu cho phần Thông tin giải đấu (top 8 mỗi bảng). Cập nhật số liệu khi giải diễn ra. avatar là đường dẫn ảnh trong public/players.",
+  "topScorers": [
+    { "name": "Kylian Mbappé", "team": "Pháp", "code": "FRA", "flag": "https://crests.football-data.org/773.svg", "avatar": "/players/FRA/kylian-mbappe.png", "goals": 6, "matches": 5 },
+    { "name": "Lionel Messi", "team": "Argentina", "code": "ARG", "flag": "https://crests.football-data.org/762.png", "avatar": "/players/ARG/lionel-messi.png", "goals": 5, "matches": 5 },
+    { "name": "Harry Kane", "team": "Anh", "code": "ENG", "flag": "https://crests.football-data.org/770.svg", "avatar": "/players/ENG/harry-kane.webp", "goals": 5, "matches": 4 },
+    { "name": "Vinícius Júnior", "team": "Brazil", "code": "BRA", "flag": "https://crests.football-data.org/764.svg", "avatar": "/players/BRA/vinicius-junior.png", "goals": 4, "matches": 5 },
+    { "name": "Cristiano Ronaldo", "team": "Bồ Đào Nha", "code": "POR", "flag": "https://crests.football-data.org/765.svg", "avatar": "/players/POR/cristiano-ronaldo.png", "goals": 4, "matches": 4 },
+    { "name": "Lautaro Martínez", "team": "Argentina", "code": "ARG", "flag": "https://crests.football-data.org/762.png", "avatar": "/players/ARG/lautaro-martinez.png", "goals": 4, "matches": 5 },
+    { "name": "Erling Haaland", "team": "Na Uy", "code": "NOR", "flag": "https://crests.football-data.org/813.svg", "avatar": "/players/NOR/erling-haaland.png", "goals": 4, "matches": 4 },
+    { "name": "Lamine Yamal", "team": "Tây Ban Nha", "code": "ESP", "flag": "https://crests.football-data.org/760.svg", "avatar": "/players/ESP/lamine-yamal.png", "goals": 3, "matches": 5 }
+  ],
+  "topAssists": [
+    { "name": "Lionel Messi", "team": "Argentina", "code": "ARG", "flag": "https://crests.football-data.org/762.png", "avatar": "/players/ARG/lionel-messi.png", "assists": 5, "matches": 5 },
+    { "name": "Kevin De Bruyne", "team": "Bỉ", "code": "BEL", "flag": "https://crests.football-data.org/805.svg", "avatar": "/players/BEL/kevin-de-bruyne.png", "assists": 4, "matches": 4 },
+    { "name": "Jude Bellingham", "team": "Anh", "code": "ENG", "flag": "https://crests.football-data.org/770.svg", "avatar": "/players/ENG/jude-bellingham.png", "assists": 3, "matches": 5 },
+    { "name": "Pedri", "team": "Tây Ban Nha", "code": "ESP", "flag": "https://crests.football-data.org/760.svg", "avatar": "/players/ESP/pedri.png", "assists": 3, "matches": 4 },
+    { "name": "Ousmane Dembélé", "team": "Pháp", "code": "FRA", "flag": "https://crests.football-data.org/773.svg", "avatar": "/players/FRA/ousmane-dembele.png", "assists": 3, "matches": 5 },
+    { "name": "Bruno Fernandes", "team": "Bồ Đào Nha", "code": "POR", "flag": "https://crests.football-data.org/765.svg", "avatar": "/players/POR/bruno-fernandes.png", "assists": 3, "matches": 4 },
+    { "name": "Achraf Hakimi", "team": "Maroc", "code": "MAR", "flag": "https://crests.football-data.org/morocco.svg", "avatar": "/players/MAR/achraf-hakimi.png", "assists": 2, "matches": 5 },
+    { "name": "Frenkie de Jong", "team": "Hà Lan", "code": "NED", "flag": "https://crests.football-data.org/8601.svg", "avatar": "/players/NED/frenkie-de-jong.png", "assists": 2, "matches": 4 }
+  ],
+  "topFantasy": [
+    { "name": "Kylian Mbappé", "team": "Pháp", "code": "FRA", "flag": "https://crests.football-data.org/773.svg", "avatar": "/players/FRA/kylian-mbappe.png", "points": 58 },
+    { "name": "Lionel Messi", "team": "Argentina", "code": "ARG", "flag": "https://crests.football-data.org/762.png", "avatar": "/players/ARG/lionel-messi.png", "points": 54 },
+    { "name": "Vinícius Júnior", "team": "Brazil", "code": "BRA", "flag": "https://crests.football-data.org/764.svg", "avatar": "/players/BRA/vinicius-junior.png", "points": 49 },
+    { "name": "Harry Kane", "team": "Anh", "code": "ENG", "flag": "https://crests.football-data.org/770.svg", "avatar": "/players/ENG/harry-kane.webp", "points": 47 },
+    { "name": "Pedri", "team": "Tây Ban Nha", "code": "ESP", "flag": "https://crests.football-data.org/760.svg", "avatar": "/players/ESP/pedri.png", "points": 44 },
+    { "name": "Lamine Yamal", "team": "Tây Ban Nha", "code": "ESP", "flag": "https://crests.football-data.org/760.svg", "avatar": "/players/ESP/lamine-yamal.png", "points": 42 },
+    { "name": "Bukayo Saka", "team": "Anh", "code": "ENG", "flag": "https://crests.football-data.org/770.svg", "avatar": "/players/ENG/bukayo-saka.png", "points": 40 },
+    { "name": "Jamal Musiala", "team": "Đức", "code": "GER", "flag": "https://crests.football-data.org/759.svg", "avatar": "/players/GER/jamal-musiala.png", "points": 39 }
+  ],
+  "mostCards": [
+    { "name": "Casemiro", "team": "Brazil", "code": "BRA", "flag": "https://crests.football-data.org/764.svg", "avatar": "/players/BRA/casemiro.png", "yellow": 3, "red": 1 },
+    { "name": "Aurélien Tchouaméni", "team": "Pháp", "code": "FRA", "flag": "https://crests.football-data.org/773.svg", "avatar": "/players/FRA/aurelien-tchouameni.png", "yellow": 2, "red": 1 },
+    { "name": "Luka Modrić", "team": "Croatia", "code": "CRO", "flag": "https://crests.football-data.org/799.svg", "avatar": "/players/CRO/luka-modric.png", "yellow": 4, "red": 0 },
+    { "name": "Rodrigo De Paul", "team": "Argentina", "code": "ARG", "flag": "https://crests.football-data.org/762.png", "avatar": "/players/ARG/rodrigo-de-paul.png", "yellow": 3, "red": 0 },
+    { "name": "Sofyan Amrabat", "team": "Maroc", "code": "MAR", "flag": "https://crests.football-data.org/morocco.svg", "avatar": "/players/MAR/sofyan-amrabat.png", "yellow": 3, "red": 0 },
+    { "name": "Declan Rice", "team": "Anh", "code": "ENG", "flag": "https://crests.football-data.org/770.svg", "avatar": "/players/ENG/declan-rice.png", "yellow": 3, "red": 0 },
+    { "name": "Federico Valverde", "team": "Uruguay", "code": "URY", "flag": "https://crests.football-data.org/758.svg", "avatar": "/players/URY/federico-valverde.png", "yellow": 3, "red": 0 },
+    { "name": "Frenkie de Jong", "team": "Hà Lan", "code": "NED", "flag": "https://crests.football-data.org/8601.svg", "avatar": "/players/NED/frenkie-de-jong.png", "yellow": 2, "red": 0 }
+  ],
+  "mostGoalsTeams": [
+    { "team": "Pháp", "code": "FRA", "flag": "https://crests.football-data.org/773.svg", "goals": 14 },
+    { "team": "Argentina", "code": "ARG", "flag": "https://crests.football-data.org/762.png", "goals": 12 },
+    { "team": "Tây Ban Nha", "code": "ESP", "flag": "https://crests.football-data.org/760.svg", "goals": 11 },
+    { "team": "Anh", "code": "ENG", "flag": "https://crests.football-data.org/770.svg", "goals": 10 },
+    { "team": "Brazil", "code": "BRA", "flag": "https://crests.football-data.org/764.svg", "goals": 10 },
+    { "team": "Bồ Đào Nha", "code": "POR", "flag": "https://crests.football-data.org/765.svg", "goals": 9 },
+    { "team": "Đức", "code": "GER", "flag": "https://crests.football-data.org/759.svg", "goals": 9 },
+    { "team": "Hà Lan", "code": "NED", "flag": "https://crests.football-data.org/8601.svg", "goals": 8 }
+  ],
+  "mostCleanSheetTeams": [
+    { "team": "Tây Ban Nha", "code": "ESP", "flag": "https://crests.football-data.org/760.svg", "cleanSheets": 4 },
+    { "team": "Argentina", "code": "ARG", "flag": "https://crests.football-data.org/762.png", "cleanSheets": 4 },
+    { "team": "Pháp", "code": "FRA", "flag": "https://crests.football-data.org/773.svg", "cleanSheets": 3 },
+    { "team": "Đức", "code": "GER", "flag": "https://crests.football-data.org/759.svg", "cleanSheets": 3 },
+    { "team": "Croatia", "code": "CRO", "flag": "https://crests.football-data.org/799.svg", "cleanSheets": 3 },
+    { "team": "Anh", "code": "ENG", "flag": "https://crests.football-data.org/770.svg", "cleanSheets": 3 },
+    { "team": "Bồ Đào Nha", "code": "POR", "flag": "https://crests.football-data.org/765.svg", "cleanSheets": 2 },
+    { "team": "Uruguay", "code": "URY", "flag": "https://crests.football-data.org/758.svg", "cleanSheets": 2 }
+  ],
+  "mostConcededTeams": [
+    { "team": "Maroc", "code": "MAR", "flag": "https://crests.football-data.org/morocco.svg", "conceded": 9 },
+    { "team": "Mexico", "code": "MEX", "flag": "https://crests.football-data.org/769.svg", "conceded": 8 },
+    { "team": "Úc", "code": "AUS", "flag": "https://crests.football-data.org/779.svg", "conceded": 8 },
+    { "team": "Colombia", "code": "COL", "flag": "https://crests.football-data.org/818.svg", "conceded": 7 },
+    { "team": "Mỹ", "code": "USA", "flag": "https://crests.football-data.org/usa.svg", "conceded": 7 },
+    { "team": "Ả Rập Xê Út", "code": "KSA", "flag": "https://crests.football-data.org/saudi_arabia.svg", "conceded": 7 },
+    { "team": "Iran", "code": "IRN", "flag": "https://crests.football-data.org/iran.svg", "conceded": 6 },
+    { "team": "Ghana", "code": "GHA", "flag": "https://crests.football-data.org/ghana.svg", "conceded": 6 }
+  ]
+}

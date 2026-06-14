@@ -13,3 +13,4 @@ dev.log
 
 # Playwright FIFA session (chứa cookie đăng nhập — KHÔNG commit)
 .playwright-fifa/
+.avatars_backup/
