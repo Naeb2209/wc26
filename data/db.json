@@ -11448,7 +11448,7 @@
     "leagueName": "DC42 World Cup 2026",
     "leagueId": 1090,
     "leagueUrl": "https://play.fifa.com/fantasy/leagues/1090/table",
-    "updatedRound": "Cập nhật 00:37:29 15/6/2026",
+    "updatedRound": "Cập nhật 00:54:31 15/6/2026",
     "_note": "Tự cập nhật bằng: node scripts/sync-fantasy.mjs (cần FIFA_LEAGUE_ID + FIFA_COOKIE trong .env.local). Hoặc sửa tay standings ở đây.",
     "standings": [
       {
@@ -11501,7 +11501,7 @@
         "totalPoints": 24,
         "gw": 24,
         "total": 24,
-        "prev": 5,
+        "prev": 3,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11518,7 +11518,7 @@
         "totalPoints": 19,
         "gw": 19,
         "total": 19,
-        "prev": 3,
+        "prev": 4,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/1.svg"
       },
       {
@@ -11537,7 +11537,7 @@
         "totalPoints": 19,
         "gw": 19,
         "total": 19,
-        "prev": 4,
+        "prev": 5,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11554,7 +11554,7 @@
         "totalPoints": 18,
         "gw": 18,
         "total": 18,
-        "prev": 7,
+        "prev": 6,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11571,7 +11571,7 @@
         "totalPoints": 18,
         "gw": 18,
         "total": 18,
-        "prev": 10,
+        "prev": 7,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11590,7 +11590,7 @@
         "totalPoints": 17,
         "gw": 17,
         "total": 17,
-        "prev": 6,
+        "prev": 8,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11624,7 +11624,7 @@
         "totalPoints": 15,
         "gw": 15,
         "total": 15,
-        "prev": 8,
+        "prev": 10,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11643,7 +11643,7 @@
         "totalPoints": 14,
         "gw": 14,
         "total": 14,
-        "prev": 13,
+        "prev": 11,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11677,7 +11677,7 @@
         "totalPoints": 10,
         "gw": 10,
         "total": 10,
-        "prev": 11,
+        "prev": 13,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11694,7 +11694,7 @@
         "totalPoints": 10,
         "gw": 10,
         "total": 10,
-        "prev": 20,
+        "prev": 14,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11713,7 +11713,7 @@
         "totalPoints": 9,
         "gw": 9,
         "total": 9,
-        "prev": 19,
+        "prev": 15,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11730,7 +11730,7 @@
         "totalPoints": 8,
         "gw": 8,
         "total": 8,
-        "prev": 15,
+        "prev": 16,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11747,7 +11747,7 @@
         "totalPoints": 7,
         "gw": 7,
         "total": 7,
-        "prev": 14,
+        "prev": 17,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11764,7 +11764,7 @@
         "totalPoints": 5,
         "gw": 5,
         "total": 5,
-        "prev": 16,
+        "prev": 18,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11781,7 +11781,7 @@
         "totalPoints": 3,
         "gw": 3,
         "total": 3,
-        "prev": 17,
+        "prev": 19,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11798,7 +11798,7 @@
         "totalPoints": 2,
         "gw": 2,
         "total": 2,
-        "prev": 18,
+        "prev": 20,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       },
       {
@@ -11854,7 +11854,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -11868,7 +11868,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -11908,7 +11908,7 @@
             {
               "id": 1088,
               "name": "Marc Cucurella",
-              "avatar": "",
+              "avatar": "/players/ESP/cucurella.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -11935,7 +11935,7 @@
             {
               "id": 740,
               "name": "Johan Vásquez",
-              "avatar": "",
+              "avatar": "/players/MEX/johan-vasquez.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -11962,7 +11962,7 @@
             {
               "id": 529,
               "name": "Leroy Sané",
-              "avatar": "",
+              "avatar": "/players/GER/leroy-sane.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -11976,7 +11976,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -11989,7 +11989,7 @@
             {
               "id": 107,
               "name": "Marcel Sabitzer",
-              "avatar": "",
+              "avatar": "/players/AUT/marcel-sabitzer.png",
               "teamCode": "AUT",
               "teamName": "Austria",
               "crest": "",
@@ -12016,7 +12016,7 @@
             {
               "id": 543,
               "name": "Florian Wirtz",
-              "avatar": "",
+              "avatar": "/players/GER/florian-wirtz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -12030,7 +12030,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -12070,7 +12070,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -12097,7 +12097,7 @@
             {
               "id": 855,
               "name": "Erling Haaland",
-              "avatar": "",
+              "avatar": "/players/NOR/erling-haaland.png",
               "teamCode": "NOR",
               "teamName": "Norway",
               "crest": "",
@@ -12126,7 +12126,7 @@
             {
               "id": 262,
               "name": "Camilo Vargas",
-              "avatar": "",
+              "avatar": "/players/COL/camilo-vargas.png",
               "teamCode": "COL",
               "teamName": "Colombia",
               "crest": "",
@@ -12153,7 +12153,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -12180,7 +12180,7 @@
             {
               "id": 256,
               "name": "Luis Díaz",
-              "avatar": "",
+              "avatar": "/players/COL/luis-diaz.png",
               "teamCode": "COL",
               "teamName": "Colombia",
               "crest": "",
@@ -12241,7 +12241,7 @@
             {
               "id": 183,
               "name": "Alisson Becker",
-              "avatar": "",
+              "avatar": "/players/BRA/alisson-becker.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -12268,7 +12268,7 @@
             {
               "id": 164,
               "name": "Gabriel Magalhães",
-              "avatar": "",
+              "avatar": "/players/BRA/gabriel-magalhaes.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -12295,7 +12295,7 @@
             {
               "id": 1429,
               "name": "William Saliba",
-              "avatar": "",
+              "avatar": "/players/FRA/william-saliba.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -12322,7 +12322,7 @@
             {
               "id": 1570,
               "name": "Rúben Dias",
-              "avatar": "",
+              "avatar": "/players/POR/ruben-dias.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -12349,7 +12349,7 @@
             {
               "id": 1600,
               "name": "Jamal Musiala",
-              "avatar": "",
+              "avatar": "/players/GER/jamal-musiala.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -12363,7 +12363,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -12376,7 +12376,7 @@
             {
               "id": 1274,
               "name": "Christian Pulisic",
-              "avatar": "",
+              "avatar": "/players/USA/christian-pulisic.png",
               "teamCode": "USA",
               "teamName": "USA",
               "crest": "",
@@ -12403,7 +12403,7 @@
             {
               "id": 1092,
               "name": "Lamine Yamal",
-              "avatar": "",
+              "avatar": "/players/ESP/lamine-yamal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -12430,7 +12430,7 @@
             {
               "id": 173,
               "name": "Vinícius Júnior",
-              "avatar": "",
+              "avatar": "/players/BRA/vinicius-junior.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -12457,7 +12457,7 @@
             {
               "id": 488,
               "name": "Declan Rice",
-              "avatar": "",
+              "avatar": "/players/ENG/declan-rice.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -12484,7 +12484,7 @@
             {
               "id": 1573,
               "name": "Cristiano Ronaldo",
-              "avatar": "",
+              "avatar": "/players/POR/cristiano-ronaldo.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -12511,7 +12511,7 @@
             {
               "id": 500,
               "name": "Kylian Mbappé",
-              "avatar": "",
+              "avatar": "/players/FRA/kylian-mbappe.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -12540,7 +12540,7 @@
             {
               "id": 45,
               "name": "Emiliano Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/emiliano-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -12567,7 +12567,7 @@
             {
               "id": 1259,
               "name": "Chris Richards",
-              "avatar": "",
+              "avatar": "/players/USA/chris-richards.png",
               "teamCode": "USA",
               "teamName": "USA",
               "crest": "",
@@ -12655,7 +12655,7 @@
             {
               "id": 262,
               "name": "Camilo Vargas",
-              "avatar": "",
+              "avatar": "/players/COL/camilo-vargas.png",
               "teamCode": "COL",
               "teamName": "Colombia",
               "crest": "",
@@ -12682,7 +12682,7 @@
             {
               "id": 1088,
               "name": "Marc Cucurella",
-              "avatar": "",
+              "avatar": "/players/ESP/cucurella.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -12709,7 +12709,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -12723,7 +12723,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -12763,7 +12763,7 @@
             {
               "id": 740,
               "name": "Johan Vásquez",
-              "avatar": "",
+              "avatar": "/players/MEX/johan-vasquez.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -12790,7 +12790,7 @@
             {
               "id": 543,
               "name": "Florian Wirtz",
-              "avatar": "",
+              "avatar": "/players/GER/florian-wirtz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -12804,7 +12804,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -12817,7 +12817,7 @@
             {
               "id": 1600,
               "name": "Jamal Musiala",
-              "avatar": "",
+              "avatar": "/players/GER/jamal-musiala.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -12831,7 +12831,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -12844,7 +12844,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -12871,7 +12871,7 @@
             {
               "id": 1997,
               "name": "Mikel Merino",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-merino.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -12898,7 +12898,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -12925,7 +12925,7 @@
             {
               "id": 855,
               "name": "Erling Haaland",
-              "avatar": "",
+              "avatar": "/players/NOR/erling-haaland.png",
               "teamCode": "NOR",
               "teamName": "Norway",
               "crest": "",
@@ -13008,7 +13008,7 @@
             {
               "id": 1338,
               "name": "Lautaro Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/lautaro-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -13035,7 +13035,7 @@
             {
               "id": 1366,
               "name": "Raphinha",
-              "avatar": "",
+              "avatar": "/players/BRA/raphinha.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -13069,7 +13069,7 @@
             {
               "id": 1098,
               "name": "David Raya",
-              "avatar": "",
+              "avatar": "/players/ESP/david-raya.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -13096,7 +13096,7 @@
             {
               "id": 795,
               "name": "Denzel Dumfries",
-              "avatar": "",
+              "avatar": "/players/NED/denzel-dumfries.png",
               "teamCode": "NED",
               "teamName": "Netherlands",
               "crest": "",
@@ -13123,7 +13123,7 @@
             {
               "id": 1570,
               "name": "Rúben Dias",
-              "avatar": "",
+              "avatar": "/players/POR/ruben-dias.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -13150,7 +13150,7 @@
             {
               "id": 327,
               "name": "Duje Caleta-Car",
-              "avatar": "",
+              "avatar": "/players/CRO/duje-caletacar.png",
               "teamCode": "CRO",
               "teamName": "Croatia",
               "crest": "",
@@ -13177,7 +13177,7 @@
             {
               "id": 1009,
               "name": "Andy Robertson",
-              "avatar": "",
+              "avatar": "/players/SCO/andrew-robertson.png",
               "teamCode": "SCO",
               "teamName": "Scotland",
               "crest": "",
@@ -13204,7 +13204,7 @@
             {
               "id": 173,
               "name": "Vinícius Júnior",
-              "avatar": "",
+              "avatar": "/players/BRA/vinicius-junior.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -13231,7 +13231,7 @@
             {
               "id": 1092,
               "name": "Lamine Yamal",
-              "avatar": "",
+              "avatar": "/players/ESP/lamine-yamal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -13258,7 +13258,7 @@
             {
               "id": 1366,
               "name": "Raphinha",
-              "avatar": "",
+              "avatar": "/players/BRA/raphinha.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -13312,7 +13312,7 @@
             {
               "id": 39,
               "name": "Julián Alvarez",
-              "avatar": "",
+              "avatar": "/players/ARG/julian-alvarez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -13339,7 +13339,7 @@
             {
               "id": 500,
               "name": "Kylian Mbappé",
-              "avatar": "",
+              "avatar": "/players/FRA/kylian-mbappe.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -13368,7 +13368,7 @@
             {
               "id": 45,
               "name": "Emiliano Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/emiliano-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -13449,7 +13449,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -13483,7 +13483,7 @@
             {
               "id": 506,
               "name": "Mike Maignan",
-              "avatar": "",
+              "avatar": "/players/FRA/mike-maignan.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -13510,7 +13510,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -13524,7 +13524,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -13537,7 +13537,7 @@
             {
               "id": 742,
               "name": "Jesús Gallardo",
-              "avatar": "",
+              "avatar": "/players/MEX/jesus-gallardo.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -13564,7 +13564,7 @@
             {
               "id": 28,
               "name": "Cristian Romero",
-              "avatar": "",
+              "avatar": "/players/ARG/christian-romero.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -13591,7 +13591,7 @@
             {
               "id": 1088,
               "name": "Marc Cucurella",
-              "avatar": "",
+              "avatar": "/players/ESP/cucurella.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -13618,7 +13618,7 @@
             {
               "id": 125,
               "name": "Jérémy Doku",
-              "avatar": "",
+              "avatar": "/players/BEL/jeremy-doku.png",
               "teamCode": "BEL",
               "teamName": "Belgium",
               "crest": "",
@@ -13645,7 +13645,7 @@
             {
               "id": 762,
               "name": "Orbelín Pineda",
-              "avatar": "",
+              "avatar": "/players/MEX/orbelin-pineda.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -13672,7 +13672,7 @@
             {
               "id": 501,
               "name": "Ousmane Dembélé",
-              "avatar": "",
+              "avatar": "/players/FRA/ousmane-dembele.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -13699,7 +13699,7 @@
             {
               "id": 1124,
               "name": "Viktor Gyökeres",
-              "avatar": "",
+              "avatar": "/players/SWE/viktor-gyokeres.png",
               "teamCode": "SWE",
               "teamName": "Sweden",
               "crest": "",
@@ -13753,7 +13753,7 @@
             {
               "id": 500,
               "name": "Kylian Mbappé",
-              "avatar": "",
+              "avatar": "/players/FRA/kylian-mbappe.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -13782,7 +13782,7 @@
             {
               "id": 1098,
               "name": "David Raya",
-              "avatar": "",
+              "avatar": "/players/ESP/david-raya.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -13809,7 +13809,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -13836,7 +13836,7 @@
             {
               "id": 936,
               "name": "Vitinha",
-              "avatar": "",
+              "avatar": "/players/POR/vitinha.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -13863,7 +13863,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -13897,7 +13897,7 @@
             {
               "id": 757,
               "name": "Raúl Rangel",
-              "avatar": "",
+              "avatar": "/players/MEX/jose-rangel.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -13924,7 +13924,7 @@
             {
               "id": 796,
               "name": "Virgil van Dijk",
-              "avatar": "",
+              "avatar": "/players/NED/virgil-van-dijk.png",
               "teamCode": "NED",
               "teamName": "Netherlands",
               "crest": "",
@@ -13951,7 +13951,7 @@
             {
               "id": 520,
               "name": "Antonio Rüdiger",
-              "avatar": "",
+              "avatar": "/players/GER/antonio-rudiger.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -13965,7 +13965,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -13978,7 +13978,7 @@
             {
               "id": 1318,
               "name": "Lisandro Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/lisandro-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -14005,7 +14005,7 @@
             {
               "id": 1600,
               "name": "Jamal Musiala",
-              "avatar": "",
+              "avatar": "/players/GER/jamal-musiala.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -14019,7 +14019,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -14032,7 +14032,7 @@
             {
               "id": 173,
               "name": "Vinícius Júnior",
-              "avatar": "",
+              "avatar": "/players/BRA/vinicius-junior.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -14059,7 +14059,7 @@
             {
               "id": 1106,
               "name": "Pedri",
-              "avatar": "",
+              "avatar": "/players/ESP/pedri.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -14086,7 +14086,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -14113,21 +14113,21 @@
             {
               "id": 528,
               "name": "Kai Havertz",
-              "avatar": "",
+              "avatar": "/players/GER/kai-havertz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
               "bucket": "FWD",
               "price": 7.8,
-              "points": 1,
-              "rawPoints": 1,
+              "points": 6,
+              "rawPoints": 6,
               "goals": 0,
               "assists": 0,
               "xG": 0,
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -14140,7 +14140,7 @@
             {
               "id": 1093,
               "name": "Ferran Torres",
-              "avatar": "",
+              "avatar": "/players/ESP/ferran-torres.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -14167,7 +14167,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -14196,7 +14196,7 @@
             {
               "id": 755,
               "name": "Guillermo Ochoa",
-              "avatar": "",
+              "avatar": "/players/MEX/guillermo-ochoa.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -14223,7 +14223,7 @@
             {
               "id": 918,
               "name": "Diogo Dalot",
-              "avatar": "",
+              "avatar": "/players/POR/diogo-dalot.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -14250,7 +14250,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -14277,7 +14277,7 @@
             {
               "id": 474,
               "name": "Anthony Gordon",
-              "avatar": "",
+              "avatar": "/players/ENG/anthony-gordon.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -14338,7 +14338,7 @@
             {
               "id": 1088,
               "name": "Marc Cucurella",
-              "avatar": "",
+              "avatar": "/players/ESP/cucurella.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -14365,7 +14365,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -14392,7 +14392,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -14406,7 +14406,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -14419,7 +14419,7 @@
             {
               "id": 34,
               "name": "Nicolás Tagliafico",
-              "avatar": "",
+              "avatar": "/players/ARG/nicolas-tagliafico.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -14446,7 +14446,7 @@
             {
               "id": 543,
               "name": "Florian Wirtz",
-              "avatar": "",
+              "avatar": "/players/GER/florian-wirtz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -14460,7 +14460,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -14473,7 +14473,7 @@
             {
               "id": 173,
               "name": "Vinícius Júnior",
-              "avatar": "",
+              "avatar": "/players/BRA/vinicius-junior.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -14500,7 +14500,7 @@
             {
               "id": 517,
               "name": "Michael Olise",
-              "avatar": "",
+              "avatar": "/players/FRA/michael-olise.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -14527,7 +14527,7 @@
             {
               "id": 500,
               "name": "Kylian Mbappé",
-              "avatar": "",
+              "avatar": "/players/FRA/kylian-mbappe.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -14554,7 +14554,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -14581,21 +14581,21 @@
             {
               "id": 528,
               "name": "Kai Havertz",
-              "avatar": "",
+              "avatar": "/players/GER/kai-havertz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
               "bucket": "FWD",
               "price": 7.8,
-              "points": 1,
-              "rawPoints": 1,
+              "points": 6,
+              "rawPoints": 6,
               "goals": 0,
               "assists": 0,
               "xG": 0,
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -14664,7 +14664,7 @@
             {
               "id": 738,
               "name": "Obed Vargas",
-              "avatar": "",
+              "avatar": "/players/MEX/obed-vargas.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -14691,7 +14691,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -14725,7 +14725,7 @@
             {
               "id": 1099,
               "name": "Unai Simón",
-              "avatar": "",
+              "avatar": "/players/ESP/unai-simon.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -14779,7 +14779,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -14833,7 +14833,7 @@
             {
               "id": 670,
               "name": "Daizen Maeda",
-              "avatar": "",
+              "avatar": "/players/JPN/daizen-maeda.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -14860,7 +14860,7 @@
             {
               "id": 173,
               "name": "Vinícius Júnior",
-              "avatar": "",
+              "avatar": "/players/BRA/vinicius-junior.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -14887,7 +14887,7 @@
             {
               "id": 1092,
               "name": "Lamine Yamal",
-              "avatar": "",
+              "avatar": "/players/ESP/lamine-yamal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -14914,7 +14914,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -14941,21 +14941,21 @@
             {
               "id": 528,
               "name": "Kai Havertz",
-              "avatar": "",
+              "avatar": "/players/GER/kai-havertz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
               "bucket": "FWD",
               "price": 7.8,
-              "points": 1,
-              "rawPoints": 1,
+              "points": 6,
+              "rawPoints": 6,
               "goals": 0,
               "assists": 0,
               "xG": 0,
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -14968,7 +14968,7 @@
             {
               "id": 500,
               "name": "Kylian Mbappé",
-              "avatar": "",
+              "avatar": "/players/FRA/kylian-mbappe.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -14995,7 +14995,7 @@
             {
               "id": 855,
               "name": "Erling Haaland",
-              "avatar": "",
+              "avatar": "/players/NOR/erling-haaland.png",
               "teamCode": "NOR",
               "teamName": "Norway",
               "crest": "",
@@ -15024,7 +15024,7 @@
             {
               "id": 18,
               "name": "Luca Zidane",
-              "avatar": "",
+              "avatar": "/players/ALG/luca-zidane.png",
               "teamCode": "ALG",
               "teamName": "Algeria",
               "crest": "",
@@ -15051,7 +15051,7 @@
             {
               "id": 722,
               "name": "Kim Tae-Hyeon",
-              "avatar": "",
+              "avatar": "/players/KOR/minjae-kim.png",
               "teamCode": "KOR",
               "teamName": "Korea Republic",
               "crest": "",
@@ -15078,7 +15078,7 @@
             {
               "id": 2012,
               "name": "Achraf Hakimi",
-              "avatar": "",
+              "avatar": "/players/MAR/achraf-hakimi.png",
               "teamCode": "MAR",
               "teamName": "Morocco",
               "crest": "",
@@ -15119,7 +15119,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "GER",
               "oppName": "Germany",
               "oppCrest": "",
@@ -15139,7 +15139,7 @@
             {
               "id": 477,
               "name": "Jordan Pickford",
-              "avatar": "",
+              "avatar": "/players/ENG/jordan-pickford.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -15166,7 +15166,7 @@
             {
               "id": 740,
               "name": "Johan Vásquez",
-              "avatar": "",
+              "avatar": "/players/MEX/johan-vasquez.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -15193,7 +15193,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -15220,7 +15220,7 @@
             {
               "id": 1429,
               "name": "William Saliba",
-              "avatar": "",
+              "avatar": "/players/FRA/william-saliba.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -15247,7 +15247,7 @@
             {
               "id": 543,
               "name": "Florian Wirtz",
-              "avatar": "",
+              "avatar": "/players/GER/florian-wirtz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -15261,7 +15261,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -15274,7 +15274,7 @@
             {
               "id": 1092,
               "name": "Lamine Yamal",
-              "avatar": "",
+              "avatar": "/players/ESP/lamine-yamal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -15301,7 +15301,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -15328,7 +15328,7 @@
             {
               "id": 1600,
               "name": "Jamal Musiala",
-              "avatar": "",
+              "avatar": "/players/GER/jamal-musiala.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -15342,7 +15342,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -15355,7 +15355,7 @@
             {
               "id": 2000,
               "name": "Nico Williams",
-              "avatar": "",
+              "avatar": "/players/ESP/nico-williams.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -15382,7 +15382,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -15409,21 +15409,21 @@
             {
               "id": 528,
               "name": "Kai Havertz",
-              "avatar": "",
+              "avatar": "/players/GER/kai-havertz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
               "bucket": "FWD",
               "price": 7.8,
-              "points": 1,
-              "rawPoints": 1,
+              "points": 6,
+              "rawPoints": 6,
               "goals": 0,
               "assists": 0,
               "xG": 0,
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -15438,7 +15438,7 @@
             {
               "id": 755,
               "name": "Guillermo Ochoa",
-              "avatar": "",
+              "avatar": "/players/MEX/guillermo-ochoa.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -15492,7 +15492,7 @@
             {
               "id": 461,
               "name": "Marc Guéhi",
-              "avatar": "",
+              "avatar": "/players/ENG/marc-guehi.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -15519,7 +15519,7 @@
             {
               "id": 1338,
               "name": "Lautaro Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/lautaro-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -15553,7 +15553,7 @@
             {
               "id": 1569,
               "name": "Diogo Costa",
-              "avatar": "",
+              "avatar": "/players/POR/diogo-costa.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -15580,7 +15580,7 @@
             {
               "id": 795,
               "name": "Denzel Dumfries",
-              "avatar": "",
+              "avatar": "/players/NED/denzel-dumfries.png",
               "teamCode": "NED",
               "teamName": "Netherlands",
               "crest": "",
@@ -15607,7 +15607,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -15621,7 +15621,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -15634,7 +15634,7 @@
             {
               "id": 1570,
               "name": "Rúben Dias",
-              "avatar": "",
+              "avatar": "/players/POR/ruben-dias.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -15661,7 +15661,7 @@
             {
               "id": 107,
               "name": "Marcel Sabitzer",
-              "avatar": "",
+              "avatar": "/players/AUT/marcel-sabitzer.png",
               "teamCode": "AUT",
               "teamName": "Austria",
               "crest": "",
@@ -15688,7 +15688,7 @@
             {
               "id": 543,
               "name": "Florian Wirtz",
-              "avatar": "",
+              "avatar": "/players/GER/florian-wirtz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -15702,7 +15702,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -15715,7 +15715,7 @@
             {
               "id": 256,
               "name": "Luis Díaz",
-              "avatar": "",
+              "avatar": "/players/COL/luis-diaz.png",
               "teamCode": "COL",
               "teamName": "Colombia",
               "crest": "",
@@ -15742,7 +15742,7 @@
             {
               "id": 517,
               "name": "Michael Olise",
-              "avatar": "",
+              "avatar": "/players/FRA/michael-olise.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -15769,21 +15769,21 @@
             {
               "id": 528,
               "name": "Kai Havertz",
-              "avatar": "",
+              "avatar": "/players/GER/kai-havertz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
               "bucket": "FWD",
               "price": 7.8,
-              "points": 1,
-              "rawPoints": 1,
+              "points": 6,
+              "rawPoints": 6,
               "goals": 0,
               "assists": 0,
               "xG": 0,
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -15796,7 +15796,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -15852,7 +15852,7 @@
             {
               "id": 755,
               "name": "Guillermo Ochoa",
-              "avatar": "",
+              "avatar": "/players/MEX/guillermo-ochoa.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -15879,7 +15879,7 @@
             {
               "id": 165,
               "name": "Marquinhos",
-              "avatar": "",
+              "avatar": "/players/BRA/marquinhos.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -15906,7 +15906,7 @@
             {
               "id": 1366,
               "name": "Raphinha",
-              "avatar": "",
+              "avatar": "/players/BRA/raphinha.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -15933,7 +15933,7 @@
             {
               "id": 2012,
               "name": "Achraf Hakimi",
-              "avatar": "",
+              "avatar": "/players/MAR/achraf-hakimi.png",
               "teamCode": "MAR",
               "teamName": "Morocco",
               "crest": "",
@@ -15967,7 +15967,7 @@
             {
               "id": 757,
               "name": "Raúl Rangel",
-              "avatar": "",
+              "avatar": "/players/MEX/jose-rangel.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -16021,7 +16021,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -16035,7 +16035,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -16048,7 +16048,7 @@
             {
               "id": 1088,
               "name": "Marc Cucurella",
-              "avatar": "",
+              "avatar": "/players/ESP/cucurella.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -16075,7 +16075,7 @@
             {
               "id": 517,
               "name": "Michael Olise",
-              "avatar": "",
+              "avatar": "/players/FRA/michael-olise.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -16102,7 +16102,7 @@
             {
               "id": 543,
               "name": "Florian Wirtz",
-              "avatar": "",
+              "avatar": "/players/GER/florian-wirtz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -16116,7 +16116,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -16129,7 +16129,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -16156,7 +16156,7 @@
             {
               "id": 129,
               "name": "Charles De Ketelaere",
-              "avatar": "",
+              "avatar": "/players/BEL/charles-de-ketelaere.png",
               "teamCode": "BEL",
               "teamName": "Belgium",
               "crest": "",
@@ -16183,7 +16183,7 @@
             {
               "id": 500,
               "name": "Kylian Mbappé",
-              "avatar": "",
+              "avatar": "/players/FRA/kylian-mbappe.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -16210,21 +16210,21 @@
             {
               "id": 528,
               "name": "Kai Havertz",
-              "avatar": "",
+              "avatar": "/players/GER/kai-havertz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
               "bucket": "FWD",
               "price": 7.8,
-              "points": 1,
-              "rawPoints": 1,
+              "points": 6,
+              "rawPoints": 6,
               "goals": 0,
               "assists": 0,
               "xG": 0,
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -16237,7 +16237,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -16264,7 +16264,7 @@
             {
               "id": 855,
               "name": "Erling Haaland",
-              "avatar": "",
+              "avatar": "/players/NOR/erling-haaland.png",
               "teamCode": "NOR",
               "teamName": "Norway",
               "crest": "",
@@ -16320,7 +16320,7 @@
             {
               "id": 1366,
               "name": "Raphinha",
-              "avatar": "",
+              "avatar": "/players/BRA/raphinha.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -16347,7 +16347,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -16374,7 +16374,7 @@
             {
               "id": 250,
               "name": "Dávinson Sánchez",
-              "avatar": "",
+              "avatar": "/players/COL/davinson-sanchez.png",
               "teamCode": "COL",
               "teamName": "Colombia",
               "crest": "",
@@ -16408,7 +16408,7 @@
             {
               "id": 1099,
               "name": "Unai Simón",
-              "avatar": "",
+              "avatar": "/players/ESP/unai-simon.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -16435,7 +16435,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -16462,7 +16462,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -16476,7 +16476,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -16489,7 +16489,7 @@
             {
               "id": 248,
               "name": "Daniel Muñoz",
-              "avatar": "",
+              "avatar": "/players/COL/daniel-munoz.png",
               "teamCode": "COL",
               "teamName": "Colombia",
               "crest": "",
@@ -16516,7 +16516,7 @@
             {
               "id": 796,
               "name": "Virgil van Dijk",
-              "avatar": "",
+              "avatar": "/players/NED/virgil-van-dijk.png",
               "teamCode": "NED",
               "teamName": "Netherlands",
               "crest": "",
@@ -16543,7 +16543,7 @@
             {
               "id": 173,
               "name": "Vinícius Júnior",
-              "avatar": "",
+              "avatar": "/players/BRA/vinicius-junior.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -16570,7 +16570,7 @@
             {
               "id": 501,
               "name": "Ousmane Dembélé",
-              "avatar": "",
+              "avatar": "/players/FRA/ousmane-dembele.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -16597,7 +16597,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -16624,7 +16624,7 @@
             {
               "id": 543,
               "name": "Florian Wirtz",
-              "avatar": "",
+              "avatar": "/players/GER/florian-wirtz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -16638,7 +16638,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -16651,7 +16651,7 @@
             {
               "id": 1573,
               "name": "Cristiano Ronaldo",
-              "avatar": "",
+              "avatar": "/players/POR/cristiano-ronaldo.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -16678,7 +16678,7 @@
             {
               "id": 124,
               "name": "Romelu Lukaku",
-              "avatar": "",
+              "avatar": "/players/BEL/romelu-lukaku.png",
               "teamCode": "BEL",
               "teamName": "Belgium",
               "crest": "",
@@ -16734,7 +16734,7 @@
             {
               "id": 457,
               "name": "Nico O'Reilly",
-              "avatar": "",
+              "avatar": "/players/ENG/nico-oreilly.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -16761,7 +16761,7 @@
             {
               "id": 181,
               "name": "Endrick",
-              "avatar": "",
+              "avatar": "/players/BRA/endrick.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -16788,7 +16788,7 @@
             {
               "id": 50,
               "name": "Rodrigo De Paul",
-              "avatar": "",
+              "avatar": "/players/ARG/rodrigo-de-paul.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -16822,7 +16822,7 @@
             {
               "id": 1598,
               "name": "Manuel Neuer",
-              "avatar": "",
+              "avatar": "/players/GER/manuel-neuer.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -16836,7 +16836,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -16849,7 +16849,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -16863,7 +16863,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -16903,7 +16903,7 @@
             {
               "id": 498,
               "name": "Lucas Digne",
-              "avatar": "",
+              "avatar": "/players/FRA/lucas-digne.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -16957,7 +16957,7 @@
             {
               "id": 173,
               "name": "Vinícius Júnior",
-              "avatar": "",
+              "avatar": "/players/BRA/vinicius-junior.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -16984,7 +16984,7 @@
             {
               "id": 491,
               "name": "Jude Bellingham",
-              "avatar": "",
+              "avatar": "/players/ENG/jude-bellingham.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -17011,7 +17011,7 @@
             {
               "id": 1092,
               "name": "Lamine Yamal",
-              "avatar": "",
+              "avatar": "/players/ESP/lamine-yamal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -17038,7 +17038,7 @@
             {
               "id": 1329,
               "name": "Equi Fernández",
-              "avatar": "",
+              "avatar": "/players/ARG/enzo-fernandez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -17065,7 +17065,7 @@
             {
               "id": 855,
               "name": "Erling Haaland",
-              "avatar": "",
+              "avatar": "/players/NOR/erling-haaland.png",
               "teamCode": "NOR",
               "teamName": "Norway",
               "crest": "",
@@ -17092,7 +17092,7 @@
             {
               "id": 38,
               "name": "Lionel Messi",
-              "avatar": "",
+              "avatar": "/players/ARG/lionel-messi.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -17121,7 +17121,7 @@
             {
               "id": 810,
               "name": "Mark Flekken",
-              "avatar": "",
+              "avatar": "/players/NED/mark-flekken.png",
               "teamCode": "NED",
               "teamName": "Netherlands",
               "crest": "",
@@ -17148,7 +17148,7 @@
             {
               "id": 1141,
               "name": "Manuel Akanji",
-              "avatar": "",
+              "avatar": "/players/SUI/manuel-akanji.png",
               "teamCode": "SUI",
               "teamName": "Switzerland",
               "crest": "",
@@ -17202,7 +17202,7 @@
             {
               "id": 1711,
               "name": "Ollie Watkins",
-              "avatar": "",
+              "avatar": "/players/ENG/ollie-watkins.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -17236,7 +17236,7 @@
             {
               "id": 45,
               "name": "Emiliano Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/emiliano-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -17263,7 +17263,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -17277,7 +17277,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -17290,7 +17290,7 @@
             {
               "id": 1088,
               "name": "Marc Cucurella",
-              "avatar": "",
+              "avatar": "/players/ESP/cucurella.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -17317,7 +17317,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -17344,7 +17344,7 @@
             {
               "id": 248,
               "name": "Daniel Muñoz",
-              "avatar": "",
+              "avatar": "/players/COL/daniel-munoz.png",
               "teamCode": "COL",
               "teamName": "Colombia",
               "crest": "",
@@ -17371,7 +17371,7 @@
             {
               "id": 543,
               "name": "Florian Wirtz",
-              "avatar": "",
+              "avatar": "/players/GER/florian-wirtz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -17385,7 +17385,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -17398,7 +17398,7 @@
             {
               "id": 1105,
               "name": "Dani Olmo",
-              "avatar": "",
+              "avatar": "/players/ESP/dani-olmo.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -17425,7 +17425,7 @@
             {
               "id": 270,
               "name": "James Rodríguez",
-              "avatar": "",
+              "avatar": "/players/COL/james-rodriguez.png",
               "teamCode": "COL",
               "teamName": "Colombia",
               "crest": "",
@@ -17452,7 +17452,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -17479,7 +17479,7 @@
             {
               "id": 855,
               "name": "Erling Haaland",
-              "avatar": "",
+              "avatar": "/players/NOR/erling-haaland.png",
               "teamCode": "NOR",
               "teamName": "Norway",
               "crest": "",
@@ -17506,21 +17506,21 @@
             {
               "id": 528,
               "name": "Kai Havertz",
-              "avatar": "",
+              "avatar": "/players/GER/kai-havertz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
               "bucket": "FWD",
               "price": 7.8,
-              "points": 1,
-              "rawPoints": 1,
+              "points": 6,
+              "rawPoints": 6,
               "goals": 0,
               "assists": 0,
               "xG": 0,
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -17535,7 +17535,7 @@
             {
               "id": 1099,
               "name": "Unai Simón",
-              "avatar": "",
+              "avatar": "/players/ESP/unai-simon.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -17562,7 +17562,7 @@
             {
               "id": 748,
               "name": "Raúl Jiménez",
-              "avatar": "",
+              "avatar": "/players/MEX/raul-jimenez.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -17616,7 +17616,7 @@
             {
               "id": 1216,
               "name": "Hakan Çalhanoglu",
-              "avatar": "",
+              "avatar": "/players/TUR/hakan-calhanoglu.png",
               "teamCode": "TUR",
               "teamName": "Türkiye",
               "crest": "",
@@ -17650,7 +17650,7 @@
             {
               "id": 45,
               "name": "Emiliano Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/emiliano-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -17677,7 +17677,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -17691,7 +17691,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -17704,7 +17704,7 @@
             {
               "id": 522,
               "name": "Malick Thiaw",
-              "avatar": "",
+              "avatar": "/players/GER/malick-thiaw.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -17718,7 +17718,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -17731,7 +17731,7 @@
             {
               "id": 1088,
               "name": "Marc Cucurella",
-              "avatar": "",
+              "avatar": "/players/ESP/cucurella.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -17758,7 +17758,7 @@
             {
               "id": 1105,
               "name": "Dani Olmo",
-              "avatar": "",
+              "avatar": "/players/ESP/dani-olmo.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -17785,7 +17785,7 @@
             {
               "id": 543,
               "name": "Florian Wirtz",
-              "avatar": "",
+              "avatar": "/players/GER/florian-wirtz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -17799,7 +17799,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -17812,7 +17812,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -17839,7 +17839,7 @@
             {
               "id": 2000,
               "name": "Nico Williams",
-              "avatar": "",
+              "avatar": "/players/ESP/nico-williams.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -17866,7 +17866,7 @@
             {
               "id": 855,
               "name": "Erling Haaland",
-              "avatar": "",
+              "avatar": "/players/NOR/erling-haaland.png",
               "teamCode": "NOR",
               "teamName": "Norway",
               "crest": "",
@@ -17893,7 +17893,7 @@
             {
               "id": 924,
               "name": "João Félix",
-              "avatar": "",
+              "avatar": "/players/POR/joao-felix.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -17920,7 +17920,7 @@
             {
               "id": 39,
               "name": "Julián Alvarez",
-              "avatar": "",
+              "avatar": "/players/ARG/julian-alvarez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -17949,7 +17949,7 @@
             {
               "id": 477,
               "name": "Jordan Pickford",
-              "avatar": "",
+              "avatar": "/players/ENG/jordan-pickford.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -17976,7 +17976,7 @@
             {
               "id": 936,
               "name": "Vitinha",
-              "avatar": "",
+              "avatar": "/players/POR/vitinha.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -18003,7 +18003,7 @@
             {
               "id": 1259,
               "name": "Chris Richards",
-              "avatar": "",
+              "avatar": "/players/USA/chris-richards.png",
               "teamCode": "USA",
               "teamName": "USA",
               "crest": "",
@@ -18064,7 +18064,7 @@
             {
               "id": 1098,
               "name": "David Raya",
-              "avatar": "",
+              "avatar": "/players/ESP/david-raya.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -18091,7 +18091,7 @@
             {
               "id": 164,
               "name": "Gabriel Magalhães",
-              "avatar": "",
+              "avatar": "/players/BRA/gabriel-magalhaes.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -18118,7 +18118,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -18132,7 +18132,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -18145,7 +18145,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -18172,7 +18172,7 @@
             {
               "id": 936,
               "name": "Vitinha",
-              "avatar": "",
+              "avatar": "/players/POR/vitinha.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -18199,7 +18199,7 @@
             {
               "id": 256,
               "name": "Luis Díaz",
-              "avatar": "",
+              "avatar": "/players/COL/luis-diaz.png",
               "teamCode": "COL",
               "teamName": "Colombia",
               "crest": "",
@@ -18226,7 +18226,7 @@
             {
               "id": 1366,
               "name": "Raphinha",
-              "avatar": "",
+              "avatar": "/players/BRA/raphinha.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -18253,7 +18253,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -18280,7 +18280,7 @@
             {
               "id": 1600,
               "name": "Jamal Musiala",
-              "avatar": "",
+              "avatar": "/players/GER/jamal-musiala.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -18294,7 +18294,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -18307,7 +18307,7 @@
             {
               "id": 500,
               "name": "Kylian Mbappé",
-              "avatar": "",
+              "avatar": "/players/FRA/kylian-mbappe.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -18334,21 +18334,21 @@
             {
               "id": 528,
               "name": "Kai Havertz",
-              "avatar": "",
+              "avatar": "/players/GER/kai-havertz.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
               "bucket": "FWD",
               "price": 7.8,
-              "points": 1,
-              "rawPoints": 1,
+              "points": 6,
+              "rawPoints": 6,
               "goals": 0,
               "assists": 0,
               "xG": 0,
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -18363,7 +18363,7 @@
             {
               "id": 755,
               "name": "Guillermo Ochoa",
-              "avatar": "",
+              "avatar": "/players/MEX/guillermo-ochoa.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -18417,7 +18417,7 @@
             {
               "id": 457,
               "name": "Nico O'Reilly",
-              "avatar": "",
+              "avatar": "/players/ENG/nico-oreilly.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -18478,7 +18478,7 @@
             {
               "id": 45,
               "name": "Emiliano Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/emiliano-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -18505,7 +18505,7 @@
             {
               "id": 1088,
               "name": "Marc Cucurella",
-              "avatar": "",
+              "avatar": "/players/ESP/cucurella.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -18532,7 +18532,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -18546,7 +18546,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -18559,7 +18559,7 @@
             {
               "id": 164,
               "name": "Gabriel Magalhães",
-              "avatar": "",
+              "avatar": "/players/BRA/gabriel-magalhaes.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -18613,7 +18613,7 @@
             {
               "id": 1135,
               "name": "Granit Xhaka",
-              "avatar": "",
+              "avatar": "/players/SUI/granit-xhaka.png",
               "teamCode": "SUI",
               "teamName": "Switzerland",
               "crest": "",
@@ -18640,7 +18640,7 @@
             {
               "id": 125,
               "name": "Jérémy Doku",
-              "avatar": "",
+              "avatar": "/players/BEL/jeremy-doku.png",
               "teamCode": "BEL",
               "teamName": "Belgium",
               "crest": "",
@@ -18667,7 +18667,7 @@
             {
               "id": 1106,
               "name": "Pedri",
-              "avatar": "",
+              "avatar": "/players/ESP/pedri.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -18694,7 +18694,7 @@
             {
               "id": 1600,
               "name": "Jamal Musiala",
-              "avatar": "",
+              "avatar": "/players/GER/jamal-musiala.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -18708,7 +18708,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -18721,7 +18721,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -18748,7 +18748,7 @@
             {
               "id": 804,
               "name": "Cody Gakpo",
-              "avatar": "",
+              "avatar": "/players/NED/cody-gakpo.png",
               "teamCode": "NED",
               "teamName": "Netherlands",
               "crest": "",
@@ -18777,7 +18777,7 @@
             {
               "id": 477,
               "name": "Jordan Pickford",
-              "avatar": "",
+              "avatar": "/players/ENG/jordan-pickford.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -18804,7 +18804,7 @@
             {
               "id": 855,
               "name": "Erling Haaland",
-              "avatar": "",
+              "avatar": "/players/NOR/erling-haaland.png",
               "teamCode": "NOR",
               "teamName": "Norway",
               "crest": "",
@@ -18831,7 +18831,7 @@
             {
               "id": 917,
               "name": "João Cancelo",
-              "avatar": "",
+              "avatar": "/players/POR/joao-cancelo.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -18858,7 +18858,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -18892,7 +18892,7 @@
             {
               "id": 809,
               "name": "Bart Verbruggen",
-              "avatar": "",
+              "avatar": "/players/NED/bart-verbruggen.png",
               "teamCode": "NED",
               "teamName": "Netherlands",
               "crest": "",
@@ -18919,7 +18919,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -18933,7 +18933,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -18946,7 +18946,7 @@
             {
               "id": 28,
               "name": "Cristian Romero",
-              "avatar": "",
+              "avatar": "/players/ARG/christian-romero.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -18973,7 +18973,7 @@
             {
               "id": 114,
               "name": "Maxim De Cuyper",
-              "avatar": "",
+              "avatar": "/players/BEL/maxim-de-cuyper.png",
               "teamCode": "BEL",
               "teamName": "Belgium",
               "crest": "",
@@ -19000,7 +19000,7 @@
             {
               "id": 1088,
               "name": "Marc Cucurella",
-              "avatar": "",
+              "avatar": "/players/ESP/cucurella.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -19027,7 +19027,7 @@
             {
               "id": 486,
               "name": "Elliot Anderson",
-              "avatar": "",
+              "avatar": "/players/ENG/elliot-anderson.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -19054,7 +19054,7 @@
             {
               "id": 516,
               "name": "Rayan Cherki",
-              "avatar": "",
+              "avatar": "/players/FRA/rayan-cherki.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -19081,7 +19081,7 @@
             {
               "id": 1027,
               "name": "Scott McTominay",
-              "avatar": "",
+              "avatar": "/players/SCO/scott-mctominay.png",
               "teamCode": "SCO",
               "teamName": "Scotland",
               "crest": "",
@@ -19108,7 +19108,7 @@
             {
               "id": 1092,
               "name": "Lamine Yamal",
-              "avatar": "",
+              "avatar": "/players/ESP/lamine-yamal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -19135,7 +19135,7 @@
             {
               "id": 804,
               "name": "Cody Gakpo",
-              "avatar": "",
+              "avatar": "/players/NED/cody-gakpo.png",
               "teamCode": "NED",
               "teamName": "Netherlands",
               "crest": "",
@@ -19162,7 +19162,7 @@
             {
               "id": 124,
               "name": "Romelu Lukaku",
-              "avatar": "",
+              "avatar": "/players/BEL/romelu-lukaku.png",
               "teamCode": "BEL",
               "teamName": "Belgium",
               "crest": "",
@@ -19191,7 +19191,7 @@
             {
               "id": 477,
               "name": "Jordan Pickford",
-              "avatar": "",
+              "avatar": "/players/ENG/jordan-pickford.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -19218,7 +19218,7 @@
             {
               "id": 917,
               "name": "João Cancelo",
-              "avatar": "",
+              "avatar": "/players/POR/joao-cancelo.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -19245,7 +19245,7 @@
             {
               "id": 1573,
               "name": "Cristiano Ronaldo",
-              "avatar": "",
+              "avatar": "/players/POR/cristiano-ronaldo.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -19272,7 +19272,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -19306,7 +19306,7 @@
             {
               "id": 45,
               "name": "Emiliano Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/emiliano-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -19333,21 +19333,21 @@
             {
               "id": 526,
               "name": "Nico Schlotterbeck",
-              "avatar": "",
+              "avatar": "/players/GER/nico-schlotterbeck.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
               "bucket": "DEF",
               "price": 5.3,
-              "points": 1,
-              "rawPoints": 1,
+              "points": 10,
+              "rawPoints": 10,
               "goals": 0,
               "assists": 0,
               "xG": 0,
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -19360,7 +19360,7 @@
             {
               "id": 916,
               "name": "Nuno Mendes",
-              "avatar": "",
+              "avatar": "/players/POR/nuno-mendes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -19387,7 +19387,7 @@
             {
               "id": 1141,
               "name": "Manuel Akanji",
-              "avatar": "",
+              "avatar": "/players/SUI/manuel-akanji.png",
               "teamCode": "SUI",
               "teamName": "Switzerland",
               "crest": "",
@@ -19414,7 +19414,7 @@
             {
               "id": 1085,
               "name": "Pedro Porro",
-              "avatar": "",
+              "avatar": "/players/ESP/pedro-porro.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -19441,7 +19441,7 @@
             {
               "id": 125,
               "name": "Jérémy Doku",
-              "avatar": "",
+              "avatar": "/players/BEL/jeremy-doku.png",
               "teamCode": "BEL",
               "teamName": "Belgium",
               "crest": "",
@@ -19468,7 +19468,7 @@
             {
               "id": 485,
               "name": "Kobbie Mainoo",
-              "avatar": "",
+              "avatar": "/players/ENG/kobbie-mainoo.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -19495,7 +19495,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -19522,7 +19522,7 @@
             {
               "id": 501,
               "name": "Ousmane Dembélé",
-              "avatar": "",
+              "avatar": "/players/FRA/ousmane-dembele.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -19549,7 +19549,7 @@
             {
               "id": 1092,
               "name": "Lamine Yamal",
-              "avatar": "",
+              "avatar": "/players/ESP/lamine-yamal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -19576,7 +19576,7 @@
             {
               "id": 1573,
               "name": "Cristiano Ronaldo",
-              "avatar": "",
+              "avatar": "/players/POR/cristiano-ronaldo.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -19605,7 +19605,7 @@
             {
               "id": 1598,
               "name": "Manuel Neuer",
-              "avatar": "",
+              "avatar": "/players/GER/manuel-neuer.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -19619,7 +19619,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -19659,7 +19659,7 @@
             {
               "id": 174,
               "name": "Matheus Cunha",
-              "avatar": "",
+              "avatar": "/players/BRA/matheus-cunha.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -19686,7 +19686,7 @@
             {
               "id": 1208,
               "name": "Oguz Aydin",
-              "avatar": "",
+              "avatar": "/players/TUR/oguz-aydin.png",
               "teamCode": "TUR",
               "teamName": "Türkiye",
               "crest": "",
@@ -19720,7 +19720,7 @@
             {
               "id": 45,
               "name": "Emiliano Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/emiliano-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -19747,7 +19747,7 @@
             {
               "id": 494,
               "name": "Dayot Upamecano",
-              "avatar": "",
+              "avatar": "/players/FRA/dayot-upamecano.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -19774,7 +19774,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -19788,7 +19788,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -19801,7 +19801,7 @@
             {
               "id": 667,
               "name": "Ayumu Seko",
-              "avatar": "",
+              "avatar": "/players/JPN/ayumu-seko.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -19828,7 +19828,7 @@
             {
               "id": 517,
               "name": "Michael Olise",
-              "avatar": "",
+              "avatar": "/players/FRA/michael-olise.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -19882,7 +19882,7 @@
             {
               "id": 1106,
               "name": "Pedri",
-              "avatar": "",
+              "avatar": "/players/ESP/pedri.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -19909,7 +19909,7 @@
             {
               "id": 1092,
               "name": "Lamine Yamal",
-              "avatar": "",
+              "avatar": "/players/ESP/lamine-yamal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -19936,7 +19936,7 @@
             {
               "id": 939,
               "name": "Bruno Fernandes",
-              "avatar": "",
+              "avatar": "/players/POR/bruno-fernandes.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -19963,7 +19963,7 @@
             {
               "id": 855,
               "name": "Erling Haaland",
-              "avatar": "",
+              "avatar": "/players/NOR/erling-haaland.png",
               "teamCode": "NOR",
               "teamName": "Norway",
               "crest": "",
@@ -19990,7 +19990,7 @@
             {
               "id": 38,
               "name": "Lionel Messi",
-              "avatar": "",
+              "avatar": "/players/ARG/lionel-messi.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -20019,7 +20019,7 @@
             {
               "id": 19,
               "name": "Melvin Mastil",
-              "avatar": "",
+              "avatar": "/players/ALG/melvin-mastil.png",
               "teamCode": "ALG",
               "teamName": "Algeria",
               "crest": "",
@@ -20046,7 +20046,7 @@
             {
               "id": 1141,
               "name": "Manuel Akanji",
-              "avatar": "",
+              "avatar": "/players/SUI/manuel-akanji.png",
               "teamCode": "SUI",
               "teamName": "Switzerland",
               "crest": "",
@@ -20073,7 +20073,7 @@
             {
               "id": 1570,
               "name": "Rúben Dias",
-              "avatar": "",
+              "avatar": "/players/POR/ruben-dias.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -20134,7 +20134,7 @@
             {
               "id": 45,
               "name": "Emiliano Martínez",
-              "avatar": "",
+              "avatar": "/players/ARG/emiliano-martinez.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -20161,7 +20161,7 @@
             {
               "id": 542,
               "name": "Joshua Kimmich",
-              "avatar": "",
+              "avatar": "/players/GER/joshua-kimmich.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -20175,7 +20175,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -20188,7 +20188,7 @@
             {
               "id": 1570,
               "name": "Rúben Dias",
-              "avatar": "",
+              "avatar": "/players/POR/ruben-dias.png",
               "teamCode": "POR",
               "teamName": "Portugal",
               "crest": "",
@@ -20215,7 +20215,7 @@
             {
               "id": 796,
               "name": "Virgil van Dijk",
-              "avatar": "",
+              "avatar": "/players/NED/virgil-van-dijk.png",
               "teamCode": "NED",
               "teamName": "Netherlands",
               "crest": "",
@@ -20269,7 +20269,7 @@
             {
               "id": 517,
               "name": "Michael Olise",
-              "avatar": "",
+              "avatar": "/players/FRA/michael-olise.png",
               "teamCode": "FRA",
               "teamName": "France",
               "crest": "",
@@ -20296,7 +20296,7 @@
             {
               "id": 1092,
               "name": "Lamine Yamal",
-              "avatar": "",
+              "avatar": "/players/ESP/lamine-yamal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -20323,7 +20323,7 @@
             {
               "id": 1600,
               "name": "Jamal Musiala",
-              "avatar": "",
+              "avatar": "/players/GER/jamal-musiala.png",
               "teamCode": "GER",
               "teamName": "Germany",
               "crest": "",
@@ -20337,7 +20337,7 @@
               "xA": 0,
               "saves": 0,
               "played": true,
-              "minutes": 36,
+              "minutes": 51,
               "oppCode": "CUW",
               "oppName": "Curaçao",
               "oppCrest": "",
@@ -20350,7 +20350,7 @@
             {
               "id": 1094,
               "name": "Mikel Oyarzabal",
-              "avatar": "",
+              "avatar": "/players/ESP/mikel-oyarzabal.png",
               "teamCode": "ESP",
               "teamName": "Spain",
               "crest": "",
@@ -20377,7 +20377,7 @@
             {
               "id": 38,
               "name": "Lionel Messi",
-              "avatar": "",
+              "avatar": "/players/ARG/lionel-messi.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -20404,7 +20404,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "",
+              "avatar": "/players/ENG/harry-kane.webp",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -20460,7 +20460,7 @@
             {
               "id": 164,
               "name": "Gabriel Magalhães",
-              "avatar": "",
+              "avatar": "/players/BRA/gabriel-magalhaes.png",
               "teamCode": "BRA",
               "teamName": "Brazil",
               "crest": "",
@@ -20635,7 +20635,7 @@
         "totalPoints": 2,
         "gw": 2,
         "total": 2,
-        "prev": 18,
+        "prev": 20,
         "avatar": "https://play.fifa.com/media/image/gamezone/avatars/WC_2026/0.svg"
       }
     }

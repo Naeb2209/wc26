@@ -15,6 +15,48 @@ function playerName(player) {
   return player?.knownName || [player?.firstName, player?.lastName].filter(Boolean).join(" ") || `Player ${player?.id}`;
 }
 
+function normalizeName(value = "") {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[đð]/gi, "d")
+    .replace(/[øö]/gi, "o")
+    .replace(/[ł]/gi, "l")
+    .replace(/[æ]/gi, "ae")
+    .replace(/[^a-z0-9]+/gi, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function buildLocalPlayersByTeam(teams) {
+  return new Map(
+    (teams || []).map((team) => [
+      team.code,
+      (team.players || [])
+        .filter((player) => player.avatar)
+        .map((player) => ({ ...player, normalizedName: normalizeName(player.name) })),
+    ])
+  );
+}
+
+function playerAvatar(player, squad, localPlayersByTeam) {
+  const direct = player?.avatar || player?.image || player?.photo || player?.picture;
+  if (direct) return direct;
+
+  const localPlayers = localPlayersByTeam.get(squad?.abbr) || [];
+  const fullName = [player?.firstName, player?.lastName].filter(Boolean).join(" ");
+  const aliases = [player?.knownName, fullName].map(normalizeName).filter(Boolean);
+  const exact = localPlayers.find((local) => aliases.includes(local.normalizedName));
+  if (exact) return exact.avatar;
+
+  const lastName = normalizeName(player?.lastName);
+  if (!lastName) return "";
+  const surnameMatches = localPlayers.filter(
+    (local) => local.normalizedName === lastName || local.normalizedName.endsWith(` ${lastName}`)
+  );
+  return surnameMatches.length === 1 ? surnameMatches[0].avatar : "";
+}
+
 function playerRoundPoints(player, roundId) {
   const points = player?.stats?.roundPoints;
   if (Array.isArray(points)) return Number(points[roundId] ?? points[roundId - 1] ?? 0);
@@ -64,7 +106,7 @@ function boosterFor(team, roundId) {
   return null;
 }
 
-export function normalizeFantasySquad({ team, round, playersById, squadsById }) {
+export function normalizeFantasySquad({ team, round, playersById, squadsById, localPlayersByTeam = new Map() }) {
   if (!team?.id) return null;
 
   const makePlayer = ({ playerId, position }) => {
@@ -80,7 +122,7 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById }) 
     return {
       id: Number(player.id),
       name: playerName(player),
-      avatar: "",
+      avatar: playerAvatar(player, squad, localPlayersByTeam),
       teamCode: squad?.abbr || "",
       teamName: squad?.name || "",
       crest: "",
@@ -138,6 +180,7 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
   const oldStanding = new Map((db.fantasy.standings || []).map((standing) => [standing.manager, standing]));
   const playersById = new Map((players || []).map((player) => [Number(player.id), player]));
   const squadsById = new Map((squads || []).map((squad) => [Number(squad.id), squad]));
+  const localPlayersByTeam = buildLocalPlayersByTeam(db.teams);
   const roundsById = new Map((rounds || []).map((round) => [Number(round.id), round]));
   const rankingByRound = new Map(
     Object.entries(roundRankings || {}).map(([roundId, rows]) => [
@@ -213,7 +256,7 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     const byManager = {};
     for (const standing of standings) {
       const raw = histories?.[item.id]?.[standing.userId]?.team;
-      const squad = normalizeFantasySquad({ team: raw, round, playersById, squadsById });
+      const squad = normalizeFantasySquad({ team: raw, round, playersById, squadsById, localPlayersByTeam });
       if (squad) byManager[standing.manager] = squad;
     }
     if (Object.keys(byManager).length) squadsByRound[item.key] = byManager;
