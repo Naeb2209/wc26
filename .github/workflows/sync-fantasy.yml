@@ -1,0 +1,96 @@
+name: Sync FIFA Fantasy
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every 30 minutes. GitHub cron uses UTC.
+    - cron: "7,37 * * * *"
+
+concurrency:
+  group: sync-fifa-fantasy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      FIFA_LEAGUE_ID: ${{ vars.FIFA_LEAGUE_ID || '1090' }}
+      FIFA_REFRESH_TOKEN: ${{ secrets.FIFA_REFRESH_TOKEN }}
+      FIFA_COOKIE: ${{ secrets.FIFA_COOKIE }}
+      GH_TOKEN: ${{ secrets.FIFA_SECRET_PAT }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate secrets
+        shell: bash
+        run: |
+          if [[ -z "$FIFA_REFRESH_TOKEN" && -z "$FIFA_COOKIE" ]]; then
+            echo "::error::Set FIFA_REFRESH_TOKEN or FIFA_COOKIE in repository Actions secrets."
+            exit 1
+          fi
+
+      - name: Sync standings and round squads
+        id: sync
+        continue-on-error: true
+        run: npm run sync-fantasy
+
+      - name: Persist rotated refresh token
+        if: ${{ always() && env.FIFA_REFRESH_TOKEN != '' }}
+        shell: bash
+        run: |
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo "::error::FIFA_SECRET_PAT is required to persist FIFA's rotated refresh token."
+            exit 1
+          fi
+
+          if [[ ! -f .env.local ]]; then
+            echo "FIFA did not rotate the refresh token."
+            exit 0
+          fi
+
+          NEW_TOKEN="$(sed -n 's/^FIFA_REFRESH_TOKEN=//p' .env.local | tail -n 1)"
+          if [[ -z "$NEW_TOKEN" ]]; then
+            echo "FIFA did not rotate the refresh token."
+            exit 0
+          fi
+
+          echo "::add-mask::$NEW_TOKEN"
+          printf '%s' "$NEW_TOKEN" | gh secret set FIFA_REFRESH_TOKEN --repo "$GITHUB_REPOSITORY"
+
+      - name: Fail when sync failed
+        if: ${{ steps.sync.outcome == 'failure' }}
+        shell: bash
+        run: |
+          echo "::error::FIFA Fantasy sync failed. The rotated token was persisted when available."
+          exit 1
+
+      - name: Commit updated snapshot
+        shell: bash
+        run: |
+          if git diff --quiet -- data/db.json; then
+            echo "No Fantasy changes to commit."
+            exit 0
+          fi
+
+          git config user.name "wc26-fantasy-bot"
+          git config user.email "wc26-fantasy-bot@users.noreply.github.com"
+          git add data/db.json
+          git commit -m "Sync FIFA Fantasy data"
+          git push origin HEAD:main

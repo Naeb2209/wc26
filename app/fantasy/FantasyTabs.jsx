@@ -337,12 +337,16 @@ function RoundInsights({ squads, standings, sel }) {
   );
 }
 
-function RoundTab({ standings, squads }) {
+function RoundTab({ standings, squads, squadsByRound }) {
   const hasData = useMemo(() => {
     const m = {};
-    for (const r of ALL_ROUNDS) m[r.key] = standings.some((p) => roundPointsOf(p, r.key) !== 0);
+    for (const r of ALL_ROUNDS) {
+      m[r.key] =
+        standings.some((p) => roundPointsOf(p, r.key) !== 0) ||
+        Object.keys(squadsByRound?.[r.key] || {}).length > 0;
+    }
     return m;
-  }, [standings]);
+  }, [standings, squadsByRound]);
 
   // Mặc định mở vòng mới nhất có dữ liệu, nếu chưa có thì mở Lượt 1.
   const defaultKey = [...ALL_ROUNDS].reverse().find((r) => hasData[r.key])?.key ?? ALL_ROUNDS[0].key;
@@ -350,6 +354,8 @@ function RoundTab({ standings, squads }) {
 
   const meta = ALL_ROUNDS.find((r) => r.key === sel) ?? ALL_ROUNDS[0];
   const empty = !hasData[sel];
+  const syncedSquads = squadsByRound?.[sel] || {};
+  const roundSquads = Object.keys(syncedSquads).length ? syncedSquads : squads;
 
   const ranked = useMemo(
     () =>
@@ -478,7 +484,7 @@ function RoundTab({ standings, squads }) {
 
           <ManagerLineup
             manager={current?.manager}
-            squad={squads?.[current?.manager]}
+            squad={roundSquads?.[current?.manager]}
             points={current?.rpts}
             chip={current?.chips?.[sel]}
             chipIcon={current?.chips?.[sel] ? <BoosterIcon name={current.chips[sel]} size={22} /> : null}
@@ -486,7 +492,7 @@ function RoundTab({ standings, squads }) {
 
           {/* Thống kê vòng (Pick / Capt / Chip / Top pts) — cột phải ở xl, full-width bên dưới ở mốc nhỏ hơn */}
           <div className="lg:col-span-2 xl:col-span-1">
-            <RoundInsights squads={squads} standings={standings} sel={sel} />
+            <RoundInsights squads={roundSquads} standings={standings} sel={sel} />
           </div>
         </div>
       )}
@@ -868,7 +874,7 @@ function RulesTab() {
 }
 
 /* ---------------- Shell ---------------- */
-export default function FantasyTabs({ standings, squads }) {
+export default function FantasyTabs({ standings, squads, squadsByRound = {} }) {
   const [tab, setTab] = useState("total");
 
   if (standings.length === 0) {
@@ -908,7 +914,9 @@ export default function FantasyTabs({ standings, squads }) {
       </div>
 
       {tab === "total" && <TotalTab standings={standings} />}
-      {tab === "round" && <RoundTab standings={standings} squads={squads} />}
+      {tab === "round" && (
+        <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} />
+      )}
       {tab === "info" && <InfoTab />}
       {tab === "rules" && <RulesTab />}
     </>

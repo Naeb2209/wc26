@@ -25,7 +25,12 @@ export default async function FantasyPage() {
 
   return (
     <main className="flex-grow w-full px-margin-mobile md:px-margin-desktop py-12">
-      <FantasyTabs data={data} standings={standings} squads={squads} />
+      <FantasyTabs
+        data={data}
+        standings={standings}
+        squads={squads}
+        squadsByRound={data.squadsByRound || {}}
+      />
     </main>
   );
 }

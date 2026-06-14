@@ -95,10 +95,29 @@ npx playwright install chromium     # tải Chromium 1 lần (~150MB)
 npm run fantasy:login               # mở cửa sổ thật -> ĐĂNG NHẬP FIFA 1 lần (phiên được lưu)
 npm run fantasy:sync                # headless, dùng lại phiên, ghi BXH vào data/db.json
 ```
+- Sau khi đăng nhập, script tự lưu cookie phiên (`X-SID`) vào `FIFA_COOKIE`; nếu FIFA còn cung cấp
+  `refreshToken` trong `fp.user`, script cũng tự lưu vào `.env.local`.
 - Phiên lưu trong `.playwright-fifa/` (đã .gitignore). Đăng nhập 1 lần, sau đó chỉ chạy `fantasy:sync`.
 - Nếu headless bị Akamai chặn (403): chạy có cửa sổ → `$env:FIFA_HEADFUL=1; npm run fantasy:sync` (PowerShell).
 - Phiên hết hạn (sau nhiều ngày) → chạy lại `npm run fantasy:login`.
 - Tự động theo lịch: đặt Windows Task Scheduler chạy `npm run fantasy:sync` mỗi ngày trên 1 máy luôn bật.
+
+**GitHub Actions tự đồng bộ và kích hoạt Vercel deploy:**
+
+Workflow [`.github/workflows/sync-fantasy.yml`](.github/workflows/sync-fantasy.yml) chạy mỗi 30 phút,
+đồng bộ BXH + đội hình từng vòng vào `data/db.json`, commit lên `main`; Vercel sẽ deploy commit mới.
+
+Thiết lập tại GitHub → **Settings → Secrets and variables → Actions**:
+
+1. Variable `FIFA_LEAGUE_ID` = `1090`.
+2. Secret `FIFA_REFRESH_TOKEN` = refresh token lấy từ cookie `fp.user`.
+3. Secret `FIFA_SECRET_PAT` = GitHub PAT chỉ dành cho repo này, có quyền cập nhật Actions secrets.
+4. Secret `FIFA_COOKIE` là tùy chọn; chỉ thêm khi FIFA/Akamai chặn Bearer token.
+
+Refresh token FIFA bị xoay sau mỗi lần sử dụng. Workflow tự lấy token mới từ `.env.local` và cập nhật
+lại secret `FIFA_REFRESH_TOKEN` qua `gh secret set`; token không được commit hoặc in ra log.
+
+Sau khi thêm secrets, mở tab **Actions → Sync FIFA Fantasy → Run workflow** để chạy thử.
 
 **Cách Console trình duyệt (không cần cài gì):** mở play.fifa.com (đã đăng nhập) → F12 → Console, chạy `fetch('/api/en/fantasy/ranking/league/1090?limit=100')...` rồi `copy()` kết quả, dán vào `fantasy.standings` trong db.json.
 
