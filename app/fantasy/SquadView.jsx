@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 const ROWS = [
   { bucket: "GK", label: "Thủ môn (GK)" },
@@ -31,6 +31,238 @@ function shortName(full = "") {
   const parts = full.trim().split(/\s+/);
   if (parts.length < 2) return full;
   return `${parts[0][0]}. ${parts.slice(1).join(" ")}`;
+}
+
+const POS_LABEL = { GK: "Thủ môn", DEF: "Hậu vệ", MID: "Tiền vệ", FWD: "Tiền đạo" };
+
+// ---- Chi tiết thống kê vòng (mock, deterministic theo từng cầu thủ) ----
+// Cùng một cầu thủ luôn cho ra cùng bộ số (không dùng Math.random/Date).
+function hashKey(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+function makeRng(seed) {
+  let s = (seed >>> 0) || 1;
+  return (mod) => {
+    s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+    return mod > 0 ? s % mod : 0;
+  };
+}
+function computeRoundDetail(p) {
+  const rng = makeRng(hashKey(`${p.teamCode}:${p.name}`));
+  const ri = (min, max) => min + rng(max - min + 1);
+  const mins = p.minutes || 0;
+  const f = mins / 90;
+  const sc = (base) => Math.max(0, Math.round(base * f));
+  const b = p.bucket;
+  const isGK = b === "GK", isDEF = b === "DEF", isMID = b === "MID", isFWD = b === "FWD";
+  const goals = p.goals || 0, assists = p.assists || 0;
+  const xG = p.xG || 0, xA = p.xA || 0;
+
+  const touches = sc(isGK ? 34 : isDEF ? 68 : isMID ? 74 : 44) + ri(0, 8);
+  const touchesInBox = isFWD ? ri(1, 6) : isMID ? ri(0, 3) : ri(0, 1);
+  const passAtt = Math.max(touches > 0 ? 1 : 0, Math.round(touches * (isGK ? 0.7 : 0.6)));
+  const passComp = Math.min(passAtt, Math.round(passAtt * (0.7 + ri(0, 22) / 100)));
+  const finalThird = isFWD ? ri(1, 6) : isMID ? ri(2, 9) : ri(0, 4);
+  const longAtt = Math.max(0, Math.round(passAtt * 0.08) + (isDEF || isGK ? ri(0, 3) : 0));
+  const longComp = Math.min(longAtt, Math.round(longAtt * (0.5 + ri(0, 5) / 10)));
+
+  const shotsOn = Math.max(goals, goals + (isFWD ? ri(0, 2) : isMID ? ri(0, 1) : 0));
+  const shotsOff = isFWD ? ri(0, 3) : isMID ? ri(0, 2) : ri(0, 1);
+  const shotsTotal = shotsOn + shotsOff;
+  const chancesCreated = assists + (isMID ? ri(0, 3) : isFWD ? ri(0, 2) : ri(0, 1));
+  const bigMissed = isFWD ? ri(0, 2) : ri(0, 1);
+  const dispossessed = ri(0, 3);
+  const xGOT = shotsOn > 0 ? Number((xG * (1 + ri(0, 4) / 10) + 0.05).toFixed(2)) : 0;
+
+  const defBias = isDEF ? 1 : isGK ? 0.4 : isMID ? 0.7 : 0.35;
+  const tackles = Math.round(ri(0, 4) * defBias) + (isDEF ? 1 : 0);
+  const clearances = Math.round(ri(0, 6) * defBias);
+  const blocks = Math.round(ri(0, 2) * defBias);
+  const interceptions = Math.round(ri(0, 3) * defBias);
+  const recoveries = Math.round(ri(1, 8) * (isDEF || isMID ? 1 : 0.5));
+  const dribbledPast = ri(0, 3);
+  const defActions = tackles + clearances + blocks + interceptions;
+
+  const groundTot = ri(2, 9), groundWon = ri(0, groundTot);
+  const aerialTot = isDEF || isFWD ? ri(1, 8) : ri(0, 4);
+  const aerialWon = ri(0, aerialTot);
+  const foulsWon = ri(0, 3), foulsCommitted = ri(0, 4);
+
+  return {
+    minutes: mins, goals, assists, xG, xA, xGOT,
+    xGxA: Number((xG + xA).toFixed(2)), npxG: xG,
+    passAtt, passComp, finalThird, longAtt, longComp,
+    shotsOn, shotsOff, shotsTotal, chancesCreated, bigMissed, dispossessed,
+    touches, touchesInBox,
+    defActions, tackles, clearances, blocks, interceptions, recoveries, dribbledPast,
+    groundTot, groundWon, aerialTot, aerialWon, foulsWon, foulsCommitted,
+  };
+}
+
+const dec = (n) => (n == null ? "0" : String(n).replace(".", ","));
+const frac = (a, b) => `${a}/${b} (${b > 0 ? Math.round((a / b) * 100) : 0}%)`;
+
+// Một dòng thống kê (nhãn trái – giá trị phải).
+function Stat({ label, value }) {
+  return (
+    <div className="flex items-center justify-between gap-3 px-3 py-1.5 text-[13px] odd:bg-black/[0.035]">
+      <span className="text-on-surface-variant">{label}</span>
+      <span className="font-data-mono font-semibold text-on-surface tabular-nums">{value}</span>
+    </div>
+  );
+}
+function StatSection({ title, children }) {
+  return (
+    <div className="mt-3">
+      <div className="px-3 py-1 text-label-caps font-label-caps uppercase tracking-wide text-primary rounded-md bg-primary/10">
+        {title}
+      </div>
+      <div className="mt-1 rounded-md overflow-hidden border border-black/5">{children}</div>
+    </div>
+  );
+}
+
+// Popup chi tiết cầu thủ trong vòng hiện tại.
+function PlayerStatsModal({ p, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    // Khóa cuộn trang nền khi modal mở (tránh cuộn lan ra trang chính).
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  const d = useMemo(() => (p?.played ? computeRoundDetail(p) : null), [p]);
+  if (!p) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-black/60 backdrop-blur-sm p-3 sm:p-6"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-md max-h-[88vh] flex flex-col overflow-hidden rounded-2xl border border-black/10 shadow-2xl bg-white"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header cố định trên cùng (không nằm trong vùng cuộn) */}
+        <div className="shrink-0 bg-white px-4 pt-4 pb-3 flex flex-col items-center gap-1.5 border-b border-black/10">
+          <div className="relative w-24 h-24 shrink-0 flex items-center justify-center">
+            <img
+              src={p.avatar || "/players/_placeholder.png"}
+              alt=""
+              className={`object-contain ${p.avatar ? "w-full h-full" : "w-2/3 h-2/3 opacity-70"}`}
+              style={
+                p.avatar
+                  ? {
+                      maskImage: "linear-gradient(to bottom, #000 60%, transparent 95%)",
+                      WebkitMaskImage: "linear-gradient(to bottom, #000 60%, transparent 95%)",
+                    }
+                  : undefined
+              }
+              onError={(e) => {
+                if (e.currentTarget.src.indexOf("_placeholder.png") === -1) {
+                  e.currentTarget.src = "/players/_placeholder.png";
+                }
+              }}
+            />
+          </div>
+          <div className="min-w-0 w-full text-center">
+            <div className="flex items-center justify-center gap-1.5">
+              <span className="font-bold text-on-surface text-lg truncate">{p.name}</span>
+              {p.isCaptain && (
+                <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-yellow-400 text-black leading-none">C</span>
+              )}
+              {p.isVice && !p.isCaptain && (
+                <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-gray-400 text-black leading-none">V</span>
+              )}
+            </div>
+            <div className="mt-1 flex items-center justify-center gap-1.5 text-[12px] text-on-surface-variant font-data-mono">
+              {p.crest && <img src={p.crest} alt="" className="w-5 h-3.5 object-cover rounded-[1px]" />}
+              <span className="truncate">{p.teamName || p.teamCode}</span>
+              <span className="text-on-surface-variant/50">·</span>
+              <span>{POS_LABEL[p.bucket] || ""}</span>
+            </div>
+            <div className="mt-1.5 flex items-center justify-center gap-2 text-[12px] font-data-mono">
+              <span className="px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-800 ring-1 ring-yellow-400/50 font-bold">
+                {p.points} pts
+              </span>
+              {p.played ? (
+                <span className="text-on-surface-variant">{p.minutes}&apos; thi đấu</span>
+              ) : (
+                <span className="text-on-surface-variant">vs {p.oppCode || "?"} · {p.matchDate}</span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Body (vùng cuộn — thanh cuộn chỉ nằm ở đây) */}
+        <div className="flex-1 overflow-y-auto overscroll-contain px-3 pb-4 [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.2)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/20 hover:[&::-webkit-scrollbar-thumb]:bg-black/30">
+          {!p.played || !d ? (
+            <div className="py-10 text-center text-on-surface-variant">
+              <div className="material-symbols-outlined text-4xl text-on-surface-variant/60">schedule</div>
+              <div className="mt-2 font-bold">Chưa thi đấu vòng này</div>
+              <div className="mt-1 text-[13px] font-data-mono">
+                Gặp {p.oppName || p.oppCode || "?"} · {p.matchDate}
+              </div>
+            </div>
+          ) : (
+            <>
+              <StatSection title="Thống kê hàng đầu">
+                <Stat label="Số phút đã chơi" value={d.minutes} />
+                <Stat label="Bàn thắng" value={d.goals} />
+                <Stat label="Kiến tạo" value={d.assists} />
+                <Stat label="Bàn thắng kỳ vọng (xG)" value={dec(d.xG)} />
+                <Stat label="Số cú sút trúng khung thành dự kiến (xGOT)" value={dec(d.xGOT)} />
+                <Stat label="Kiến tạo kỳ vọng (xA)" value={dec(d.xA)} />
+                <Stat label="xG + xA" value={dec(d.xGxA)} />
+                <Stat label="Chuyền bóng chính xác" value={frac(d.passComp, d.passAtt)} />
+                <Stat label="Các cơ hội đã tạo ra" value={d.chancesCreated} />
+                <Stat label="Sút trúng đích" value={d.shotsOn} />
+                <Stat label="Sút ra ngoài" value={d.shotsOff} />
+                <Stat label="Sút chính xác" value={frac(d.shotsOn, d.shotsTotal)} />
+              </StatSection>
+
+              <StatSection title="Tấn công">
+                <Stat label="Bỏ lỡ cơ hội lớn" value={d.bigMissed} />
+                <Stat label="Lượt chạm" value={d.touches} />
+                <Stat label="Chạm tại vùng phạt địch" value={d.touchesInBox} />
+                <Stat label="Chuyền vào một phần ba cuối sân" value={d.finalThird} />
+                <Stat label="Bóng dài chính xác" value={frac(d.longComp, d.longAtt)} />
+                <Stat label="Bị cướp bóng" value={d.dispossessed} />
+                <Stat label="xG không phạt đền" value={dec(d.npxG)} />
+              </StatSection>
+
+              <StatSection title="Phòng ngự">
+                <Stat label="Hành động phòng ngự" value={d.defActions} />
+                <Stat label="Tranh bóng" value={d.tackles} />
+                <Stat label="Cản phá" value={d.blocks} />
+                <Stat label="Phá bóng" value={d.clearances} />
+                <Stat label="Chặn" value={d.interceptions} />
+                <Stat label="Thu hồi bóng" value={d.recoveries} />
+                <Stat label="Bị rê bóng qua" value={d.dribbledPast} />
+              </StatSection>
+
+              <StatSection title="Tranh bóng">
+                <Stat label="Tranh bóng trên đất" value={frac(d.groundWon, d.groundTot)} />
+                <Stat label="Tranh được bóng trên không" value={frac(d.aerialWon, d.aerialTot)} />
+                <Stat label="Bị phạm lỗi" value={d.foulsWon} />
+                <Stat label="Phạm lỗi" value={d.foulsCommitted} />
+              </StatSection>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // Các chế độ thông tin cho cầu thủ chưa đá.
@@ -68,15 +300,20 @@ function UpcomingInfo({ p, mode }) {
   );
 }
 
-function PlayerCard({ p, compact, infoMode = "opp" }) {
-  const size = compact ? "w-28 h-28" : "w-32 h-32";
+function PlayerCard({ p, compact, infoMode = "opp", onSelect }) {
+  const size = compact ? "w-28 h-32" : "w-32 h-36";
   return (
     <div
-      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 ${
+      role="button"
+      tabIndex={0}
+      onClick={() => onSelect?.(p)}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onSelect?.(p))}
+      title="Xem thống kê chi tiết"
+      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
         p.isCaptain
           ? "border-yellow-400 bg-yellow-400/10 shadow-[0_0_14px_rgba(250,204,21,0.55)]"
           : "border-white/15 bg-white/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.35)]"
-      } ${compact ? "w-[124px]" : "w-[150px]"}`}
+      } ${compact ? "w-[134px]" : "w-[150px]"}`}
     >
       <CaptainBadge p={p} />
       <div className={`relative ${size} flex items-center justify-center`}>
@@ -107,26 +344,30 @@ function PlayerCard({ p, compact, infoMode = "opp" }) {
             {p.points}<span className="text-[9px] ml-0.5">pts</span>
           </span>
         </div>
-        <img
-          src={p.avatar || "/players/_placeholder.svg"}
-          alt=""
-          className={`relative object-contain ${p.avatar ? "w-full h-full" : "w-2/3 h-2/3 opacity-80"}`}
-          style={
-            p.avatar
-              ? {
-                  maskImage: "linear-gradient(to bottom, #000 62%, transparent 96%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, #000 62%, transparent 96%)",
-                  filter:
-                    "drop-shadow(0 3px 5px rgba(0,0,0,0.55)) drop-shadow(0 0 2px rgba(0,0,0,0.45))",
-                }
-              : undefined
-          }
-          onError={(e) => {
-            if (e.currentTarget.src.indexOf("_placeholder.svg") === -1) {
-              e.currentTarget.src = "/players/_placeholder.svg";
-            }
-          }}
-        />
+        {p.avatar ? (
+          <img
+            src={p.avatar}
+            alt=""
+            className="relative object-contain w-full h-full"
+            style={{
+              maskImage: "linear-gradient(to bottom, #000 45%, transparent 96%)",
+              WebkitMaskImage: "linear-gradient(to bottom, #000 45%, transparent 96%)",
+            }}
+          />
+        ) : (
+          <span
+            className="material-symbols-outlined select-none -translate-y-[3px] bg-gradient-to-b from-[#5ab9d4] via-[#9b3fc4] to-[#f0456f] bg-clip-text text-transparent"
+            style={{
+              fontVariationSettings: "'FILL' 1",
+              fontSize: compact ? 70 : 84,
+              lineHeight: 1,
+              maskImage: "linear-gradient(to bottom, #000 45%, transparent 96%)",
+              WebkitMaskImage: "linear-gradient(to bottom, #000 45%, transparent 96%)",
+            }}
+          >
+            person
+          </span>
+        )}
         {/* Tên đè lên phần dưới avatar, nền bảng baroque (giữ tỉ lệ, không bóp dẹp) */}
         <div className="absolute bottom-1 inset-x-0 z-10 flex justify-center">
           <div
@@ -182,7 +423,7 @@ function PlayerCard({ p, compact, infoMode = "opp" }) {
   );
 }
 
-function Pitch({ squad, infoMode }) {
+function Pitch({ squad, infoMode, onSelect }) {
   const byBucket = useMemo(() => {
     const m = { GK: [], DEF: [], MID: [], FWD: [] };
     for (const p of squad.starters) (m[p.bucket] || (m[p.bucket] = [])).push(p);
@@ -206,7 +447,7 @@ function Pitch({ squad, infoMode }) {
         {ROWS.map((r) => (
           <div key={r.bucket} className="flex justify-center gap-2 sm:gap-4 flex-wrap">
             {(byBucket[r.bucket] || []).map((p) => (
-              <PlayerCard key={`${p.teamCode}:${p.name}`} p={p} infoMode={infoMode} />
+              <PlayerCard key={`${p.teamCode}:${p.name}`} p={p} infoMode={infoMode} onSelect={onSelect} />
             ))}
           </div>
         ))}
@@ -215,7 +456,7 @@ function Pitch({ squad, infoMode }) {
   );
 }
 
-function Bench({ squad, infoMode }) {
+function Bench({ squad, infoMode, onSelect }) {
   return (
     <div className="mt-4 bg-surface-container-low border border-outline-variant rounded-xl p-3">
       <div className="font-label-caps text-label-caps uppercase text-on-surface-variant mb-2 flex items-center gap-1">
@@ -224,7 +465,7 @@ function Bench({ squad, infoMode }) {
       </div>
       <div className="flex justify-around gap-2 flex-wrap rounded-lg py-3" style={{ background: "linear-gradient(180deg,#27324a,#1b2336)" }}>
         {squad.bench.map((p) => (
-          <PlayerCard key={`${p.teamCode}:${p.name}`} p={p} compact infoMode={infoMode} />
+          <PlayerCard key={`${p.teamCode}:${p.name}`} p={p} compact infoMode={infoMode} onSelect={onSelect} />
         ))}
       </div>
     </div>
@@ -234,6 +475,7 @@ function Bench({ squad, infoMode }) {
 // Panel đội hình (bên phải bảng xếp hạng Round). Nhận manager đang chọn + squad của họ.
 export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
   const [infoMode, setInfoMode] = useState("opp");
+  const [selected, setSelected] = useState(null);
   return (
     <div className="bg-surface-container-lowest border border-surface-variant rounded-xl p-2 sm:p-4 self-start">
       <div className="flex items-center justify-between gap-3 mb-3 px-1">
@@ -289,8 +531,9 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
             </div>
             </div>
           </div>
-          <Pitch squad={squad} infoMode={infoMode} />
-          <Bench squad={squad} infoMode={infoMode} />
+          <Pitch squad={squad} infoMode={infoMode} onSelect={setSelected} />
+          <Bench squad={squad} infoMode={infoMode} onSelect={setSelected} />
+          {selected && <PlayerStatsModal p={selected} onClose={() => setSelected(null)} />}
         </>
       ) : (
         <div className="p-10 text-center text-on-surface-variant">Chưa có đội hình cho người chơi này.</div>

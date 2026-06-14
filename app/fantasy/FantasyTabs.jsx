@@ -302,15 +302,22 @@ function RoundInsights({ squads, standings, sel }) {
                 <BoosterIcon name={r.name} size={40} />
               ) : r.avatar ? (
                 <img src={r.avatar} alt="" className="w-14 h-14 object-contain object-bottom shrink-0" />
-              ) : r.flag ? (
-                <img src={r.flag} alt="" className="w-7 h-5 object-contain border border-outline-variant bg-white shrink-0" />
-              ) : null}
+              ) : (
+                <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+                  <span
+                    className="material-symbols-outlined text-[34px] bg-gradient-to-b from-[#5ab9d4] via-[#9b3fc4] to-[#f0456f] bg-clip-text text-transparent"
+                    style={{ fontVariationSettings: "'FILL' 1" }}
+                  >
+                    person
+                  </span>
+                </div>
+              )}
               <div className="min-w-0 flex-1">
                 <div className={`truncate ${i === 0 ? "font-bold text-on-surface" : "text-on-surface"}`}>{r.name}</div>
                 {r.team && (
                   <div className="flex items-center gap-1.5 text-on-surface-variant text-[12px] truncate">
-                    {r.avatar && r.flag && (
-                      <img src={r.flag} alt="" className="w-4 h-3 object-contain border border-outline-variant bg-white shrink-0" />
+                    {r.flag && (
+                      <img src={r.flag} alt="" className="w-6 h-4 object-cover rounded-[1px] shrink-0" />
                     )}
                     <span className="truncate">{r.team}</span>
                   </div>
