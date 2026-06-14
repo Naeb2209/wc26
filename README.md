@@ -97,7 +97,8 @@ npm run sync-stats                  # headless, ghi BXH cá nhân vào data/db.j
 
 ### Tự động đồng bộ (GitHub Actions → Vercel deploy)
 Workflow [`.github/workflows/sync-stats.yml`](.github/workflows/sync-stats.yml) chạy mỗi 15 phút
-(và có thể bấm **Run workflow** thủ công), cài Chromium, chạy `npm run sync-stats`, commit
+trong khung **23:00–11:00 giờ VN** (cron tính theo UTC = `16-23,0-3`), và có thể bấm
+**Run workflow** thủ công bất cứ lúc nào; cài Chromium, chạy `npm run sync-stats`, commit
 `data/db.json` lên `main`; Vercel sẽ tự deploy commit mới.
 
 - **Không cần secret** — trang stats là public (khác workflow fantasy phải có token FIFA).
