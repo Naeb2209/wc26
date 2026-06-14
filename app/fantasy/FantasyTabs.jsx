@@ -57,8 +57,8 @@ function Avatar({ src, name, size = "w-8 h-8" }) {
   );
 }
 
-function PodiumCard({ p }) {
-  const m = MEDAL[p.rank];
+function PodiumCard({ p, place }) {
+  const m = MEDAL[place] || MEDAL[3];
   return (
     <div
       className="rounded-xl border p-5 flex flex-col items-center text-center gap-2 shadow-sm"
@@ -102,9 +102,9 @@ function TotalTab({ standings }) {
 
       {top3.length === 3 && (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-gutter mb-10">
-          <div className="sm:order-2"><PodiumCard p={top3[0]} /></div>
-          <div className="sm:order-1 sm:mt-6"><PodiumCard p={top3[1]} /></div>
-          <div className="sm:order-3 sm:mt-6"><PodiumCard p={top3[2]} /></div>
+          <div className="sm:order-2"><PodiumCard p={top3[0]} place={1} /></div>
+          <div className="sm:order-1 sm:mt-6"><PodiumCard p={top3[1]} place={2} /></div>
+          <div className="sm:order-3 sm:mt-6"><PodiumCard p={top3[2]} place={3} /></div>
         </div>
       )}
 
@@ -128,7 +128,12 @@ function TotalTab({ standings }) {
                     key={p.rank}
                     className="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors"
                   >
-                    <td className="py-3 px-4 text-center font-bold" style={top ? { boxShadow: `inset 4px 0 0 0 ${MEDAL[p.rank].ring}` } : undefined}>{p.rank}</td>
+                    <td
+                      className="py-3 px-4 text-center font-bold"
+                      style={top && MEDAL[p.rank] ? { boxShadow: `inset 4px 0 0 0 ${MEDAL[p.rank].ring}` } : undefined}
+                    >
+                      {p.rank}
+                    </td>
                     <td className="py-3 px-2 text-center"><Movement rank={p.rank} prev={p.prev} /></td>
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-3">
