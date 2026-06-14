@@ -1,5 +1,12 @@
-/* Fonts (Be Vietnam Pro, Hanken Grotesk, Material Symbols) được load qua <link> trong app/layout.js
-   để icon tải nhanh & ổn định hơn khi deploy — không dùng @import ở đây. */
+/* Be Vietnam Pro & Hanken Grotesk: load qua <link> trong app/layout.js.
+   Material Symbols Outlined: self-host để icon luôn load khi deploy (không phụ thuộc CDN runtime). */
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: block;
+  src: url("/fonts/material-symbols-outlined.woff2") format("woff2");
+}
 
 @tailwind base;
 @tailwind components;
