@@ -144,8 +144,9 @@ npm run fantasy:sync                # headless, dùng lại phiên, ghi BXH vào
 
 **GitHub Actions tự đồng bộ và kích hoạt Vercel deploy:**
 
-Workflow [`.github/workflows/sync-fantasy.yml`](.github/workflows/sync-fantasy.yml) chạy mỗi 30 phút,
-đồng bộ BXH + đội hình từng vòng vào `data/db.json`, commit lên `main`; Vercel sẽ deploy commit mới.
+Workflow [`.github/workflows/sync-fantasy.yml`](.github/workflows/sync-fantasy.yml) chạy mỗi 5 phút
+trong khung **23:00–11:00 giờ VN** (cron UTC = `16-23,0-3`), đồng bộ BXH + đội hình từng vòng vào
+`data/db.json`, commit lên `main`; Vercel sẽ deploy commit mới.
 
 Thiết lập tại GitHub → **Settings → Secrets and variables → Actions**:
 
