@@ -421,8 +421,8 @@ function RoundTab({ standings, squads, squadsByRound }) {
                 <thead className="text-on-primary font-label-caps text-label-caps">
                   <tr>
                     <th className="py-3 px-4 bg-primary rounded-l-lg">Người chơi</th>
-                    <th className="py-3 px-4 text-center font-bold bg-primary">Điểm vòng</th>
-                    <th className="py-3 px-2 text-center bg-primary text-on-primary/80 rounded-r-lg">Tổng</th>
+                    <th className="py-3 px-4 text-center font-bold bg-primary">Điểm {meta.label}</th>
+                    <th className="py-3 px-2 text-center bg-primary text-on-primary/80 rounded-r-lg">Tổng điểm</th>
                   </tr>
                 </thead>
                 <tbody className="font-data-mono text-data-mono">
@@ -473,7 +473,9 @@ function RoundTab({ standings, squads, squadsByRound }) {
                           </div>
                         </td>
                         <td className={`py-2 px-4 text-center font-bold text-primary text-[16px] ${cellBg}`} style={ring()}>{p.rpts}</td>
-                        <td className={`py-2 px-2 text-center text-on-surface-variant rounded-r-lg ${cellBg}`} style={ring({ borderRightWidth: 2 })}>{p.totalPoints}</td>
+                        <td className={`py-2 px-2 text-center text-on-surface-variant rounded-r-lg ${cellBg}`} style={ring({ borderRightWidth: 2 })}>
+                          {p.total ?? p.totalPoints ?? 0}
+                        </td>
                       </tr>
                     );
                   })}
