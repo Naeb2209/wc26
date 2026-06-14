@@ -3,8 +3,10 @@ name: Sync Player Stats
 on:
   workflow_dispatch:
   schedule:
-    # Mỗi 15 phút, lệch khỏi mốc 00/15/30/45 để giảm độ trễ của scheduler GitHub.
-    - cron: "7,22,37,52 * * * *"
+    # Mỗi 15 phút, CHỈ trong khung 23:00–11:00 giờ VN (ICT/UTC+7).
+    # GitHub cron tính theo UTC → 23:00–11:00 VN = 16:00–04:00 UTC = giờ UTC 16-23,0-3.
+    # Phút lệch khỏi mốc 00/15/30/45 để giảm độ trễ của scheduler GitHub.
+    - cron: "7,22,37,52 16-23,0-3 * * *"
 
 concurrency:
   group: sync-player-stats
