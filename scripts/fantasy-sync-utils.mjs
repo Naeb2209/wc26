@@ -71,7 +71,11 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById }) 
     const player = playersById.get(Number(playerId));
     if (!player) return null;
     const squad = squadsById.get(Number(player.squadId));
-    const points = playerRoundPoints(player, round.id);
+    const rawPoints = playerRoundPoints(player, round.id);
+    const isMaxCaptain =
+      Number(team.maxCaptain) === Number(round.id) &&
+      Number(team.maxCaptainBooster?.playerId) === Number(player.id);
+    const points = isMaxCaptain ? rawPoints * 2 : rawPoints;
 
     return {
       id: Number(player.id),
@@ -83,6 +87,7 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById }) 
       bucket: player.position || position,
       price: Number(player.price || 0),
       points,
+      rawPoints,
       goals: 0,
       assists: 0,
       xG: 0,
@@ -91,6 +96,7 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById }) 
       ...fixtureFor(round, Number(player.squadId), squadsById),
       isCaptain: Number(team.captain) === Number(player.id),
       isVice: Number(team.vice) === Number(player.id),
+      isMaxCaptain,
       isTwelfthMan: Number(team.twelfthMan?.playerId) === Number(player.id),
     };
   };
@@ -140,7 +146,7 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     ])
   );
 
-  const standings = (ranks || []).map((rank, index) => {
+  const syncedStandings = (ranks || []).map((rank, index) => {
     const userId = Number(rank.userId);
     const manager = rank.userName || `User ${userId}`;
     const previous = oldStanding.get(manager) || {};
@@ -149,10 +155,27 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
 
     for (const item of FANTASY_ROUNDS) {
       const row = rankingByRound.get(item.id)?.get(userId);
-      if (row) roundPoints[item.key] = Number(row.points ?? row.roundPoints ?? 0);
-      const booster = boosterFor(histories?.[item.id]?.[userId]?.team, item.id);
+      const historyTeam = histories?.[item.id]?.[userId]?.team;
+      if (historyTeam?.roundPoints != null) {
+        roundPoints[item.key] = Number(historyTeam.roundPoints);
+      } else if (row) {
+        roundPoints[item.key] = Number(row.points ?? row.roundPoints ?? 0);
+      }
+      const booster = boosterFor(historyTeam, item.id);
       if (booster) chips[item.key] = booster;
     }
+
+    const latestHistory = [...FANTASY_ROUNDS]
+      .reverse()
+      .map((item) => histories?.[item.id]?.[userId]?.team)
+      .find((team) => team?.overallPoints != null);
+    const currentRound = [...FANTASY_ROUNDS]
+      .reverse()
+      .find((item) => rankingByRound.get(item.id)?.has(userId));
+    const currentRoundPoints = currentRound
+      ? roundPoints[currentRound.key]
+      : Number(rank.roundPoints ?? 0);
+    const totalPoints = Number(latestHistory?.overallPoints ?? rank.overallPoints ?? rank.total ?? 0);
 
     return {
       userId,
@@ -162,14 +185,26 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
       team: "",
       rounds: roundPoints,
       chips,
-      roundPoints: Number(rank.roundPoints ?? 0),
-      totalPoints: Number(rank.overallPoints ?? rank.total ?? 0),
-      gw: Number(rank.roundPoints ?? 0),
-      total: Number(rank.overallPoints ?? rank.total ?? 0),
+      roundPoints: Number(currentRoundPoints ?? 0),
+      totalPoints,
+      gw: Number(currentRoundPoints ?? 0),
+      total: totalPoints,
       prev: rank.overallRankPrevious ?? oldRank.get(manager) ?? null,
       avatar: rank.avatar || "",
     };
   });
+  const roundRankByUser = new Map(
+    [...syncedStandings]
+      .sort((a, b) => b.roundPoints - a.roundPoints || a.rank - b.rank)
+      .map((standing, index) => [standing.userId, index + 1])
+  );
+  const standings = [...syncedStandings]
+    .sort((a, b) => b.totalPoints - a.totalPoints || a.rank - b.rank)
+    .map((standing, index) => ({
+      ...standing,
+      rank: index + 1,
+      roundRank: roundRankByUser.get(standing.userId) ?? standing.roundRank,
+    }));
 
   const squadsByRound = {};
   for (const item of FANTASY_ROUNDS) {
