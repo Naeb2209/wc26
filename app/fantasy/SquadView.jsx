@@ -476,6 +476,13 @@ function Bench({ squad, infoMode, onSelect }) {
 export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
   const [infoMode, setInfoMode] = useState("opp");
   const [selected, setSelected] = useState(null);
+  const playerPoints = useMemo(
+    () => (squad?.starters || []).reduce((sum, player) => sum + Number(player.points || 0), 0),
+    [squad]
+  );
+  const officialPoints = points == null ? null : Number(points);
+  const fifaAdjustment = officialPoints == null ? null : officialPoints - playerPoints;
+
   return (
     <div className="bg-surface-container-lowest border border-surface-variant rounded-xl p-2 sm:p-4 self-start">
       <div className="flex items-center justify-between gap-3 mb-3 px-1">
@@ -532,6 +539,29 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
             </div>
           </div>
           <Pitch squad={squad} infoMode={infoMode} onSelect={setSelected} />
+          {officialPoints != null && (
+            <div className="mt-3 rounded-xl border border-outline-variant bg-surface-container-low overflow-hidden">
+              <div className="flex items-center justify-between gap-3 px-3 py-2 text-[12px]">
+                <span className="text-on-surface-variant">Tổng điểm cầu thủ trên sân</span>
+                <span className="font-data-mono font-semibold tabular-nums text-on-surface">{playerPoints}</span>
+              </div>
+              {fifaAdjustment !== 0 && (
+                <div className="flex items-center justify-between gap-3 px-3 py-2 text-[12px] border-t border-outline-variant">
+                  <span className="text-on-surface-variant">
+                    Điều chỉnh FIFA (captain, booster, thay người)
+                  </span>
+                  <span className="font-data-mono font-semibold tabular-nums text-tertiary">
+                    {fifaAdjustment > 0 ? "+" : ""}
+                    {fifaAdjustment}
+                  </span>
+                </div>
+              )}
+              <div className="flex items-center justify-between gap-3 px-3 py-2 border-t border-outline-variant bg-primary/10">
+                <span className="font-bold text-on-surface">Điểm vòng FIFA</span>
+                <span className="font-data-mono font-bold tabular-nums text-primary">{officialPoints}</span>
+              </div>
+            </div>
+          )}
           <Bench squad={squad} infoMode={infoMode} onSelect={setSelected} />
           {selected && <PlayerStatsModal p={selected} onClose={() => setSelected(null)} />}
         </>
