@@ -96,7 +96,7 @@ npm run sync-stats                  # headless, ghi BXH cá nhân vào data/db.j
 - Web chỉ đọc `data/db.json` để hiển thị; chạy lại `npm run sync-stats` khi muốn cập nhật số liệu.
 
 ### Tự động đồng bộ (GitHub Actions → Vercel deploy)
-Workflow [`.github/workflows/sync-stats.yml`](.github/workflows/sync-stats.yml) chạy mỗi 6 giờ
+Workflow [`.github/workflows/sync-stats.yml`](.github/workflows/sync-stats.yml) chạy mỗi 15 phút
 (và có thể bấm **Run workflow** thủ công), cài Chromium, chạy `npm run sync-stats`, commit
 `data/db.json` lên `main`; Vercel sẽ tự deploy commit mới.
 
