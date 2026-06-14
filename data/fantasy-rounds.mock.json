@@ -1,0 +1,24 @@
+{
+  "_note": "Mock điểm từng vòng cho tab Round của Fantasy. Không đụng db.json. Key 'byManager' map theo tên manager trong standings; mỗi giá trị là object điểm theo round (g1=Vòng bảng Lượt 1, g2/g3, r32, r16, qf, sf, f). Được gộp vào standings tại app/fantasy/page.js.",
+  "byManager": {
+    "tanhung0209": { "g1": 58 },
+    "tnhai": { "g1": 61 },
+    "no more opportunities": { "g1": 49 },
+    "villaduong95": { "g1": 55 },
+    "Tai Nguy": { "g1": 44 },
+    "LONDON is Red so do Viet Nam": { "g1": 67 },
+    "ViTran": { "g1": 52 },
+    "TeoEm": { "g1": 40 },
+    "zafus": { "g1": 47 },
+    "TuNgoo": { "g1": 63 },
+    "KhHi": { "g1": 38 },
+    "SonHoang": { "g1": 51 },
+    "Guanhnangtho": { "g1": 45 }
+  },
+  "_chipNote": "Booster mỗi người dùng theo round (WC2026: Wildcard, 12th Man, Maximum Captain, Qualification Booster, Mystery Booster). Wildcard không dùng được ở trận đầu vòng bảng và vòng 1/16. Dùng cho card 'Số chip sử dụng' trong tab Round.",
+  "chipsByManager": {
+    "LONDON is Red so do Viet Nam": { "g1": "Maximum Captain" },
+    "TuNgoo": { "g1": "12th Man" },
+    "tnhai": { "g1": "Maximum Captain" }
+  }
+}

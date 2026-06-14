@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" preserveAspectRatio="none" fill="none">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7a5510"/>
+      <stop offset="0.18" stop-color="#f7e07f"/>
+      <stop offset="0.5" stop-color="#caa024"/>
+      <stop offset="0.82" stop-color="#fbe98c"/>
+      <stop offset="1" stop-color="#6e4a0c"/>
+    </linearGradient>
+    <radialGradient id="navy" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0" stop-color="#3933b8"/>
+      <stop offset="0.55" stop-color="#1c1a8f"/>
+      <stop offset="1" stop-color="#0a0a55"/>
+    </radialGradient>
+  </defs>
+
+  <!-- thân bảng đầu nhọn (viền vàng) -->
+  <path d="M6 50 L58 16 L342 16 L394 50 L342 84 L58 84 Z" fill="url(#gold)" stroke="#5c3d09" stroke-width="1.5"/>
+  <!-- panel xanh marble -->
+  <path d="M22 50 L66 26 L334 26 L378 50 L334 74 L66 74 Z" fill="url(#navy)"/>
+  <!-- vân marble nhẹ -->
+  <g stroke="#4b46d6" stroke-width="2" opacity="0.35" fill="none" stroke-linecap="round">
+    <path d="M70 58 q40 -22 80 -4 t90 -6 t78 8"/>
+    <path d="M80 40 q50 16 96 2 t120 4"/>
+  </g>
+  <!-- chỉ vàng viền trong -->
+  <path d="M30 50 L68 30 L332 30 L370 50 L332 70 L68 70 Z" fill="none" stroke="#f4dd83" stroke-width="1.4" opacity="0.9"/>
+
+  <!-- hoa văn cuộn 4 góc -->
+  <g fill="url(#gold)" stroke="#5c3d09" stroke-width="0.8">
+    <g transform="translate(60,22)">
+      <path d="M0 0 q-14 -2 -18 8 q-3 8 6 9 q6 1 6 -5 q0 -4 -4 -3 q-3 1 -1 4"/>
+      <circle cx="-12" cy="9" r="2.4"/>
+    </g>
+    <g transform="translate(340,22) scale(-1,1)">
+      <path d="M0 0 q-14 -2 -18 8 q-3 8 6 9 q6 1 6 -5 q0 -4 -4 -3 q-3 1 -1 4"/>
+      <circle cx="-12" cy="9" r="2.4"/>
+    </g>
+    <g transform="translate(60,78) scale(1,-1)">
+      <path d="M0 0 q-14 -2 -18 8 q-3 8 6 9 q6 1 6 -5 q0 -4 -4 -3 q-3 1 -1 4"/>
+      <circle cx="-12" cy="9" r="2.4"/>
+    </g>
+    <g transform="translate(340,78) scale(-1,-1)">
+      <path d="M0 0 q-14 -2 -18 8 q-3 8 6 9 q6 1 6 -5 q0 -4 -4 -3 q-3 1 -1 4"/>
+      <circle cx="-12" cy="9" r="2.4"/>
+    </g>
+  </g>
+
+  <!-- chốt trang trí giữa cạnh trên/dưới -->
+  <g fill="url(#gold)" stroke="#5c3d09" stroke-width="0.8">
+    <path d="M200 14 l7 5 -7 5 -7 -5 Z"/>
+    <path d="M200 86 l7 -5 -7 -5 -7 5 Z"/>
+  </g>
+</svg>
