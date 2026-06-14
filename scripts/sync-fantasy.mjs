@@ -21,6 +21,7 @@
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { FANTASY_ROUNDS, mergeFantasySync } from "./fantasy-sync-utils.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -136,57 +137,58 @@ async function main() {
     process.exit(1);
   }
 
-  const db = JSON.parse(readFileSync(DB_PATH, "utf8"));
-  db.fantasy = db.fantasy || {};
-  const oldRank = {};
-  for (const s of db.fantasy.standings || []) oldRank[s.manager] = s.rank;
-
-  db.fantasy.leagueId = Number(leagueId);
-  
-  const standings = ranks.map((r, i) => {
-    const manager = r.userName || `User ${r.userId}`;
-
-    return {
-      userId: r.userId,
-      rank: r.overallRank ?? i + 1,
-      roundRank: r.roundRank ?? i + 1,
-
-      manager,
-
-      roundPoints: r.roundPoints ?? 0,
-      totalPoints: r.overallPoints ?? 0,
-
-      avatar: r.avatar || "",
-
-      roundWins: 0,
-      bottoms: 0
-    };
-  });
-
-  db.fantasy.standings = standings;
-
-  const roundWinner =
-  [...standings]
-    .sort((a,b)=>b.roundPoints-a.roundPoints)[0];
-
-  const seasonLeader =
-    [...standings]
-      .sort((a,b)=>b.totalPoints-a.totalPoints)[0];
-
-  const roundBottom =
-    [...standings]
-      .sort((a,b)=>a.roundPoints-b.roundPoints)[0];
-
-  db.fantasy.summary = {
-    roundWinner,
-    seasonLeader,
-    roundBottom
+  const fetchJson = async (requestUrl, requestHeaders = headers) => {
+    const response = await fetch(requestUrl, { headers: requestHeaders });
+    if (!response.ok) throw new Error(`HTTP ${response.status} ${requestUrl}`);
+    return response.json();
   };
-  
-  db.fantasy.updatedRound = `Cập nhật ${new Date().toLocaleString("vi-VN")}`;
+
+  console.log("→ Tải rounds, players và squads công khai...");
+  const [rounds, players, squads] = await Promise.all([
+    fetchJson("https://play.fifa.com/json/fantasy/rounds.json", { accept: "application/json" }),
+    fetchJson("https://play.fifa.com/json/fantasy/players.json", { accept: "application/json" }),
+    fetchJson("https://play.fifa.com/json/fantasy/squads.json", { accept: "application/json" }),
+  ]);
+
+  const availableRounds = FANTASY_ROUNDS.filter(
+    ({ id }) => rounds.find((round) => Number(round.id) === id)?.status !== "scheduled"
+  );
+  const roundRankings = {};
+  const histories = {};
+
+  for (const round of availableRounds) {
+    console.log(`→ Đồng bộ đội hình vòng ${round.id}/${FANTASY_ROUNDS.length}...`);
+    const rankingJson = await fetchJson(`${url}&startId=${round.id}`);
+    roundRankings[round.id] = rankingJson?.success?.ranks || [];
+    histories[round.id] = {};
+
+    await Promise.all(
+      ranks.map(async (rank) => {
+        try {
+          const historyJson = await fetchJson(
+            `https://play.fifa.com/api/en/fantasy/team/history/${round.id}/${rank.userId}`
+          );
+          const team = historyJson?.success;
+          if (team?.id) histories[round.id][rank.userId] = { team };
+        } catch (error) {
+          console.warn(`  ! ${rank.userName || rank.userId}: ${error.message}`);
+        }
+      })
+    );
+  }
+
+  const db = JSON.parse(readFileSync(DB_PATH, "utf8"));
+  mergeFantasySync({ db, ranks, roundRankings, histories, rounds, players, squads, leagueId });
+
+  const standings = db.fantasy.standings;
+  db.fantasy.summary = {
+    roundWinner: [...standings].sort((a, b) => b.roundPoints - a.roundPoints)[0],
+    seasonLeader: [...standings].sort((a, b) => b.totalPoints - a.totalPoints)[0],
+    roundBottom: [...standings].sort((a, b) => a.roundPoints - b.roundPoints)[0],
+  };
 
   writeFileSync(DB_PATH, JSON.stringify(db, null, 2), "utf8");
-  console.log(`✓ Đã cập nhật ${db.fantasy.standings.length} người vào data/db.json`);
+  console.log(`✓ Đã cập nhật ${standings.length} người và ${availableRounds.length} vòng vào data/db.json`);
 }
 
 main();
