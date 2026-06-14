@@ -3,7 +3,7 @@ import { readDb } from "@/lib/db";
 import { buildSquads } from "@/lib/fantasy-squad";
 import FantasyTabs from "./FantasyTabs";
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 export default async function FantasyPage() {
   const data = await getFantasy();
