@@ -1,0 +1,57 @@
+name: Sync Player Stats
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Mỗi 6 giờ, lệch khỏi mốc phút 00 để giảm độ trễ của scheduler GitHub.
+    - cron: "17 */6 * * *"
+
+concurrency:
+  group: sync-player-stats
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      FOTMOB_LEAGUE_ID: ${{ vars.FOTMOB_LEAGUE_ID || '77' }}
+      STATS_TOP_N: ${{ vars.STATS_TOP_N || '20' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Sync FotMob player stats
+        run: npm run sync-stats
+
+      - name: Commit updated snapshot
+        shell: bash
+        run: |
+          if git diff --quiet -- data/db.json; then
+            echo "No player-stats changes to commit."
+            exit 0
+          fi
+
+          git config user.name "wc26-stats-bot"
+          git config user.email "wc26-stats-bot@users.noreply.github.com"
+          git add data/db.json
+          git commit -m "Sync FotMob player stats"
+          git push origin HEAD:main
