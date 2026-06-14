@@ -3,8 +3,8 @@ name: Sync FIFA Fantasy
 on:
   workflow_dispatch:
   schedule:
-    # Every 30 minutes. GitHub cron uses UTC.
-    - cron: "7,37 * * * *"
+    # GitHub Actions supports a minimum interval of five minutes.
+    - cron: "*/5 * * * *"
 
 concurrency:
   group: sync-fifa-fantasy
