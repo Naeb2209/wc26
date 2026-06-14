@@ -56,6 +56,7 @@ Mọi người trong công ty mở `http://<IP-máy-chủ>:3000`.
 | `/teams/[code]`  | Chi tiết đội: cầu thủ, lịch, thống kê — vd `/teams/ARG` |
 | `/schedule`      | Lịch thi đấu theo vòng (hiện **hạng FIFA** mỗi đội) + sơ đồ đội hình dự kiến với **icon áo đấu** theo màu đội |
 | `/live`          | Trực tiếp: trận đang diễn ra lấy từ API, chọn kênh VTV (tự cập nhật 10s) |
+| `/stats`         | Thống kê cá nhân World Cup (vua phá lưới, kiến tạo, xG/xA, phòng ngự, thủ thành, kỷ luật) — đồng bộ từ FotMob |
 | `/fantasy`       | BXH người chơi FIFA Fantasy (league nội bộ): podium top 3 + bảng điểm |
 | `/api/live`      | API tỉ số trực tiếp (trận live + kênh) — trang `/live` polling endpoint này mỗi 10s |
 | `/api/health`    | Kiểm tra snapshot local: thời điểm sync, số bảng, đội và trận |
@@ -64,10 +65,48 @@ Mọi người trong công ty mở `http://<IP-máy-chủ>:3000`.
 - Bảng đấu, đội tuyển và lịch thi đấu: chỉ đọc từ `data/db.json`; cập nhật thủ công bằng `npm run sync-football`.
 - Tỉ số live: thử API đã cấu hình rồi fallback về trận mẫu trong `data/db.json`.
 - Fantasy: đọc `data/db.json` hoặc gọi FIFA khi có cookie/access token.
+- Thống kê cá nhân (`/stats`): chỉ đọc `data/db.json → playerStats`; cập nhật thủ công bằng `npm run sync-stats` (Playwright + FotMob).
 
 ## Giới hạn của gói API free
 - Bảng xếp hạng, lịch thi đấu, tỉ số trực tiếp: **có** (tỉ số free có độ trễ vài phút).
 - Đội hình cầu thủ chi tiết, thống kê trận (kiểm soát bóng, cú sút), bình luận: **thường không có** ở gói free → web tự ẩn phần thiếu, hoặc dùng hồ sơ mẫu trong `data/db.json` nếu có.
+
+## Thống kê cá nhân (`/stats`)
+Thành tích cá nhân của giải (vua phá lưới, kiến tạo, xG/xA, tắc bóng, giữ sạch lưới, thẻ phạt…)
+được đồng bộ từ **FotMob** (league 77) vào `data/db.json → playerStats`, gom theo 5 nhóm:
+*Thống kê hàng đầu / Tấn công / Phòng ngự / Thủ thành / Kỷ luật*.
+
+> ⚠️ FotMob bị **Cloudflare** + header `x-mas` bảo vệ → Node `fetch`/`curl` bị chặn ở tầng TLS
+> (giống vụ Akamai của FIFA). Cách chạy được là **Playwright** (trình duyệt thật): script đọc danh
+> mục thống kê trong `__NEXT_DATA__` rồi fetch full bảng từng hạng mục **ngay trong page context**.
+
+```bash
+npm install
+npx playwright install chromium     # tải Chromium 1 lần (dùng chung với fantasy:sync)
+
+npm run sync-stats                  # headless, ghi BXH cá nhân vào data/db.json
+```
+
+- Không cần đăng nhập (trang stats là public). Mỗi hạng mục lấy **top 20** (đổi bằng `STATS_TOP_N`).
+- Nếu headless bị chặn: chạy có cửa sổ → `$env:STATS_HEADFUL=1; npm run sync-stats` (PowerShell).
+- Mạng chặn tải Chromium (`SELF_SIGNED_CERT_IN_CHAIN`)? Script tự dùng lại binary Chromium đã có
+  trong `ms-playwright`; hoặc trỏ thủ công bằng `$env:CHROME_EXE='<đường-dẫn-chrome.exe>'`.
+- Ảnh cầu thủ & logo đội lấy theo ID từ `images.fotmob.com`; cờ ưu tiên khớp về đội trong db (đồng bộ
+  với phần còn lại của web), fallback logo FotMob khi không khớp.
+- Web chỉ đọc `data/db.json` để hiển thị; chạy lại `npm run sync-stats` khi muốn cập nhật số liệu.
+
+### Tự động đồng bộ (GitHub Actions → Vercel deploy)
+Workflow [`.github/workflows/sync-stats.yml`](.github/workflows/sync-stats.yml) chạy mỗi 6 giờ
+(và có thể bấm **Run workflow** thủ công), cài Chromium, chạy `npm run sync-stats`, commit
+`data/db.json` lên `main`; Vercel sẽ tự deploy commit mới.
+
+- **Không cần secret** — trang stats là public (khác workflow fantasy phải có token FIFA).
+- Tùy chọn đặt **Variables** ở GitHub → Settings → Secrets and variables → Actions: `FOTMOB_LEAGUE_ID`
+  (mặc định `77`), `STATS_TOP_N` (mặc định `20`).
+- *Vì sao không dùng Vercel Cron?* Vercel chạy serverless function, **không chạy được Chromium/Playwright**
+  (vượt giới hạn dung lượng). Cách đúng là để GitHub Actions làm việc nặng rồi commit, Vercel chỉ deploy.
+- *Lưu ý:* IP của runner GitHub (datacenter) đôi khi bị Cloudflare của FotMob thử thách. Nếu workflow
+  báo bị chặn, vẫn có thể chạy `npm run sync-stats` ở máy local làm phương án dự phòng.
 
 ## Bảng xếp hạng Fantasy (`/fantasy`)
 Điểm người chơi FIFA Fantasy của công ty, lưu trong `data/db.json` → `fantasy`:

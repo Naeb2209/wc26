@@ -11,6 +11,7 @@
     "sync-eu24-images": "node scripts/sync-fifaaddict-eu24-images.mjs",
     "sync-wikimedia-images": "node scripts/sync-wikimedia-player-images.mjs",
     "sync-fantasy": "node scripts/sync-fantasy.mjs",
+    "sync-stats": "node scripts/sync-fotmob-stats.mjs",
     "fantasy:login": "node scripts/fantasy-playwright.mjs login",
     "fantasy:sync": "node scripts/fantasy-playwright.mjs sync"
   },
