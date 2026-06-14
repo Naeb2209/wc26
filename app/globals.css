@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;800&family=Hanken+Grotesk:wght@600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap");
+/* Fonts (Be Vietnam Pro, Hanken Grotesk, Material Symbols) được load qua <link> trong app/layout.js
+   để icon tải nhanh & ổn định hơn khi deploy — không dùng @import ở đây. */
 
 @tailwind base;
 @tailwind components;
