@@ -30096,7 +30096,7 @@
     "leagueId": 77,
     "leagueName": "FIFA World Cup",
     "sourceUrl": "https://www.fotmob.com/leagues/77/matches/world-cup",
-    "updated": "2026-06-15T07:06:49.155Z",
+    "updated": "2026-06-15T14:33:48.493Z",
     "playerImg": "https://images.fotmob.com/image_resources/playerimages/{id}.png",
     "rounds": {
       "g1": {
@@ -34004,6 +34004,657 @@
             }
           ]
         },
+        "MEX:Jesús Gallardo": {
+          "fotmobMatchId": "4667751",
+          "fotmobId": 597976,
+          "oppCode": "RSA",
+          "scoreStr": "2 - 0",
+          "rating": 7.2,
+          "minutes": 90,
+          "started": true,
+          "played": true,
+          "goals": 0,
+          "assists": 0,
+          "xG": 0.04,
+          "xA": 0.05,
+          "saves": null,
+          "tackles": 0,
+          "sot": 0,
+          "yellow": 0,
+          "red": 0,
+          "motm": false,
+          "stats": [
+            {
+              "title": "Top stats",
+              "items": [
+                {
+                  "label": "FotMob rating",
+                  "key": "rating_title",
+                  "value": 7.21,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Minutes played",
+                  "key": "minutes_played",
+                  "value": 90,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Goals",
+                  "key": "goals",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Assists",
+                  "key": "assists",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Expected goals (xG)",
+                  "key": "expected_goals",
+                  "value": 0.04,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Expected goals on target (xGOT)",
+                  "key": "expected_goals_on_target_variant",
+                  "value": null,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Expected assists (xA)",
+                  "key": "expected_assists",
+                  "value": 0.05,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "xG + xA",
+                  "key": "xg_and_xa",
+                  "value": 0.09,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Total shots",
+                  "key": "total_shots",
+                  "value": 2,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Accurate passes",
+                  "key": "accurate_passes",
+                  "value": 34,
+                  "total": 45,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Chances created",
+                  "key": "chances_created",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Shots on target",
+                  "key": "ShotsOnTarget",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Shots off target",
+                  "key": "ShotsOffTarget",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Blocked shots",
+                  "key": "blocked_shots",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Shot accuracy",
+                  "key": "shot_accuracy",
+                  "value": 0,
+                  "total": 1,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Shotmap",
+                  "key": null,
+                  "value": 1,
+                  "total": null,
+                  "type": "boolean"
+                },
+                {
+                  "label": "Defensive actions",
+                  "key": "defensive_actions",
+                  "value": 6,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "title": "Attack",
+              "items": [
+                {
+                  "label": "Touches",
+                  "key": "touches",
+                  "value": 73,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Touches in opposition box",
+                  "key": "touches_opp_box",
+                  "value": 2,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Passes into final third",
+                  "key": "passes_into_final_third",
+                  "value": 6,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Accurate long balls",
+                  "key": "long_balls_accurate",
+                  "value": 2,
+                  "total": 4,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Dispossessed",
+                  "key": "dispossessed",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "xG Non-penalty",
+                  "key": "expected_goals_non_penalty",
+                  "value": 0.04,
+                  "total": null,
+                  "type": "double"
+                }
+              ]
+            },
+            {
+              "title": "Defense",
+              "items": [
+                {
+                  "label": "Defensive actions",
+                  "key": "defensive_actions",
+                  "value": 6,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Tackles",
+                  "key": "matchstats.headers.tackles",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Blocks",
+                  "key": "shot_blocks",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Clearances",
+                  "key": "clearances",
+                  "value": 3,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Headed clearance",
+                  "key": "headed_clearance",
+                  "value": 2,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Interceptions",
+                  "key": "interceptions",
+                  "value": 3,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Recoveries",
+                  "key": "recoveries",
+                  "value": 3,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Dribbled past",
+                  "key": "dribbled_past",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "title": "Duels",
+              "items": [
+                {
+                  "label": "Ground duels won",
+                  "key": "ground_duels_won",
+                  "value": 0,
+                  "total": 2,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Aerial duels won",
+                  "key": "aerials_won",
+                  "value": 3,
+                  "total": 3,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Was fouled",
+                  "key": "was_fouled",
+                  "value": null,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Fouls committed",
+                  "key": "fouls",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Duels won",
+                  "key": "duel_won",
+                  "value": 3,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Duels lost",
+                  "key": "duel_lost",
+                  "value": 2,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            }
+          ]
+        },
+        "MEX:Orbelín Pineda": {
+          "fotmobMatchId": "4667751",
+          "fotmobId": 559986,
+          "oppCode": "RSA",
+          "scoreStr": "2 - 0",
+          "rating": null,
+          "minutes": 0,
+          "started": false,
+          "played": false,
+          "goals": 0,
+          "assists": 0,
+          "xG": null,
+          "xA": null,
+          "saves": null,
+          "tackles": null,
+          "sot": null,
+          "yellow": 0,
+          "red": 0,
+          "motm": false,
+          "stats": []
+        },
+        "SWE:Viktor Gyökeres": {
+          "fotmobMatchId": "4667784",
+          "fotmobId": 664500,
+          "oppCode": "TUN",
+          "scoreStr": "5 - 1",
+          "rating": 8.7,
+          "minutes": 90,
+          "started": true,
+          "played": true,
+          "goals": 1,
+          "assists": 1,
+          "xG": 0.63,
+          "xA": 0.11,
+          "saves": null,
+          "tackles": 0,
+          "sot": 2,
+          "yellow": 0,
+          "red": 0,
+          "motm": false,
+          "stats": [
+            {
+              "title": "Top stats",
+              "items": [
+                {
+                  "label": "FotMob rating",
+                  "key": "rating_title",
+                  "value": 8.74,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Minutes played",
+                  "key": "minutes_played",
+                  "value": 90,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Goals",
+                  "key": "goals",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Assists",
+                  "key": "assists",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Expected goals (xG)",
+                  "key": "expected_goals",
+                  "value": 0.63,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Expected goals on target (xGOT)",
+                  "key": "expected_goals_on_target_variant",
+                  "value": 0.58,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Expected assists (xA)",
+                  "key": "expected_assists",
+                  "value": 0.11,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "xG + xA",
+                  "key": "xg_and_xa",
+                  "value": 0.74,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Total shots",
+                  "key": "total_shots",
+                  "value": 5,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Accurate passes",
+                  "key": "accurate_passes",
+                  "value": 17,
+                  "total": 20,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Chances created",
+                  "key": "chances_created",
+                  "value": 4,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Big chances created",
+                  "key": "big_chance_created_team_title",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Shots on target",
+                  "key": "ShotsOnTarget",
+                  "value": 2,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Shots off target",
+                  "key": "ShotsOffTarget",
+                  "value": 2,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Blocked shots",
+                  "key": "blocked_shots",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Shot accuracy",
+                  "key": "shot_accuracy",
+                  "value": 2,
+                  "total": 4,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Shotmap",
+                  "key": null,
+                  "value": 1,
+                  "total": null,
+                  "type": "boolean"
+                },
+                {
+                  "label": "Defensive actions",
+                  "key": "defensive_actions",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "title": "Attack",
+              "items": [
+                {
+                  "label": "Big chances missed",
+                  "key": "big_chance_missed_title",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Touches",
+                  "key": "touches",
+                  "value": 38,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Touches in opposition box",
+                  "key": "touches_opp_box",
+                  "value": 11,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Successful dribbles",
+                  "key": "dribbles_succeeded",
+                  "value": 1,
+                  "total": 3,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Passes into final third",
+                  "key": "passes_into_final_third",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Dispossessed",
+                  "key": "dispossessed",
+                  "value": 3,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "xG Non-penalty",
+                  "key": "expected_goals_non_penalty",
+                  "value": 0.63,
+                  "total": null,
+                  "type": "double"
+                }
+              ]
+            },
+            {
+              "title": "Defense",
+              "items": [
+                {
+                  "label": "Defensive actions",
+                  "key": "defensive_actions",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Tackles",
+                  "key": "matchstats.headers.tackles",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Blocks",
+                  "key": "shot_blocks",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Clearances",
+                  "key": "clearances",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Interceptions",
+                  "key": "interceptions",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Recoveries",
+                  "key": "recoveries",
+                  "value": 5,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Dribbled past",
+                  "key": "dribbled_past",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "title": "Duels",
+              "items": [
+                {
+                  "label": "Ground duels won",
+                  "key": "ground_duels_won",
+                  "value": 1,
+                  "total": 6,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Aerial duels won",
+                  "key": "aerials_won",
+                  "value": 2,
+                  "total": 3,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Was fouled",
+                  "key": "was_fouled",
+                  "value": null,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Fouls committed",
+                  "key": "fouls",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Duels won",
+                  "key": "duel_won",
+                  "value": 3,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Duels lost",
+                  "key": "duel_lost",
+                  "value": 6,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            }
+          ]
+        },
+        "MEX:Santiago Giménez": {
+          "fotmobMatchId": "4667751",
+          "fotmobId": 954092,
+          "oppCode": "RSA",
+          "scoreStr": "2 - 0",
+          "rating": null,
+          "minutes": 0,
+          "started": false,
+          "played": false,
+          "goals": 0,
+          "assists": 0,
+          "xG": null,
+          "xA": null,
+          "saves": null,
+          "tackles": null,
+          "sot": null,
+          "yellow": 0,
+          "red": 0,
+          "motm": false,
+          "stats": []
+        },
         "USA:Antonee Robinson": {
           "fotmobMatchId": "4667771",
           "fotmobId": 662428,
@@ -34269,27 +34920,6 @@
               ]
             }
           ]
-        },
-        "MEX:Santiago Giménez": {
-          "fotmobMatchId": "4667751",
-          "fotmobId": 954092,
-          "oppCode": "RSA",
-          "scoreStr": "2 - 0",
-          "rating": null,
-          "minutes": 0,
-          "started": false,
-          "played": false,
-          "goals": 0,
-          "assists": 0,
-          "xG": null,
-          "xA": null,
-          "saves": null,
-          "tackles": null,
-          "sot": null,
-          "yellow": 0,
-          "red": 0,
-          "motm": false,
-          "stats": []
         },
         "MEX:Obed Vargas": {
           "fotmobMatchId": "4667751",
@@ -36207,636 +36837,6 @@
           "red": 0,
           "motm": false,
           "stats": []
-        },
-        "MEX:Jesús Gallardo": {
-          "fotmobMatchId": "4667751",
-          "fotmobId": 597976,
-          "oppCode": "RSA",
-          "scoreStr": "2 - 0",
-          "rating": 7.2,
-          "minutes": 90,
-          "started": true,
-          "played": true,
-          "goals": 0,
-          "assists": 0,
-          "xG": 0.04,
-          "xA": 0.05,
-          "saves": null,
-          "tackles": 0,
-          "sot": 0,
-          "yellow": 0,
-          "red": 0,
-          "motm": false,
-          "stats": [
-            {
-              "title": "Top stats",
-              "items": [
-                {
-                  "label": "FotMob rating",
-                  "key": "rating_title",
-                  "value": 7.21,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "Minutes played",
-                  "key": "minutes_played",
-                  "value": 90,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Goals",
-                  "key": "goals",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Assists",
-                  "key": "assists",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Expected goals (xG)",
-                  "key": "expected_goals",
-                  "value": 0.04,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "Expected goals on target (xGOT)",
-                  "key": "expected_goals_on_target_variant",
-                  "value": null,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "Expected assists (xA)",
-                  "key": "expected_assists",
-                  "value": 0.05,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "xG + xA",
-                  "key": "xg_and_xa",
-                  "value": 0.09,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "Total shots",
-                  "key": "total_shots",
-                  "value": 2,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Accurate passes",
-                  "key": "accurate_passes",
-                  "value": 34,
-                  "total": 45,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Chances created",
-                  "key": "chances_created",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Shots on target",
-                  "key": "ShotsOnTarget",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Shots off target",
-                  "key": "ShotsOffTarget",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Blocked shots",
-                  "key": "blocked_shots",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Shot accuracy",
-                  "key": "shot_accuracy",
-                  "value": 0,
-                  "total": 1,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Shotmap",
-                  "key": null,
-                  "value": 1,
-                  "total": null,
-                  "type": "boolean"
-                },
-                {
-                  "label": "Defensive actions",
-                  "key": "defensive_actions",
-                  "value": 6,
-                  "total": null,
-                  "type": "integer"
-                }
-              ]
-            },
-            {
-              "title": "Attack",
-              "items": [
-                {
-                  "label": "Touches",
-                  "key": "touches",
-                  "value": 73,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Touches in opposition box",
-                  "key": "touches_opp_box",
-                  "value": 2,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Passes into final third",
-                  "key": "passes_into_final_third",
-                  "value": 6,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Accurate long balls",
-                  "key": "long_balls_accurate",
-                  "value": 2,
-                  "total": 4,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Dispossessed",
-                  "key": "dispossessed",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "xG Non-penalty",
-                  "key": "expected_goals_non_penalty",
-                  "value": 0.04,
-                  "total": null,
-                  "type": "double"
-                }
-              ]
-            },
-            {
-              "title": "Defense",
-              "items": [
-                {
-                  "label": "Defensive actions",
-                  "key": "defensive_actions",
-                  "value": 6,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Tackles",
-                  "key": "matchstats.headers.tackles",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Blocks",
-                  "key": "shot_blocks",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Clearances",
-                  "key": "clearances",
-                  "value": 3,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Headed clearance",
-                  "key": "headed_clearance",
-                  "value": 2,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Interceptions",
-                  "key": "interceptions",
-                  "value": 3,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Recoveries",
-                  "key": "recoveries",
-                  "value": 3,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Dribbled past",
-                  "key": "dribbled_past",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                }
-              ]
-            },
-            {
-              "title": "Duels",
-              "items": [
-                {
-                  "label": "Ground duels won",
-                  "key": "ground_duels_won",
-                  "value": 0,
-                  "total": 2,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Aerial duels won",
-                  "key": "aerials_won",
-                  "value": 3,
-                  "total": 3,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Was fouled",
-                  "key": "was_fouled",
-                  "value": null,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Fouls committed",
-                  "key": "fouls",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Duels won",
-                  "key": "duel_won",
-                  "value": 3,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Duels lost",
-                  "key": "duel_lost",
-                  "value": 2,
-                  "total": null,
-                  "type": "integer"
-                }
-              ]
-            }
-          ]
-        },
-        "MEX:Orbelín Pineda": {
-          "fotmobMatchId": "4667751",
-          "fotmobId": 559986,
-          "oppCode": "RSA",
-          "scoreStr": "2 - 0",
-          "rating": null,
-          "minutes": 0,
-          "started": false,
-          "played": false,
-          "goals": 0,
-          "assists": 0,
-          "xG": null,
-          "xA": null,
-          "saves": null,
-          "tackles": null,
-          "sot": null,
-          "yellow": 0,
-          "red": 0,
-          "motm": false,
-          "stats": []
-        },
-        "SWE:Viktor Gyökeres": {
-          "fotmobMatchId": "4667784",
-          "fotmobId": 664500,
-          "oppCode": "TUN",
-          "scoreStr": "5 - 1",
-          "rating": 8.7,
-          "minutes": 90,
-          "started": true,
-          "played": true,
-          "goals": 1,
-          "assists": 1,
-          "xG": 0.63,
-          "xA": 0.11,
-          "saves": null,
-          "tackles": 0,
-          "sot": 2,
-          "yellow": 0,
-          "red": 0,
-          "motm": false,
-          "stats": [
-            {
-              "title": "Top stats",
-              "items": [
-                {
-                  "label": "FotMob rating",
-                  "key": "rating_title",
-                  "value": 8.74,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "Minutes played",
-                  "key": "minutes_played",
-                  "value": 90,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Goals",
-                  "key": "goals",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Assists",
-                  "key": "assists",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Expected goals (xG)",
-                  "key": "expected_goals",
-                  "value": 0.63,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "Expected goals on target (xGOT)",
-                  "key": "expected_goals_on_target_variant",
-                  "value": 0.58,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "Expected assists (xA)",
-                  "key": "expected_assists",
-                  "value": 0.11,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "xG + xA",
-                  "key": "xg_and_xa",
-                  "value": 0.74,
-                  "total": null,
-                  "type": "double"
-                },
-                {
-                  "label": "Total shots",
-                  "key": "total_shots",
-                  "value": 5,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Accurate passes",
-                  "key": "accurate_passes",
-                  "value": 17,
-                  "total": 20,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Chances created",
-                  "key": "chances_created",
-                  "value": 4,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Big chances created",
-                  "key": "big_chance_created_team_title",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Shots on target",
-                  "key": "ShotsOnTarget",
-                  "value": 2,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Shots off target",
-                  "key": "ShotsOffTarget",
-                  "value": 2,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Blocked shots",
-                  "key": "blocked_shots",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Shot accuracy",
-                  "key": "shot_accuracy",
-                  "value": 2,
-                  "total": 4,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Shotmap",
-                  "key": null,
-                  "value": 1,
-                  "total": null,
-                  "type": "boolean"
-                },
-                {
-                  "label": "Defensive actions",
-                  "key": "defensive_actions",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                }
-              ]
-            },
-            {
-              "title": "Attack",
-              "items": [
-                {
-                  "label": "Big chances missed",
-                  "key": "big_chance_missed_title",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Touches",
-                  "key": "touches",
-                  "value": 38,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Touches in opposition box",
-                  "key": "touches_opp_box",
-                  "value": 11,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Successful dribbles",
-                  "key": "dribbles_succeeded",
-                  "value": 1,
-                  "total": 3,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Passes into final third",
-                  "key": "passes_into_final_third",
-                  "value": 1,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Dispossessed",
-                  "key": "dispossessed",
-                  "value": 3,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "xG Non-penalty",
-                  "key": "expected_goals_non_penalty",
-                  "value": 0.63,
-                  "total": null,
-                  "type": "double"
-                }
-              ]
-            },
-            {
-              "title": "Defense",
-              "items": [
-                {
-                  "label": "Defensive actions",
-                  "key": "defensive_actions",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Tackles",
-                  "key": "matchstats.headers.tackles",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Blocks",
-                  "key": "shot_blocks",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Clearances",
-                  "key": "clearances",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Interceptions",
-                  "key": "interceptions",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Recoveries",
-                  "key": "recoveries",
-                  "value": 5,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Dribbled past",
-                  "key": "dribbled_past",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                }
-              ]
-            },
-            {
-              "title": "Duels",
-              "items": [
-                {
-                  "label": "Ground duels won",
-                  "key": "ground_duels_won",
-                  "value": 1,
-                  "total": 6,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Aerial duels won",
-                  "key": "aerials_won",
-                  "value": 2,
-                  "total": 3,
-                  "type": "fractionWithPercentage"
-                },
-                {
-                  "label": "Was fouled",
-                  "key": "was_fouled",
-                  "value": null,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Fouls committed",
-                  "key": "fouls",
-                  "value": 0,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Duels won",
-                  "key": "duel_won",
-                  "value": 3,
-                  "total": null,
-                  "type": "integer"
-                },
-                {
-                  "label": "Duels lost",
-                  "key": "duel_lost",
-                  "value": 6,
-                  "total": null,
-                  "type": "integer"
-                }
-              ]
-            }
-          ]
         },
         "BRA:Endrick": {
           "fotmobMatchId": "4667764",
@@ -40561,6 +40561,2406 @@
           "stats": []
         }
       }
+    },
+    "matches": {
+      "g1": [
+        {
+          "id": "537327",
+          "group": "Bảng A",
+          "date": "12 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "MEX",
+          "homeFlag": "https://crests.football-data.org/769.svg",
+          "awayCode": "RSA",
+          "awayFlag": "https://crests.football-data.org/9396.svg",
+          "scoreStr": "2 - 0",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 9,
+              "player": "Julián Quiñones",
+              "assist": "Érik Lira",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "MEX"
+            },
+            {
+              "min": 67,
+              "player": "Raul Jiménez",
+              "assist": "Roberto Alvarado",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "MEX"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 60,
+              "away": 40
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "1.46",
+              "away": "0.07"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 16,
+              "away": 3
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 4,
+              "away": 2
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 20,
+              "away": 2
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 2,
+              "away": 0
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 0,
+              "away": 0
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "467 (90%)",
+              "away": "272 (81%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": 1,
+              "away": 2
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 3,
+              "away": 1
+            }
+          ]
+        },
+        {
+          "id": "537328",
+          "group": "Bảng A",
+          "date": "12 tháng 6, 2026",
+          "time": "09:00 (giờ VN)",
+          "homeCode": "KOR",
+          "homeFlag": "https://crests.football-data.org/772.png",
+          "awayCode": "CZE",
+          "awayFlag": "https://crests.football-data.org/798.svg",
+          "scoreStr": "2 - 1",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 59,
+              "player": "Ladislav Krejcí",
+              "assist": "Vladimír Coufal",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "CZE"
+            },
+            {
+              "min": 67,
+              "player": "In-Beom Hwang",
+              "assist": "Kang-In Lee",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "KOR"
+            },
+            {
+              "min": 80,
+              "player": "Hyun-Gyu Oh",
+              "assist": "In-Beom Hwang",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "KOR"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 62,
+              "away": 38
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "2.30",
+              "away": "0.83"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 15,
+              "away": 7
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 6,
+              "away": 4
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 24,
+              "away": 12
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 4,
+              "away": 1
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 2,
+              "away": 0
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "469 (87%)",
+              "away": "230 (70%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": 1,
+              "away": null
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 4,
+              "away": 5
+            }
+          ]
+        },
+        {
+          "id": "537333",
+          "group": "Bảng B",
+          "date": "13 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "CAN",
+          "homeFlag": "https://crests.football-data.org/canada.svg",
+          "awayCode": "BIH",
+          "awayFlag": "https://crests.football-data.org/bosnia.svg",
+          "scoreStr": "1 - 1",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 21,
+              "player": "Jovo Lukic",
+              "assist": "Sead Kolasinac",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "BIH"
+            },
+            {
+              "min": 78,
+              "player": "Cyle Larin",
+              "assist": "Promise David",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "CAN"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 61,
+              "away": 39
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "1.23",
+              "away": "0.96"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 13,
+              "away": 8
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 4,
+              "away": 3
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 37,
+              "away": 15
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 2,
+              "away": 2
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 2,
+              "away": 1
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "310 (74%)",
+              "away": "172 (63%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": 2,
+              "away": 3
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 9,
+              "away": 4
+            }
+          ]
+        },
+        {
+          "id": "537334",
+          "group": "Bảng B",
+          "date": "14 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "QAT",
+          "homeFlag": "https://crests.football-data.org/8030.svg",
+          "awayCode": "SUI",
+          "awayFlag": "https://crests.football-data.org/788.svg",
+          "scoreStr": "1 - 1",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 17,
+              "player": "Breel Embolo",
+              "assist": null,
+              "ownGoal": false,
+              "penalty": true,
+              "teamCode": "SUI"
+            },
+            {
+              "min": 90,
+              "player": "Miro Muheim",
+              "assist": null,
+              "ownGoal": true,
+              "penalty": false,
+              "teamCode": "QAT"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 32,
+              "away": 68
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "0.60",
+              "away": "3.20"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 6,
+              "away": 26
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 3,
+              "away": 7
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 8,
+              "away": 42
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 1,
+              "away": 6
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 1,
+              "away": 5
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "200 (72%)",
+              "away": "527 (91%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": 2,
+              "away": 1
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 3,
+              "away": 10
+            }
+          ]
+        },
+        {
+          "id": "537339",
+          "group": "Bảng C",
+          "date": "14 tháng 6, 2026",
+          "time": "05:00 (giờ VN)",
+          "homeCode": "BRA",
+          "homeFlag": "https://crests.football-data.org/764.svg",
+          "awayCode": "MAR",
+          "awayFlag": "https://crests.football-data.org/morocco.svg",
+          "scoreStr": "1 - 1",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 21,
+              "player": "Ismael Saibari",
+              "assist": "Brahim Díaz",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "MAR"
+            },
+            {
+              "min": 32,
+              "player": "Vinícius Júnior",
+              "assist": "Bruno Guimarães",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "BRA"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 51,
+              "away": 49
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "1.26",
+              "away": "1.37"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 12,
+              "away": 14
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 5,
+              "away": 3
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 22,
+              "away": 13
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 1,
+              "away": 2
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 1,
+              "away": 1
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "449 (87%)",
+              "away": "419 (86%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": 2,
+              "away": null
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 6,
+              "away": 2
+            }
+          ]
+        },
+        {
+          "id": "537340",
+          "group": "Bảng C",
+          "date": "14 tháng 6, 2026",
+          "time": "08:00 (giờ VN)",
+          "homeCode": "HAI",
+          "homeFlag": "https://crests.football-data.org/haiti.svg",
+          "awayCode": "SCO",
+          "awayFlag": "https://crests.football-data.org/814.svg",
+          "scoreStr": "0 - 1",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 29,
+              "player": "John McGinn",
+              "assist": null,
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "SCO"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 54,
+              "away": 46
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "1.05",
+              "away": "1.05"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 15,
+              "away": 9
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 2,
+              "away": 2
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 22,
+              "away": 21
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 1,
+              "away": 2
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 1,
+              "away": 2
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "367 (85%)",
+              "away": "307 (82%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": 1,
+              "away": 3
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 4,
+              "away": 3
+            }
+          ]
+        },
+        {
+          "id": "537345",
+          "group": "Bảng D",
+          "date": "13 tháng 6, 2026",
+          "time": "08:00 (giờ VN)",
+          "homeCode": "USA",
+          "homeFlag": "https://crests.football-data.org/usa.svg",
+          "awayCode": "PAR",
+          "awayFlag": "https://crests.football-data.org/761.svg",
+          "scoreStr": "4 - 1",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 7,
+              "player": "Damián Bobadilla",
+              "assist": null,
+              "ownGoal": true,
+              "penalty": false,
+              "teamCode": "USA"
+            },
+            {
+              "min": 31,
+              "player": "Folarin Balogun",
+              "assist": "Christian Pulisic",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "USA"
+            },
+            {
+              "min": 45,
+              "player": "Folarin Balogun",
+              "assist": "Malik Tillman",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "USA"
+            },
+            {
+              "min": 73,
+              "player": "Mauricio",
+              "assist": "Julio Enciso",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "PAR"
+            },
+            {
+              "min": 90,
+              "player": "Giovanni Reyna",
+              "assist": "Alex Freeman",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "USA"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 65,
+              "away": 35
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "1.42",
+              "away": "0.54"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 16,
+              "away": 9
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 6,
+              "away": 1
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 53,
+              "away": 11
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 4,
+              "away": 1
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 2,
+              "away": 0
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "509 (85%)",
+              "away": "232 (73%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": 1,
+              "away": 5
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 3,
+              "away": 1
+            }
+          ]
+        },
+        {
+          "id": "537346",
+          "group": "Bảng D",
+          "date": "14 tháng 6, 2026",
+          "time": "11:00 (giờ VN)",
+          "homeCode": "AUS",
+          "homeFlag": "https://crests.football-data.org/779.svg",
+          "awayCode": "TUR",
+          "awayFlag": "https://crests.football-data.org/803.svg",
+          "scoreStr": "2 - 0",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 27,
+              "player": "Nestory Irankunda",
+              "assist": "Paul Okon-Engstler",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "AUS"
+            },
+            {
+              "min": 75,
+              "player": "Connor Metcalfe",
+              "assist": null,
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "AUS"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 28,
+              "away": 72
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "1.18",
+              "away": "1.36"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 9,
+              "away": 30
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 4,
+              "away": 8
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 18,
+              "away": 51
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 1,
+              "away": 2
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 0,
+              "away": 2
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "201 (74%)",
+              "away": "635 (90%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": null,
+              "away": 1
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 5,
+              "away": 8
+            }
+          ]
+        },
+        {
+          "id": "537351",
+          "group": "Bảng E",
+          "date": "15 tháng 6, 2026",
+          "time": "00:00 (giờ VN)",
+          "homeCode": "GER",
+          "homeFlag": "https://crests.football-data.org/759.svg",
+          "awayCode": "CUW",
+          "awayFlag": "https://crests.football-data.org/curacao.svg",
+          "scoreStr": "7 - 1",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 6,
+              "player": "Felix Nmecha",
+              "assist": "Florian Wirtz",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "GER"
+            },
+            {
+              "min": 21,
+              "player": "Livano Comenencia",
+              "assist": null,
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "CUW"
+            },
+            {
+              "min": 38,
+              "player": "Nico Schlotterbeck",
+              "assist": "Nathaniel Brown",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "GER"
+            },
+            {
+              "min": 45,
+              "player": "Kai Havertz",
+              "assist": null,
+              "ownGoal": false,
+              "penalty": true,
+              "teamCode": "GER"
+            },
+            {
+              "min": 47,
+              "player": "Jamal Musiala",
+              "assist": "Joshua Kimmich",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "GER"
+            },
+            {
+              "min": 68,
+              "player": "Nathaniel Brown",
+              "assist": "Deniz Undav",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "GER"
+            },
+            {
+              "min": 78,
+              "player": "Deniz Undav",
+              "assist": "Joshua Kimmich",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "GER"
+            },
+            {
+              "min": 88,
+              "player": "Kai Havertz",
+              "assist": "Deniz Undav",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "GER"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 65,
+              "away": 35
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "4.22",
+              "away": "0.41"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 26,
+              "away": 8
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 12,
+              "away": 2
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 63,
+              "away": 10
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 6,
+              "away": 0
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 2,
+              "away": 0
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "554 (87%)",
+              "away": "282 (82%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": null,
+              "away": null
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 8,
+              "away": 1
+            }
+          ]
+        },
+        {
+          "id": "537352",
+          "group": "Bảng E",
+          "date": "15 tháng 6, 2026",
+          "time": "06:00 (giờ VN)",
+          "homeCode": "CIV",
+          "homeFlag": "https://crests.football-data.org/787.svg",
+          "awayCode": "ECU",
+          "awayFlag": "https://crests.football-data.org/791.svg",
+          "scoreStr": "1 - 0",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 90,
+              "player": "Amad Diallo",
+              "assist": "Wilfried Singo",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "CIV"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 48,
+              "away": 52
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "1.52",
+              "away": "1.01"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 15,
+              "away": 12
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 4,
+              "away": 1
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 39,
+              "away": 16
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 2,
+              "away": 1
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 2,
+              "away": 1
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "397 (84%)",
+              "away": "419 (85%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": 3,
+              "away": 1
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 3,
+              "away": 5
+            }
+          ]
+        },
+        {
+          "id": "537357",
+          "group": "Bảng F",
+          "date": "15 tháng 6, 2026",
+          "time": "03:00 (giờ VN)",
+          "homeCode": "NED",
+          "homeFlag": "https://crests.football-data.org/8601.svg",
+          "awayCode": "JPN",
+          "awayFlag": "https://crests.football-data.org/766.svg",
+          "scoreStr": "2 - 2",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 50,
+              "player": "Virgil van Dijk",
+              "assist": "Ryan Gravenberch",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "NED"
+            },
+            {
+              "min": 57,
+              "player": "Keito Nakamura",
+              "assist": "Takefusa Kubo",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "JPN"
+            },
+            {
+              "min": 64,
+              "player": "Crysencio Summerville",
+              "assist": "Ryan Gravenberch",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "NED"
+            },
+            {
+              "min": 88,
+              "player": "Daichi Kamada",
+              "assist": "Koki Ogawa",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "JPN"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 60,
+              "away": 40
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "0.78",
+              "away": "0.59"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 10,
+              "away": 10
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 6,
+              "away": 3
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 33,
+              "away": 19
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 0,
+              "away": 0
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 0,
+              "away": 0
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "463 (88%)",
+              "away": "286 (84%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": 3,
+              "away": null
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 5,
+              "away": 4
+            }
+          ]
+        },
+        {
+          "id": "537358",
+          "group": "Bảng F",
+          "date": "15 tháng 6, 2026",
+          "time": "09:00 (giờ VN)",
+          "homeCode": "SWE",
+          "homeFlag": "https://crests.football-data.org/792.svg",
+          "awayCode": "TUN",
+          "awayFlag": "https://crests.football-data.org/tunisia.svg",
+          "scoreStr": "5 - 1",
+          "started": true,
+          "finished": true,
+          "liveShort": null,
+          "reasonShort": "FT",
+          "goals": [
+            {
+              "min": 7,
+              "player": "Yasin Ayari",
+              "assist": null,
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "SWE"
+            },
+            {
+              "min": 30,
+              "player": "Alexander Isak",
+              "assist": "Viktor Gyökeres",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "SWE"
+            },
+            {
+              "min": 43,
+              "player": "Omar Rekik",
+              "assist": "Hannibal Mejbri",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "TUN"
+            },
+            {
+              "min": 59,
+              "player": "Viktor Gyökeres",
+              "assist": "Alexander Isak",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "SWE"
+            },
+            {
+              "min": 84,
+              "player": "Mattias Svanberg",
+              "assist": "Alexander Isak",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "SWE"
+            },
+            {
+              "min": 90,
+              "player": "Yasin Ayari",
+              "assist": "Lucas Bergvall",
+              "ownGoal": false,
+              "penalty": false,
+              "teamCode": "SWE"
+            }
+          ],
+          "matchStats": [
+            {
+              "title": "Ball possession",
+              "key": "BallPossesion",
+              "type": "graph",
+              "home": 49,
+              "away": 51
+            },
+            {
+              "title": "Expected goals (xG)",
+              "key": "expected_goals",
+              "type": "text",
+              "home": "1.33",
+              "away": "0.28"
+            },
+            {
+              "title": "Total shots",
+              "key": "total_shots",
+              "type": "text",
+              "home": 13,
+              "away": 6
+            },
+            {
+              "title": "Shots on target",
+              "key": "ShotsOnTarget",
+              "type": "text",
+              "home": 7,
+              "away": 2
+            },
+            {
+              "title": "Touches in opposition box",
+              "key": "touches_opp_box",
+              "type": "text",
+              "home": 22,
+              "away": 10
+            },
+            {
+              "title": "Big chances",
+              "key": "big_chance",
+              "type": "text",
+              "home": 4,
+              "away": 0
+            },
+            {
+              "title": "Big chances missed",
+              "key": "big_chance_missed_title",
+              "type": "text",
+              "home": 2,
+              "away": 0
+            },
+            {
+              "title": "Accurate passes",
+              "key": "accurate_passes",
+              "type": "text",
+              "home": "278 (78%)",
+              "away": "292 (79%)"
+            },
+            {
+              "title": "Yellow cards",
+              "key": "yellow_cards",
+              "type": "text",
+              "home": null,
+              "away": 1
+            },
+            {
+              "title": "Corners",
+              "key": "corners",
+              "type": "text",
+              "home": 4,
+              "away": 2
+            }
+          ]
+        },
+        {
+          "id": "537363",
+          "group": "Bảng G",
+          "date": "16 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "BEL",
+          "homeFlag": "https://crests.football-data.org/805.svg",
+          "awayCode": "EGY",
+          "awayFlag": "https://crests.football-data.org/825.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537364",
+          "group": "Bảng G",
+          "date": "16 tháng 6, 2026",
+          "time": "08:00 (giờ VN)",
+          "homeCode": "IRN",
+          "homeFlag": "https://crests.football-data.org/iran.svg",
+          "awayCode": "NZL",
+          "awayFlag": "https://crests.football-data.org/783.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537369",
+          "group": "Bảng H",
+          "date": "15 tháng 6, 2026",
+          "time": "23:00 (giờ VN)",
+          "homeCode": "ESP",
+          "homeFlag": "https://crests.football-data.org/760.svg",
+          "awayCode": "CPV",
+          "awayFlag": "https://crests.football-data.org/cape_verde.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537370",
+          "group": "Bảng H",
+          "date": "16 tháng 6, 2026",
+          "time": "05:00 (giờ VN)",
+          "homeCode": "KSA",
+          "homeFlag": "https://crests.football-data.org/saudi_arabia.svg",
+          "awayCode": "URY",
+          "awayFlag": "https://crests.football-data.org/758.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537391",
+          "group": "Bảng I",
+          "date": "17 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "FRA",
+          "homeFlag": "https://crests.football-data.org/773.svg",
+          "awayCode": "SEN",
+          "awayFlag": "https://crests.football-data.org/senegal.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537392",
+          "group": "Bảng I",
+          "date": "17 tháng 6, 2026",
+          "time": "05:00 (giờ VN)",
+          "homeCode": "IRQ",
+          "homeFlag": "https://crests.football-data.org/iraq.svg",
+          "awayCode": "NOR",
+          "awayFlag": "https://crests.football-data.org/813.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537397",
+          "group": "Bảng J",
+          "date": "17 tháng 6, 2026",
+          "time": "08:00 (giờ VN)",
+          "homeCode": "ARG",
+          "homeFlag": "https://crests.football-data.org/762.png",
+          "awayCode": "ALG",
+          "awayFlag": "https://crests.football-data.org/algeria.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537398",
+          "group": "Bảng J",
+          "date": "17 tháng 6, 2026",
+          "time": "11:00 (giờ VN)",
+          "homeCode": "AUT",
+          "homeFlag": "https://crests.football-data.org/816.svg",
+          "awayCode": "JOR",
+          "awayFlag": "https://crests.football-data.org/8049.png",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537403",
+          "group": "Bảng K",
+          "date": "18 tháng 6, 2026",
+          "time": "00:00 (giờ VN)",
+          "homeCode": "POR",
+          "homeFlag": "https://crests.football-data.org/765.svg",
+          "awayCode": "COD",
+          "awayFlag": "https://crests.football-data.org/congo_dr.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537404",
+          "group": "Bảng K",
+          "date": "18 tháng 6, 2026",
+          "time": "09:00 (giờ VN)",
+          "homeCode": "UZB",
+          "homeFlag": "https://crests.football-data.org/8070.png",
+          "awayCode": "COL",
+          "awayFlag": "https://crests.football-data.org/818.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537409",
+          "group": "Bảng L",
+          "date": "18 tháng 6, 2026",
+          "time": "03:00 (giờ VN)",
+          "homeCode": "ENG",
+          "homeFlag": "https://crests.football-data.org/770.svg",
+          "awayCode": "CRO",
+          "awayFlag": "https://crests.football-data.org/799.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537410",
+          "group": "Bảng L",
+          "date": "18 tháng 6, 2026",
+          "time": "06:00 (giờ VN)",
+          "homeCode": "GHA",
+          "homeFlag": "https://crests.football-data.org/ghana.svg",
+          "awayCode": "PAN",
+          "awayFlag": "https://crests.football-data.org/panama.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        }
+      ],
+      "g2": [
+        {
+          "id": "537329",
+          "group": "Bảng A",
+          "date": "18 tháng 6, 2026",
+          "time": "23:00 (giờ VN)",
+          "homeCode": "CZE",
+          "homeFlag": "https://crests.football-data.org/798.svg",
+          "awayCode": "RSA",
+          "awayFlag": "https://crests.football-data.org/9396.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537330",
+          "group": "Bảng A",
+          "date": "19 tháng 6, 2026",
+          "time": "08:00 (giờ VN)",
+          "homeCode": "MEX",
+          "homeFlag": "https://crests.football-data.org/769.svg",
+          "awayCode": "KOR",
+          "awayFlag": "https://crests.football-data.org/772.png",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537335",
+          "group": "Bảng B",
+          "date": "19 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "SUI",
+          "homeFlag": "https://crests.football-data.org/788.svg",
+          "awayCode": "BIH",
+          "awayFlag": "https://crests.football-data.org/bosnia.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537336",
+          "group": "Bảng B",
+          "date": "19 tháng 6, 2026",
+          "time": "05:00 (giờ VN)",
+          "homeCode": "CAN",
+          "homeFlag": "https://crests.football-data.org/canada.svg",
+          "awayCode": "QAT",
+          "awayFlag": "https://crests.football-data.org/8030.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537341",
+          "group": "Bảng C",
+          "date": "20 tháng 6, 2026",
+          "time": "07:30 (giờ VN)",
+          "homeCode": "BRA",
+          "homeFlag": "https://crests.football-data.org/764.svg",
+          "awayCode": "HAI",
+          "awayFlag": "https://crests.football-data.org/haiti.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537342",
+          "group": "Bảng C",
+          "date": "20 tháng 6, 2026",
+          "time": "05:00 (giờ VN)",
+          "homeCode": "SCO",
+          "homeFlag": "https://crests.football-data.org/814.svg",
+          "awayCode": "MAR",
+          "awayFlag": "https://crests.football-data.org/morocco.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537347",
+          "group": "Bảng D",
+          "date": "20 tháng 6, 2026",
+          "time": "10:00 (giờ VN)",
+          "homeCode": "TUR",
+          "homeFlag": "https://crests.football-data.org/803.svg",
+          "awayCode": "PAR",
+          "awayFlag": "https://crests.football-data.org/761.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537348",
+          "group": "Bảng D",
+          "date": "20 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "USA",
+          "homeFlag": "https://crests.football-data.org/usa.svg",
+          "awayCode": "AUS",
+          "awayFlag": "https://crests.football-data.org/779.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537353",
+          "group": "Bảng E",
+          "date": "21 tháng 6, 2026",
+          "time": "03:00 (giờ VN)",
+          "homeCode": "GER",
+          "homeFlag": "https://crests.football-data.org/759.svg",
+          "awayCode": "CIV",
+          "awayFlag": "https://crests.football-data.org/787.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537354",
+          "group": "Bảng E",
+          "date": "21 tháng 6, 2026",
+          "time": "07:00 (giờ VN)",
+          "homeCode": "ECU",
+          "homeFlag": "https://crests.football-data.org/791.svg",
+          "awayCode": "CUW",
+          "awayFlag": "https://crests.football-data.org/curacao.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537359",
+          "group": "Bảng F",
+          "date": "21 tháng 6, 2026",
+          "time": "00:00 (giờ VN)",
+          "homeCode": "NED",
+          "homeFlag": "https://crests.football-data.org/8601.svg",
+          "awayCode": "SWE",
+          "awayFlag": "https://crests.football-data.org/792.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537360",
+          "group": "Bảng F",
+          "date": "21 tháng 6, 2026",
+          "time": "11:00 (giờ VN)",
+          "homeCode": "TUN",
+          "homeFlag": "https://crests.football-data.org/tunisia.svg",
+          "awayCode": "JPN",
+          "awayFlag": "https://crests.football-data.org/766.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537365",
+          "group": "Bảng G",
+          "date": "22 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "BEL",
+          "homeFlag": "https://crests.football-data.org/805.svg",
+          "awayCode": "IRN",
+          "awayFlag": "https://crests.football-data.org/iran.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537366",
+          "group": "Bảng G",
+          "date": "22 tháng 6, 2026",
+          "time": "08:00 (giờ VN)",
+          "homeCode": "NZL",
+          "homeFlag": "https://crests.football-data.org/783.svg",
+          "awayCode": "EGY",
+          "awayFlag": "https://crests.football-data.org/825.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537371",
+          "group": "Bảng H",
+          "date": "21 tháng 6, 2026",
+          "time": "23:00 (giờ VN)",
+          "homeCode": "ESP",
+          "homeFlag": "https://crests.football-data.org/760.svg",
+          "awayCode": "KSA",
+          "awayFlag": "https://crests.football-data.org/saudi_arabia.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537372",
+          "group": "Bảng H",
+          "date": "22 tháng 6, 2026",
+          "time": "05:00 (giờ VN)",
+          "homeCode": "URY",
+          "homeFlag": "https://crests.football-data.org/758.svg",
+          "awayCode": "CPV",
+          "awayFlag": "https://crests.football-data.org/cape_verde.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537393",
+          "group": "Bảng I",
+          "date": "23 tháng 6, 2026",
+          "time": "04:00 (giờ VN)",
+          "homeCode": "FRA",
+          "homeFlag": "https://crests.football-data.org/773.svg",
+          "awayCode": "IRQ",
+          "awayFlag": "https://crests.football-data.org/iraq.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537394",
+          "group": "Bảng I",
+          "date": "23 tháng 6, 2026",
+          "time": "07:00 (giờ VN)",
+          "homeCode": "NOR",
+          "homeFlag": "https://crests.football-data.org/813.svg",
+          "awayCode": "SEN",
+          "awayFlag": "https://crests.football-data.org/senegal.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537399",
+          "group": "Bảng J",
+          "date": "23 tháng 6, 2026",
+          "time": "00:00 (giờ VN)",
+          "homeCode": "ARG",
+          "homeFlag": "https://crests.football-data.org/762.png",
+          "awayCode": "AUT",
+          "awayFlag": "https://crests.football-data.org/816.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537400",
+          "group": "Bảng J",
+          "date": "23 tháng 6, 2026",
+          "time": "10:00 (giờ VN)",
+          "homeCode": "JOR",
+          "homeFlag": "https://crests.football-data.org/8049.png",
+          "awayCode": "ALG",
+          "awayFlag": "https://crests.football-data.org/algeria.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537405",
+          "group": "Bảng K",
+          "date": "24 tháng 6, 2026",
+          "time": "00:00 (giờ VN)",
+          "homeCode": "POR",
+          "homeFlag": "https://crests.football-data.org/765.svg",
+          "awayCode": "UZB",
+          "awayFlag": "https://crests.football-data.org/8070.png",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537406",
+          "group": "Bảng K",
+          "date": "24 tháng 6, 2026",
+          "time": "09:00 (giờ VN)",
+          "homeCode": "COL",
+          "homeFlag": "https://crests.football-data.org/818.svg",
+          "awayCode": "COD",
+          "awayFlag": "https://crests.football-data.org/congo_dr.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537411",
+          "group": "Bảng L",
+          "date": "24 tháng 6, 2026",
+          "time": "03:00 (giờ VN)",
+          "homeCode": "ENG",
+          "homeFlag": "https://crests.football-data.org/770.svg",
+          "awayCode": "GHA",
+          "awayFlag": "https://crests.football-data.org/ghana.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537412",
+          "group": "Bảng L",
+          "date": "24 tháng 6, 2026",
+          "time": "06:00 (giờ VN)",
+          "homeCode": "PAN",
+          "homeFlag": "https://crests.football-data.org/panama.svg",
+          "awayCode": "CRO",
+          "awayFlag": "https://crests.football-data.org/799.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        }
+      ],
+      "g3": [
+        {
+          "id": "537331",
+          "group": "Bảng A",
+          "date": "25 tháng 6, 2026",
+          "time": "08:00 (giờ VN)",
+          "homeCode": "CZE",
+          "homeFlag": "https://crests.football-data.org/798.svg",
+          "awayCode": "MEX",
+          "awayFlag": "https://crests.football-data.org/769.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537332",
+          "group": "Bảng A",
+          "date": "25 tháng 6, 2026",
+          "time": "08:00 (giờ VN)",
+          "homeCode": "RSA",
+          "homeFlag": "https://crests.football-data.org/9396.svg",
+          "awayCode": "KOR",
+          "awayFlag": "https://crests.football-data.org/772.png",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537337",
+          "group": "Bảng B",
+          "date": "25 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "SUI",
+          "homeFlag": "https://crests.football-data.org/788.svg",
+          "awayCode": "CAN",
+          "awayFlag": "https://crests.football-data.org/canada.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537338",
+          "group": "Bảng B",
+          "date": "25 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "BIH",
+          "homeFlag": "https://crests.football-data.org/bosnia.svg",
+          "awayCode": "QAT",
+          "awayFlag": "https://crests.football-data.org/8030.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537343",
+          "group": "Bảng C",
+          "date": "25 tháng 6, 2026",
+          "time": "05:00 (giờ VN)",
+          "homeCode": "SCO",
+          "homeFlag": "https://crests.football-data.org/814.svg",
+          "awayCode": "BRA",
+          "awayFlag": "https://crests.football-data.org/764.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537344",
+          "group": "Bảng C",
+          "date": "25 tháng 6, 2026",
+          "time": "05:00 (giờ VN)",
+          "homeCode": "MAR",
+          "homeFlag": "https://crests.football-data.org/morocco.svg",
+          "awayCode": "HAI",
+          "awayFlag": "https://crests.football-data.org/haiti.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537349",
+          "group": "Bảng D",
+          "date": "26 tháng 6, 2026",
+          "time": "09:00 (giờ VN)",
+          "homeCode": "TUR",
+          "homeFlag": "https://crests.football-data.org/803.svg",
+          "awayCode": "USA",
+          "awayFlag": "https://crests.football-data.org/usa.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537350",
+          "group": "Bảng D",
+          "date": "26 tháng 6, 2026",
+          "time": "09:00 (giờ VN)",
+          "homeCode": "PAR",
+          "homeFlag": "https://crests.football-data.org/761.svg",
+          "awayCode": "AUS",
+          "awayFlag": "https://crests.football-data.org/779.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537355",
+          "group": "Bảng E",
+          "date": "26 tháng 6, 2026",
+          "time": "03:00 (giờ VN)",
+          "homeCode": "ECU",
+          "homeFlag": "https://crests.football-data.org/791.svg",
+          "awayCode": "GER",
+          "awayFlag": "https://crests.football-data.org/759.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537356",
+          "group": "Bảng E",
+          "date": "26 tháng 6, 2026",
+          "time": "03:00 (giờ VN)",
+          "homeCode": "CUW",
+          "homeFlag": "https://crests.football-data.org/curacao.svg",
+          "awayCode": "CIV",
+          "awayFlag": "https://crests.football-data.org/787.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537361",
+          "group": "Bảng F",
+          "date": "26 tháng 6, 2026",
+          "time": "06:00 (giờ VN)",
+          "homeCode": "TUN",
+          "homeFlag": "https://crests.football-data.org/tunisia.svg",
+          "awayCode": "NED",
+          "awayFlag": "https://crests.football-data.org/8601.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537362",
+          "group": "Bảng F",
+          "date": "26 tháng 6, 2026",
+          "time": "06:00 (giờ VN)",
+          "homeCode": "JPN",
+          "homeFlag": "https://crests.football-data.org/766.svg",
+          "awayCode": "SWE",
+          "awayFlag": "https://crests.football-data.org/792.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537367",
+          "group": "Bảng G",
+          "date": "27 tháng 6, 2026",
+          "time": "10:00 (giờ VN)",
+          "homeCode": "NZL",
+          "homeFlag": "https://crests.football-data.org/783.svg",
+          "awayCode": "BEL",
+          "awayFlag": "https://crests.football-data.org/805.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537368",
+          "group": "Bảng G",
+          "date": "27 tháng 6, 2026",
+          "time": "10:00 (giờ VN)",
+          "homeCode": "EGY",
+          "homeFlag": "https://crests.football-data.org/825.svg",
+          "awayCode": "IRN",
+          "awayFlag": "https://crests.football-data.org/iran.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537373",
+          "group": "Bảng H",
+          "date": "27 tháng 6, 2026",
+          "time": "07:00 (giờ VN)",
+          "homeCode": "URY",
+          "homeFlag": "https://crests.football-data.org/758.svg",
+          "awayCode": "ESP",
+          "awayFlag": "https://crests.football-data.org/760.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537374",
+          "group": "Bảng H",
+          "date": "27 tháng 6, 2026",
+          "time": "07:00 (giờ VN)",
+          "homeCode": "CPV",
+          "homeFlag": "https://crests.football-data.org/cape_verde.svg",
+          "awayCode": "KSA",
+          "awayFlag": "https://crests.football-data.org/saudi_arabia.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537395",
+          "group": "Bảng I",
+          "date": "27 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "NOR",
+          "homeFlag": "https://crests.football-data.org/813.svg",
+          "awayCode": "FRA",
+          "awayFlag": "https://crests.football-data.org/773.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537396",
+          "group": "Bảng I",
+          "date": "27 tháng 6, 2026",
+          "time": "02:00 (giờ VN)",
+          "homeCode": "SEN",
+          "homeFlag": "https://crests.football-data.org/senegal.svg",
+          "awayCode": "IRQ",
+          "awayFlag": "https://crests.football-data.org/iraq.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537401",
+          "group": "Bảng J",
+          "date": "28 tháng 6, 2026",
+          "time": "09:00 (giờ VN)",
+          "homeCode": "JOR",
+          "homeFlag": "https://crests.football-data.org/8049.png",
+          "awayCode": "ARG",
+          "awayFlag": "https://crests.football-data.org/762.png",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537402",
+          "group": "Bảng J",
+          "date": "28 tháng 6, 2026",
+          "time": "09:00 (giờ VN)",
+          "homeCode": "ALG",
+          "homeFlag": "https://crests.football-data.org/algeria.svg",
+          "awayCode": "AUT",
+          "awayFlag": "https://crests.football-data.org/816.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537407",
+          "group": "Bảng K",
+          "date": "28 tháng 6, 2026",
+          "time": "06:30 (giờ VN)",
+          "homeCode": "COL",
+          "homeFlag": "https://crests.football-data.org/818.svg",
+          "awayCode": "POR",
+          "awayFlag": "https://crests.football-data.org/765.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537408",
+          "group": "Bảng K",
+          "date": "28 tháng 6, 2026",
+          "time": "06:30 (giờ VN)",
+          "homeCode": "COD",
+          "homeFlag": "https://crests.football-data.org/congo_dr.svg",
+          "awayCode": "UZB",
+          "awayFlag": "https://crests.football-data.org/8070.png",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537413",
+          "group": "Bảng L",
+          "date": "28 tháng 6, 2026",
+          "time": "04:00 (giờ VN)",
+          "homeCode": "PAN",
+          "homeFlag": "https://crests.football-data.org/panama.svg",
+          "awayCode": "ENG",
+          "awayFlag": "https://crests.football-data.org/770.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        },
+        {
+          "id": "537414",
+          "group": "Bảng L",
+          "date": "28 tháng 6, 2026",
+          "time": "04:00 (giờ VN)",
+          "homeCode": "CRO",
+          "homeFlag": "https://crests.football-data.org/799.svg",
+          "awayCode": "GHA",
+          "awayFlag": "https://crests.football-data.org/ghana.svg",
+          "scoreStr": null,
+          "started": false,
+          "finished": false,
+          "liveShort": null,
+          "reasonShort": null,
+          "goals": [],
+          "matchStats": []
+        }
+      ]
     }
   }
 }

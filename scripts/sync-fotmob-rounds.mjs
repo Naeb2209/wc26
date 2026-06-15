@@ -98,6 +98,19 @@ function playerKeys(full, last) {
 
 const pairKey = (a, b) => [a, b].sort().join("-");
 
+// Đảo "2 - 0" -> "0 - 2" khi thứ tự home/away của FotMob lệch với lịch của ta.
+function reverseScore(s) {
+  const m = /^(\d+)\s*-\s*(\d+)$/.exec(s || "");
+  return m ? `${m[2]} - ${m[1]}` : s || null;
+}
+
+// Map vòng Fantasy -> [stage, round] trong db.schedule (mới có vòng bảng; knockout bổ sung sau).
+const ROUND_TO_SCHEDULE = {
+  g1: ["Vòng Bảng", "Lượt 1"],
+  g2: ["Vòng Bảng", "Lượt 2"],
+  g3: ["Vòng Bảng", "Lượt 3"],
+};
+
 async function withRetry(fn, label, n = 3) {
   let err;
   for (let i = 0; i < n; i++) {
@@ -164,7 +177,10 @@ async function main() {
         list: fx.map((m) => ({
           id: String(m.id),
           started: !!m?.status?.started,
+          finished: !!m?.status?.finished,
           scoreStr: m?.status?.scoreStr || null,
+          liveShort: m?.status?.liveTime?.short || null, // "45'", "67'", "HT"… khi đang đá
+          reasonShort: m?.status?.reason?.short || null, // "FT", "AET", "Pen", "HT"… khi kết thúc/nghỉ
           home: m?.home?.name || "",
           away: m?.away?.name || "",
         })),
@@ -172,11 +188,21 @@ async function main() {
     });
     if (fixtures.err) throw new Error(`Không đọc được lịch league: ${fixtures.err}`);
 
-    const matchByPair = new Map(); // pairKey -> { id, started, scoreStr }
+    const matchByPair = new Map(); // pairKey -> { id, started, finished, scoreStr, liveShort, reasonShort, homeCode, awayCode }
     for (const fx of fixtures.list) {
       const h = codeOf(fx.home);
       const a = codeOf(fx.away);
-      if (h && a) matchByPair.set(pairKey(h, a), { id: fx.id, started: fx.started, scoreStr: fx.scoreStr });
+      if (h && a)
+        matchByPair.set(pairKey(h, a), {
+          id: fx.id,
+          started: fx.started,
+          finished: fx.finished,
+          scoreStr: fx.scoreStr,
+          liveShort: fx.liveShort,
+          reasonShort: fx.reasonShort,
+          homeCode: h,
+          awayCode: a,
+        });
     }
     console.log(`→ FotMob ${fixtures.list.length} trận; khớp ${matchByPair.size} cặp mã đội.`);
 
@@ -234,7 +260,27 @@ async function main() {
               });
             const teamBlock = (team) =>
               !team ? null : { name: team.name, players: [...teamPlayers(team, true), ...teamPlayers(team, false)] };
-            return { home: teamBlock(lu?.homeTeam), away: teamBlock(lu?.awayTeam) };
+
+            // Bàn thắng (cả 2 đội) từ matchFacts; bỏ loạt luân lưu.
+            const mfEvents = j?.content?.matchFacts?.events?.events || [];
+            const goals = mfEvents
+              .filter((e) => e.type === "Goal" && !e.isPenaltyShootoutEvent)
+              .map((e) => ({
+                min: e.time ?? e.timeStr ?? null,
+                player: e.nameStr || e.fullName || e.player?.name || "",
+                assist: e.assistInput || null,
+                isHome: !!e.isHome,
+                ownGoal: !!e.ownGoal,
+                penalty: /penalt/i.test((e.goalDescriptionKey || "") + (e.goalDescription || "")),
+              }));
+
+            // Thống kê tổng quan trận ("Top stats": kiểm soát bóng, xG, sút, chuyền…).
+            const topGroup = (j?.content?.stats?.Periods?.All?.stats || []).find((g) => g.title === "Top stats");
+            const matchStats = (topGroup?.stats || [])
+              .filter((s) => s.type !== "title")
+              .map((s) => ({ title: s.title, key: s.key, type: s.type, home: s.stats?.[0] ?? null, away: s.stats?.[1] ?? null }));
+
+            return { home: teamBlock(lu?.homeTeam), away: teamBlock(lu?.awayTeam), goals, matchStats };
           }, matchId),
         `matchDetails ${matchId}`
       );
@@ -248,7 +294,7 @@ async function main() {
         for (const p of block.players) for (const k of playerKeys(p.name, p.lastName)) if (!lookup.has(k)) lookup.set(k, p);
         byCode[code] = lookup;
       }
-      const val = { byCode };
+      const val = { byCode, goals: det.goals || [], matchStats: det.matchStats || [] };
       detailCache.set(matchId, val);
       return val;
     }
@@ -325,6 +371,67 @@ async function main() {
 
     if (!stored) throw new Error("Không lấy được chỉ số cầu thủ nào (trận chưa đá hoặc không khớp tên?).");
 
+    // Kết quả TẤT CẢ trận của mỗi vòng (lấy danh sách trận từ lịch, tỷ số/bàn thắng/thống kê từ FotMob).
+    const matches = {};
+    for (const [rk, [stage, roundName]] of Object.entries(ROUND_TO_SCHEDULE)) {
+      const sched = db.schedule?.[stage]?.matches?.[roundName];
+      if (!Array.isArray(sched) || !sched.length) continue;
+      const list = [];
+      for (const m of sched) {
+        const fx = matchByPair.get(pairKey(m.homeCode, m.awayCode));
+        const sameOrient = fx?.homeCode === m.homeCode; // FotMob có thể đảo home/away so với lịch
+        let scoreStr = null;
+        if (fx?.scoreStr) scoreStr = sameOrient ? fx.scoreStr : reverseScore(fx.scoreStr);
+
+        // Trận đã bắt đầu -> lấy bàn thắng + thống kê (gắn mã đội theo lịch để khỏi lệch chiều).
+        let goals = [];
+        let matchStats = [];
+        if (fx?.started) {
+          try {
+            const det = await loadMatch(fx.id);
+            goals = (det.goals || [])
+              .map((gl) => ({
+                min: gl.min,
+                player: gl.player,
+                assist: gl.assist,
+                ownGoal: gl.ownGoal,
+                penalty: gl.penalty,
+                teamCode: gl.isHome ? fx.homeCode : fx.awayCode,
+              }))
+              .sort((a, b) => (a.min ?? 0) - (b.min ?? 0));
+            matchStats = (det.matchStats || []).map((s) => ({
+              title: s.title,
+              key: s.key,
+              type: s.type,
+              home: sameOrient ? s.home : s.away,
+              away: sameOrient ? s.away : s.home,
+            }));
+          } catch (e) {
+            console.warn(`  ! Không lấy được chi tiết trận ${m.homeCode}-${m.awayCode}: ${e.message}`);
+          }
+        }
+
+        list.push({
+          id: m.id,
+          group: m.group,
+          date: m.date,
+          time: m.time,
+          homeCode: m.homeCode,
+          homeFlag: m.homeFlag,
+          awayCode: m.awayCode,
+          awayFlag: m.awayFlag,
+          scoreStr,
+          started: !!fx?.started,
+          finished: !!fx?.finished,
+          liveShort: fx?.liveShort || null, // phút đang đá / "HT"
+          reasonShort: fx?.reasonShort || null, // "FT" / "AET" / "Pen" / "HT"
+          goals,
+          matchStats,
+        });
+      }
+      matches[rk] = list;
+    }
+
     db.roundStats = {
       source: "FotMob",
       leagueId: Number(LEAGUE_ID),
@@ -333,6 +440,7 @@ async function main() {
       updated: new Date().toISOString(),
       playerImg: "https://images.fotmob.com/image_resources/playerimages/{id}.png",
       rounds,
+      matches,
     };
     writeFileSync(DB_PATH, JSON.stringify(db, null, 2), "utf8");
     console.log(`✓ Đã ghi roundStats: ${stored} cầu thủ / ${Object.keys(rounds).length} vòng (bỏ qua ${missMatch} chưa đá, ${missPlayer} không khớp).`);
