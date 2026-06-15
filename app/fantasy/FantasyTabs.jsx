@@ -184,6 +184,13 @@ const ALL_ROUNDS = ROUND_GROUPS.flatMap((g) => g.rounds);
 
 const roundPointsOf = (p, key) => p.rounds?.[key] ?? 0;
 
+// Tên đội trưởng trong đội hình chính của 1 squad (ưu tiên Max Captain nếu có).
+function captainNameOf(squad) {
+  const starters = squad?.starters || [];
+  const cap = starters.find((p) => p.isMaxCaptain) || starters.find((p) => p.isCaptain);
+  return cap?.name || null;
+}
+
 // Cầu thủ được chọn nhiều nhất trong vòng — gộp ownership từ tất cả squads.
 // _sel để dành cho dữ liệu thật theo vòng; mock hiện dùng chung một đội nên mọi vòng giống nhau.
 function mostPickedOf(squads, _sel, limit = 10) {
@@ -812,6 +819,7 @@ function RoundTab({ standings, squads, squadsByRound, roundStats }) {
                   {ranked.map((p) => {
                     const isBottom = ranked.length > 3 && p.roundRank === ranked.length;
                     const isSel = current?.manager === p.manager;
+                    const captain = captainNameOf(roundSquads?.[p.manager]);
                     const ringColor = p.roundRank === 1 ? "#facc15" : isBottom ? "#ba1a1a" : "#e5e7eb";
                     const tint = p.roundRank === 1 ? "#fffbeb" : null; // nền vàng nhạt cho hạng 1
                     const ring = (extra) => ({
@@ -852,6 +860,9 @@ function RoundTab({ standings, squads, squadsByRound, roundStats }) {
                                 </span>
                               )}
                             </div>
+                            {captain && (
+                              <div className="text-on-surface-variant text-[12px] truncate mt-0.5">{captain}</div>
+                            )}
                             {p.team && <div className="text-on-surface-variant text-[12px] truncate">{p.team}</div>}
                           </div>
                         </td>

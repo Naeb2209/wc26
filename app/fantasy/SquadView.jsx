@@ -477,7 +477,7 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
   const shownPts = p.displayPoints ?? p.points;
   const captainDoubled = p.isCaptain && Number(shownPts) !== Number(p.points || 0);
   const borderCls = twelfth
-    ? "border-green-500 bg-green-500/10 shadow-[0_0_14px_rgba(34,197,94,0.5)]"
+    ? "border-[#9b3fc4] bg-[#9b3fc4]/10 shadow-[0_0_14px_rgba(155,63,196,0.55)]"
     : p.isCaptain
     ? "border-yellow-400 bg-yellow-400/10 shadow-[0_0_14px_rgba(250,204,21,0.55)]"
     : "border-white/15 bg-white/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.35)]";
@@ -491,7 +491,7 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
       className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${borderCls} ${compact ? "w-[134px]" : "w-[150px]"}`}
     >
       {twelfth && (
-        <span className="absolute -top-2 left-1/2 -translate-x-1/2 z-20 px-1.5 py-0.5 rounded bg-green-500 text-white text-[9px] font-bold uppercase leading-none shadow tracking-wide">
+        <span className="absolute -top-2 left-1/2 -translate-x-1/2 z-20 px-1.5 py-0.5 rounded bg-[#9b3fc4] text-white text-[9px] font-bold uppercase leading-none shadow tracking-wide">
           12th
         </span>
       )}
@@ -745,6 +745,17 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
 
     let starters = (squad.starters || []).map(applyFm);
 
+    // 12th Man thường nằm TRONG starters (cờ isTwelfthMan) chứ không phải field riêng.
+    // Tách ra để hiển thị riêng ở góc trên-trái sân và không tính vào sơ đồ 11 người.
+    let twelfthMan = squad.twelfthMan ? applyFm(squad.twelfthMan) : null;
+    if (!twelfthMan) {
+      const idx = starters.findIndex((p) => p.isTwelfthMan);
+      if (idx >= 0) {
+        twelfthMan = starters[idx];
+        starters = starters.filter((_, i) => i !== idx);
+      }
+    }
+
     if (isMaxCaptain && starters.length) {
       let topIdx = 0;
       starters.forEach((p, i) => {
@@ -763,7 +774,7 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
       ...squad,
       starters: withDisplay(starters),
       bench: withDisplay((squad.bench || []).map(applyFm)),
-      twelfthMan: squad.twelfthMan ? applyFm(squad.twelfthMan) : null,
+      twelfthMan: twelfthMan ? withDisplay([twelfthMan])[0] : null,
     };
   }, [squad, chip, fotmobDetail]);
 
