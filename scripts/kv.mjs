@@ -19,7 +19,7 @@ export function loadEnvLocal() {
   }
 }
 
-export const KV_KEYS = { fantasy: "wc26:fantasy", playerStats: "wc26:playerStats" };
+export const KV_KEYS = { fantasy: "wc26:fantasy", playerStats: "wc26:playerStats", roundStats: "wc26:roundStats" };
 
 function getKv() {
   const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
@@ -39,5 +39,18 @@ export async function writeKv(key, value) {
   } catch (e) {
     console.warn(`! Ghi KV thất bại (${e.message}) — bỏ qua, đã có data/db.json.`);
     return false;
+  }
+}
+
+// Đọc 1 key JSON từ KV. Trả về null nếu chưa cấu hình / lỗi (để caller fallback db.json).
+export async function readKv(key) {
+  loadEnvLocal();
+  const kv = getKv();
+  if (!kv) return null;
+  try {
+    return (await kv.get(key)) ?? null;
+  } catch (e) {
+    console.warn(`! Đọc KV thất bại (${e.message}) — dùng data/db.json.`);
+    return null;
   }
 }
