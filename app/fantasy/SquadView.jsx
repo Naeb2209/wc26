@@ -107,6 +107,92 @@ function computeRoundDetail(p) {
 const dec = (n) => (n == null ? "0" : String(n).replace(".", ","));
 const frac = (a, b) => `${a}/${b} (${b > 0 ? Math.round((a / b) * 100) : 0}%)`;
 
+// ---- Chỉ số THẬT từ FotMob (db.roundStats) — nhãn tiếng Việt theo `key` ổn định ----
+const FOTMOB_STAT_VI = {
+  rating_title: "Điểm FotMob",
+  minutes_played: "Số phút đã chơi",
+  goals: "Bàn thắng",
+  assists: "Kiến tạo",
+  expected_goals: "Bàn thắng kỳ vọng (xG)",
+  expected_goals_on_target_variant: "Sút trúng đích kỳ vọng (xGOT)",
+  expected_assists: "Kiến tạo kỳ vọng (xA)",
+  xg_and_xa: "xG + xA",
+  total_shots: "Tổng số cú sút",
+  accurate_passes: "Chuyền bóng chính xác",
+  chances_created: "Cơ hội đã tạo ra",
+  ShotsOnTarget: "Sút trúng đích",
+  ShotsOffTarget: "Sút ra ngoài",
+  shot_accuracy: "Sút chính xác",
+  defensive_actions: "Hành động phòng ngự",
+  touches: "Lượt chạm",
+  touches_opp_box: "Chạm tại vùng cấm địch",
+  dribbles_succeeded: "Qua người thành công",
+  passes_into_final_third: "Chuyền vào 1/3 cuối sân",
+  long_balls_accurate: "Bóng dài chính xác",
+  dispossessed: "Bị cướp bóng",
+  expected_goals_non_penalty: "xG không phạt đền",
+  big_chance_missed: "Bỏ lỡ cơ hội lớn",
+  "matchstats.headers.tackles": "Tranh bóng",
+  shot_blocks: "Cản phá",
+  clearances: "Phá bóng",
+  headed_clearance: "Phá bóng bằng đầu",
+  interceptions: "Chặn cắt",
+  recoveries: "Thu hồi bóng",
+  dribbled_past: "Bị rê qua",
+  ground_duels_won: "Tranh bóng mặt đất thắng",
+  aerials_won: "Không chiến thắng",
+  was_fouled: "Bị phạm lỗi",
+  fouls: "Phạm lỗi",
+  duel_won: "Tranh chấp thắng",
+  duel_lost: "Tranh chấp thua",
+  saves: "Cứu thua",
+  goals_conceded: "Bàn thua",
+  expected_goals_on_target_faced: "xGOT phải đối mặt",
+  goals_prevented: "Bàn thua đã ngăn",
+  keeper_diving_save: "Cứu thua bay người",
+  saves_inside_box: "Cứu thua trong vòng cấm",
+  keeper_sweeper: "Đóng vai trò quét",
+  punches: "Đấm bóng",
+  player_throws: "Ném phát động",
+  keeper_high_claim: "Bắt bóng bổng",
+};
+const FOTMOB_BLOCK_VI = {
+  "Top stats": "Thống kê hàng đầu",
+  Attack: "Tấn công",
+  Defense: "Phòng ngự",
+  Duels: "Tranh bóng",
+  Possession: "Kiểm soát bóng",
+  Goalkeeping: "Thủ môn",
+};
+function fmtFotmob(it) {
+  const v = it.value;
+  if (v == null || it.type === "boolean") return null;
+  if (it.type === "fractionWithPercentage" && it.total != null) {
+    return `${v}/${it.total} (${it.total ? Math.round((v / it.total) * 100) : 0}%)`;
+  }
+  return dec(v);
+}
+// Render các block chỉ số thật từ FotMob (dùng lại StatSection/Stat cho đồng bộ giao diện).
+function FotmobStatBlocks({ fm }) {
+  return (
+    <>
+      {(fm.stats || []).map((block) => {
+        const items = (block.items || [])
+          .map((it) => ({ ...it, fmt: fmtFotmob(it) }))
+          .filter((it) => it.fmt != null);
+        if (!items.length) return null;
+        return (
+          <StatSection key={block.title} title={FOTMOB_BLOCK_VI[block.title] || block.title}>
+            {items.map((it, i) => (
+              <Stat key={i} label={FOTMOB_STAT_VI[it.key] || it.label} value={it.fmt} />
+            ))}
+          </StatSection>
+        );
+      })}
+    </>
+  );
+}
+
 // Một dòng thống kê (nhãn trái – giá trị phải).
 function Stat({ label, value }) {
   return (
@@ -127,8 +213,66 @@ function StatSection({ title, children }) {
   );
 }
 
+// ---- Breakdown điểm FIFA (như popup chính thức) ----
+// Điểm/bàn theo vị trí (luật World Cup 2026 Fantasy, khớp tab Luật).
+const GOAL_PTS = { GK: 9, DEF: 7, MID: 6, FWD: 5 };
+const CS_PTS = { GK: 5, DEF: 5, MID: 1, FWD: 0 };
+// Tính điểm từng hạng mục từ stat thô FIFA. Tổng hiển thị vẫn lấy số chính thức (fifa.points).
+function fifaBreakdownRows(bucket, s) {
+  const n = (k) => Number(s?.[k] || 0);
+  const rows = [];
+  const MP = n("MP");
+  if (MP > 0) rows.push({ label: "Số phút thi đấu", value: MP > 90 ? 90 : MP, pts: MP >= 60 ? 2 : 1 });
+  if (n("GS")) rows.push({ label: "Bàn thắng", value: n("GS"), pts: n("GS") * (GOAL_PTS[bucket] ?? 5) });
+  if (n("AS")) rows.push({ label: "Kiến tạo", value: n("AS"), pts: n("AS") * 3 });
+  if (n("CS") && MP >= 60 && CS_PTS[bucket]) rows.push({ label: "Giữ sạch lưới", value: n("CS"), pts: CS_PTS[bucket] });
+  if (bucket === "GK" && n("S")) rows.push({ label: "Cứu thua", value: n("S"), pts: Math.floor(n("S") / 3) });
+  if (bucket === "MID" && n("T")) rows.push({ label: "Tắc bóng", value: n("T"), pts: Math.floor(n("T") / 3) });
+  if (bucket === "MID" && n("CC")) rows.push({ label: "Cơ hội tạo ra", value: n("CC"), pts: Math.floor(n("CC") / 2) });
+  if (bucket === "FWD" && n("ST")) rows.push({ label: "Sút trúng đích", value: n("ST"), pts: Math.floor(n("ST") / 2) });
+  if ((bucket === "GK" || bucket === "DEF") && n("GC"))
+    rows.push({ label: "Bàn thua", value: n("GC"), pts: -Math.max(0, n("GC") - 1) });
+  if (n("PW")) rows.push({ label: "Kiếm được penalty", value: n("PW"), pts: n("PW") * 2 });
+  if (n("PS")) rows.push({ label: "Cản penalty", value: n("PS"), pts: n("PS") * 3 });
+  if (n("PC")) rows.push({ label: "Để mất penalty", value: n("PC"), pts: -n("PC") });
+  if (n("OG")) rows.push({ label: "Phản lưới nhà", value: n("OG"), pts: -2 * n("OG") });
+  if (n("YC")) rows.push({ label: "Thẻ vàng", value: n("YC"), pts: -n("YC") });
+  if (n("RC")) rows.push({ label: "Thẻ đỏ", value: n("RC"), pts: -2 * n("RC") });
+  return rows;
+}
+const ptsStr = (x) => (x > 0 ? `+${x}` : String(x));
+function FifaBreakdown({ fifa, bucket }) {
+  const rows = fifaBreakdownRows(bucket, fifa.stats);
+  return (
+    <div className="mt-3">
+      <div className="px-3 py-1 text-label-caps font-label-caps uppercase tracking-wide text-primary rounded-md bg-primary/10">
+        Bảng điểm (FIFA)
+      </div>
+      <div className="mt-1 rounded-md overflow-hidden border border-black/5">
+        <div className="flex items-center justify-between gap-3 px-3 py-1.5 text-[11px] font-label-caps uppercase text-on-surface-variant bg-black/[0.04]">
+          <span>Hạng mục</span>
+          <span className="flex items-center gap-3"><span className="w-10 text-right">Giá trị</span><span className="w-8 text-right">Điểm</span></span>
+        </div>
+        {rows.map((r, i) => (
+          <div key={i} className="flex items-center justify-between gap-3 px-3 py-1.5 text-[13px] odd:bg-black/[0.035]">
+            <span className="text-on-surface-variant">{r.label}</span>
+            <span className="flex items-center gap-3 font-data-mono tabular-nums">
+              <span className="w-10 text-right text-on-surface">{r.value}</span>
+              <span className={`w-8 text-right font-bold ${r.pts > 0 ? "text-tertiary" : r.pts < 0 ? "text-error" : "text-on-surface-variant"}`}>{ptsStr(r.pts)}</span>
+            </span>
+          </div>
+        ))}
+        <div className="flex items-center justify-between gap-3 px-3 py-1.5 text-[13px] border-t border-black/10 bg-primary/5">
+          <span className="font-bold text-on-surface">Tổng điểm</span>
+          <span className="font-data-mono font-bold text-primary tabular-nums">{ptsStr(Number(fifa.points || 0))}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Popup chi tiết cầu thủ trong vòng hiện tại.
-function PlayerStatsModal({ p, onClose }) {
+function PlayerStatsModal({ p, fotmobDetail, onClose }) {
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -141,10 +285,16 @@ function PlayerStatsModal({ p, onClose }) {
     };
   }, [onClose]);
 
-  const d = useMemo(() => (p?.played ? computeRoundDetail(p) : null), [p]);
+  // Chỉ số THẬT từ FotMob cho cầu thủ này ở vòng đang xem (nếu đã sync + có thi đấu).
+  const fm = p && fotmobDetail ? fotmobDetail[`${p.teamCode}:${p.name}`] : null;
+  const useReal = !!(fm && fm.played && fm.stats && fm.stats.length);
+  // Không có FIFA lẫn FotMob -> fallback bộ số mock cũ (deterministic) để giao diện không trống.
+  const d = useMemo(() => (!useReal && !p?.fifa && p?.played ? computeRoundDetail(p) : null), [p, useReal]);
   if (!p) return null;
 
   const shownPts = p.displayPoints ?? p.points;
+  const played = p.played || (useReal && fm.played);
+  const shownMinutes = p.minutes == null ? p.minutes : Math.min(90, p.minutes);
 
   return (
     <div
@@ -194,11 +344,18 @@ function PlayerStatsModal({ p, onClose }) {
               <span>{POS_LABEL[p.bucket] || ""}</span>
             </div>
             <div className="mt-1.5 flex items-center justify-center gap-2 text-[12px] font-data-mono">
-              <span className="px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-800 ring-1 ring-yellow-400/50 font-bold">
-                {shownPts} pts
-              </span>
-              {p.played ? (
-                <span className="text-on-surface-variant">{p.minutes}&apos; thi đấu</span>
+              {played && (
+                <span className="px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-800 ring-1 ring-yellow-400/50 font-bold">
+                  {shownPts} pts
+                </span>
+              )}
+              {useReal && fm.rating != null && (
+                <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 ring-1 ring-emerald-400/50 font-bold" title="Điểm FotMob trận này">
+                  {Number(fm.rating).toFixed(1)} ⭐
+                </span>
+              )}
+              {played ? (
+                <span className="text-on-surface-variant">{shownMinutes}&apos; thi đấu</span>
               ) : (
                 <span className="text-on-surface-variant">vs {p.oppCode || "?"} · {p.matchDate}</span>
               )}
@@ -208,7 +365,20 @@ function PlayerStatsModal({ p, onClose }) {
 
         {/* Body (vùng cuộn — thanh cuộn chỉ nằm ở đây) */}
         <div className="flex-1 overflow-y-auto overscroll-contain px-3 pb-4 [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.2)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/20 hover:[&::-webkit-scrollbar-thumb]:bg-black/30">
-          {!p.played || !d ? (
+          {!played ? (
+            <div className="py-10 text-center text-on-surface-variant">
+              <div className="material-symbols-outlined text-4xl text-on-surface-variant/60">schedule</div>
+              <div className="mt-2 font-bold">Chưa thi đấu vòng này</div>
+              <div className="mt-1 text-[13px] font-data-mono">
+                Gặp {p.oppName || p.oppCode || "?"} · {p.matchDate}
+              </div>
+            </div>
+          ) : p.fifa || useReal ? (
+            <>
+              {p.fifa && <FifaBreakdown fifa={p.fifa} bucket={p.bucket} />}
+              {useReal && <FotmobStatBlocks fm={fm} />}
+            </>
+          ) : !d ? (
             <div className="py-10 text-center text-on-surface-variant">
               <div className="material-symbols-outlined text-4xl text-on-surface-variant/60">schedule</div>
               <div className="mt-2 font-bold">Chưa thi đấu vòng này</div>
@@ -344,15 +514,18 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
               title="Số phút đã thi đấu"
               className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-black/60 border border-green-400/70 text-[12px] font-data-mono font-bold leading-none text-green-400 shadow"
             >
-              {p.minutes}<span className="text-[9px] ml-0.5">'</span>
+              {Math.min(90, p.minutes)}<span className="text-[9px] ml-0.5">'</span>
             </span>
           )}
-          <span
-            title={captainDoubled ? "Điểm (đội trưởng ×2)" : "Điểm"}
-            className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-black/60 border border-yellow-400/70 text-[12px] font-data-mono font-bold leading-none text-yellow-400 shadow"
-          >
-            {shownPts}<span className="text-[9px] ml-0.5">pts</span>
-          </span>
+          {/* Chưa đá thì không hiện điểm (tránh "0pts" gây hiểu nhầm) */}
+          {p.played && (
+            <span
+              title={captainDoubled ? "Điểm (đội trưởng ×2)" : "Điểm"}
+              className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-black/60 border border-yellow-400/70 text-[12px] font-data-mono font-bold leading-none text-yellow-400 shadow"
+            >
+              {shownPts}<span className="text-[9px] ml-0.5">pts</span>
+            </span>
+          )}
         </div>
         {p.avatar ? (
           <img
@@ -407,10 +580,10 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
           ) : (
             <div className="mt-0.5 flex justify-center gap-1 font-data-mono">
               <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[12px] font-bold bg-amber-500/35 text-amber-100 ring-1 ring-amber-300/60" title="Bàn thắng kỳ vọng">
-                <span className="opacity-80 text-[10px]">xG</span>{p.xG}
+                <span className="opacity-80 text-[10px]">xG</span>{Number(p.xG ?? 0).toFixed(2)}
               </span>
               <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[12px] font-bold bg-violet-500/35 text-violet-100 ring-1 ring-violet-300/60" title="Kiến tạo kỳ vọng">
-                <span className="opacity-80 text-[10px]">xA</span>{p.xA}
+                <span className="opacity-80 text-[10px]">xA</span>{Number(p.xA ?? 0).toFixed(2)}
               </span>
             </div>
           )
@@ -418,11 +591,41 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
         {/* Bàn thắng/kiến tạo (chỉ khi đã đá, thủ môn bỏ qua): cao cố định để mọi thẻ bằng nhau.
             Dự bị chưa đá thì bỏ hẳn dòng này (đã có chip lịch/ngày/giá ở trên). */}
         {(p.played || !compact) && (
-          <div className="mt-0.5 h-4 flex items-center justify-center gap-1.5 overflow-hidden whitespace-nowrap text-[11px] leading-none">
-            {p.played && p.bucket !== "GK" && p.goals > 0 && <span title={`${p.goals} bàn thắng`}>{"⚽".repeat(p.goals)}</span>}
-            {p.played && p.bucket !== "GK" && p.assists > 0 && <span title={`${p.assists} kiến tạo`}>{"👟".repeat(p.assists)}</span>}
+          <div className="mt-0.5 h-5 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap text-[13px] leading-none">
+            {p.played && p.bucket !== "GK" && p.goals > 0 && (
+              <span className="inline-flex items-center gap-0.5" title={`${p.goals} bàn thắng`}>
+                ⚽<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.goals}</span>
+              </span>
+            )}
+            {p.played && p.bucket !== "GK" && p.assists > 0 && (
+              <span className="inline-flex items-center gap-0.5" title={`${p.assists} kiến tạo`}>
+                👟<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.assists}</span>
+              </span>
+            )}
+            {/* Tiền vệ: tắc bóng — chỉ hiện khi có ít nhất 1 pha tắc */}
+            {p.played && !compact && p.bucket === "MID" && p.tackles > 0 && (
+              <span className="inline-flex items-center gap-0.5" title={`${p.tackles} pha tắc bóng`}>
+                🛡️<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.tackles}</span>
+              </span>
+            )}
+            {/* Tiền vệ: cơ hội tạo ra — chỉ hiện khi > 0 */}
+            {p.played && !compact && p.bucket === "MID" && p.chancesCreated > 0 && (
+              <span className="inline-flex items-center gap-0.5" title={`${p.chancesCreated} cơ hội tạo ra`}>
+                🔑<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.chancesCreated}</span>
+              </span>
+            )}
+            {/* Tiền đạo: cú sút trúng đích — chung hàng & cùng style emoji */}
+            {p.played && !compact && p.bucket === "FWD" && p.sot != null && (
+              <span className="inline-flex items-center gap-0.5" title={`${p.sot} cú sút trúng đích`}>
+                🎯<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.sot}</span>
+              </span>
+            )}
             {p.played &&
-              ((p.bucket !== "GK" && p.goals === 0 && p.assists === 0) ||
+              ((p.bucket !== "GK" &&
+                p.goals === 0 &&
+                p.assists === 0 &&
+                !(!compact && p.bucket === "MID" && (p.tackles > 0 || p.chancesCreated > 0)) &&
+                !(!compact && p.bucket === "FWD" && p.sot != null)) ||
                 (p.bucket === "GK" && compact)) && (
                 <span className="text-white/35" title="Không có bàn thắng / kiến tạo">—</span>
               )}
@@ -489,8 +692,33 @@ function Bench({ squad, infoMode, onSelect }) {
   );
 }
 
+// Chú thích icon trên thẻ cầu thủ.
+const LEGEND = [
+  { icon: "⚽", label: "Bàn thắng" },
+  { icon: "👟", label: "Kiến tạo" },
+  { icon: "🛡️", label: "Tắc bóng (tiền vệ)" },
+  { icon: "🔑", label: "Cơ hội tạo ra (tiền vệ)" },
+  { icon: "🎯", label: "Sút trúng đích (tiền đạo)" },
+];
+function StatLegend() {
+  return (
+    <div className="mb-3 px-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-on-surface-variant">
+      <span className="font-label-caps uppercase tracking-wide text-on-surface-variant/70">Chú thích:</span>
+      {LEGEND.map((it) => (
+        <span key={it.label} className="inline-flex items-center gap-1 whitespace-nowrap">
+          <span>{it.icon}</span>
+          {it.label}
+        </span>
+      ))}
+      <span className="inline-flex items-center gap-1 whitespace-nowrap">
+        <span className="text-amber-700 font-bold">xG</span>/<span className="text-violet-700 font-bold">xA</span> bàn thắng / kiến tạo kỳ vọng
+      </span>
+    </div>
+  );
+}
+
 // Panel đội hình (bên phải bảng xếp hạng Round). Nhận manager đang chọn + squad của họ.
-export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
+export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDetail = null }) {
   const [infoMode, setInfoMode] = useState("opp");
   const [selected, setSelected] = useState(null);
 
@@ -501,7 +729,21 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
   const squadView = useMemo(() => {
     if (!squad) return squad;
     const isMaxCaptain = chip === "Maximum Captain";
-    let starters = squad.starters || [];
+
+    // Số trên thẻ (bàn/kiến tạo/tắc/sút trúng/phút/cứu thua) DÙNG FIFA — đã nhúng trong squadsByRound,
+    // khớp với điểm. FotMob chỉ bổ sung xG/xA (FIFA không có) + điểm phong độ (rating) cho modal.
+    const applyFm = (p) => {
+      const fm = fotmobDetail?.[`${p.teamCode}:${p.name}`];
+      if (!fm) return p;
+      return {
+        ...p,
+        xG: fm.xG != null ? fm.xG : p.xG,
+        xA: fm.xA != null ? fm.xA : p.xA,
+        fmRating: fm.rating,
+      };
+    };
+
+    let starters = (squad.starters || []).map(applyFm);
 
     if (isMaxCaptain && starters.length) {
       let topIdx = 0;
@@ -517,8 +759,13 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
         return { ...p, displayPoints: p.isCaptain && !isMaxCaptain ? raw * 2 : raw };
       });
 
-    return { ...squad, starters: withDisplay(starters), bench: withDisplay(squad.bench || []) };
-  }, [squad, chip]);
+    return {
+      ...squad,
+      starters: withDisplay(starters),
+      bench: withDisplay((squad.bench || []).map(applyFm)),
+      twelfthMan: squad.twelfthMan ? applyFm(squad.twelfthMan) : null,
+    };
+  }, [squad, chip, fotmobDetail]);
 
   return (
     <div className="bg-surface-container-lowest border border-surface-variant rounded-xl p-2 sm:p-4 self-start">
@@ -575,6 +822,7 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
             </div>
             </div>
           </div>
+          <StatLegend />
           <Pitch
             squad={squadView}
             infoMode={infoMode}
@@ -582,7 +830,7 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
             twelfthMan={chip === "12th Man" ? squadView.twelfthMan : null}
           />
           <Bench squad={squadView} infoMode={infoMode} onSelect={setSelected} />
-          {selected && <PlayerStatsModal p={selected} onClose={() => setSelected(null)} />}
+          {selected && <PlayerStatsModal p={selected} fotmobDetail={fotmobDetail} onClose={() => setSelected(null)} />}
         </>
       ) : (
         <div className="p-10 text-center text-on-surface-variant">Chưa có đội hình cho người chơi này.</div>
