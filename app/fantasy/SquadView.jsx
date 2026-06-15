@@ -490,7 +490,8 @@ function DnpInfo() {
 function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false }) {
   const size = compact ? "w-28 h-32" : "w-32 h-36";
   const shownPts = p.displayPoints ?? p.points;
-  const captainDoubled = p.isCaptain && Number(shownPts) !== Number(p.points || 0);
+  // `p.points` đã gồm x2 đội trưởng (tính ở bước sync) -> so với rawPoints để biết có nhân đôi.
+  const captainDoubled = p.isCaptain && Number(p.points || 0) !== Number(p.rawPoints ?? p.points);
   // Đã đá xong nhưng cầu thủ không được ra sân -> làm mờ thẻ, hiện nhãn "Không ra sân".
   const dnp = !!p.dnp;
   const borderCls = twelfth
@@ -752,10 +753,12 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
     return m;
   }, [roundMatches]);
 
-  // displayPoints: điểm hiển thị trên thẻ. Đội trưởng được nhân đôi.
+  // displayPoints: điểm hiển thị trên thẻ. `p.points` ĐÃ gồm phần nhân đôi đội
+  // trưởng do bước sync tính (xem makePlayer trong fantasy-sync-utils) — KHÔNG
+  // nhân đôi lại ở đây, nếu không điểm đội trưởng sẽ bị gấp đôi 2 lần.
   // Với Maximum Captain: băng đội trưởng tự chuyển sang starter điểm cao nhất
-  // (ghi đè dữ liệu sync), nhưng phần nhân đôi là hiệu ứng booster nằm ở dòng
-  // "Điều chỉnh FIFA" — nên KHÔNG nhân đôi trên thẻ (xem luật trong RulesTab).
+  // (ghi đè dữ liệu sync); phần nhân đôi là hiệu ứng booster nằm ở dòng
+  // "Điều chỉnh FIFA" (xem luật trong RulesTab).
   const squadView = useMemo(() => {
     if (!squad) return squad;
     const isMaxCaptain = chip === "Maximum Captain";
@@ -807,10 +810,7 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
     }
 
     const withDisplay = (list) =>
-      list.map((p) => {
-        const raw = Number(p.points || 0);
-        return { ...p, displayPoints: p.isCaptain && !isMaxCaptain ? raw * 2 : raw };
-      });
+      list.map((p) => ({ ...p, displayPoints: Number(p.points || 0) }));
 
     return {
       ...squad,
