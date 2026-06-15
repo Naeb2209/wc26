@@ -341,7 +341,7 @@ function RoundInsights({ squads, standings, sel }) {
   );
 }
 
-function RoundTab({ standings, squads, squadsByRound }) {
+function RoundTab({ standings, squads, squadsByRound, roundStats }) {
   const hasData = useMemo(() => {
     const m = {};
     for (const r of ALL_ROUNDS) {
@@ -360,6 +360,8 @@ function RoundTab({ standings, squads, squadsByRound }) {
   const empty = !hasData[sel];
   const syncedSquads = squadsByRound?.[sel] || {};
   const roundSquads = Object.keys(syncedSquads).length ? syncedSquads : squads;
+  // Chỉ số thật từ FotMob cho cầu thủ được pick ở vòng này (key = `teamCode:tên`).
+  const fotmobDetail = roundStats?.rounds?.[sel] || null;
 
   const ranked = useMemo(
     () =>
@@ -494,6 +496,7 @@ function RoundTab({ standings, squads, squadsByRound }) {
             points={current?.rpts}
             chip={current?.chips?.[sel]}
             chipIcon={current?.chips?.[sel] ? <BoosterIcon name={current.chips[sel]} size={22} /> : null}
+            fotmobDetail={fotmobDetail}
           />
 
           {/* Thống kê vòng (Pick / Capt / Chip / Top pts) — cột phải ở xl, full-width bên dưới ở mốc nhỏ hơn */}
@@ -999,7 +1002,7 @@ function RulesTab() {
 }
 
 /* ---------------- Shell ---------------- */
-export default function FantasyTabs({ standings, squads, squadsByRound = {}, playerStats = null }) {
+export default function FantasyTabs({ standings, squads, squadsByRound = {}, roundStats = null, playerStats = null }) {
   const [tab, setTab] = useState("total");
 
   if (standings.length === 0) {
@@ -1040,7 +1043,7 @@ export default function FantasyTabs({ standings, squads, squadsByRound = {}, pla
 
       {tab === "total" && <TotalTab standings={standings} />}
       {tab === "round" && (
-        <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} />
+        <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} />
       )}
       {tab === "info" && <InfoTab playerStats={playerStats} />}
       {tab === "rules" && <RulesTab />}

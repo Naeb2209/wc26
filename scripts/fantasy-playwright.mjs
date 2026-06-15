@@ -17,7 +17,7 @@
  */
 
 import { chromium } from "playwright";
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, readdirSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { mergeFantasySync } from "./fantasy-sync-utils.mjs";
@@ -82,9 +82,26 @@ const MODE = process.argv[2] || "sync";
 const LEAGUE = env.FIFA_LEAGUE_ID || "1090";
 const HEADFUL = !!env.FIFA_HEADFUL;
 
+// Dùng lại binary Chromium mà `npx playwright install chromium` đã tải (giống sync-stats/sync-rounds),
+// tránh lỗi khi phiên bản Playwright trỏ tới chromium build chưa tải về.
+function findChromium() {
+  if (env.CHROME_EXE && existsSync(env.CHROME_EXE)) return env.CHROME_EXE;
+  const base = join(process.env.LOCALAPPDATA || "", "ms-playwright");
+  if (existsSync(base)) {
+    for (const d of readdirSync(base).filter((d) => d.startsWith("chromium-")).sort().reverse()) {
+      for (const sub of ["chrome-win", "chrome-win64"]) {
+        const exe = join(base, d, sub, "chrome.exe");
+        if (existsSync(exe)) return exe;
+      }
+    }
+  }
+  return undefined; // để Playwright tự dùng mặc định nếu có
+}
+
 async function openContext(headless) {
   return chromium.launchPersistentContext(USER_DIR, {
     headless,
+    executablePath: findChromium(),
     viewport: { width: 1280, height: 800 },
     args: ["--disable-blink-features=AutomationControlled"],
   });
@@ -105,6 +122,7 @@ async function mapAndWrite(payload) {
     rounds: payload.rounds,
     players: payload.players,
     squads: payload.squads,
+    playerStats: payload.playerStats,
     leagueId: LEAGUE,
   });
   writeFileSync(DB_PATH, JSON.stringify(db, null, 2), "utf8");
@@ -208,9 +226,36 @@ async function runSync() {
           }
         }
 
+        // Chỉ số chi tiết FIFA cho NHỮNG cầu thủ được pick (file tĩnh / cầu thủ, gồm mọi vòng).
+        // /json/fantasy/player_stats/<id>.json -> [{ roundId, points, stats:{MP,GS,AS,T,ST,CC,S,CS,GC,...} }]
+        const pickedIds = new Set();
+        const collect = (map) => {
+          if (map) for (const pos of Object.keys(map)) for (const id of map[pos] || []) pickedIds.add(Number(id));
+        };
+        for (const rid of Object.keys(histories)) {
+          for (const uid of Object.keys(histories[rid])) {
+            const t = histories[rid][uid].team;
+            collect(t.lineup);
+            collect(t.bench);
+            if (t.twelfthMan?.playerId) pickedIds.add(Number(t.twelfthMan.playerId));
+          }
+        }
+        const playerStats = {};
+        const ids = [...pickedIds];
+        for (let i = 0; i < ids.length; i += 20) {
+          await Promise.all(
+            ids.slice(i, i + 20).map(async (id) => {
+              try {
+                const r = await fetch(`/json/fantasy/player_stats/${id}.json`);
+                if (r.ok) playerStats[id] = await r.json();
+              } catch {}
+            })
+          );
+        }
+
         return {
           ok: true,
-          payload: { ranks, roundRankings, histories, rounds, players, squads },
+          payload: { ranks, roundRankings, histories, rounds, players, squads, playerStats },
         };
       } catch (e) {
         return { ok: false, status: 0, text: String(e) };

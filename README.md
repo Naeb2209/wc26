@@ -109,6 +109,45 @@ trong khung **23:00–11:00 giờ VN** (cron tính theo UTC = `16-23,0-3`), và 
 - *Lưu ý:* IP của runner GitHub (datacenter) đôi khi bị Cloudflare của FotMob thử thách. Nếu workflow
   báo bị chặn, vẫn có thể chạy `npm run sync-stats` ở máy local làm phương án dự phòng.
 
+## Chỉ số thật từng vòng cho cầu thủ được pick (Fantasy → tab Round)
+Ở trang `/fantasy` → tab **Round**, bấm vào một cầu thủ trong đội hình sẽ mở chi tiết **trong trận
+của vòng đang xem**, kết hợp **2 nguồn**:
+- **FIFA** (`/json/fantasy/player_stats/<id>.json`) — số liệu **khớp với điểm Fantasy**: bàn thắng,
+  kiến tạo, tắc bóng, sút trúng đích, cứu thua, số phút… + **bảng breakdown điểm** (như popup FIFA).
+- **FotMob** (`db.roundStats`) — chỉ số FIFA không có: **xG, xA**, chuyền chính xác, tranh chấp, **rating ⭐**.
+
+- Chỉ đồng bộ cho **những cầu thủ được pick** trong `fantasy.squadsByRound` của từng vòng (g1, g2, g3,
+  r32, …) — không lấy cho toàn bộ cầu thủ → dữ liệu gọn.
+- **Thẻ trên đội hình**: bàn thắng/kiến tạo/tắc/sút trúng/số phút lấy từ **FIFA** (khớp điểm), kèm
+  **xG/xA** từ FotMob. Điểm `pts` là điểm thật FIFA.
+- **Bấm vào thẻ** → modal: **Bảng điểm (FIFA)** ở trên (giá trị + điểm từng hạng mục, tổng = điểm FIFA),
+  rồi **Chỉ số chi tiết (FotMob)** bên dưới (xG/xA, sút, chuyền, tắc, tranh chấp…), nhãn tiếng Việt.
+- FIFA stats **nhúng thẳng vào `fantasy.squadsByRound`** khi chạy `npm run fantasy:sync`; FotMob lấy
+  riêng bằng `npm run sync-rounds`. Cầu thủ chưa đá → *“Chưa thi đấu”*; thiếu cả 2 nguồn → số ước lượng.
+
+> Mã stat FIFA: `MP` phút, `GS` bàn, `AS` kiến tạo, `T` tắc, `ST` sút trúng, `CC` cơ hội tạo ra,
+> `S` cứu thua, `CS` sạch lưới, `GC` bàn thua, `YC/RC` thẻ, `PW/PC/PS` penalty được/mất/cản.
+
+> ⚠️ FotMob bị **Cloudflare** + header `x-mas` bảo vệ → giống `/stats`, phải chạy bằng **Playwright**.
+
+```bash
+npm install
+npx playwright install chromium     # dùng chung với sync-stats / fantasy:sync
+
+npm run fantasy:sync                # cần chạy TRƯỚC để có squadsByRound (đội hình pick từng vòng)
+npm run sync-rounds                 # headless, ghi data/db.json -> roundStats (+ KV nếu có)
+```
+
+- Script đọc `fantasy.squadsByRound` (ưu tiên KV, fallback `data/db.json`), gom các cầu thủ được pick
+  theo từng vòng (kèm `oppCode` để biết đúng trận), dò lịch league 77 (`fixtures.allMatches`) để khớp
+  **cặp mã đội ↔ matchId FotMob**, rồi `matchDetails` chỉ trích chỉ số của đúng các cầu thủ đó.
+- Khớp tên FotMob ↔ FIFA Fantasy theo nhiều khóa (tên đầy đủ, họ, token đã sắp xếp — xử lý cả tên
+  bị đảo thứ tự kiểu Hàn Quốc). Ghi vào `data/db.json → roundStats.rounds[vòng]["MÃĐỘI:tên"]`.
+  Nếu cấu hình KV → ghi thẳng `wc26:roundStats`, web đọc runtime, **không cần deploy**.
+- Nếu headless bị chặn: `$env:STATS_HEADFUL=1; npm run sync-rounds` (PowerShell).
+- Tự động: workflow [`.github/workflows/sync-rounds.yml`](.github/workflows/sync-rounds.yml) chạy mỗi 15
+  phút trong khung **23:00–11:00 giờ VN** (giống sync-stats; không cần secret vì trang public).
+
 ## Bảng xếp hạng Fantasy (`/fantasy`)
 Điểm người chơi FIFA Fantasy của công ty, lưu trong `data/db.json` → `fantasy`:
 
@@ -191,7 +230,7 @@ dày (vài phút/lần lúc có trận) sẽ **spam deploy** (Vercel Hobby giớ
 để dữ liệu động ghi thẳng vào kho key-value, web đọc lúc runtime → **cập nhật không cần deploy**.
 
 **Cơ chế (tự bật khi có env, không có thì chạy như cũ):**
-- `fantasy` và `playerStats` lưu ở KV (`wc26:fantasy`, `wc26:playerStats`); phần ít đổi (đội, lịch, bảng đấu)
+- `fantasy`, `playerStats` và `roundStats` lưu ở KV (`wc26:fantasy`, `wc26:playerStats`, `wc26:roundStats`); phần ít đổi (đội, lịch, bảng đấu)
   vẫn nằm trong `data/db.json`. [lib/db.js](lib/db.js) `readDb()` đọc KV và phủ lên snapshot tĩnh.
 - Script sync ([scripts/kv.mjs](scripts/kv.mjs)) ghi KV nếu có env; **workflow tự bỏ bước commit khi có secret KV** → không deploy.
 - **Thiếu env KV → fallback nguyên trạng** (đọc/ghi `db.json` + commit như trước). An toàn, không bắt buộc.

@@ -22,13 +22,30 @@ export default async function FantasyPage() {
   // Đội hình (mock) cho mỗi manager, sinh từ pool cầu thủ thật trong db.
   const squads = buildSquads(standings, db.teams || []);
 
+  // Dữ liệu Fantasy sync để crest rỗng → bơm cờ theo teamCode từ db.teams (cho thẻ, modal, insights).
+  const flagByCode = new Map((db.teams || []).map((t) => [t.code, t.flag]));
+  const withCrest = (p) => (p && !p.crest && flagByCode.get(p.teamCode) ? { ...p, crest: flagByCode.get(p.teamCode) } : p);
+  const squadsByRound = {};
+  for (const [rk, managers] of Object.entries(data.squadsByRound || {})) {
+    squadsByRound[rk] = {};
+    for (const [mgr, sq] of Object.entries(managers || {})) {
+      squadsByRound[rk][mgr] = {
+        ...sq,
+        starters: (sq.starters || []).map(withCrest),
+        bench: (sq.bench || []).map(withCrest),
+        twelfthMan: sq.twelfthMan ? withCrest(sq.twelfthMan) : sq.twelfthMan,
+      };
+    }
+  }
+
   return (
     <main className="flex-grow w-full px-margin-mobile md:px-margin-desktop py-12">
       <FantasyTabs
         data={data}
         standings={standings}
         squads={squads}
-        squadsByRound={data.squadsByRound || {}}
+        squadsByRound={squadsByRound}
+        roundStats={db.roundStats || null}
         playerStats={db.playerStats ? applyConfiguredAvatars(db.playerStats, db.teams || []) : null}
       />
     </main>
