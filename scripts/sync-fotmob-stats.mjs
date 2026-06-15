@@ -20,6 +20,7 @@ import { chromium } from "playwright";
 import { readFileSync, writeFileSync, existsSync, readdirSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { writeKv, KV_KEYS } from "./kv.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -275,6 +276,11 @@ async function main() {
 
     const catCount = groups.reduce((n, g) => n + g.categories.length, 0);
     console.log(`✓ Đã ghi playerStats: ${catCount} hạng mục, ${totalRows} dòng vào data/db.json`);
+
+    // Ghi lên KV nếu đã cấu hình -> web đọc runtime, không cần commit/deploy.
+    if (await writeKv(KV_KEYS.playerStats, db.playerStats)) {
+      console.log("✓ Đã ghi playerStats lên KV (wc26:playerStats).");
+    }
   } finally {
     await browser.close();
   }

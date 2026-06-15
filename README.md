@@ -185,6 +185,30 @@ Script tự đổi refresh → access token mới mỗi lần chạy, và **tự
 - `getFantasy()` ([lib/fifa-api.js](lib/fifa-api.js)) cũng tự gọi endpoint nếu env có cookie/access token, nhưng **server (Vercel) dễ bị Akamai chặn + không lưu được refresh token xoay** → ưu tiên `npm run sync-fantasy` (local).
 - Không cấu hình gì → trang dùng `fantasy.standings` tĩnh trong db.json.
 
+## Dữ liệu động bằng KV (Upstash / Vercel KV) — bỏ deploy spam
+Mặc định, mỗi lần sync `fantasy`/`playerStats` phải **commit `data/db.json` → Vercel build lại**. Cập nhật
+dày (vài phút/lần lúc có trận) sẽ **spam deploy** (Vercel Hobby giới hạn ~100 deploy/ngày). Cấu hình **KV**
+để dữ liệu động ghi thẳng vào kho key-value, web đọc lúc runtime → **cập nhật không cần deploy**.
+
+**Cơ chế (tự bật khi có env, không có thì chạy như cũ):**
+- `fantasy` và `playerStats` lưu ở KV (`wc26:fantasy`, `wc26:playerStats`); phần ít đổi (đội, lịch, bảng đấu)
+  vẫn nằm trong `data/db.json`. [lib/db.js](lib/db.js) `readDb()` đọc KV và phủ lên snapshot tĩnh.
+- Script sync ([scripts/kv.mjs](scripts/kv.mjs)) ghi KV nếu có env; **workflow tự bỏ bước commit khi có secret KV** → không deploy.
+- **Thiếu env KV → fallback nguyên trạng** (đọc/ghi `db.json` + commit như trước). An toàn, không bắt buộc.
+
+**Thiết lập (1 lần):**
+1. Tạo kho Redis miễn phí: **Upstash** (console.upstash.com → Create Database) hoặc **Vercel → Storage → KV**.
+2. Lấy 2 giá trị: `KV_REST_API_URL` + `KV_REST_API_TOKEN` (dùng token **read-write**, không phải read-only).
+   *(Upstash trực tiếp đặt tên `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` — code nhận cả hai cách.)*
+3. Khai báo ở **3 nơi** (giữ nguyên tên biến cho đồng nhất):
+   - **Vercel** → Project → Settings → Environment Variables — *nếu tạo qua Marketplace Upstash thì tự gắn rồi.* Đổi env xong **redeploy 1 lần** để bản đang chạy nhận biến mới.
+   - **GitHub** → repo → Settings → Secrets and variables → Actions → **Secrets**: `KV_REST_API_URL`, `KV_REST_API_TOKEN` (để workflow ghi).
+   - **`.env.local`** ở máy (bấm tab `.env.local` ở Upstash → **Copy Snippet** → dán vào file).
+4. Chạy thử: `npm run sync-fantasy` / `npm run sync-stats` → thấy log `✓ Đã ghi … lên KV`. Mở web kiểm tra số liệu.
+
+> Sau khi có KV, 2 workflow **không commit nữa** (nhờ điều kiện `if: env.KV_REST_API_URL == ''`), nên có thể
+> tăng tần suất sync tùy ý mà không lo deploy. Token KV để trong **GitHub Secrets**, không đưa cho dịch vụ ngoài.
+
 ## Dữ liệu local / hạng FIFA
 - `data/db.json` chứa snapshot bảng đấu, đội tuyển và lịch thi đấu; danh sách kênh VTV (`channels`); bảng tra `fifaRanks`; bảng `broadcast`; BXH `fantasy`; và dữ liệu trận `live` fallback.
 - `stages` + `schedule`: khung lịch theo vòng cho trang `/schedule`. `npm run sync-football` cập nhật vòng bảng và giữ lại đội hình dự đoán đã nhập thủ công cho các cặp đấu trùng khớp.

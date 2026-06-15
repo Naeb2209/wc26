@@ -144,6 +144,8 @@ function PlayerStatsModal({ p, onClose }) {
   const d = useMemo(() => (p?.played ? computeRoundDetail(p) : null), [p]);
   if (!p) return null;
 
+  const shownPts = p.displayPoints ?? p.points;
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-black/60 backdrop-blur-sm p-3 sm:p-6"
@@ -193,7 +195,7 @@ function PlayerStatsModal({ p, onClose }) {
             </div>
             <div className="mt-1.5 flex items-center justify-center gap-2 text-[12px] font-data-mono">
               <span className="px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-800 ring-1 ring-yellow-400/50 font-bold">
-                {p.points} pts
+                {shownPts} pts
               </span>
               {p.played ? (
                 <span className="text-on-surface-variant">{p.minutes}&apos; thi đấu</span>
@@ -300,8 +302,15 @@ function UpcomingInfo({ p, mode }) {
   );
 }
 
-function PlayerCard({ p, compact, infoMode = "opp", onSelect }) {
+function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false }) {
   const size = compact ? "w-28 h-32" : "w-32 h-36";
+  const shownPts = p.displayPoints ?? p.points;
+  const captainDoubled = p.isCaptain && Number(shownPts) !== Number(p.points || 0);
+  const borderCls = twelfth
+    ? "border-green-500 bg-green-500/10 shadow-[0_0_14px_rgba(34,197,94,0.5)]"
+    : p.isCaptain
+    ? "border-yellow-400 bg-yellow-400/10 shadow-[0_0_14px_rgba(250,204,21,0.55)]"
+    : "border-white/15 bg-white/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.35)]";
   return (
     <div
       role="button"
@@ -309,12 +318,13 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect }) {
       onClick={() => onSelect?.(p)}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onSelect?.(p))}
       title="Xem thống kê chi tiết"
-      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-        p.isCaptain
-          ? "border-yellow-400 bg-yellow-400/10 shadow-[0_0_14px_rgba(250,204,21,0.55)]"
-          : "border-white/15 bg-white/[0.06] shadow-[0_2px_8px_rgba(0,0,0,0.35)]"
-      } ${compact ? "w-[134px]" : "w-[150px]"}`}
+      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${borderCls} ${compact ? "w-[134px]" : "w-[150px]"}`}
     >
+      {twelfth && (
+        <span className="absolute -top-2 left-1/2 -translate-x-1/2 z-20 px-1.5 py-0.5 rounded bg-green-500 text-white text-[9px] font-bold uppercase leading-none shadow tracking-wide">
+          12th
+        </span>
+      )}
       <CaptainBadge p={p} />
       <div className={`relative ${size} flex items-center justify-center`}>
         {/* Góc trái: cờ nước + mã đội, C/V ở dưới */}
@@ -338,10 +348,10 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect }) {
             </span>
           )}
           <span
-            title="Điểm"
+            title={captainDoubled ? "Điểm (đội trưởng ×2)" : "Điểm"}
             className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-black/60 border border-yellow-400/70 text-[12px] font-data-mono font-bold leading-none text-yellow-400 shadow"
           >
-            {p.points}<span className="text-[9px] ml-0.5">pts</span>
+            {shownPts}<span className="text-[9px] ml-0.5">pts</span>
           </span>
         </div>
         {p.avatar ? (
@@ -423,7 +433,7 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect }) {
   );
 }
 
-function Pitch({ squad, infoMode, onSelect }) {
+function Pitch({ squad, infoMode, onSelect, twelfthMan }) {
   const byBucket = useMemo(() => {
     const m = { GK: [], DEF: [], MID: [], FWD: [] };
     for (const p of squad.starters) (m[p.bucket] || (m[p.bucket] = [])).push(p);
@@ -442,6 +452,13 @@ function Pitch({ squad, infoMode, onSelect }) {
         <div className="absolute left-1/2 -translate-x-1/2 top-0 w-32 h-12 border border-white/40 border-t-0" />
         <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-32 h-12 border border-white/40 border-b-0" />
       </div>
+
+      {/* 12th Man — cầu thủ thứ 12 thêm vào ở góc trên bên trái, viền xanh + nhãn "12th" */}
+      {twelfthMan && (
+        <div className="absolute top-2 left-2 z-20">
+          <PlayerCard p={twelfthMan} compact twelfth infoMode={infoMode} onSelect={onSelect} />
+        </div>
+      )}
 
       <div className="relative space-y-5 sm:space-y-7">
         {ROWS.map((r) => (
@@ -476,12 +493,32 @@ function Bench({ squad, infoMode, onSelect }) {
 export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
   const [infoMode, setInfoMode] = useState("opp");
   const [selected, setSelected] = useState(null);
-  const playerPoints = useMemo(
-    () => (squad?.starters || []).reduce((sum, player) => sum + Number(player.points || 0), 0),
-    [squad]
-  );
-  const officialPoints = points == null ? null : Number(points);
-  const fifaAdjustment = officialPoints == null ? null : officialPoints - playerPoints;
+
+  // displayPoints: điểm hiển thị trên thẻ. Đội trưởng được nhân đôi.
+  // Với Maximum Captain: băng đội trưởng tự chuyển sang starter điểm cao nhất
+  // (ghi đè dữ liệu sync), nhưng phần nhân đôi là hiệu ứng booster nằm ở dòng
+  // "Điều chỉnh FIFA" — nên KHÔNG nhân đôi trên thẻ (xem luật trong RulesTab).
+  const squadView = useMemo(() => {
+    if (!squad) return squad;
+    const isMaxCaptain = chip === "Maximum Captain";
+    let starters = squad.starters || [];
+
+    if (isMaxCaptain && starters.length) {
+      let topIdx = 0;
+      starters.forEach((p, i) => {
+        if (Number(p.points || 0) > Number(starters[topIdx].points || 0)) topIdx = i;
+      });
+      starters = starters.map((p, i) => ({ ...p, isCaptain: i === topIdx, isVice: false }));
+    }
+
+    const withDisplay = (list) =>
+      list.map((p) => {
+        const raw = Number(p.points || 0);
+        return { ...p, displayPoints: p.isCaptain && !isMaxCaptain ? raw * 2 : raw };
+      });
+
+    return { ...squad, starters: withDisplay(starters), bench: withDisplay(squad.bench || []) };
+  }, [squad, chip]);
 
   return (
     <div className="bg-surface-container-lowest border border-surface-variant rounded-xl p-2 sm:p-4 self-start">
@@ -538,31 +575,13 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon }) {
             </div>
             </div>
           </div>
-          <Pitch squad={squad} infoMode={infoMode} onSelect={setSelected} />
-          {officialPoints != null && (
-            <div className="mt-3 rounded-xl border border-outline-variant bg-surface-container-low overflow-hidden">
-              <div className="flex items-center justify-between gap-3 px-3 py-2 text-[12px]">
-                <span className="text-on-surface-variant">Tổng điểm cầu thủ trên sân</span>
-                <span className="font-data-mono font-semibold tabular-nums text-on-surface">{playerPoints}</span>
-              </div>
-              {fifaAdjustment !== 0 && (
-                <div className="flex items-center justify-between gap-3 px-3 py-2 text-[12px] border-t border-outline-variant">
-                  <span className="text-on-surface-variant">
-                    Điều chỉnh FIFA (captain, booster, thay người)
-                  </span>
-                  <span className="font-data-mono font-semibold tabular-nums text-tertiary">
-                    {fifaAdjustment > 0 ? "+" : ""}
-                    {fifaAdjustment}
-                  </span>
-                </div>
-              )}
-              <div className="flex items-center justify-between gap-3 px-3 py-2 border-t border-outline-variant bg-primary/10">
-                <span className="font-bold text-on-surface">Điểm vòng FIFA</span>
-                <span className="font-data-mono font-bold tabular-nums text-primary">{officialPoints}</span>
-              </div>
-            </div>
-          )}
-          <Bench squad={squad} infoMode={infoMode} onSelect={setSelected} />
+          <Pitch
+            squad={squadView}
+            infoMode={infoMode}
+            onSelect={setSelected}
+            twelfthMan={chip === "12th Man" ? squadView.twelfthMan : null}
+          />
+          <Bench squad={squadView} infoMode={infoMode} onSelect={setSelected} />
           {selected && <PlayerStatsModal p={selected} onClose={() => setSelected(null)} />}
         </>
       ) : (

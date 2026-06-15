@@ -7,7 +7,6 @@ import { useState } from "react";
 const LINKS = [
   { href: "/", label: "Bảng đấu" },
   { href: "/teams", label: "Đội bóng" },
-  { href: "/stats", label: "Thống kê" },
   { href: "/schedule", label: "Lịch thi đấu" },
   { href: "/live", label: "Trực tiếp" },
   { href: "/fantasy", label: "Fantasy" },

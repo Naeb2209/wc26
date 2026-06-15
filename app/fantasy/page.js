@@ -1,6 +1,7 @@
 import { getFantasy } from "@/lib/fifa-api";
 import { readDb } from "@/lib/db";
 import { buildSquads } from "@/lib/fantasy-squad";
+import { applyConfiguredAvatars } from "@/lib/stats-avatars";
 import FantasyTabs from "./FantasyTabs";
 
 export const dynamic = "force-dynamic";
@@ -28,6 +29,7 @@ export default async function FantasyPage() {
         standings={standings}
         squads={squads}
         squadsByRound={data.squadsByRound || {}}
+        playerStats={db.playerStats ? applyConfiguredAvatars(db.playerStats, db.teams || []) : null}
       />
     </main>
   );

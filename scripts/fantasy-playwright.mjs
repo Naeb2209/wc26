@@ -21,6 +21,7 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { mergeFantasySync } from "./fantasy-sync-utils.mjs";
+import { writeKv, KV_KEYS } from "./kv.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -94,7 +95,7 @@ async function isLoggedIn(ctx) {
   return cookies.some((c) => c.name === "X-SID" || c.name === "fp.user");
 }
 
-function mapAndWrite(payload) {
+async function mapAndWrite(payload) {
   const db = JSON.parse(readFileSync(DB_PATH, "utf8"));
   mergeFantasySync({
     db,
@@ -108,6 +109,11 @@ function mapAndWrite(payload) {
   });
   writeFileSync(DB_PATH, JSON.stringify(db, null, 2), "utf8");
   console.log(`✓ Đã cập nhật ${db.fantasy.standings.length} người và đội hình từng vòng vào data/db.json`);
+
+  // Ghi lên KV nếu đã cấu hình -> web đọc runtime, không cần commit/deploy.
+  if (await writeKv(KV_KEYS.fantasy, db.fantasy)) {
+    console.log("✓ Đã ghi fantasy lên KV (wc26:fantasy).");
+  }
 }
 
 async function runLogin() {
@@ -221,7 +227,7 @@ async function runSync() {
       console.error("✗ Không có ranks (sai league id hoặc chưa join?).");
       process.exit(1);
     }
-    mapAndWrite(result.payload);
+    await mapAndWrite(result.payload);
   } finally {
     await ctx.close();
   }
