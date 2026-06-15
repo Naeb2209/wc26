@@ -96,6 +96,12 @@ function playerKeys(full, last) {
   return [...keys].filter(Boolean);
 }
 
+// Tên đầu (chỉ dùng làm FALLBACK khi tìm kiếm, KHÔNG đưa vào lookup) — khớp cầu thủ FotMob
+// dạng mononym (vd "Gabriel" ↔ FIFA "Gabriel Magalhães"). Vì mononym đăng ký full=họ=tên đầu,
+// còn cầu thủ nhiều từ KHÔNG đăng ký tên đầu, nên tránh khớp nhầm 2 người cùng tên đầu
+// (vd "Julián Araujo" sẽ KHÔNG dính vào "Julián Quiñones").
+const firstNameKey = (full) => normName((full || "").trim().split(/\s+/)[0] || "");
+
 const pairKey = (a, b) => [a, b].sort().join("-");
 
 // Đảo "2 - 0" -> "0 - 2" khi thứ tự home/away của FotMob lệch với lịch của ta.
@@ -323,6 +329,11 @@ async function main() {
         }
         let hit = null;
         for (const k of playerKeys(name)) if (lookup.has(k)) { hit = lookup.get(k); break; }
+        // Fallback cuối: khớp tên đầu với cầu thủ mononym (vd "Gabriel" ↔ "Gabriel Magalhães").
+        if (!hit) {
+          const fk = firstNameKey(name);
+          if (fk && lookup.has(fk)) hit = lookup.get(fk);
+        }
         if (!hit) {
           missPlayer++;
           continue;

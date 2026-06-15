@@ -30096,7 +30096,7 @@
     "leagueId": 77,
     "leagueName": "FIFA World Cup",
     "sourceUrl": "https://www.fotmob.com/leagues/77/matches/world-cup",
-    "updated": "2026-06-15T14:33:48.493Z",
+    "updated": "2026-06-15T15:31:57.923Z",
     "playerImg": "https://images.fotmob.com/image_resources/playerimages/{id}.png",
     "rounds": {
       "g1": {
@@ -34914,6 +34914,251 @@
                   "label": "Duels lost",
                   "key": "duel_lost",
                   "value": 5,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            }
+          ]
+        },
+        "BRA:Gabriel Magalhães": {
+          "fotmobMatchId": "4667764",
+          "fotmobId": 795179,
+          "oppCode": "MAR",
+          "scoreStr": "1 - 1",
+          "rating": 6.9,
+          "minutes": 90,
+          "started": true,
+          "played": true,
+          "goals": 0,
+          "assists": 0,
+          "xG": null,
+          "xA": 0.01,
+          "saves": null,
+          "tackles": 1,
+          "sot": null,
+          "yellow": 0,
+          "red": 0,
+          "motm": false,
+          "stats": [
+            {
+              "title": "Top stats",
+              "items": [
+                {
+                  "label": "FotMob rating",
+                  "key": "rating_title",
+                  "value": 6.87,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Minutes played",
+                  "key": "minutes_played",
+                  "value": 90,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Goals",
+                  "key": "goals",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Assists",
+                  "key": "assists",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Expected assists (xA)",
+                  "key": "expected_assists",
+                  "value": 0.01,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "xG + xA",
+                  "key": "xg_and_xa",
+                  "value": 0.01,
+                  "total": null,
+                  "type": "double"
+                },
+                {
+                  "label": "Accurate passes",
+                  "key": "accurate_passes",
+                  "value": 82,
+                  "total": 85,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Chances created",
+                  "key": "chances_created",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Shotmap",
+                  "key": null,
+                  "value": 0,
+                  "total": null,
+                  "type": "boolean"
+                },
+                {
+                  "label": "Defensive actions",
+                  "key": "defensive_actions",
+                  "value": 9,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "title": "Attack",
+              "items": [
+                {
+                  "label": "Touches",
+                  "key": "touches",
+                  "value": 97,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Touches in opposition box",
+                  "key": "touches_opp_box",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Passes into final third",
+                  "key": "passes_into_final_third",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Accurate long balls",
+                  "key": "long_balls_accurate",
+                  "value": 0,
+                  "total": 1,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Dispossessed",
+                  "key": "dispossessed",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "title": "Defense",
+              "items": [
+                {
+                  "label": "Defensive actions",
+                  "key": "defensive_actions",
+                  "value": 9,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Tackles",
+                  "key": "matchstats.headers.tackles",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Blocks",
+                  "key": "shot_blocks",
+                  "value": 2,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Clearances",
+                  "key": "clearances",
+                  "value": 6,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Headed clearance",
+                  "key": "headed_clearance",
+                  "value": 5,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Interceptions",
+                  "key": "interceptions",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Recoveries",
+                  "key": "recoveries",
+                  "value": 5,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Dribbled past",
+                  "key": "dribbled_past",
+                  "value": 0,
+                  "total": null,
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "title": "Duels",
+              "items": [
+                {
+                  "label": "Ground duels won",
+                  "key": "ground_duels_won",
+                  "value": 1,
+                  "total": 2,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Aerial duels won",
+                  "key": "aerials_won",
+                  "value": 2,
+                  "total": 2,
+                  "type": "fractionWithPercentage"
+                },
+                {
+                  "label": "Was fouled",
+                  "key": "was_fouled",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Fouls committed",
+                  "key": "fouls",
+                  "value": 1,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Duels won",
+                  "key": "duel_won",
+                  "value": 3,
+                  "total": null,
+                  "type": "integer"
+                },
+                {
+                  "label": "Duels lost",
+                  "key": "duel_lost",
+                  "value": 1,
                   "total": null,
                   "type": "integer"
                 }
