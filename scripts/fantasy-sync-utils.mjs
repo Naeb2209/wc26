@@ -106,6 +106,29 @@ function boosterFor(team, roundId) {
   return null;
 }
 
+function calculatedTeamRoundPoints(team, roundId, playersById) {
+  if (!team?.id) return null;
+
+  const starterIds = flattenPositionMap(team.lineup).map(({ playerId }) => playerId);
+  const twelfthManId =
+    Number(team?.twelfthMan?.roundId) === Number(roundId)
+      ? Number(team.twelfthMan?.playerId)
+      : 0;
+  if (twelfthManId && !starterIds.includes(twelfthManId)) starterIds.push(twelfthManId);
+  if (!starterIds.length || starterIds.some((playerId) => !playersById.has(playerId))) return null;
+
+  const maxCaptainId =
+    Number(team.maxCaptain) === Number(roundId)
+      ? Number(team.maxCaptainBooster?.playerId)
+      : 0;
+  const captainId = maxCaptainId || Number(team.captain);
+
+  return starterIds.reduce((total, playerId) => {
+    const points = playerRoundPoints(playersById.get(playerId), roundId);
+    return total + points * (playerId === captainId ? 2 : 1);
+  }, 0);
+}
+
 export function normalizeFantasySquad({ team, round, playersById, squadsById, localPlayersByTeam = new Map(), playerStatsById = new Map() }) {
   if (!team?.id) return null;
 
@@ -117,7 +140,9 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
     const isMaxCaptain =
       Number(team.maxCaptain) === Number(round.id) &&
       Number(team.maxCaptainBooster?.playerId) === Number(player.id);
-    const points = isMaxCaptain ? rawPoints * 2 : rawPoints;
+    const hasMaxCaptain = Number(team.maxCaptain) === Number(round.id);
+    const isCaptain = Number(team.captain) === Number(player.id);
+    const points = isMaxCaptain || (!hasMaxCaptain && isCaptain) ? rawPoints * 2 : rawPoints;
 
     // Chỉ số THẬT của FIFA cho cầu thủ này ở vòng này (player_stats/<id>.json).
     const fifaArr = playerStatsById.get(Number(player.id)) || [];
@@ -159,7 +184,7 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
       ...fx,
       minutes,
       played,
-      isCaptain: Number(team.captain) === Number(player.id),
+      isCaptain,
       isVice: Number(team.vice) === Number(player.id),
       isMaxCaptain,
       isTwelfthMan: Number(team.twelfthMan?.playerId) === Number(player.id),
@@ -223,7 +248,10 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     for (const item of FANTASY_ROUNDS) {
       const row = rankingByRound.get(item.id)?.get(userId);
       const historyTeam = histories?.[item.id]?.[userId]?.team;
-      if (historyTeam?.roundPoints != null) {
+      const calculatedPoints = calculatedTeamRoundPoints(historyTeam, item.id, playersById);
+      if (calculatedPoints != null) {
+        roundPoints[item.key] = calculatedPoints;
+      } else if (historyTeam?.roundPoints != null) {
         roundPoints[item.key] = Number(historyTeam.roundPoints);
       } else if (row) {
         roundPoints[item.key] = Number(row.points ?? row.roundPoints ?? 0);
@@ -232,17 +260,18 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
       if (booster) chips[item.key] = booster;
     }
 
-    const latestHistory = [...FANTASY_ROUNDS]
-      .reverse()
-      .map((item) => histories?.[item.id]?.[userId]?.team)
-      .find((team) => team?.overallPoints != null);
     const currentRound = [...FANTASY_ROUNDS]
       .reverse()
       .find((item) => rankingByRound.get(item.id)?.has(userId));
     const currentRoundPoints = currentRound
       ? roundPoints[currentRound.key]
       : Number(rank.roundPoints ?? 0);
-    const totalPoints = Number(latestHistory?.overallPoints ?? rank.overallPoints ?? rank.total ?? 0);
+    const syncedRoundKeys = FANTASY_ROUNDS
+      .filter((item) => roundPoints[item.key] != null)
+      .map((item) => item.key);
+    const totalPoints = syncedRoundKeys.length
+      ? syncedRoundKeys.reduce((total, key) => total + Number(roundPoints[key] || 0), 0)
+      : Number(rank.overallPoints ?? rank.total ?? previous.totalPoints ?? previous.total ?? 0);
 
     return {
       userId,
@@ -293,6 +322,11 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     ...item,
     status: roundsById.get(item.id)?.status || "scheduled",
   }));
+  db.fantasy.summary = {
+    roundWinner: [...standings].sort((a, b) => b.roundPoints - a.roundPoints)[0] || null,
+    seasonLeader: [...standings].sort((a, b) => b.totalPoints - a.totalPoints)[0] || null,
+    roundBottom: [...standings].sort((a, b) => a.roundPoints - b.roundPoints)[0] || null,
+  };
   db.fantasy.updatedRound = `Cập nhật ${new Date().toLocaleString("vi-VN")}`;
   return db;
 }
