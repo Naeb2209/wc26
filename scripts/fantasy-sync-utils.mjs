@@ -115,7 +115,9 @@ function calculatedTeamRoundPoints(team, roundId, playersById) {
       ? Number(team.twelfthMan?.playerId)
       : 0;
   if (twelfthManId && !starterIds.includes(twelfthManId)) starterIds.push(twelfthManId);
-  if (!starterIds.length || starterIds.some((playerId) => !playersById.has(playerId))) return null;
+  // Tổng điểm HLV = điểm các cầu thủ ĐÁ CHÍNH (lineup + 12th Man) cộng lại, đội trưởng x2 —
+  // KHÔNG tính dự bị, và KHÔNG dùng số tổng FIFA báo về. Chỉ bỏ qua khi không có đội hình.
+  if (!starterIds.length) return null;
 
   const maxCaptainId =
     Number(team.maxCaptain) === Number(roundId)
@@ -123,6 +125,7 @@ function calculatedTeamRoundPoints(team, roundId, playersById) {
       : 0;
   const captainId = maxCaptainId || Number(team.captain);
 
+  // Cầu thủ thiếu trong players.json -> tính 0 điểm (không kéo cả vòng về số FIFA).
   return starterIds.reduce((total, playerId) => {
     const points = playerRoundPoints(playersById.get(playerId), roundId);
     return total + points * (playerId === captainId ? 2 : 1);
