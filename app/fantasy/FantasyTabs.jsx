@@ -2,7 +2,6 @@
 
 import { Fragment, useMemo, useState } from "react";
 import { ManagerLineup } from "./SquadView";
-import tournamentStats from "@/data/tournament-stats.mock.json";
 
 const MEDAL = {
   1: { bg: "#fff8e1", ring: "#ffd700", label: "🥇" },
@@ -507,38 +506,112 @@ function RoundTab({ standings, squads, squadsByRound }) {
   );
 }
 
-/* ---------------- Tab: Thông tin giải đấu — bảng thống kê ---------------- */
-// Một bảng xếp hạng (vua phá lưới / kiến tạo / đội ghi bàn / đội thủng lưới).
-// rows: [{ name, team?, flag, avatar?, value }] — team bỏ trống khi xếp theo đội.
-// Có avatar -> hiện ảnh cầu thủ (tròn) + cờ nhỏ ở dòng đội; không có -> dùng cờ làm ảnh chính.
-function LeaderboardCard({ icon, title, unit, rows, accent = "bg-primary text-on-primary", valueColor = "text-primary" }) {
+/* ---------------- Tab: Thông tin giải đấu — bảng thống kê cầu thủ ---------------- */
+// Dữ liệu thật đồng bộ từ FotMob (db.playerStats): groups -> categories -> rows.
+// Mỗi category là một bảng xếp hạng dùng chung template LeaderboardCard.
+
+const STAT_COLLAPSED = 5; // số dòng hiển thị khi chưa bung bảng
+
+// Icon material cho từng nhóm thống kê (tab) — group.icon của FotMob không phải ligature hợp lệ.
+const STAT_GROUP_ICON = {
+  top: "emoji_events",
+  attack: "sports_soccer",
+  defend: "shield",
+  goalkeeping: "sports_handball",
+  discipline: "style",
+};
+
+// Màu nhấn header + màu giá trị theo nhóm.
+const STAT_GROUP_STYLE = {
+  top: { accent: "bg-primary text-on-primary", valueColor: "text-primary" },
+  attack: { accent: "bg-secondary text-on-secondary", valueColor: "text-secondary" },
+  defend: { accent: "bg-tertiary text-on-tertiary", valueColor: "text-tertiary" },
+  goalkeeping: { accent: "bg-primary text-on-primary", valueColor: "text-primary" },
+  discipline: { accent: "bg-error text-on-error", valueColor: "text-on-surface" },
+};
+
+// Icon riêng cho từng hạng mục (theo tên FotMob); thiếu thì rơi về icon nhóm.
+const STAT_CAT_ICON = {
+  goals: "sports_soccer",
+  goal_assist: "handshake",
+  _goals_and_goal_assist: "join_inner",
+  expected_goals: "sports_soccer",
+  ontarget_scoring_att: "my_location",
+  total_scoring_att: "sports_soccer",
+  big_chance_created: "bolt",
+  total_att_assist: "bolt",
+  expected_assists: "handshake",
+  _expected_goals_and_expected_assists_per_90: "insights",
+  big_chance_missed: "dangerous",
+  penalty_won: "sports_soccer",
+  defensive_contributions: "shield",
+  total_tackle: "sports_kabaddi",
+  ball_recovery: "autorenew",
+  clean_sheet: "verified_user",
+  saves: "sports_handball",
+  _save_percentage: "percent",
+  fouls: "report",
+  yellow_card: "style",
+  red_card: "style",
+};
+
+function formatStatUpdated(iso) {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  const p = (x) => String(x).padStart(2, "0");
+  return `${p(d.getDate())}/${p(d.getMonth() + 1)}/${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+function formatStatValue(value, dec) {
+  if (value == null || Number.isNaN(Number(value))) return "–";
+  const n = Number(value);
+  return dec > 0 ? n.toFixed(dec) : String(Math.round(n));
+}
+
+// Ảnh đại diện trong bảng. Có avatar -> ảnh cắt nền; không có -> icon người gradient
+// giống thẻ cầu thủ ở đội hình (bên SquadView).
+function StatAvatar({ src }) {
+  if (src) {
+    return <img src={src} alt="" className="w-[72px] h-[72px] object-contain object-bottom shrink-0" />;
+  }
   return (
-    <div className="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden">
+    <div className="w-[72px] h-[72px] flex items-center justify-center shrink-0">
+      <span
+        className="material-symbols-outlined select-none bg-gradient-to-b from-[#5ab9d4] via-[#9b3fc4] to-[#f0456f] bg-clip-text text-transparent"
+        style={{ fontVariationSettings: "'FILL' 1", fontSize: 56, lineHeight: 1 }}
+      >
+        person
+      </span>
+    </div>
+  );
+}
+
+// Một bảng xếp hạng (vua phá lưới / kiến tạo / xG / cứu thua ...).
+// rows: [{ name, team?, flag, avatar?, value }]. Mặc định gấp lại còn STAT_COLLAPSED dòng.
+function LeaderboardCard({ icon, title, unit, rows, accent = "bg-primary text-on-primary", valueColor = "text-primary" }) {
+  const [open, setOpen] = useState(false);
+  const all = rows || [];
+  const shown = open ? all : all.slice(0, STAT_COLLAPSED);
+  const extra = all.length - STAT_COLLAPSED;
+
+  return (
+    <div className="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden flex flex-col">
       <div className={`${accent} font-label-caps text-label-caps uppercase px-4 py-3 flex items-center gap-2`}>
         <span className="material-symbols-outlined text-[18px]">{icon}</span>
         {title}
       </div>
-      {rows?.length ? (
+      {shown.length ? (
         <ol className="divide-y divide-surface-variant">
-          {rows.map((r, i) => (
+          {shown.map((r, i) => (
             <li key={`${r.name}-${i}`} className="flex items-center gap-3 px-4 py-2.5">
-              {r.avatar ? (
-                <img src={r.avatar} alt="" className="w-[72px] h-[72px] object-contain object-bottom shrink-0" />
-              ) : (
-                r.flag && (
-                  <img
-                    src={r.flag}
-                    alt=""
-                    className="w-7 h-5 object-contain border border-outline-variant bg-white shrink-0"
-                  />
-                )
-              )}
+              <StatAvatar src={r.avatar} />
               <div className="min-w-0 flex-1">
-                <div className={`truncate ${i === 0 ? "font-bold text-on-surface" : "text-on-surface"}`}>{r.name}</div>
+                <div className={`truncate ${i === 0 && !open ? "font-bold text-on-surface" : "text-on-surface"}`}>{r.name}</div>
                 {r.team && (
                   <div className="flex items-center gap-1.5 text-on-surface-variant text-[12px] truncate">
-                    {r.avatar && r.flag && (
-                      <img src={r.flag} alt="" className="w-4 h-3 object-contain border border-outline-variant bg-white shrink-0" />
+                    {r.flag && (
+                      <img src={r.flag} alt="" className="w-6 h-4 object-cover rounded-[2px] shrink-0" />
                     )}
                     <span className="truncate">{r.team}</span>
                   </div>
@@ -551,7 +624,16 @@ function LeaderboardCard({ icon, title, unit, rows, accent = "bg-primary text-on
       ) : (
         <p className="px-4 py-6 text-sm text-on-surface-variant text-center">Chưa có dữ liệu</p>
       )}
-      {unit && rows?.length > 0 && (
+      {extra > 0 && (
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="font-label-caps text-label-caps uppercase text-primary hover:bg-surface-container-low transition-colors py-2.5 border-t border-surface-variant"
+        >
+          {open ? "Thu gọn" : `Xem tất cả (${all.length})`}
+        </button>
+      )}
+      {unit && shown.length > 0 && (
         <p className="px-4 py-2 border-t border-surface-variant font-label-caps text-label-caps text-on-surface-variant uppercase text-right">
           Đơn vị: {unit}
         </p>
@@ -560,55 +642,91 @@ function LeaderboardCard({ icon, title, unit, rows, accent = "bg-primary text-on
   );
 }
 
-function StatsLeaderboards() {
-  const s = tournamentStats || {};
-  const scorers = (s.topScorers || []).map((p) => ({ name: p.name, team: p.team, flag: p.flag, avatar: p.avatar, value: p.goals }));
-  const assists = (s.topAssists || []).map((p) => ({ name: p.name, team: p.team, flag: p.flag, avatar: p.avatar, value: p.assists }));
-  const fantasy = (s.topFantasy || []).map((p) => ({ name: p.name, team: p.team, flag: p.flag, avatar: p.avatar, value: p.points }));
-  const goalsTeams = (s.mostGoalsTeams || []).map((t) => ({ name: t.team, flag: t.flag, value: t.goals }));
-  const concededTeams = (s.mostConcededTeams || []).map((t) => ({ name: t.team, flag: t.flag, value: t.conceded }));
-  const cleanSheetTeams = (s.mostCleanSheetTeams || []).map((t) => ({ name: t.team, flag: t.flag, value: t.cleanSheets }));
-  const cards = (s.mostCards || []).map((p) => ({
-    name: p.name,
-    team: p.team,
-    flag: p.flag,
-    avatar: p.avatar,
-    value: `🟨${p.yellow}${p.red ? ` 🟥${p.red}` : ""}`,
-  }));
+function TournamentStats({ stats }) {
+  const groups = stats.groups || [];
+  const [active, setActive] = useState(groups[0]?.key);
+  const current = groups.find((g) => g.key === active) || groups[0];
+  const updated = formatStatUpdated(stats.updated);
+  const style = STAT_GROUP_STYLE[current?.key] || STAT_GROUP_STYLE.top;
 
   return (
-    <div className="space-y-10">
-      <section>
-        <h3 className="font-display-lg text-headline-md text-primary flex items-center gap-2 mb-4">
-          <span className="material-symbols-outlined">person</span>
-          Thành tích cá nhân
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter">
-          <LeaderboardCard icon="sports_soccer" title="Vua phá lưới" unit="bàn thắng" rows={scorers} />
-          <LeaderboardCard icon="handshake" title="Vua kiến tạo" unit="kiến tạo" rows={assists} />
-          <LeaderboardCard icon="stars" title="Điểm Fantasy cao nhất" unit="điểm" rows={fantasy} accent="bg-secondary text-on-secondary" valueColor="text-secondary" />
-          <LeaderboardCard icon="style" title="Nhiều thẻ phạt nhất" unit="🟨 vàng · 🟥 đỏ" rows={cards} accent="bg-error text-on-error" valueColor="text-on-surface" />
-        </div>
-      </section>
+    <div>
+      {/* Nguồn + thời điểm sync */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-6 text-on-surface-variant">
+        <span className="inline-flex items-center gap-1.5 font-label-caps text-label-caps uppercase">
+          <span className="material-symbols-outlined text-[16px]">database</span>
+          Nguồn: {stats.sourceUrl ? (
+            <a href={stats.sourceUrl} target="_blank" rel="noreferrer" className="text-primary hover:underline">
+              FotMob
+            </a>
+          ) : (
+            "FotMob"
+          )}
+        </span>
+        {updated && <span className="font-label-caps text-label-caps uppercase">Cập nhật: {updated}</span>}
+      </div>
 
-      <section>
-        <h3 className="font-display-lg text-headline-md text-primary flex items-center gap-2 mb-4">
-          <span className="material-symbols-outlined">groups</span>
-          Thành tích đội tuyển
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-gutter">
-          <LeaderboardCard icon="trending_up" title="Đội ghi nhiều bàn nhất" unit="bàn thắng" rows={goalsTeams} accent="bg-tertiary text-on-tertiary" valueColor="text-tertiary" />
-          <LeaderboardCard icon="shield" title="Đội giữ sạch lưới nhiều nhất" unit="trận sạch lưới" rows={cleanSheetTeams} accent="bg-tertiary text-on-tertiary" valueColor="text-tertiary" />
-          <LeaderboardCard icon="gpp_bad" title="Đội thủng lưới nhiều nhất" unit="bàn thua" rows={concededTeams} accent="bg-error text-on-error" valueColor="text-error" />
-        </div>
-      </section>
+      {/* Tab nhóm thống kê */}
+      <div className="flex flex-wrap gap-2 mb-8">
+        {groups.map((g) => {
+          const on = g.key === current?.key;
+          return (
+            <button
+              key={g.key}
+              type="button"
+              onClick={() => setActive(g.key)}
+              className={[
+                "inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-label-caps text-label-caps uppercase transition-colors",
+                on
+                  ? "bg-primary text-on-primary"
+                  : "bg-surface border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary",
+              ].join(" ")}
+            >
+              <span className="material-symbols-outlined text-[18px]">{STAT_GROUP_ICON[g.key] || "leaderboard"}</span>
+              {g.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Lưới hạng mục — mỗi bảng dùng template Thông tin giải đấu (hẹp ngang, nhiều cột) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter items-start">
+        {(current?.categories || []).map((cat) => (
+          <LeaderboardCard
+            key={cat.name}
+            icon={STAT_CAT_ICON[cat.name] || STAT_GROUP_ICON[current.key] || "leaderboard"}
+            title={cat.label}
+            unit={cat.unit}
+            accent={style.accent}
+            valueColor={style.valueColor}
+            rows={(cat.rows || []).map((r) => ({
+              name: r.player,
+              team: r.teamName,
+              flag: r.flag,
+              avatar: r.avatar,
+              value: formatStatValue(r.value, cat.dec),
+            }))}
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
 /* ---------------- Tab: Thông tin giải đấu ---------------- */
-function InfoTab() {
-  return <StatsLeaderboards />;
+function InfoTab({ playerStats }) {
+  if (!playerStats || !(playerStats.groups || []).length) {
+    return (
+      <div className="bg-surface-container-low border border-outline-variant rounded-xl p-10 text-center">
+        <span className="material-symbols-outlined text-[40px] text-primary">query_stats</span>
+        <p className="mt-3 font-bold text-on-surface">Chưa có dữ liệu thống kê</p>
+        <p className="text-sm text-on-surface-variant">
+          Chạy <span className="font-data-mono">npm run sync-stats</span> để đồng bộ từ FotMob.
+        </p>
+      </div>
+    );
+  }
+  return <TournamentStats stats={playerStats} />;
 }
 
 /* ---------------- Tab: Luật ---------------- */
@@ -881,7 +999,7 @@ function RulesTab() {
 }
 
 /* ---------------- Shell ---------------- */
-export default function FantasyTabs({ standings, squads, squadsByRound = {} }) {
+export default function FantasyTabs({ standings, squads, squadsByRound = {}, playerStats = null }) {
   const [tab, setTab] = useState("total");
 
   if (standings.length === 0) {
@@ -924,7 +1042,7 @@ export default function FantasyTabs({ standings, squads, squadsByRound = {} }) {
       {tab === "round" && (
         <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} />
       )}
-      {tab === "info" && <InfoTab />}
+      {tab === "info" && <InfoTab playerStats={playerStats} />}
       {tab === "rules" && <RulesTab />}
     </>
   );

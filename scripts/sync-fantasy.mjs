@@ -22,6 +22,7 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { FANTASY_ROUNDS, mergeFantasySync } from "./fantasy-sync-utils.mjs";
+import { writeKv, KV_KEYS } from "./kv.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -189,6 +190,11 @@ async function main() {
 
   writeFileSync(DB_PATH, JSON.stringify(db, null, 2), "utf8");
   console.log(`✓ Đã cập nhật ${standings.length} người và ${availableRounds.length} vòng vào data/db.json`);
+
+  // Ghi lên KV nếu đã cấu hình -> web đọc runtime, không cần commit/deploy.
+  if (await writeKv(KV_KEYS.fantasy, db.fantasy)) {
+    console.log("✓ Đã ghi fantasy lên KV (wc26:fantasy).");
+  }
 }
 
 main();

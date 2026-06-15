@@ -24,6 +24,9 @@ jobs:
       FIFA_REFRESH_TOKEN: ${{ secrets.FIFA_REFRESH_TOKEN }}
       FIFA_COOKIE: ${{ secrets.FIFA_COOKIE }}
       GH_TOKEN: ${{ secrets.FIFA_SECRET_PAT }}
+      # Có KV -> script ghi thẳng KV, web đọc runtime (bỏ qua commit bên dưới = không deploy).
+      KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
+      KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
 
     steps:
       - name: Checkout repository
@@ -84,6 +87,8 @@ jobs:
           exit 1
 
       - name: Commit updated snapshot
+        # Khi đã cấu hình KV: dữ liệu đã ghi thẳng KV -> KHÔNG commit (tránh deploy spam).
+        if: ${{ env.KV_REST_API_URL == '' }}
         shell: bash
         run: |
           if git diff --quiet -- data/db.json; then
