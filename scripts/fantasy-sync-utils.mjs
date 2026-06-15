@@ -106,7 +106,7 @@ function boosterFor(team, roundId) {
   return null;
 }
 
-export function normalizeFantasySquad({ team, round, playersById, squadsById, localPlayersByTeam = new Map() }) {
+export function normalizeFantasySquad({ team, round, playersById, squadsById, localPlayersByTeam = new Map(), playerStatsById = new Map() }) {
   if (!team?.id) return null;
 
   const makePlayer = ({ playerId, position }) => {
@@ -119,6 +119,17 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
       Number(team.maxCaptainBooster?.playerId) === Number(player.id);
     const points = isMaxCaptain ? rawPoints * 2 : rawPoints;
 
+    // Chỉ số THẬT của FIFA cho cầu thủ này ở vòng này (player_stats/<id>.json).
+    const fifaArr = playerStatsById.get(Number(player.id)) || [];
+    const fifaEntry = fifaArr.find((e) => Number(e.roundId) === Number(round.id)) || null;
+    const s = fifaEntry?.stats || {};
+    const hasFifa = !!fifaEntry;
+    const num = (v) => Number(v || 0);
+
+    const fx = fixtureFor(round, Number(player.squadId), squadsById);
+    const minutes = hasFifa ? num(s.MP) : fx.minutes;
+    const played = hasFifa ? num(s.MP) > 0 : fx.played;
+
     return {
       id: Number(player.id),
       name: playerName(player),
@@ -130,12 +141,24 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
       price: Number(player.price || 0),
       points,
       rawPoints,
-      goals: 0,
-      assists: 0,
+      // FIFA stats (khớp với điểm); thiếu FIFA -> 0/null như cũ.
+      goals: hasFifa ? num(s.GS) : 0,
+      assists: hasFifa ? num(s.AS) : 0,
+      saves: hasFifa ? num(s.S) : 0,
+      tackles: hasFifa ? num(s.T) : null,
+      sot: hasFifa ? num(s.ST) : null,
+      chancesCreated: hasFifa ? num(s.CC) : null,
+      cleanSheet: hasFifa ? num(s.CS) : 0,
+      conceded: hasFifa ? num(s.GC) : 0,
+      yellow: hasFifa ? num(s.YC) : 0,
+      red: hasFifa ? num(s.RC) : 0,
       xG: 0,
       xA: 0,
-      saves: 0,
-      ...fixtureFor(round, Number(player.squadId), squadsById),
+      // Breakdown FIFA cho modal (điểm + toàn bộ stat thô).
+      fifa: hasFifa ? { points: num(fifaEntry.points), stats: s } : null,
+      ...fx,
+      minutes,
+      played,
       isCaptain: Number(team.captain) === Number(player.id),
       isVice: Number(team.vice) === Number(player.id),
       isMaxCaptain,
@@ -174,12 +197,13 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
   };
 }
 
-export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, players, squads, leagueId }) {
+export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, players, squads, playerStats, leagueId }) {
   db.fantasy ||= {};
   const oldRank = new Map((db.fantasy.standings || []).map((standing) => [standing.manager, standing.rank]));
   const oldStanding = new Map((db.fantasy.standings || []).map((standing) => [standing.manager, standing]));
   const playersById = new Map((players || []).map((player) => [Number(player.id), player]));
   const squadsById = new Map((squads || []).map((squad) => [Number(squad.id), squad]));
+  const playerStatsById = new Map(Object.entries(playerStats || {}).map(([id, arr]) => [Number(id), arr]));
   const localPlayersByTeam = buildLocalPlayersByTeam(db.teams);
   const roundsById = new Map((rounds || []).map((round) => [Number(round.id), round]));
   const rankingByRound = new Map(
@@ -256,7 +280,7 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     const byManager = {};
     for (const standing of standings) {
       const raw = histories?.[item.id]?.[standing.userId]?.team;
-      const squad = normalizeFantasySquad({ team: raw, round, playersById, squadsById, localPlayersByTeam });
+      const squad = normalizeFantasySquad({ team: raw, round, playersById, squadsById, localPlayersByTeam, playerStatsById });
       if (squad) byManager[standing.manager] = squad;
     }
     if (Object.keys(byManager).length) squadsByRound[item.key] = byManager;

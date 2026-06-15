@@ -178,8 +178,38 @@ async function main() {
     );
   }
 
+  // Chỉ số chi tiết FIFA cho NHỮNG cầu thủ được pick (file tĩnh, gồm mọi vòng + breakdown điểm).
+  const pickedIds = new Set();
+  const collect = (map) => {
+    if (map) for (const pos of Object.keys(map)) for (const id of map[pos] || []) pickedIds.add(Number(id));
+  };
+  for (const rid of Object.keys(histories)) {
+    for (const uid of Object.keys(histories[rid])) {
+      const t = histories[rid][uid].team;
+      collect(t.lineup);
+      collect(t.bench);
+      if (t.twelfthMan?.playerId) pickedIds.add(Number(t.twelfthMan.playerId));
+    }
+  }
+  console.log(`→ Tải chỉ số FIFA (player_stats) cho ${pickedIds.size} cầu thủ được pick...`);
+  const playerStats = {};
+  const ids = [...pickedIds];
+  for (let i = 0; i < ids.length; i += 20) {
+    await Promise.all(
+      ids.slice(i, i + 20).map(async (id) => {
+        try {
+          playerStats[id] = await fetchJson(`https://play.fifa.com/json/fantasy/player_stats/${id}.json`, {
+            accept: "application/json",
+          });
+        } catch {
+          /* cầu thủ chưa có chỉ số vòng nào -> bỏ qua */
+        }
+      })
+    );
+  }
+
   const db = JSON.parse(readFileSync(DB_PATH, "utf8"));
-  mergeFantasySync({ db, ranks, roundRankings, histories, rounds, players, squads, leagueId });
+  mergeFantasySync({ db, ranks, roundRankings, histories, rounds, players, squads, playerStats, leagueId });
 
   const standings = db.fantasy.standings;
   db.fantasy.summary = {
