@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { ManagerLineup } from "./SquadView";
 
 const MEDAL = {
@@ -188,49 +188,51 @@ const roundPointsOf = (p, key) => p.rounds?.[key] ?? 0;
 // _sel để dành cho dữ liệu thật theo vòng; mock hiện dùng chung một đội nên mọi vòng giống nhau.
 function mostPickedOf(squads, _sel, limit = 10) {
   const counts = new Map();
-  for (const sq of Object.values(squads || {})) {
+  for (const [manager, sq] of Object.entries(squads || {})) {
     const seen = new Set();
     for (const p of [...(sq.starters || []), ...(sq.bench || [])]) {
       const key = `${p.teamCode}:${p.name}`;
       if (seen.has(key)) continue; // mỗi manager tính 1 lần cho mỗi cầu thủ
       seen.add(key);
-      const e = counts.get(key) || { name: p.name, team: p.teamName, flag: p.crest, avatar: p.avatar, count: 0 };
-      e.count++;
+      const e = counts.get(key) || { name: p.name, team: p.teamName, flag: p.crest, avatar: p.avatar, managers: [] };
+      e.managers.push(manager);
       counts.set(key, e);
     }
   }
   return [...counts.values()]
-    .sort((a, b) => b.count - a.count)
+    .sort((a, b) => b.managers.length - a.managers.length)
     .slice(0, limit)
-    .map((e) => ({ name: e.name, team: e.team, flag: e.flag, avatar: e.avatar, value: e.count }));
+    .map((e) => ({ name: e.name, team: e.team, flag: e.flag, avatar: e.avatar, value: e.managers.length, managers: e.managers }));
 }
 
 // Đội trưởng được chọn nhiều nhất — mỗi squad có 1 cầu thủ isCaptain trong đội hình chính.
 function captaincyOf(squads, _sel, limit = 10) {
   const counts = new Map();
-  for (const sq of Object.values(squads || {})) {
+  for (const [manager, sq] of Object.entries(squads || {})) {
     const cap = (sq.starters || []).find((p) => p.isCaptain);
     if (!cap) continue;
     const key = `${cap.teamCode}:${cap.name}`;
-    const e = counts.get(key) || { name: cap.name, team: cap.teamName, flag: cap.crest, avatar: cap.avatar, count: 0 };
-    e.count++;
+    const e = counts.get(key) || { name: cap.name, team: cap.teamName, flag: cap.crest, avatar: cap.avatar, managers: [] };
+    e.managers.push(manager);
     counts.set(key, e);
   }
   return [...counts.values()]
-    .sort((a, b) => b.count - a.count)
+    .sort((a, b) => b.managers.length - a.managers.length)
     .slice(0, limit)
-    .map((e) => ({ name: e.name, team: e.team, flag: e.flag, avatar: e.avatar, value: e.count }));
+    .map((e) => ({ name: e.name, team: e.team, flag: e.flag, avatar: e.avatar, value: e.managers.length, managers: e.managers }));
 }
 
 // Cầu thủ điểm cao nhất vòng — lấy điểm cao nhất giữa các manager cho mỗi cầu thủ.
+// Dùng điểm GỐC của cầu thủ (rawPoints), không tính phần x2 khi làm đội trưởng.
 function topPointsOf(squads, _sel, limit = 10) {
   const best = new Map();
   for (const sq of Object.values(squads || {})) {
     for (const p of [...(sq.starters || []), ...(sq.bench || [])]) {
       const key = `${p.teamCode}:${p.name}`;
+      const pts = p.rawPoints ?? p.points;
       const prev = best.get(key);
-      if (!prev || p.points > prev.value) {
-        best.set(key, { name: p.name, team: p.teamName, flag: p.crest, avatar: p.avatar, value: p.points });
+      if (!prev || pts > prev.value) {
+        best.set(key, { name: p.name, team: p.teamName, flag: p.crest, avatar: p.avatar, value: pts });
       }
     }
   }
@@ -257,21 +259,44 @@ const INSIGHT_TABS = [
   { key: "capt", label: "Capt", icon: "star", title: "Đội trưởng nhiều nhất" },
   { key: "chip", label: "Chip", icon: "bolt", title: "Booster dùng nhiều nhất" },
   { key: "pts", label: "Top pts", icon: "military_tech", title: "Điểm cao nhất vòng" },
+  { key: "match", label: "Trận", icon: "stadium", title: "Kết quả các trận" },
 ];
 
-function RoundInsights({ squads, standings, sel }) {
+const INSIGHT_COLLAPSED = 10; // số dòng hiển thị trước khi bấm "Xem tất cả"
+
+function RoundInsights({ squads, standings, sel, matches }) {
   const [view, setView] = useState("pick");
+  const [open, setOpen] = useState(false);
+  const [modal, setModal] = useState(null); // cầu thủ "Pick" đang mở modal danh sách HLV
   const data = useMemo(
     () => ({
-      pick: mostPickedOf(squads, sel),
-      capt: captaincyOf(squads, sel),
-      chip: chipUsageOf(standings, sel),
-      pts: topPointsOf(squads, sel),
+      pick: mostPickedOf(squads, sel, Infinity),
+      capt: captaincyOf(squads, sel, Infinity),
+      chip: chipUsageOf(standings, sel, Infinity),
+      pts: topPointsOf(squads, sel, Infinity),
     }),
     [squads, standings, sel]
   );
+  // Map tên HLV -> avatar/đội để hiển thị trong danh sách "ai đã chọn".
+  const mgrInfo = useMemo(() => {
+    const m = new Map();
+    for (const p of standings || []) m.set(p.manager, { avatar: p.avatar, team: p.team });
+    return m;
+  }, [standings]);
+  // Đổi vòng -> reset trạng thái xổ.
+  useEffect(() => {
+    setOpen(false);
+    setModal(null);
+  }, [sel]);
+  const selectView = (key) => {
+    setView(key);
+    setOpen(false); // đổi tab thì gấp lại danh sách
+    setModal(null);
+  };
   const meta = INSIGHT_TABS.find((t) => t.key === view) ?? INSIGHT_TABS[0];
-  const rows = data[view] || [];
+  const allRows = data[view] || [];
+  const rows = open ? allRows : allRows.slice(0, INSIGHT_COLLAPSED);
+  const extra = allRows.length - INSIGHT_COLLAPSED;
   const isPts = view === "pts";
 
   return (
@@ -282,7 +307,7 @@ function RoundInsights({ squads, standings, sel }) {
           return (
             <button
               key={t.key}
-              onClick={() => setView(t.key)}
+              onClick={() => selectView(t.key)}
               title={t.title}
               className={[
                 "flex-1 inline-flex items-center justify-center gap-1 px-1.5 py-1.5 rounded-lg font-label-caps text-[11px] uppercase whitespace-nowrap transition-colors",
@@ -298,45 +323,395 @@ function RoundInsights({ squads, standings, sel }) {
       <div className="px-4 py-2 font-label-caps text-label-caps uppercase text-on-surface-variant border-b border-surface-variant">
         {meta.title}
       </div>
+      {view === "match" ? (
+        <MatchResults matches={matches} />
+      ) : (
+       <>
       {rows.length ? (
         <ol className="divide-y divide-surface-variant">
-          {rows.map((r, i) => (
-            <li key={`${r.name}-${i}`} className="flex items-center gap-3 px-4 py-2.5">
-              {r.chip ? (
-                <BoosterIcon name={r.name} size={40} />
-              ) : r.avatar ? (
-                <img src={r.avatar} alt="" className="w-14 h-14 object-contain object-bottom shrink-0" />
-              ) : (
-                <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0">
-                  <span
-                    className="material-symbols-outlined text-[34px] bg-gradient-to-b from-[#5ab9d4] via-[#9b3fc4] to-[#f0456f] bg-clip-text text-transparent"
-                    style={{ fontVariationSettings: "'FILL' 1" }}
-                  >
-                    person
-                  </span>
-                </div>
-              )}
-              <div className="min-w-0 flex-1">
-                <div className={`truncate ${i === 0 ? "font-bold text-on-surface" : "text-on-surface"}`}>{r.name}</div>
-                {r.team && (
-                  <div className="flex items-center gap-1.5 text-on-surface-variant text-[12px] truncate">
-                    {r.flag && (
-                      <img src={r.flag} alt="" className="w-6 h-4 object-cover rounded-[1px] shrink-0" />
-                    )}
-                    <span className="truncate">{r.team}</span>
+          {rows.map((r, i) => {
+            const managers = Array.isArray(r.managers) ? r.managers : null; // chỉ tab "Pick" có danh sách HLV
+            const clickable = managers && managers.length > 0;
+            return (
+              <li
+                key={`${r.name}-${i}`}
+                onClick={clickable ? () => setModal(r) : undefined}
+                className={`flex items-center gap-3 px-4 py-2.5 ${clickable ? "cursor-pointer hover:bg-surface-container-low transition-colors" : ""}`}
+              >
+                {r.chip ? (
+                  <BoosterIcon name={r.name} size={40} />
+                ) : r.avatar ? (
+                  <img src={r.avatar} alt="" className="w-14 h-14 object-contain object-bottom shrink-0" />
+                ) : (
+                  <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+                    <span
+                      className="material-symbols-outlined text-[34px] bg-gradient-to-b from-[#5ab9d4] via-[#9b3fc4] to-[#f0456f] bg-clip-text text-transparent"
+                      style={{ fontVariationSettings: "'FILL' 1" }}
+                    >
+                      person
+                    </span>
                   </div>
                 )}
-              </div>
-              <span className={`font-data-mono font-bold text-[16px] shrink-0 ${isPts ? "text-secondary" : "text-primary"}`}>
-                {r.value}
-                {isPts && <span className="text-[10px] ml-0.5">pts</span>}
-              </span>
-            </li>
-          ))}
+                <div className="min-w-0 flex-1">
+                  <div className={`truncate ${i === 0 ? "font-bold text-on-surface" : "text-on-surface"}`}>{r.name}</div>
+                  {r.team && (
+                    <div className="flex items-center gap-1.5 text-on-surface-variant text-[12px] truncate">
+                      {r.flag && (
+                        <img src={r.flag} alt="" className="w-6 h-4 object-cover rounded-[1px] shrink-0" />
+                      )}
+                      <span className="truncate">{r.team}</span>
+                    </div>
+                  )}
+                </div>
+                <span className={`font-data-mono font-bold text-[16px] shrink-0 ${isPts ? "text-secondary" : "text-primary"}`}>
+                  {r.value}
+                  {isPts && <span className="text-[10px] ml-0.5">pts</span>}
+                </span>
+                {clickable && (
+                  <span className="material-symbols-outlined text-[18px] text-on-surface-variant shrink-0">chevron_right</span>
+                )}
+              </li>
+            );
+          })}
         </ol>
       ) : (
         <p className="px-4 py-6 text-sm text-on-surface-variant text-center">Chưa có dữ liệu</p>
       )}
+      {extra > 0 && (
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="w-full font-label-caps text-label-caps uppercase text-primary hover:bg-surface-container-low transition-colors py-2.5 border-t border-surface-variant"
+        >
+          {open ? "Thu gọn" : `Xem tất cả (${allRows.length})`}
+        </button>
+      )}
+       </>
+      )}
+      {modal && (
+        <PickedByModal
+          row={modal}
+          mgrInfo={mgrInfo}
+          countLabel={view === "capt" ? "lượt chọn làm đội trưởng" : "lượt chọn"}
+          listLabel={view === "capt" ? "HLV chọn làm đội trưởng" : "HLV đã chọn"}
+          onClose={() => setModal(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+// Khóa scroll trang nền khi modal mở + bù bề rộng thanh cuộn để layout không giật.
+function useLockBodyScroll() {
+  useEffect(() => {
+    const scrollBarW = window.innerWidth - document.documentElement.clientWidth;
+    const prevOverflow = document.body.style.overflow;
+    const prevPadding = document.body.style.paddingRight;
+    document.body.style.overflow = "hidden";
+    if (scrollBarW > 0) document.body.style.paddingRight = `${scrollBarW}px`;
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.body.style.paddingRight = prevPadding;
+    };
+  }, []);
+}
+
+// "02:00 (giờ VN)" -> "02:00"; "12 tháng 6, 2026" -> "12 tháng 6".
+const shortTime = (t) => (t || "").replace(/\s*\(.*\)\s*$/, "").trim() || "—";
+const shortDate = (d) => (d || "").replace(/,\s*\d{4}\s*$/, "").trim();
+
+// Danh sách kết quả các trận của vòng (nhóm theo bảng). Đã đá -> tỷ số; chưa đá -> giờ + ngày.
+function MatchResults({ matches }) {
+  const [sel, setSel] = useState(null); // trận đang mở modal
+  const list = matches || [];
+  if (!list.length) {
+    return <p className="px-4 py-6 text-sm text-on-surface-variant text-center">Chưa có lịch trận</p>;
+  }
+  // Gom theo bảng để dễ đọc (vòng bảng).
+  const groups = [];
+  const byGroup = new Map();
+  for (const m of list) {
+    const g = m.group || "";
+    if (!byGroup.has(g)) {
+      byGroup.set(g, []);
+      groups.push(g);
+    }
+    byGroup.get(g).push(m);
+  }
+  const Side = ({ code, flag, alignRight }) => (
+    <div className={`flex items-center gap-1.5 min-w-0 flex-1 ${alignRight ? "flex-row-reverse text-right" : ""}`}>
+      {flag && <img src={flag} alt="" className="w-6 h-4 object-cover rounded-[1px] shrink-0" />}
+      <span className="font-data-mono text-[13px] text-on-surface truncate">{code}</span>
+    </div>
+  );
+  return (
+    <div>
+      {groups.map((g) => (
+        <div key={g || "_"}>
+          {g && (
+            <div className="px-4 py-1.5 bg-surface-container-low font-label-caps text-[11px] uppercase text-on-surface-variant border-b border-surface-variant">
+              {g}
+            </div>
+          )}
+          <ul className="divide-y divide-surface-variant">
+            {byGroup.get(g).map((m) => {
+              const st = matchStatus(m);
+              const score = m.started && m.scoreStr ? m.scoreStr : null;
+              const clickable = m.started; // đã đá -> mở chi tiết
+              return (
+                <li
+                  key={m.id}
+                  onClick={clickable ? () => setSel(m) : undefined}
+                  className={`flex items-center gap-2 px-4 py-2.5 ${clickable ? "cursor-pointer hover:bg-surface-container-low transition-colors" : ""}`}
+                >
+                  <Side code={m.homeCode} flag={m.homeFlag} />
+                  <div className="shrink-0 text-center min-w-[64px] leading-tight">
+                    {score ? (
+                      <span className="font-data-mono font-bold text-[15px] text-on-surface">{score}</span>
+                    ) : (
+                      <span className="font-data-mono text-[12px] text-on-surface">{shortTime(m.time)}</span>
+                    )}
+                    {st ? (
+                      <span
+                        className={`block font-label-caps text-[10px] uppercase mt-0.5 ${
+                          st.live ? "text-error font-bold" : "text-on-surface-variant"
+                        }`}
+                      >
+                        {st.live && (
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-error mr-1 align-middle animate-pulse" />
+                        )}
+                        {st.text}
+                      </span>
+                    ) : (
+                      m.date && <span className="block text-[10px] text-on-surface-variant mt-0.5">{shortDate(m.date)}</span>
+                    )}
+                  </div>
+                  <Side code={m.awayCode} flag={m.awayFlag} alignRight />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+      {sel && <MatchModal match={sel} onClose={() => setSel(null)} />}
+    </div>
+  );
+}
+
+// Nhãn tiếng Việt cho các chỉ số trận (theo key ổn định của FotMob).
+const MATCH_STAT_VI = {
+  BallPossesion: "Kiểm soát bóng",
+  expected_goals: "Bàn thắng kỳ vọng (xG)",
+  total_shots: "Tổng số cú sút",
+  ShotsOnTarget: "Sút trúng đích",
+  touches_opp_box: "Chạm bóng trong vòng cấm đối phương",
+  big_chance: "Cơ hội lớn",
+  big_chance_missed_title: "Cơ hội lớn bỏ lỡ",
+  accurate_passes: "Chuyền chính xác",
+  yellow_cards: "Thẻ vàng",
+  red_cards: "Thẻ đỏ",
+  corners: "Phạt góc",
+  fouls: "Lỗi",
+};
+
+// Lấy số đầu tiên trong giá trị ("467 (90%)" -> 467; 60 -> 60) để so sánh 2 đội.
+function statNum(v) {
+  if (v == null) return null;
+  const m = String(v).match(/-?\d+(\.\d+)?/);
+  return m ? Number(m[0]) : null;
+}
+
+// Modal chi tiết 1 trận: tỷ số, người ghi bàn (2 đội) và thống kê trận.
+function MatchModal({ match: m, onClose }) {
+  useLockBodyScroll();
+  const st = matchStatus(m);
+  const goals = m.goals || [];
+  const stats = m.matchStats || [];
+  // Bàn phản lưới tính cho đội ĐƯỢC HƯỞNG (đối thủ của người sút).
+  const benefitCode = (g) => (g.ownGoal ? (g.teamCode === m.homeCode ? m.awayCode : m.homeCode) : g.teamCode);
+  const GoalRow = ({ g, right }) => (
+    <div className={`flex items-start gap-1.5 py-1 ${right ? "flex-row-reverse text-right" : ""}`}>
+      <span className="material-symbols-outlined text-[15px] text-on-surface-variant shrink-0 mt-0.5" style={{ fontVariationSettings: "'FILL' 1" }}>
+        sports_soccer
+      </span>
+      <span className="text-[13px] text-on-surface leading-snug">
+        <span className="font-data-mono text-on-surface-variant mr-1">{g.min}'</span>
+        {g.player}
+        {g.penalty && <span className="text-on-surface-variant"> (pen)</span>}
+        {g.ownGoal && <span className="text-error"> (OG)</span>}
+        {g.assist && <span className="block text-on-surface-variant text-[11px]">🅰️ {g.assist}</span>}
+      </span>
+    </div>
+  );
+  const pct = (s) => (s.key === "BallPossesion" && s.home != null ? `${s.home}%` : s.home);
+  const pctA = (s) => (s.key === "BallPossesion" && s.away != null ? `${s.away}%` : s.away);
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
+      <div
+        className="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-md max-h-[85vh] flex flex-col overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header: đội nhà – tỷ số – đội khách */}
+        <div className="relative px-5 py-4 border-b border-surface-variant">
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Đóng"
+            className="absolute top-3 right-3 text-on-surface-variant hover:text-on-surface"
+          >
+            <span className="material-symbols-outlined">close</span>
+          </button>
+          {m.group && <div className="text-center font-label-caps text-[11px] uppercase text-on-surface-variant mb-2">{m.group}</div>}
+          <div className="flex items-center gap-2">
+            <div className="flex-1 flex flex-col items-center gap-1 min-w-0">
+              {m.homeFlag && <img src={m.homeFlag} alt="" className="w-10 h-7 object-cover rounded-[2px]" />}
+              <span className="font-data-mono text-[13px] text-on-surface">{m.homeCode}</span>
+            </div>
+            <div className="shrink-0 text-center px-2">
+              <div className="font-data-mono font-bold text-2xl text-on-surface">{m.scoreStr || "–"}</div>
+              {st && (
+                <div className={`font-label-caps text-[10px] uppercase mt-0.5 ${st.live ? "text-error font-bold" : "text-on-surface-variant"}`}>
+                  {st.text}
+                </div>
+              )}
+            </div>
+            <div className="flex-1 flex flex-col items-center gap-1 min-w-0">
+              {m.awayFlag && <img src={m.awayFlag} alt="" className="w-10 h-7 object-cover rounded-[2px]" />}
+              <span className="font-data-mono text-[13px] text-on-surface">{m.awayCode}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="overflow-y-auto overscroll-contain">
+          {/* Người ghi bàn */}
+          {goals.length > 0 && (
+            <div className="px-5 py-3 border-b border-surface-variant">
+              <div className="font-label-caps text-[11px] uppercase text-on-surface-variant mb-2 flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]">sports_soccer</span>
+                Bàn thắng
+              </div>
+              <div className="grid grid-cols-2 gap-x-3">
+                <div>{goals.filter((g) => benefitCode(g) === m.homeCode).map((g, i) => <GoalRow key={i} g={g} />)}</div>
+                <div>{goals.filter((g) => benefitCode(g) === m.awayCode).map((g, i) => <GoalRow key={i} g={g} right />)}</div>
+              </div>
+            </div>
+          )}
+
+          {/* Thống kê trận */}
+          {stats.length > 0 ? (
+            <div className="px-5 py-3">
+              <div className="font-label-caps text-[11px] uppercase text-on-surface-variant mb-2 flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]">bar_chart</span>
+                Thống kê
+              </div>
+              <ul className="space-y-2">
+                {stats.map((s, i) => {
+                  const hv = statNum(s.home);
+                  const av = statNum(s.away);
+                  const homeWin = hv != null && av != null && hv > av;
+                  const awayWin = hv != null && av != null && av > hv;
+                  const cls = (win) =>
+                    `font-data-mono font-bold text-[12px] ${win ? "text-[#9b3fc4]" : "text-on-surface"}`;
+                  return (
+                    <li key={i}>
+                      <div className="flex items-center justify-between gap-1">
+                        <span className={`${cls(homeWin)} w-16`}>{pct(s)}</span>
+                        <span className="font-label-caps text-[10px] uppercase text-on-surface-variant text-center flex-1 px-1">
+                          {MATCH_STAT_VI[s.key] || s.title}
+                        </span>
+                        <span className={`${cls(awayWin)} w-16 text-right`}>{pctA(s)}</span>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : (
+            goals.length === 0 && <p className="px-5 py-6 text-sm text-on-surface-variant text-center">Chưa có dữ liệu chi tiết</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Nhãn trạng thái trận: kết thúc -> "FT"/"AET"/"Pen"; nghỉ giữa hiệp -> "HT";
+// đang đá -> phút hiện tại (vd "67'"). Chưa đá -> null (hiện "vs").
+function matchStatus(m) {
+  if (!m || !m.started) return null;
+  if (m.finished) return { text: m.reasonShort || "FT", live: false };
+  const short = m.liveShort || m.reasonShort;
+  if (short && short.toUpperCase() === "HT") return { text: "HT", live: true };
+  return { text: short || "LIVE", live: true };
+}
+
+// Modal: avatar + số lượt chọn của một cầu thủ và danh sách HLV đã chọn.
+function PickedByModal({ row, mgrInfo, onClose, countLabel = "lượt chọn", listLabel = "HLV đã chọn" }) {
+  const managers = row.managers || [];
+  useLockBodyScroll();
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-sm max-h-[85vh] flex flex-col overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header: avatar + tên + đội + số lượt chọn */}
+        <div className="relative flex items-center gap-3 px-5 py-4 border-b border-surface-variant">
+          {row.avatar ? (
+            <img src={row.avatar} alt="" className="w-16 h-16 object-contain object-bottom shrink-0" />
+          ) : (
+            <div className="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+              <span
+                className="material-symbols-outlined text-[40px] bg-gradient-to-b from-[#5ab9d4] via-[#9b3fc4] to-[#f0456f] bg-clip-text text-transparent"
+                style={{ fontVariationSettings: "'FILL' 1" }}
+              >
+                person
+              </span>
+            </div>
+          )}
+          <div className="min-w-0 flex-1">
+            <div className="font-bold text-on-surface text-lg truncate">{row.name}</div>
+            {row.team && (
+              <div className="flex items-center gap-1.5 text-on-surface-variant text-[12px] truncate">
+                {row.flag && <img src={row.flag} alt="" className="w-6 h-4 object-cover rounded-[1px] shrink-0" />}
+                <span className="truncate">{row.team}</span>
+              </div>
+            )}
+            <div className="mt-1 font-data-mono text-[13px] text-primary font-bold">
+              {row.value} {countLabel}
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Đóng"
+            className="absolute top-3 right-3 text-on-surface-variant hover:text-on-surface"
+          >
+            <span className="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        {/* Danh sách HLV đã chọn */}
+        <div className="px-5 py-2 font-label-caps text-label-caps uppercase text-on-surface-variant border-b border-surface-variant">
+          {listLabel} ({managers.length})
+        </div>
+        <ul className="overflow-y-auto overscroll-contain divide-y divide-surface-variant">
+          {managers.map((m) => {
+            const info = mgrInfo.get(m);
+            return (
+              <li key={m} className="flex items-center gap-3 px-5 py-2.5">
+                <Avatar src={info?.avatar} name={m} />
+                <div className="min-w-0">
+                  <div className="text-on-surface text-sm truncate">{m}</div>
+                  {info?.team && <div className="text-on-surface-variant text-[11px] truncate">{info.team}</div>}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
@@ -362,6 +737,8 @@ function RoundTab({ standings, squads, squadsByRound, roundStats }) {
   const roundSquads = Object.keys(syncedSquads).length ? syncedSquads : squads;
   // Chỉ số thật từ FotMob cho cầu thủ được pick ở vòng này (key = `teamCode:tên`).
   const fotmobDetail = roundStats?.rounds?.[sel] || null;
+  // Kết quả tất cả trận của vòng này (cho tab "Trận" ở cột phải).
+  const roundMatches = roundStats?.matches?.[sel] || null;
 
   const ranked = useMemo(
     () =>
@@ -501,7 +878,7 @@ function RoundTab({ standings, squads, squadsByRound, roundStats }) {
 
           {/* Thống kê vòng (Pick / Capt / Chip / Top pts) — cột phải ở xl, full-width bên dưới ở mốc nhỏ hơn */}
           <div className="lg:col-span-2 xl:col-span-1">
-            <RoundInsights squads={roundSquads} standings={standings} sel={sel} />
+            <RoundInsights squads={roundSquads} standings={standings} sel={sel} matches={roundMatches} />
           </div>
         </div>
       )}
