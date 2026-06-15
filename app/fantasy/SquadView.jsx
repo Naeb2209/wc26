@@ -367,8 +367,8 @@ function PlayerStatsModal({ p, fotmobDetail, onClose }) {
         <div className="flex-1 overflow-y-auto overscroll-contain px-3 pb-4 [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.2)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/20 hover:[&::-webkit-scrollbar-thumb]:bg-black/30">
           {!played ? (
             <div className="py-10 text-center text-on-surface-variant">
-              <div className="material-symbols-outlined text-4xl text-on-surface-variant/60">schedule</div>
-              <div className="mt-2 font-bold">Chưa thi đấu vòng này</div>
+              <div className="material-symbols-outlined text-4xl text-on-surface-variant/60">{p.dnp ? "do_not_disturb_on" : "schedule"}</div>
+              <div className="mt-2 font-bold">{p.dnp ? "Không ra sân vòng này" : "Chưa thi đấu vòng này"}</div>
               <div className="mt-1 text-[13px] font-data-mono">
                 Gặp {p.oppName || p.oppCode || "?"} · {p.matchDate}
               </div>
@@ -380,8 +380,8 @@ function PlayerStatsModal({ p, fotmobDetail, onClose }) {
             </>
           ) : !d ? (
             <div className="py-10 text-center text-on-surface-variant">
-              <div className="material-symbols-outlined text-4xl text-on-surface-variant/60">schedule</div>
-              <div className="mt-2 font-bold">Chưa thi đấu vòng này</div>
+              <div className="material-symbols-outlined text-4xl text-on-surface-variant/60">{p.dnp ? "do_not_disturb_on" : "schedule"}</div>
+              <div className="mt-2 font-bold">{p.dnp ? "Không ra sân vòng này" : "Chưa thi đấu vòng này"}</div>
               <div className="mt-1 text-[13px] font-data-mono">
                 Gặp {p.oppName || p.oppCode || "?"} · {p.matchDate}
               </div>
@@ -472,10 +472,27 @@ function UpcomingInfo({ p, mode }) {
   );
 }
 
+// Nhãn cho cầu thủ đã có trận nhưng không được ra sân (DNP).
+function DnpInfo() {
+  return (
+    <div className="mt-0.5 flex justify-center font-data-mono">
+      <span
+        className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold bg-white/10 text-white/70 ring-1 ring-white/20"
+        title="Trận đã diễn ra nhưng cầu thủ không được ra sân"
+      >
+        <span className="material-symbols-outlined text-[14px]">do_not_disturb_on</span>
+        Không ra sân
+      </span>
+    </div>
+  );
+}
+
 function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false }) {
   const size = compact ? "w-28 h-32" : "w-32 h-36";
   const shownPts = p.displayPoints ?? p.points;
   const captainDoubled = p.isCaptain && Number(shownPts) !== Number(p.points || 0);
+  // Đã đá xong nhưng cầu thủ không được ra sân -> làm mờ thẻ, hiện nhãn "Không ra sân".
+  const dnp = !!p.dnp;
   const borderCls = twelfth
     ? "border-[#9b3fc4] bg-[#9b3fc4]/10 shadow-[0_0_14px_rgba(155,63,196,0.55)]"
     : p.isCaptain
@@ -488,7 +505,7 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
       onClick={() => onSelect?.(p)}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onSelect?.(p))}
       title="Xem thống kê chi tiết"
-      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${borderCls} ${compact ? "w-[134px]" : "w-[150px]"}`}
+      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${borderCls} ${compact ? "w-[134px]" : "w-[150px]"} ${dnp ? "opacity-55 grayscale-[35%]" : ""}`}
     >
       {twelfth && (
         <span className="absolute -top-2 left-1/2 -translate-x-1/2 z-20 px-1.5 py-0.5 rounded bg-[#9b3fc4] text-white text-[9px] font-bold uppercase leading-none shadow tracking-wide">
@@ -568,7 +585,11 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
       </div>
       <div className="-mt-1 w-full text-center px-1 leading-tight">
         {!p.played ? (
-          <UpcomingInfo p={p} mode={infoMode} />
+          dnp ? (
+            <DnpInfo />
+          ) : (
+            <UpcomingInfo p={p} mode={infoMode} />
+          )
         ) : !compact ? (
           p.bucket === "GK" ? (
             <div className="mt-0.5 flex justify-center font-data-mono">
@@ -718,9 +739,18 @@ function StatLegend() {
 }
 
 // Panel đội hình (bên phải bảng xếp hạng Round). Nhận manager đang chọn + squad của họ.
-export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDetail = null }) {
+export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDetail = null, roundMatches = null }) {
   const [infoMode, setInfoMode] = useState("opp");
   const [selected, setSelected] = useState(null);
+
+  // Trạng thái trận theo cặp mã đội (để phân biệt "chưa đá" vs "đã đá nhưng không ra sân").
+  const matchByPair = useMemo(() => {
+    const m = new Map();
+    for (const mt of roundMatches || []) {
+      if (mt.homeCode && mt.awayCode) m.set([mt.homeCode, mt.awayCode].sort().join("-"), mt);
+    }
+    return m;
+  }, [roundMatches]);
 
   // displayPoints: điểm hiển thị trên thẻ. Đội trưởng được nhân đôi.
   // Với Maximum Captain: băng đội trưởng tự chuyển sang starter điểm cao nhất
@@ -733,10 +763,22 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
     // Số trên thẻ (bàn/kiến tạo/tắc/sút trúng/phút/cứu thua) DÙNG FIFA — đã nhúng trong squadsByRound,
     // khớp với điểm. FotMob chỉ bổ sung xG/xA (FIFA không có) + điểm phong độ (rating) cho modal.
     const applyFm = (p) => {
+      // Trận của cầu thủ đã KẾT THÚC chưa? -> chỉ kết luận "không ra sân" khi trận đã xong,
+      // tránh báo nhầm lúc đang đá (FIFA/FotMob chưa kịp cập nhật chỉ số).
+      const mt = p.oppCode ? matchByPair.get([p.teamCode, p.oppCode].sort().join("-")) : null;
+      const matchOver = !!mt?.finished;
       const fm = fotmobDetail?.[`${p.teamCode}:${p.name}`];
-      if (!fm) return p;
+
+      // "Đã đá thật" = có chỉ số FIFA (MP chính xác) HOẶC FotMob xác nhận ra sân.
+      // KHÔNG tin p.played khi thiếu FIFA, vì lúc đó nó đến từ fallback fixture (gắn nhầm
+      // unused-sub là đã đá, vd minutes 98 ảo). dnp = trận đã xong nhưng không có bằng chứng ra sân.
+      const reallyPlayed = p.fifa ? !!p.played : !!(fm && fm.played);
+      const dnp = matchOver && !reallyPlayed;
+
+      const base = { ...p, dnp, played: reallyPlayed };
+      if (!fm) return base;
       return {
-        ...p,
+        ...base,
         xG: fm.xG != null ? fm.xG : p.xG,
         xA: fm.xA != null ? fm.xA : p.xA,
         fmRating: fm.rating,
@@ -776,7 +818,7 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
       bench: withDisplay((squad.bench || []).map(applyFm)),
       twelfthMan: twelfthMan ? withDisplay([twelfthMan])[0] : null,
     };
-  }, [squad, chip, fotmobDetail]);
+  }, [squad, chip, fotmobDetail, matchByPair]);
 
   return (
     <div className="bg-surface-container-lowest border border-surface-variant rounded-xl p-2 sm:p-4 self-start">

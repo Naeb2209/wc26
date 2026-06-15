@@ -885,6 +885,7 @@ function RoundTab({ standings, squads, squadsByRound, roundStats }) {
             chip={current?.chips?.[sel]}
             chipIcon={current?.chips?.[sel] ? <BoosterIcon name={current.chips[sel]} size={22} /> : null}
             fotmobDetail={fotmobDetail}
+            roundMatches={roundMatches}
           />
 
           {/* Thống kê vòng (Pick / Capt / Chip / Top pts) — cột phải ở xl, full-width bên dưới ở mốc nhỏ hơn */}
