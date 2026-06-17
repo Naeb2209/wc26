@@ -10,7 +10,7 @@ const MEDAL = {
 };
 
 const TABS = [
-  { key: "total", label: "Tổng điểm", icon: "leaderboard" },
+  { key: "dashboard", label: "Dashboard", icon: "leaderboard" },
   { key: "round", label: "Round", icon: "calendar_month" },
   { key: "info", label: "Thông tin giải đấu", icon: "info" },
   { key: "rules", label: "Luật", icon: "gavel" },
@@ -85,8 +85,8 @@ function PodiumCard({ p, place }) {
   );
 }
 
-/* ---------------- Tab: Tổng điểm ---------------- */
-function TotalTab({ standings }) {
+/* ---------------- Tab: Dashboard ---------------- */
+function DashboardTab({ standings }) {
   const top3 = standings.slice(0, 3);
   const seasonLeader = standings[0];
   const bottom = standings.at(-1);
@@ -1392,7 +1392,7 @@ function RulesTab() {
 
 /* ---------------- Shell ---------------- */
 export default function FantasyTabs({ standings, squads, squadsByRound = {}, roundStats = null, playerStats = null }) {
-  const [tab, setTab] = useState("total");
+  const [tab, setTab] = useState("dashboard");
 
   if (standings.length === 0) {
     return (
@@ -1430,7 +1430,7 @@ export default function FantasyTabs({ standings, squads, squadsByRound = {}, rou
         </div>
       </div>
 
-      {tab === "total" && <TotalTab standings={standings} />}
+      {tab === "dashboard" && <DashboardTab standings={standings} />}
       {tab === "round" && (
         <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} />
       )}
