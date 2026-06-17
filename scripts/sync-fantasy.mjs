@@ -95,9 +95,17 @@ async function main() {
     const refreshed = await refreshAccessToken(env);
     if (refreshed) accessToken = refreshed;
   } catch (e) {
-    console.error("✗ Refresh thất bại:", e.message);
-    if (!accessToken && !env.FIFA_COOKIE) process.exit(1);
-    console.error("  → Thử tiếp bằng cookie/access token tĩnh nếu có…");
+    // FIFA đã đổi OAuth client sang dạng confidential (yêu cầu client_secret) → refresh token
+    // không còn đổi được access token. Đây là lỗi PINGONE ĐÃ BIẾT, không phải sự cố của ta:
+    // bỏ qua, dùng FIFA_COOKIE (phiên X-SID) làm phương thức xác thực chính.
+    const knownDead = /invalid_client|Unsupported authentication method/i.test(e.message);
+    if (knownDead && env.FIFA_COOKIE) {
+      console.warn("ℹ Refresh token không dùng được (FIFA chuyển client sang confidential) → dùng FIFA_COOKIE.");
+    } else {
+      console.error("✗ Refresh thất bại:", e.message);
+      if (!accessToken && !env.FIFA_COOKIE) process.exit(1);
+      console.error("  → Thử tiếp bằng cookie/access token tĩnh nếu có…");
+    }
   }
 
   if (!accessToken && !env.FIFA_COOKIE) {
