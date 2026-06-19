@@ -159,9 +159,21 @@ async function main() {
     fetchJson("https://play.fifa.com/json/fantasy/squads.json", { accept: "application/json" }),
   ]);
 
-  const availableRounds = FANTASY_ROUNDS.filter(
-    ({ id }) => rounds.find((round) => Number(round.id) === id)?.status !== "scheduled"
-  );
+  const db = JSON.parse(readFileSync(DB_PATH, "utf8"));
+  // Trạng thái vòng đã lưu lần trước -> biết vòng nào đã được chốt sau khi kết thúc.
+  const storedStatus = new Map((db.fantasy?.rounds || []).map((round) => [round.key, round.status]));
+
+  const availableRounds = FANTASY_ROUNDS.filter(({ id, key }) => {
+    const status = rounds.find((round) => Number(round.id) === id)?.status;
+    if (!status || status === "scheduled") return false; // vòng chưa diễn ra
+    // Vòng đã "complete" VÀ đã đồng bộ ít nhất 1 lần khi đã complete -> dữ liệu chốt,
+    // không cần fetch lại cầu thủ/HLV nữa (mergeFantasySync giữ nguyên số liệu vòng cũ).
+    if (status === "complete" && storedStatus.get(key) === "complete") {
+      console.log(`↷ Bỏ qua vòng ${id} (đã kết thúc & đã chốt).`);
+      return false;
+    }
+    return true;
+  });
   const roundRankings = {};
   const histories = {};
 
@@ -216,7 +228,6 @@ async function main() {
     );
   }
 
-  const db = JSON.parse(readFileSync(DB_PATH, "utf8"));
   mergeFantasySync({ db, ranks, roundRankings, histories, rounds, players, squads, playerStats, leagueId });
 
   const standings = db.fantasy.standings;

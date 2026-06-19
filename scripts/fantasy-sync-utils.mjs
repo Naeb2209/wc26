@@ -126,10 +126,13 @@ function calculatedTeamRoundPoints(team, roundId, playersById) {
   const captainId = maxCaptainId || Number(team.captain);
 
   // Cầu thủ thiếu trong players.json -> tính 0 điểm (không kéo cả vòng về số FIFA).
-  return starterIds.reduce((total, playerId) => {
+  const gross = starterIds.reduce((total, playerId) => {
     const points = playerRoundPoints(playersById.get(playerId), roundId);
     return total + points * (playerId === captainId ? 2 : 1);
   }, 0);
+  // Trừ phí chuyển nhượng vượt mức của vòng này (negativeTransfers: số điểm bị trừ,
+  // dùng Wildcard thì = 0). Vòng 1 không ai bị trừ vì là đội hình đầu.
+  return gross - Number(team.negativeTransfers || 0);
 }
 
 export function normalizeFantasySquad({ team, round, playersById, squadsById, localPlayersByTeam = new Map(), playerStatsById = new Map() }) {
