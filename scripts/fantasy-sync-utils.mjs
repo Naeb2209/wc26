@@ -126,13 +126,18 @@ function calculatedTeamRoundPoints(team, roundId, playersById) {
   const captainId = maxCaptainId || Number(team.captain);
 
   // Cầu thủ thiếu trong players.json -> tính 0 điểm (không kéo cả vòng về số FIFA).
-  const gross = starterIds.reduce((total, playerId) => {
+  // Điểm VÒNG = tổng điểm cầu thủ đá chính (đội trưởng x2), KHÔNG trừ phí chuyển nhượng.
+  // Phí chuyển nhượng chỉ trừ vào ĐIỂM TỔNG (xem mergeFantasySync).
+  return starterIds.reduce((total, playerId) => {
     const points = playerRoundPoints(playersById.get(playerId), roundId);
     return total + points * (playerId === captainId ? 2 : 1);
   }, 0);
-  // Trừ phí chuyển nhượng vượt mức của vòng này (negativeTransfers: số điểm bị trừ,
-  // dùng Wildcard thì = 0). Vòng 1 không ai bị trừ vì là đội hình đầu.
-  return gross - Number(team.negativeTransfers || 0);
+}
+
+// Phí chuyển nhượng vượt mức của vòng (negativeTransfers: số điểm bị trừ; Wildcard = 0).
+// Vòng 1 không ai bị trừ vì là đội hình đầu. Chỉ trừ vào điểm tổng, không trừ vào điểm vòng.
+function teamTransferFee(team) {
+  return Number(team?.negativeTransfers || 0);
 }
 
 export function normalizeFantasySquad({ team, round, playersById, squadsById, localPlayersByTeam = new Map(), playerStatsById = new Map() }) {
@@ -250,6 +255,7 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     const previous = oldStanding.get(manager) || {};
     const roundPoints = { ...(previous.rounds || {}) };
     const chips = { ...(previous.chips || {}) };
+    const transferFees = { ...(previous.transferFees || {}) };
 
     for (const item of FANTASY_ROUNDS) {
       const row = rankingByRound.get(item.id)?.get(userId);
@@ -257,8 +263,10 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
       const calculatedPoints = calculatedTeamRoundPoints(historyTeam, item.id, playersById);
       if (calculatedPoints != null) {
         roundPoints[item.key] = calculatedPoints;
+        transferFees[item.key] = teamTransferFee(historyTeam);
       } else if (historyTeam?.roundPoints != null) {
         roundPoints[item.key] = Number(historyTeam.roundPoints);
+        transferFees[item.key] = teamTransferFee(historyTeam);
       } else if (row) {
         roundPoints[item.key] = Number(row.points ?? row.roundPoints ?? 0);
       }
@@ -275,8 +283,12 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     const syncedRoundKeys = FANTASY_ROUNDS
       .filter((item) => roundPoints[item.key] != null)
       .map((item) => item.key);
+    // Điểm TỔNG = tổng điểm các vòng TRỪ phí chuyển nhượng của từng vòng.
     const totalPoints = syncedRoundKeys.length
-      ? syncedRoundKeys.reduce((total, key) => total + Number(roundPoints[key] || 0), 0)
+      ? syncedRoundKeys.reduce(
+          (total, key) => total + Number(roundPoints[key] || 0) - Number(transferFees[key] || 0),
+          0
+        )
       : Number(rank.overallPoints ?? rank.total ?? previous.totalPoints ?? previous.total ?? 0);
 
     return {
@@ -286,6 +298,7 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
       manager,
       team: "",
       rounds: roundPoints,
+      transferFees,
       chips,
       roundPoints: Number(currentRoundPoints ?? 0),
       totalPoints,

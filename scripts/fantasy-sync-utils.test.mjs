@@ -69,6 +69,16 @@ test("doubles the regular captain after maximum captain was used in an earlier r
   assert.equal(fantasy.squadsByRound.g1.Coach.starters.find((p) => p.id === 1).points, 10);
 });
 
+test("keeps transfer fee out of round points but deducts it from the total", () => {
+  // negativeTransfers = phí chuyển nhượng vượt mức của vòng. Điểm vòng GIỮ NGUYÊN (13),
+  // chỉ điểm tổng bị trừ (13 - 4 = 9).
+  const fantasy = sync(team({ negativeTransfers: 4 }));
+
+  assert.equal(fantasy.standings[0].roundPoints, 13);
+  assert.equal(fantasy.standings[0].rounds.g1, 13);
+  assert.equal(fantasy.standings[0].totalPoints, 9);
+});
+
 test("sums the lineup even when a starter is missing from players.json (no FIFA fallback)", () => {
   // Cầu thủ 99 không có trong players.json -> tính 0 điểm, KHÔNG kéo cả vòng về số FIFA (roundPoints: 1).
   const fantasy = sync(team({ lineup: { GK: [], DEF: [], MID: [2, 99], FWD: [1] } }));
