@@ -91,6 +91,15 @@ function TotalTab({ standings }) {
   const seasonLeader = standings[0];
   const bottom = standings.at(-1);
 
+  // Vòng đang xét = vòng mới nhất đã có điểm hoặc đã có người dùng booster.
+  const currentKey = useMemo(
+    () =>
+      [...ALL_ROUNDS]
+        .reverse()
+        .find((r) => standings.some((p) => roundPointsOf(p, r.key) !== 0 || p.chips?.[r.key]))?.key ?? null,
+    [standings]
+  );
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
@@ -106,6 +115,21 @@ function TotalTab({ standings }) {
           <div className="sm:order-3 sm:mt-6"><PodiumCard p={top3[2]} place={3} /></div>
         </div>
       )}
+
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2 font-data-mono text-[11px] text-on-surface-variant">
+        <span className="inline-flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-[3px]" style={{ background: BOOSTER_ORANGE }} />
+          Booster đã dùng (kèm vòng)
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-[3px] ring-2 ring-tertiary" style={{ background: BOOSTER_ORANGE }} />
+          <span className="text-tertiary font-bold">Đang dùng vòng này</span>
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className="w-3 h-3 rounded-[3px] opacity-25" style={{ background: BOOSTER_ORANGE, filter: "grayscale(1)" }} />
+          Chưa dùng
+        </span>
+      </div>
 
       <div className="bg-surface-container-lowest border border-surface-variant overflow-hidden">
         <div className="overflow-x-auto">
@@ -140,6 +164,7 @@ function TotalTab({ standings }) {
                         <div className="min-w-0">
                           <div className="font-bold text-on-surface truncate">{p.manager}</div>
                           {p.team && <div className="text-on-surface-variant text-[12px] truncate">{p.team}</div>}
+                          <ManagerChips chips={p.chips} currentKey={currentKey} />
                         </div>
                       </div>
                     </td>
@@ -233,17 +258,24 @@ function captaincyOf(squads, _sel, limit = 10) {
 // Dùng điểm GỐC của cầu thủ (rawPoints), không tính phần x2 khi làm đội trưởng.
 function topPointsOf(squads, _sel, limit = 10) {
   const best = new Map();
-  for (const sq of Object.values(squads || {})) {
+  for (const [manager, sq] of Object.entries(squads || {})) {
+    const seen = new Set();
     for (const p of [...(sq.starters || []), ...(sq.bench || [])]) {
       const key = `${p.teamCode}:${p.name}`;
       const pts = p.rawPoints ?? p.points;
-      const prev = best.get(key);
-      if (!prev || pts > prev.value) {
-        best.set(key, { name: p.name, team: p.teamName, flag: p.crest, avatar: p.avatar, value: pts });
+      let e = best.get(key);
+      if (!e) {
+        e = { name: p.name, team: p.teamName, flag: p.crest, avatar: p.avatar, value: pts, managers: [] };
+        best.set(key, e);
       }
+      if (pts > e.value) e.value = pts;
+      if (!seen.has(manager)) { seen.add(manager); e.managers.push(manager); } // HLV đang chọn cầu thủ này
     }
   }
-  return [...best.values()].sort((a, b) => b.value - a.value).slice(0, limit);
+  return [...best.values()]
+    .sort((a, b) => b.value - a.value)
+    .slice(0, limit)
+    .map((e) => ({ name: e.name, team: e.team, flag: e.flag, avatar: e.avatar, value: e.value, managers: e.managers }));
 }
 
 // Booster (chip) được dùng nhiều nhất trong vòng — đếm từ chips[sel] của mỗi người chơi.
@@ -275,6 +307,7 @@ function RoundInsights({ squads, standings, sel, matches }) {
   const [view, setView] = useState("pick");
   const [open, setOpen] = useState(false);
   const [modal, setModal] = useState(null); // cầu thủ "Pick" đang mở modal danh sách HLV
+  const [country, setCountry] = useState("all"); // lọc theo nước (chỉ tab "Pick")
   const data = useMemo(
     () => ({
       pick: mostPickedOf(squads, sel, Infinity),
@@ -294,14 +327,25 @@ function RoundInsights({ squads, standings, sel, matches }) {
   useEffect(() => {
     setOpen(false);
     setModal(null);
+    setCountry("all");
   }, [sel]);
   const selectView = (key) => {
     setView(key);
     setOpen(false); // đổi tab thì gấp lại danh sách
     setModal(null);
+    setCountry("all"); // đổi tab thì bỏ lọc nước
   };
+  // Danh sách nước có mặt trong tab "Pick" (kèm cờ), xếp theo bảng chữ cái.
+  const countries = useMemo(() => {
+    const m = new Map();
+    for (const r of data.pick || []) if (r.team && !m.has(r.team)) m.set(r.team, r.flag);
+    return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([team, flag]) => ({ team, flag }));
+  }, [data.pick]);
   const meta = INSIGHT_TABS.find((t) => t.key === view) ?? INSIGHT_TABS[0];
-  const allRows = data[view] || [];
+  const allRows =
+    view === "pick" && country !== "all"
+      ? (data.pick || []).filter((r) => r.team === country)
+      : data[view] || [];
   const rows = open ? allRows : allRows.slice(0, INSIGHT_COLLAPSED);
   const extra = allRows.length - INSIGHT_COLLAPSED;
   const isPts = view === "pts";
@@ -330,6 +374,33 @@ function RoundInsights({ squads, standings, sel, matches }) {
       <div className="px-4 py-2 font-label-caps text-label-caps uppercase text-on-surface-variant border-b border-surface-variant">
         {meta.title}
       </div>
+      {view === "pick" && countries.length > 0 && (
+        <div className="px-4 py-2 flex items-center gap-2 border-b border-surface-variant">
+          <span className="material-symbols-outlined text-[18px] text-on-surface-variant shrink-0">flag</span>
+          {country !== "all" && (
+            <img
+              src={countries.find((c) => c.team === country)?.flag}
+              alt=""
+              className="w-6 h-4 object-cover rounded-[1px] shrink-0"
+            />
+          )}
+          <select
+            value={country}
+            onChange={(e) => {
+              setCountry(e.target.value);
+              setOpen(false);
+            }}
+            className="flex-1 min-w-0 bg-surface-container-low border border-surface-variant rounded-lg px-2.5 py-1.5 text-[13px] text-on-surface focus:outline-none focus:border-primary"
+          >
+            <option value="all">Tất cả các nước ({countries.length})</option>
+            {countries.map((c) => (
+              <option key={c.team} value={c.team}>
+                {c.team}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
       {view === "match" ? (
         <MatchResults matches={matches} />
       ) : (
@@ -399,7 +470,7 @@ function RoundInsights({ squads, standings, sel, matches }) {
         <PickedByModal
           row={modal}
           mgrInfo={mgrInfo}
-          countLabel={view === "capt" ? "lượt chọn làm đội trưởng" : "lượt chọn"}
+          countLabel={view === "capt" ? "lượt chọn làm đội trưởng" : view === "pts" ? "điểm" : "lượt chọn"}
           listLabel={view === "capt" ? "HLV chọn làm đội trưởng" : "HLV đã chọn"}
           onClose={() => setModal(null)}
         />
@@ -723,7 +794,7 @@ function PickedByModal({ row, mgrInfo, onClose, countLabel = "lượt chọn", l
   );
 }
 
-function RoundTab({ standings, squads, squadsByRound, roundStats }) {
+function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
   const hasData = useMemo(() => {
     const m = {};
     for (const r of ALL_ROUNDS) {
@@ -739,6 +810,8 @@ function RoundTab({ standings, squads, squadsByRound, roundStats }) {
   const [sel, setSel] = useState(defaultKey);
 
   const meta = ALL_ROUNDS.find((r) => r.key === sel) ?? ALL_ROUNDS[0];
+  // Vòng đã kết thúc -> ẩn cột "Tổng điểm" (tổng tích lũy cả mùa chỉ có nghĩa ở vòng đang diễn ra).
+  const selFinished = (rounds || []).find((r) => r.key === sel)?.status === "complete";
   const empty = !hasData[sel];
   const syncedSquads = squadsByRound?.[sel] || {};
   const roundSquads = Object.keys(syncedSquads).length ? syncedSquads : squads;
@@ -811,8 +884,10 @@ function RoundTab({ standings, squads, squadsByRound, roundStats }) {
                 <thead className="text-on-primary font-label-caps text-label-caps">
                   <tr>
                     <th className="py-3 px-4 bg-primary rounded-l-lg">Người chơi</th>
-                    <th className="py-3 px-4 text-center font-bold bg-primary">Điểm {meta.label}</th>
-                    <th className="py-3 px-2 text-center bg-primary text-on-primary/80 rounded-r-lg">Tổng điểm</th>
+                    <th className={`py-3 px-4 text-center font-bold bg-primary ${selFinished ? "rounded-r-lg" : ""}`}>Điểm {meta.label}</th>
+                    {!selFinished && (
+                      <th className="py-3 px-2 text-center bg-primary text-on-primary/80 rounded-r-lg">Tổng điểm</th>
+                    )}
                   </tr>
                 </thead>
                 <tbody className="font-data-mono text-data-mono">
@@ -866,10 +941,17 @@ function RoundTab({ standings, squads, squadsByRound, roundStats }) {
                             {p.team && <div className="text-on-surface-variant text-[12px] truncate">{p.team}</div>}
                           </div>
                         </td>
-                        <td className={`py-2 px-4 text-center font-bold text-primary text-[16px] ${cellBg}`} style={ring()}>{p.rpts}</td>
-                        <td className={`py-2 px-2 text-center text-on-surface-variant rounded-r-lg ${cellBg}`} style={ring({ borderRightWidth: 2 })}>
-                          {p.total ?? p.totalPoints ?? 0}
+                        <td
+                          className={`py-2 px-4 text-center font-bold text-primary text-[16px] ${cellBg} ${selFinished ? "rounded-r-lg" : ""}`}
+                          style={ring(selFinished ? { borderRightWidth: 2 } : {})}
+                        >
+                          {p.rpts}
                         </td>
+                        {!selFinished && (
+                          <td className={`py-2 px-2 text-center text-on-surface-variant rounded-r-lg ${cellBg}`} style={ring({ borderRightWidth: 2 })}>
+                            {p.total ?? p.totalPoints ?? 0}
+                          </td>
+                        )}
                       </tr>
                     );
                   })}
@@ -1275,6 +1357,45 @@ function BoosterIcon({ name, size = 40 }) {
   );
 }
 
+// Dải 5 booster của một HLV: chip đã dùng (màu + nhãn vòng), chip đang dùng vòng này
+// (viền nổi bật), chip chưa dùng (mờ). currentKey = vòng đang xét (mới nhất có dữ liệu).
+function ManagerChips({ chips, currentKey }) {
+  const used = {}; // tên chip -> key vòng đã dùng
+  for (const [k, v] of Object.entries(chips || {})) if (v) used[v] = k;
+  return (
+    <div className="flex items-center gap-1.5 mt-1.5">
+      {BOOSTERS.map((b) => {
+        const roundKey = used[b.name];
+        const isUsed = !!roundKey;
+        const isActive = isUsed && roundKey === currentKey;
+        const roundLabel = ALL_ROUNDS.find((r) => r.key === roundKey)?.label || roundKey;
+        const title = isActive
+          ? `${b.name} · đang dùng vòng này`
+          : isUsed
+          ? `${b.name} · đã dùng (${roundLabel})`
+          : `${b.name} · chưa dùng`;
+        return (
+          <div key={b.name} title={title} className="flex flex-col items-center gap-0.5">
+            <div
+              className={isActive ? "rounded-md ring-2 ring-tertiary ring-offset-1 ring-offset-surface-container-lowest" : ""}
+              style={{ opacity: isUsed ? 1 : 0.25, filter: isUsed ? "none" : "grayscale(1)" }}
+            >
+              <BoosterIcon name={b.name} size={20} />
+            </div>
+            <span
+              className={`font-data-mono text-[9px] leading-none ${
+                isActive ? "text-tertiary font-bold" : "text-on-surface-variant"
+              }`}
+            >
+              {isActive ? "● vòng này" : isUsed ? roundLabel : "—"}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function ptsColor(pts) {
   if (pts.startsWith("-")) return "text-error";
   if (pts === "+0") return "text-on-surface-variant";
@@ -1391,7 +1512,7 @@ function RulesTab() {
 }
 
 /* ---------------- Shell ---------------- */
-export default function FantasyTabs({ standings, squads, squadsByRound = {}, roundStats = null, playerStats = null }) {
+export default function FantasyTabs({ data = null, standings, squads, squadsByRound = {}, roundStats = null, playerStats = null }) {
   const [tab, setTab] = useState("total");
 
   if (standings.length === 0) {
@@ -1432,7 +1553,7 @@ export default function FantasyTabs({ standings, squads, squadsByRound = {}, rou
 
       {tab === "total" && <TotalTab standings={standings} />}
       {tab === "round" && (
-        <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} />
+        <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} rounds={data?.rounds} />
       )}
       {tab === "info" && <InfoTab playerStats={playerStats} />}
       {tab === "rules" && <RulesTab />}

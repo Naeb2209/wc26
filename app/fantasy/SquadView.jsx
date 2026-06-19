@@ -230,6 +230,9 @@ function fifaBreakdownRows(bucket, s) {
   if (bucket === "MID" && n("T")) rows.push({ label: "Tắc bóng", value: n("T"), pts: Math.floor(n("T") / 3) });
   if (bucket === "MID" && n("CC")) rows.push({ label: "Cơ hội tạo ra", value: n("CC"), pts: Math.floor(n("CC") / 2) });
   if (bucket === "FWD" && n("ST")) rows.push({ label: "Sút trúng đích", value: n("ST"), pts: Math.floor(n("ST") / 2) });
+  // Bonus áp dụng cho mọi vị trí (khớp tab Luật).
+  if (n("FK")) rows.push({ label: "Bàn từ đá phạt trực tiếp", value: n("FK"), pts: n("FK") });
+  if (n("SB")) rows.push({ label: "Scouting bonus", value: n("SB"), pts: n("SB") * 2 });
   if ((bucket === "GK" || bucket === "DEF") && n("GC"))
     rows.push({ label: "Bàn thua", value: n("GC"), pts: -Math.max(0, n("GC") - 1) });
   if (n("PW")) rows.push({ label: "Kiếm được penalty", value: n("PW"), pts: n("PW") * 2 });
@@ -546,10 +549,12 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
           )}
         </div>
         {p.avatar ? (
+          // Canh theo chiều cao (không bóp ngang) -> tư thế dang/chỉ tay tràn nổi ra ngoài khung;
+          // pointer-events-none để phần tay tràn không chặn click sang thẻ bên cạnh.
           <img
             src={p.avatar}
             alt=""
-            className="relative object-contain w-full h-full"
+            className="relative h-full w-auto max-w-none shrink-0 pointer-events-none"
             style={{
               maskImage: "linear-gradient(to bottom, #000 45%, transparent 96%)",
               WebkitMaskImage: "linear-gradient(to bottom, #000 45%, transparent 96%)",
