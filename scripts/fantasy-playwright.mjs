@@ -112,6 +112,22 @@ async function isLoggedIn(ctx) {
   return cookies.some((c) => c.name === "X-SID" || c.name === "fp.user");
 }
 
+async function verifyFantasySession(page) {
+  return page.evaluate(async (leagueId) => {
+    try {
+      const response = await fetch(`/api/en/fantasy/ranking/league/${leagueId}?limit=1`, {
+        headers: { accept: "application/json" },
+        credentials: "include",
+      });
+      if (!response.ok) return { ok: false, status: response.status };
+      const payload = await response.json();
+      return { ok: Array.isArray(payload?.success?.ranks), status: response.status };
+    } catch (error) {
+      return { ok: false, status: 0, error: String(error) };
+    }
+  }, LEAGUE);
+}
+
 async function mapAndWrite(payload) {
   const db = JSON.parse(readFileSync(DB_PATH, "utf8"));
   mergeFantasySync({
@@ -138,10 +154,25 @@ async function runLogin() {
   const ctx = await openContext(false);
   try {
     const page = ctx.pages()[0] || (await ctx.newPage());
-    await page.goto("https://play.fifa.com/", { waitUntil: "domcontentloaded" });
+    await page.goto(`https://play.fifa.com/fantasy/leagues/${LEAGUE}/table`, {
+      waitUntil: "domcontentloaded",
+    });
+    const currentSession = await verifyFantasySession(page);
+    if (!currentSession.ok) {
+      await ctx.clearCookies();
+      await page.evaluate(() => {
+        localStorage.clear();
+        sessionStorage.clear();
+      }).catch(() => {});
+      await page.goto(`https://play.fifa.com/fantasy/leagues/${LEAGUE}/table`, {
+        waitUntil: "domcontentloaded",
+      });
+    }
     console.log("→ Hãy ĐĂNG NHẬP trong cửa sổ vừa mở. Đang chờ (tối đa 5 phút)…");
     for (let i = 0; i < 150; i++) {
-      if (await isLoggedIn(ctx)) {
+      const hasAuthCookie = await isLoggedIn(ctx);
+      const session = hasAuthCookie ? await verifyFantasySession(page) : { ok: false };
+      if (session.ok) {
         const cookies = await ctx.cookies("https://play.fifa.com");
         const userCookie = cookies.find((cookie) => cookie.name === "fp.user");
         const refreshToken = refreshTokenFromCookie(userCookie?.value);
@@ -181,6 +212,11 @@ async function runSync() {
     const page = ctx.pages()[0] || (await ctx.newPage());
     await page.goto("https://play.fifa.com/", { waitUntil: "domcontentloaded" });
     await page.waitForTimeout(2000); // để Akamai sensor JS chạy, set cookie bot hợp lệ
+    const session = await verifyFantasySession(page);
+    if (!session.ok) {
+      console.error(`✗ Phiên FIFA không hợp lệ (HTTP ${session.status || 0}). Chạy lại: npm run fantasy:login`);
+      process.exit(1);
+    }
 
     const result = await page.evaluate(async (leagueId) => {
       try {
@@ -189,7 +225,11 @@ async function runSync() {
             headers: { accept: "application/json" },
             credentials: "include",
           });
-          if (!response.ok) throw new Error(`HTTP ${response.status} ${url}`);
+          if (!response.ok) {
+            const error = new Error(`HTTP ${response.status} ${url}`);
+            error.status = response.status;
+            throw error;
+          }
           return response.json();
         };
 
@@ -258,7 +298,7 @@ async function runSync() {
           payload: { ranks, roundRankings, histories, rounds, players, squads, playerStats },
         };
       } catch (e) {
-        return { ok: false, status: 0, text: String(e) };
+        return { ok: false, status: Number(e?.status) || 0, text: String(e) };
       }
     }, LEAGUE);
 
