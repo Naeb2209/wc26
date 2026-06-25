@@ -90,8 +90,14 @@ function PlayerFrame({ player, pos, saved, onChange, onSave, onReset }) {
       </div>
 
       {/* Zoom */}
-      <div className="w-full flex items-center gap-2">
-        <span className="text-[11px] text-on-surface-variant">Zoom</span>
+      <div className="w-full flex items-center gap-1.5">
+        <button
+          onClick={() => onChange({ ...pos, scale: fmt(clamp((pos.scale || 1) - 0.05, 0.4, 3)) })}
+          className="w-6 h-6 shrink-0 rounded-md border border-white/20 text-on-surface text-[14px] font-bold leading-none hover:bg-white/10 flex items-center justify-center"
+          title="Thu nhỏ"
+        >
+          −
+        </button>
         <input
           type="range"
           min="0.4"
@@ -101,11 +107,35 @@ function PlayerFrame({ player, pos, saved, onChange, onSave, onReset }) {
           onChange={(e) => onChange({ ...pos, scale: fmt(Number(e.target.value)) })}
           className="flex-1 accent-primary"
         />
+        <button
+          onClick={() => onChange({ ...pos, scale: fmt(clamp((pos.scale || 1) + 0.05, 0.4, 3)) })}
+          className="w-6 h-6 shrink-0 rounded-md border border-white/20 text-on-surface text-[14px] font-bold leading-none hover:bg-white/10 flex items-center justify-center"
+          title="Phóng to"
+        >
+          +
+        </button>
         <span className="text-[11px] font-data-mono text-on-surface w-9 text-right">{(pos.scale || 1).toFixed(2)}</span>
       </div>
 
-      <div className="text-[10px] font-data-mono text-on-surface-variant">
-        x:{pos.x || 0} y:{pos.y || 0}
+      {/* Nudge vị trí bằng mũi tên (bước 1%) */}
+      <div className="w-full flex items-center justify-center gap-1">
+        {[
+          ["←", { x: -1, y: 0 }],
+          ["↑", { x: 0, y: -1 }],
+          ["↓", { x: 0, y: 1 }],
+          ["→", { x: 1, y: 0 }],
+        ].map(([label, d]) => (
+          <button
+            key={label}
+            onClick={() => onChange({ ...pos, x: fmt((pos.x || 0) + d.x), y: fmt((pos.y || 0) + d.y) })}
+            className="w-6 h-6 rounded-md border border-white/20 text-on-surface text-[13px] leading-none hover:bg-white/10 flex items-center justify-center"
+          >
+            {label}
+          </button>
+        ))}
+        <span className="text-[10px] font-data-mono text-on-surface-variant ml-1">
+          x:{pos.x || 0} y:{pos.y || 0}
+        </span>
       </div>
 
       <div className="flex items-center gap-2 w-full">
