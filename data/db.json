@@ -6825,7 +6825,9 @@
           "name": "Jan Paul van Hecke",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/jan-paul-van-hecke.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Jurrien Timber",
@@ -6929,7 +6931,9 @@
           "name": "Crysencio Summerville",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/NED/crysencio-summerville.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Cody Gakpo",
