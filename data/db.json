@@ -5695,7 +5695,9 @@
           "name": "Yahia Fofana",
           "number": null,
           "position": "Thủ Môn",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CIV/yahia-fofana.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Alban Lafont",
@@ -5725,19 +5727,25 @@
           "name": "Ghislain Konan",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CIV/ghislain-konan.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Wilfried Singo",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CIV/wilfried-singo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Guela Doué",
           "number": null,
           "position": "Hậu Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CIV/guela-doue.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Emmanuel Agbadou",
@@ -5761,7 +5769,9 @@
           "name": "Franck Kessié",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CIV/franck-kessie.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Seko Fofana",
@@ -5785,7 +5795,9 @@
           "name": "Amad Diallo",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CIV/amad-diallo.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Parfait Guiagon",
@@ -5797,7 +5809,9 @@
           "name": "Christ Ravynel Inao Oulaï",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/CIV/christ-inao-oulai.png",
+          "avatarSource": "local-xlsx"
         },
         {
           "name": "Nicolas Pépé",
