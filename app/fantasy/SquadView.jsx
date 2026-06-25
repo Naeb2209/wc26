@@ -558,6 +558,13 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
             style={{
               maskImage: "linear-gradient(to bottom, #000 45%, transparent 96%)",
               WebkitMaskImage: "linear-gradient(to bottom, #000 45%, transparent 96%)",
+              ...(p.avatarPos
+                ? {
+                    transform: `translate(${p.avatarPos.x || 0}%, ${p.avatarPos.y || 0}%) scale(${
+                      p.avatarPos.scale || 1
+                    })`,
+                  }
+                : null),
             }}
           />
         ) : (

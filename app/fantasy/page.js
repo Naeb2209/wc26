@@ -1,7 +1,7 @@
 import { getFantasy } from "@/lib/fifa-api";
 import { readDb } from "@/lib/db";
 import { buildSquads } from "@/lib/fantasy-squad";
-import { applyConfiguredAvatars, buildAvatarLookup } from "@/lib/stats-avatars";
+import { applyConfiguredAvatars, buildAvatarLookup, buildAvatarPosLookup } from "@/lib/stats-avatars";
 import FantasyTabs from "./FantasyTabs";
 
 export const dynamic = "force-dynamic";
@@ -27,12 +27,15 @@ export default async function FantasyPage() {
   // vẫn hiện đúng). Khớp theo teamCode + tên (chuẩn hoá), dùng cho thẻ, modal, insights.
   const flagByCode = new Map((db.teams || []).map((t) => [t.code, t.flag]));
   const avatarOf = buildAvatarLookup(db.teams || []);
+  const avatarPosOf = buildAvatarPosLookup(db.teams || []);
   const enrich = (p) => {
     if (!p) return p;
     const next = { ...p };
     if (!next.crest && flagByCode.get(next.teamCode)) next.crest = flagByCode.get(next.teamCode);
     const a = avatarOf(next.teamCode, next.name);
     if (a) next.avatar = a;
+    const pos = avatarPosOf(next.teamCode, next.name);
+    if (pos) next.avatarPos = pos;
     return next;
   };
   const squadsByRound = {};
