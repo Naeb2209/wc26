@@ -2442,7 +2442,12 @@
           "isStar": false,
           "avatar": "/players/BRA/vinicius-junior.png",
           "avatarSource": "local-xlsx",
-          "sportsDbId": "34161324"
+          "sportsDbId": "34161324",
+          "avatarPos": {
+            "x": -2,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Neymar",
@@ -2460,7 +2465,12 @@
           "isStar": false,
           "avatar": "/players/BRA/matheus-cunha.png",
           "avatarSource": "local-xlsx",
-          "sportsDbId": "34169290"
+          "sportsDbId": "34169290",
+          "avatarPos": {
+            "x": 13.83,
+            "y": -1.43,
+            "scale": 1.1
+          }
         },
         {
           "name": "Raphinha",
@@ -4799,7 +4809,12 @@
           "position": "Tiền Đạo",
           "isStar": false,
           "avatar": "/players/FRA/michael-olise.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -3,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Bradley Barcola",
@@ -4984,7 +4999,12 @@
           "position": "Tiền Đạo",
           "isStar": false,
           "avatar": "/players/GER/kai-havertz.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -3,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Leroy Sané",
@@ -5771,7 +5791,12 @@
           "position": "Tiền Vệ",
           "isStar": false,
           "avatar": "/players/CIV/franck-kessie.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -3,
+            "y": 0,
+            "scale": 1.05
+          }
         },
         {
           "name": "Seko Fofana",
@@ -6624,7 +6649,12 @@
           "position": "Hậu Vệ",
           "isStar": false,
           "avatar": "/players/MAR/achraf-hakimi.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": 3,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Noussair Mazraoui",
@@ -6694,7 +6724,12 @@
           "position": "Tiền Vệ",
           "isStar": false,
           "avatar": "/players/MAR/brahim-diaz.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": 5,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Azzedine Ounahi",
@@ -6710,7 +6745,12 @@
           "position": "Tiền Vệ",
           "isStar": false,
           "avatar": "/players/MAR/ismael-saibari.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -3.55,
+            "y": 0,
+            "scale": 0.98
+          }
         },
         {
           "name": "Neil El Aynaoui",
@@ -6816,7 +6856,12 @@
           "isStar": false,
           "avatar": "/players/NED/denzel-dumfries.png",
           "avatarSource": "local-xlsx",
-          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidwprznzdzm"
+          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidwprznzdzm",
+          "avatarPos": {
+            "x": 0,
+            "y": 0,
+            "scale": 1.1
+          }
         },
         {
           "name": "Virgil van Dijk",
@@ -6824,7 +6869,12 @@
           "position": "Hậu Vệ",
           "isStar": false,
           "avatar": "/players/NED/virgil-van-dijk.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": 0,
+            "y": 0,
+            "scale": 1.11
+          }
         },
         {
           "name": "Nathan Aké",
@@ -6857,7 +6907,12 @@
           "position": "Hậu Vệ",
           "isStar": false,
           "avatar": "/players/NED/mickey-van-de-ven.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -4,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Jorrel Hato",
@@ -6919,7 +6974,12 @@
           "position": "Tiền Vệ",
           "isStar": false,
           "avatar": "/players/NED/tijjani-reijnders.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": 11.38,
+            "y": 0,
+            "scale": 1.08
+          }
         },
         {
           "name": "Ryan Gravenberch",
@@ -6927,7 +6987,12 @@
           "position": "Tiền Vệ",
           "isStar": false,
           "avatar": "/players/NED/ryan-gravenberch.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": 7,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Mats Wieffer",
@@ -6947,7 +7012,12 @@
           "position": "Tiền Vệ",
           "isStar": false,
           "avatar": "/players/NED/crysencio-summerville.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -0.71,
+            "y": -7.13,
+            "scale": 1
+          }
         },
         {
           "name": "Cody Gakpo",
@@ -6956,7 +7026,12 @@
           "isStar": false,
           "avatar": "/players/NED/cody-gakpo.png",
           "avatarSource": "local-xlsx",
-          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidjpvzgwzkg"
+          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidjpvzgwzkg",
+          "avatarPos": {
+            "x": 4.26,
+            "y": -2.13,
+            "scale": 1.14
+          }
         },
         {
           "name": "Justin Kluivert",
