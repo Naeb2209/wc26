@@ -25,7 +25,7 @@ function team(overrides = {}) {
   };
 }
 
-function sync(historyTeam) {
+function sync(historyTeam, players = [player(1, 5), player(2, 3)]) {
   const db = { teams: [], fantasy: { standings: [] } };
   mergeFantasySync({
     db,
@@ -33,7 +33,7 @@ function sync(historyTeam) {
     roundRankings: { 1: [{ userId: 7, points: 1 }] },
     histories: { 1: { 7: { team: historyTeam } } },
     rounds: [{ id: 1, status: "complete", tournaments: [] }],
-    players: [player(1, 5), player(2, 3)],
+    players,
     squads: [{ id: 1, abbr: "TST", name: "Test" }],
     leagueId: 1090,
   });
@@ -77,6 +77,24 @@ test("keeps transfer fee out of round points but deducts it from the total", () 
   assert.equal(fantasy.standings[0].roundPoints, 13);
   assert.equal(fantasy.standings[0].rounds.g1, 13);
   assert.equal(fantasy.standings[0].totalPoints, 9);
+});
+
+test("adds the 12th man to the lineup only in the round the booster was used", () => {
+  const players = [player(1, 5), player(2, 3), player(3, 4)];
+
+  // Booster dùng ĐÚNG vòng này (roundId 1) -> cầu thủ 3 được gắn cờ + nhồi vào đội hình.
+  const used = sync(team({ twelfthMan: { playerId: 3, roundId: 1 } }), players);
+  const usedStarters = used.squadsByRound.g1.Coach.starters;
+  assert.equal(usedStarters.length, 3);
+  assert.equal(usedStarters.find((p) => p.id === 3)?.isTwelfthMan, true);
+
+  // Booster đã dùng ở vòng KHÁC (roundId 2) nhưng bản ghi vẫn còn ở vòng 1 ->
+  // KHÔNG gắn cờ, KHÔNG nhồi cầu thủ 3 vào đội hình vòng 1 (tránh cầu thủ thứ 12 sai).
+  const stale = sync(team({ twelfthMan: { playerId: 3, roundId: 2 } }), players);
+  const staleStarters = stale.squadsByRound.g1.Coach.starters;
+  assert.equal(staleStarters.length, 2);
+  assert.ok(!staleStarters.some((p) => p.id === 3));
+  assert.ok(staleStarters.every((p) => p.isTwelfthMan === false));
 });
 
 test("sums the lineup even when a starter is missing from players.json (no FIFA fallback)", () => {

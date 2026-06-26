@@ -31831,7 +31831,7 @@
           "booster": null
         },
         "Guanhnangtho": {
-          "formation": "4-3-4",
+          "formation": "4-3-3",
           "starters": [
             {
               "id": 235,
@@ -32459,63 +32459,6 @@
               "isVice": false,
               "isMaxCaptain": false,
               "isTwelfthMan": false
-            },
-            {
-              "id": 855,
-              "name": "Erling Haaland",
-              "avatar": "/players/NOR/erling-haaland.png",
-              "teamCode": "NOR",
-              "teamName": "Norway",
-              "crest": "",
-              "bucket": "FWD",
-              "price": 10.5,
-              "points": 13,
-              "rawPoints": 13,
-              "goals": 2,
-              "assists": 0,
-              "saves": 0,
-              "tackles": 0,
-              "sot": 3,
-              "chancesCreated": 1,
-              "cleanSheet": 0,
-              "conceded": 2,
-              "yellow": 0,
-              "red": 0,
-              "xG": 0,
-              "xA": 0,
-              "fifa": {
-                "points": 13,
-                "stats": {
-                  "SXI": 0,
-                  "MP": 90,
-                  "AS": 0,
-                  "YC": 0,
-                  "RC": 0,
-                  "OG": 0,
-                  "PW": 0,
-                  "PC": 0,
-                  "CS": 0,
-                  "GS": 2,
-                  "GC": 2,
-                  "PS": 0,
-                  "T": 0,
-                  "CC": 1,
-                  "ST": 3,
-                  "FK": 0,
-                  "S": 0,
-                  "SB": 0
-                }
-              },
-              "played": true,
-              "minutes": 90,
-              "oppCode": "SEN",
-              "oppName": "Senegal",
-              "oppCrest": "",
-              "matchDate": "23-06",
-              "isCaptain": false,
-              "isVice": false,
-              "isMaxCaptain": false,
-              "isTwelfthMan": true
             }
           ],
           "bench": [
@@ -36300,7 +36243,7 @@
           "booster": null
         },
         "Nhat Tuan": {
-          "formation": "3-4-4",
+          "formation": "3-4-3",
           "starters": [
             {
               "id": 423,
@@ -36928,63 +36871,6 @@
               "isVice": false,
               "isMaxCaptain": false,
               "isTwelfthMan": false
-            },
-            {
-              "id": 468,
-              "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
-              "teamCode": "ENG",
-              "teamName": "England",
-              "crest": "",
-              "bucket": "FWD",
-              "price": 10.5,
-              "points": 2,
-              "rawPoints": 2,
-              "goals": 0,
-              "assists": 0,
-              "saves": 0,
-              "tackles": 0,
-              "sot": 1,
-              "chancesCreated": 0,
-              "cleanSheet": 1,
-              "conceded": 0,
-              "yellow": 0,
-              "red": 0,
-              "xG": 0,
-              "xA": 0,
-              "fifa": {
-                "points": 2,
-                "stats": {
-                  "SXI": 0,
-                  "MP": 90,
-                  "AS": 0,
-                  "YC": 0,
-                  "RC": 0,
-                  "OG": 0,
-                  "PW": 0,
-                  "PC": 0,
-                  "CS": 1,
-                  "GS": 0,
-                  "GC": 0,
-                  "PS": 0,
-                  "T": 0,
-                  "CC": 0,
-                  "ST": 1,
-                  "FK": 0,
-                  "S": 0,
-                  "SB": 0
-                }
-              },
-              "played": true,
-              "minutes": 90,
-              "oppCode": "GHA",
-              "oppName": "Ghana",
-              "oppCrest": "",
-              "matchDate": "24-06",
-              "isCaptain": false,
-              "isVice": false,
-              "isMaxCaptain": false,
-              "isTwelfthMan": true
             }
           ],
           "bench": [
@@ -47927,7 +47813,7 @@
               "isCaptain": false,
               "isVice": false,
               "isMaxCaptain": false,
-              "isTwelfthMan": true
+              "isTwelfthMan": false
             }
           ],
           "bench": [
@@ -48076,7 +47962,7 @@
           "booster": "Wildcard"
         },
         "TuNgoo": {
-          "formation": "4-4-3",
+          "formation": "4-4-2",
           "starters": [
             {
               "id": 453,
@@ -48594,41 +48480,6 @@
               "isVice": false,
               "isMaxCaptain": false,
               "isTwelfthMan": false
-            },
-            {
-              "id": 855,
-              "name": "Erling Haaland",
-              "avatar": "/players/NOR/erling-haaland.png",
-              "teamCode": "NOR",
-              "teamName": "Norway",
-              "crest": "",
-              "bucket": "FWD",
-              "price": 10.5,
-              "points": 0,
-              "rawPoints": 0,
-              "goals": 0,
-              "assists": 0,
-              "saves": 0,
-              "tackles": null,
-              "sot": null,
-              "chancesCreated": null,
-              "cleanSheet": 0,
-              "conceded": 0,
-              "yellow": 0,
-              "red": 0,
-              "xG": 0,
-              "xA": 0,
-              "fifa": null,
-              "played": false,
-              "minutes": 0,
-              "oppCode": "FRA",
-              "oppName": "France",
-              "oppCrest": "",
-              "matchDate": "27-06",
-              "isCaptain": false,
-              "isVice": false,
-              "isMaxCaptain": false,
-              "isTwelfthMan": true
             }
           ],
           "bench": [
@@ -49531,7 +49382,7 @@
           "booster": "Wildcard"
         },
         "Guanhnangtho": {
-          "formation": "4-4-3",
+          "formation": "4-4-2",
           "starters": [
             {
               "id": 317,
@@ -50027,41 +49878,6 @@
               "isVice": false,
               "isMaxCaptain": false,
               "isTwelfthMan": false
-            },
-            {
-              "id": 855,
-              "name": "Erling Haaland",
-              "avatar": "/players/NOR/erling-haaland.png",
-              "teamCode": "NOR",
-              "teamName": "Norway",
-              "crest": "",
-              "bucket": "FWD",
-              "price": 10.5,
-              "points": 0,
-              "rawPoints": 0,
-              "goals": 0,
-              "assists": 0,
-              "saves": 0,
-              "tackles": null,
-              "sot": null,
-              "chancesCreated": null,
-              "cleanSheet": 0,
-              "conceded": 0,
-              "yellow": 0,
-              "red": 0,
-              "xG": 0,
-              "xA": 0,
-              "fifa": null,
-              "played": false,
-              "minutes": 0,
-              "oppCode": "FRA",
-              "oppName": "France",
-              "oppCrest": "",
-              "matchDate": "27-06",
-              "isCaptain": false,
-              "isVice": false,
-              "isMaxCaptain": false,
-              "isTwelfthMan": true
             }
           ],
           "bench": [
@@ -50837,7 +50653,7 @@
               "isCaptain": false,
               "isVice": false,
               "isMaxCaptain": false,
-              "isTwelfthMan": true
+              "isTwelfthMan": false
             }
           ],
           "bench": [
@@ -51030,7 +50846,7 @@
           "booster": "Wildcard"
         },
         "tanhung0209": {
-          "formation": "3-4-4",
+          "formation": "3-4-3",
           "starters": [
             {
               "id": 317,
@@ -51548,41 +51364,6 @@
               "isVice": false,
               "isMaxCaptain": false,
               "isTwelfthMan": false
-            },
-            {
-              "id": 855,
-              "name": "Erling Haaland",
-              "avatar": "/players/NOR/erling-haaland.png",
-              "teamCode": "NOR",
-              "teamName": "Norway",
-              "crest": "",
-              "bucket": "FWD",
-              "price": 10.5,
-              "points": 0,
-              "rawPoints": 0,
-              "goals": 0,
-              "assists": 0,
-              "saves": 0,
-              "tackles": null,
-              "sot": null,
-              "chancesCreated": null,
-              "cleanSheet": 0,
-              "conceded": 0,
-              "yellow": 0,
-              "red": 0,
-              "xG": 0,
-              "xA": 0,
-              "fifa": null,
-              "played": false,
-              "minutes": 0,
-              "oppCode": "FRA",
-              "oppName": "France",
-              "oppCrest": "",
-              "matchDate": "27-06",
-              "isCaptain": false,
-              "isVice": false,
-              "isMaxCaptain": false,
-              "isTwelfthMan": true
             }
           ],
           "bench": [
@@ -54444,7 +54225,7 @@
               "isCaptain": true,
               "isVice": false,
               "isMaxCaptain": false,
-              "isTwelfthMan": true
+              "isTwelfthMan": false
             },
             {
               "id": 804,
@@ -56824,7 +56605,7 @@
           "booster": null
         },
         "tnhai": {
-          "formation": "4-5-2",
+          "formation": "4-5-1",
           "starters": [
             {
               "id": 317,
@@ -57320,41 +57101,6 @@
               "isVice": false,
               "isMaxCaptain": false,
               "isTwelfthMan": false
-            },
-            {
-              "id": 468,
-              "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
-              "teamCode": "ENG",
-              "teamName": "England",
-              "crest": "",
-              "bucket": "FWD",
-              "price": 10.5,
-              "points": 0,
-              "rawPoints": 0,
-              "goals": 0,
-              "assists": 0,
-              "saves": 0,
-              "tackles": null,
-              "sot": null,
-              "chancesCreated": null,
-              "cleanSheet": 0,
-              "conceded": 0,
-              "yellow": 0,
-              "red": 0,
-              "xG": 0,
-              "xA": 0,
-              "fifa": null,
-              "played": false,
-              "minutes": 0,
-              "oppCode": "PAN",
-              "oppName": "Panama",
-              "oppCrest": "",
-              "matchDate": "28-06",
-              "isCaptain": false,
-              "isVice": false,
-              "isMaxCaptain": false,
-              "isTwelfthMan": true
             }
           ],
           "bench": [
@@ -57518,7 +57264,7 @@
               "isCaptain": false,
               "isVice": false,
               "isMaxCaptain": false,
-              "isTwelfthMan": true
+              "isTwelfthMan": false
             }
           ],
           "squadValue": 108.3,
@@ -58936,7 +58682,7 @@
           "booster": "12th Man"
         },
         "TeoEm": {
-          "formation": "3-5-3",
+          "formation": "3-4-3",
           "starters": [
             {
               "id": 45,
@@ -59410,41 +59156,6 @@
               "isVice": false,
               "isMaxCaptain": false,
               "isTwelfthMan": false
-            },
-            {
-              "id": 1092,
-              "name": "Lamine Yamal",
-              "avatar": "/players/ESP/lamine-yamal.png",
-              "teamCode": "ESP",
-              "teamName": "Spain",
-              "crest": "",
-              "bucket": "MID",
-              "price": 10,
-              "points": 0,
-              "rawPoints": 0,
-              "goals": 0,
-              "assists": 0,
-              "saves": 0,
-              "tackles": null,
-              "sot": null,
-              "chancesCreated": null,
-              "cleanSheet": 0,
-              "conceded": 0,
-              "yellow": 0,
-              "red": 0,
-              "xG": 0,
-              "xA": 0,
-              "fifa": null,
-              "played": false,
-              "minutes": 0,
-              "oppCode": "URU",
-              "oppName": "Uruguay",
-              "oppCrest": "",
-              "matchDate": "27-06",
-              "isCaptain": false,
-              "isVice": false,
-              "isMaxCaptain": false,
-              "isTwelfthMan": true
             }
           ],
           "bench": [

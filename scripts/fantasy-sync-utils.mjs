@@ -143,6 +143,12 @@ function teamTransferFee(team) {
 export function normalizeFantasySquad({ team, round, playersById, squadsById, localPlayersByTeam = new Map(), playerStatsById = new Map() }) {
   if (!team?.id) return null;
 
+  // Booster "12th Man" CHỈ áp dụng cho ĐÚNG vòng đã dùng (team.twelfthMan.roundId).
+  // team.twelfthMan là bản ghi lịch sử nên vẫn còn ở các vòng sau — không gate theo vòng
+  // thì cầu thủ 12th sẽ bị gắn cờ + nhồi vào đội hình của mọi vòng tiếp theo (vd Wildcard),
+  // tạo ra cầu thủ thứ 12 sai ở vòng không hề dùng booster này.
+  const twelfthManThisRound = Number(team?.twelfthMan?.roundId) === Number(round.id);
+
   const makePlayer = ({ playerId, position }) => {
     const player = playersById.get(Number(playerId));
     if (!player) return null;
@@ -198,7 +204,7 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
       isCaptain,
       isVice: Number(team.vice) === Number(player.id),
       isMaxCaptain,
-      isTwelfthMan: Number(team.twelfthMan?.playerId) === Number(player.id),
+      isTwelfthMan: twelfthManThisRound && Number(team.twelfthMan?.playerId) === Number(player.id),
     };
   };
 
@@ -212,7 +218,7 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
   }
   const bench = orderedBench.map(makePlayer).filter(Boolean);
 
-  if (team.twelfthMan?.playerId && !starters.some((player) => player.id === Number(team.twelfthMan.playerId))) {
+  if (twelfthManThisRound && team.twelfthMan?.playerId && !starters.some((player) => player.id === Number(team.twelfthMan.playerId))) {
     const extra = makePlayer({
       playerId: Number(team.twelfthMan.playerId),
       position: playersById.get(Number(team.twelfthMan.playerId))?.position || "FWD",
