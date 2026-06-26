@@ -804,12 +804,18 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
 
     // 12th Man thường nằm TRONG starters (cờ isTwelfthMan) chứ không phải field riêng.
     // Tách ra để hiển thị riêng ở góc trên-trái sân và không tính vào sơ đồ 11 người.
-    let twelfthMan = squad.twelfthMan ? applyFm(squad.twelfthMan) : null;
-    if (!twelfthMan) {
-      const idx = starters.findIndex((p) => p.isTwelfthMan);
-      if (idx >= 0) {
-        twelfthMan = starters[idx];
-        starters = starters.filter((_, i) => i !== idx);
+    // CHỈ tách khi booster vòng này thực sự là "12th Man" — nếu không, cờ isTwelfthMan
+    // sót lại từ vòng trước (vd vòng dùng Wildcard) sẽ khiến cầu thủ bị loại khỏi sân
+    // mà không được vẽ lại ở đâu (xem prop twelfthMan của <Pitch> chỉ bật khi chip = 12th Man).
+    let twelfthMan = null;
+    if (chip === "12th Man") {
+      twelfthMan = squad.twelfthMan ? applyFm(squad.twelfthMan) : null;
+      if (!twelfthMan) {
+        const idx = starters.findIndex((p) => p.isTwelfthMan);
+        if (idx >= 0) {
+          twelfthMan = starters[idx];
+          starters = starters.filter((_, i) => i !== idx);
+        }
       }
     }
 
