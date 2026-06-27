@@ -1136,9 +1136,14 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
-          "avatarSource": "thesportsdb",
-          "sportsDbId": "34173402"
+          "avatar": "/players/ARG/facundo-medina.png",
+          "avatarSource": "local-xlsx",
+          "sportsDbId": "34173402",
+          "avatarPos": {
+            "x": 3,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Lisandro Martínez",
@@ -1183,7 +1188,12 @@
           "isStar": false,
           "avatar": "/players/ARG/rodrigo-de-paul.png",
           "avatarSource": "local-xlsx",
-          "sportsDbId": "34149739"
+          "sportsDbId": "34149739",
+          "avatarPos": {
+            "x": -2,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Leandro Paredes",
@@ -1255,7 +1265,12 @@
           "isStar": true,
           "avatar": "/players/ARG/lionel-messi.png",
           "avatarSource": "local-xlsx",
-          "sportsDbId": "34146370"
+          "sportsDbId": "34146370",
+          "avatarPos": {
+            "x": 13,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Lautaro Martínez",
@@ -1915,7 +1930,12 @@
           "isStar": false,
           "avatar": "/players/BEL/kevin-de-bruyne.png",
           "avatarSource": "local-xlsx",
-          "sportsDbId": "34155057"
+          "sportsDbId": "34155057",
+          "avatarPos": {
+            "x": 0,
+            "y": 0,
+            "scale": 1.2
+          }
         },
         {
           "name": "Axel Witsel",
@@ -4347,7 +4367,12 @@
           "position": "Tiền Đạo",
           "isStar": false,
           "avatar": "/players/EGY/mohamed-salah.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -7,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Omar Marmoush",
@@ -4413,7 +4438,12 @@
           "position": "Hậu Vệ",
           "isStar": false,
           "avatar": "/players/ENG/john-stones.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -3,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Dan Burn",
@@ -4428,7 +4458,7 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "/players/ENG/ezri-konsa.webp",
+          "avatar": "/players/ENG/ezri-konsa.png",
           "avatarSource": "local-xlsx"
         },
         {
@@ -4436,7 +4466,7 @@
           "number": null,
           "position": "Hậu Vệ",
           "isStar": false,
-          "avatar": "/players/ENG/reece-james.webp",
+          "avatar": "/players/ENG/reece-james.png",
           "avatarSource": "local-xlsx"
         },
         {
@@ -4478,7 +4508,12 @@
           "position": "Hậu Vệ",
           "isStar": false,
           "avatar": "/players/ENG/nico-oreilly.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": 5,
+            "y": 0,
+            "scale": 0.95
+          }
         },
         {
           "name": "Jordan Henderson",
@@ -4536,7 +4571,12 @@
           "isStar": false,
           "avatar": "/players/ENG/jude-bellingham.png",
           "avatarSource": "local-xlsx",
-          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqydqzn"
+          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidpvoqydqzn",
+          "avatarPos": {
+            "x": -6,
+            "y": 0,
+            "scale": 0.95
+          }
         },
         {
           "name": "Kobbie Mainoo",
@@ -4575,9 +4615,14 @@
           "number": null,
           "position": "Tiền Đạo",
           "isStar": false,
-          "avatar": "/players/ENG/harry-kane.webp",
+          "avatar": "/players/ENG/harry-kane.png",
           "avatarSource": "local-xlsx",
-          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidkgnbjarqm"
+          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidkgnbjarqm",
+          "avatarPos": {
+            "x": 6,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Bukayo Saka",
@@ -4793,7 +4838,12 @@
           "isStar": false,
           "avatar": "/players/FRA/kylian-mbappe.png",
           "avatarSource": "local-xlsx",
-          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidddaryrodb"
+          "avatarProfile": "https://vn.fifaaddict.com/fo4db/pidddaryrodb",
+          "avatarPos": {
+            "x": 2,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Marcus Thuram-Ulien",
@@ -5985,7 +6035,8 @@
           "name": "Daichi Kamada",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/daichi-kamada.png"
         },
         {
           "name": "Takefusa Kubo",
@@ -5999,7 +6050,8 @@
           "name": "Keito Nakamura",
           "number": null,
           "position": "Tiền Vệ",
-          "isStar": false
+          "isStar": false,
+          "avatar": "/players/JPN/keito-nakamura.png"
         },
         {
           "name": "Ao Tanaka",
@@ -6690,7 +6742,12 @@
           "position": "Hậu Vệ",
           "isStar": false,
           "avatar": "/players/MAR/chadi-riad.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -2,
+            "y": 0,
+            "scale": 1
+          }
         },
         {
           "name": "Redouane Halhal",
@@ -6747,9 +6804,9 @@
           "avatar": "/players/MAR/ismael-saibari.png",
           "avatarSource": "local-xlsx",
           "avatarPos": {
-            "x": -3.55,
+            "x": -6.55,
             "y": 0,
-            "scale": 0.98
+            "scale": 0.93
           }
         },
         {
@@ -7391,7 +7448,12 @@
           "position": "Tiền Đạo",
           "isStar": false,
           "avatar": "/players/NOR/erling-haaland.png",
-          "avatarSource": "local-xlsx"
+          "avatarSource": "local-xlsx",
+          "avatarPos": {
+            "x": -2,
+            "y": 0,
+            "scale": 0.9
+          }
         },
         {
           "name": "Andreas Schjelderup",
@@ -12663,7 +12725,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -14553,7 +14615,7 @@
             {
               "id": 757,
               "name": "Raúl Rangel",
-              "avatar": "/players/MEX/jose-rangel.png",
+              "avatar": "/players/MEX/raul-rangel.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -15474,7 +15536,7 @@
             {
               "id": 757,
               "name": "Raúl Rangel",
-              "avatar": "/players/MEX/jose-rangel.png",
+              "avatar": "/players/MEX/raul-rangel.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -29332,7 +29394,7 @@
             {
               "id": 1320,
               "name": "Facundo Medina",
-              "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
+              "avatar": "/players/ARG/facundo-medina.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -29766,7 +29828,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -30803,7 +30865,7 @@
             {
               "id": 453,
               "name": "Mostafa Shobeir",
-              "avatar": "",
+              "avatar": "/players/EGY/mostafa-shobeir.png",
               "teamCode": "EGY",
               "teamName": "Egypt",
               "crest": "",
@@ -32406,7 +32468,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -32465,7 +32527,7 @@
             {
               "id": 757,
               "name": "Raúl Rangel",
-              "avatar": "/players/MEX/jose-rangel.png",
+              "avatar": "/players/MEX/raul-rangel.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -33213,7 +33275,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -33621,7 +33683,7 @@
             {
               "id": 757,
               "name": "Raúl Rangel",
-              "avatar": "/players/MEX/jose-rangel.png",
+              "avatar": "/players/MEX/raul-rangel.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -35055,7 +35117,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -35840,7 +35902,7 @@
             {
               "id": 671,
               "name": "Keito Nakamura",
-              "avatar": "",
+              "avatar": "/players/JPN/keito-nakamura.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -36184,7 +36246,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -36590,7 +36652,7 @@
             {
               "id": 671,
               "name": "Keito Nakamura",
-              "avatar": "",
+              "avatar": "/players/JPN/keito-nakamura.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -38515,7 +38577,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -41076,7 +41138,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -44260,7 +44322,7 @@
             {
               "id": 682,
               "name": "Daichi Kamada",
-              "avatar": "",
+              "avatar": "/players/JPN/daichi-kamada.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -44545,7 +44607,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -45295,7 +45357,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -47748,7 +47810,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -47925,7 +47987,7 @@
             {
               "id": 1320,
               "name": "Facundo Medina",
-              "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
+              "avatar": "/players/ARG/facundo-medina.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -47967,7 +48029,7 @@
             {
               "id": 453,
               "name": "Mostafa Shobeir",
-              "avatar": "",
+              "avatar": "/players/EGY/mostafa-shobeir.png",
               "teamCode": "EGY",
               "teamName": "Egypt",
               "crest": "",
@@ -48521,7 +48583,7 @@
             {
               "id": 1320,
               "name": "Facundo Medina",
-              "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
+              "avatar": "/players/ARG/facundo-medina.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -49310,7 +49372,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -49593,7 +49655,7 @@
             {
               "id": 1320,
               "name": "Facundo Medina",
-              "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
+              "avatar": "/players/ARG/facundo-medina.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -49812,7 +49874,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -50033,7 +50095,7 @@
             {
               "id": 682,
               "name": "Daichi Kamada",
-              "avatar": "",
+              "avatar": "/players/JPN/daichi-kamada.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -50154,7 +50216,7 @@
             {
               "id": 463,
               "name": "Ezri Konsa",
-              "avatar": "/players/ENG/ezri-konsa.webp",
+              "avatar": "/players/ENG/ezri-konsa.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -50303,7 +50365,7 @@
             {
               "id": 1320,
               "name": "Facundo Medina",
-              "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
+              "avatar": "/players/ARG/facundo-medina.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -50395,7 +50457,7 @@
             {
               "id": 682,
               "name": "Daichi Kamada",
-              "avatar": "",
+              "avatar": "/players/JPN/daichi-kamada.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -50965,7 +51027,7 @@
             {
               "id": 1320,
               "name": "Facundo Medina",
-              "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
+              "avatar": "/players/ARG/facundo-medina.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -51263,7 +51325,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -51440,7 +51502,7 @@
             {
               "id": 682,
               "name": "Daichi Kamada",
-              "avatar": "",
+              "avatar": "/players/JPN/daichi-kamada.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -51802,7 +51864,7 @@
             {
               "id": 682,
               "name": "Daichi Kamada",
-              "avatar": "",
+              "avatar": "/players/JPN/daichi-kamada.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -52194,7 +52256,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -52433,7 +52495,7 @@
             {
               "id": 1320,
               "name": "Facundo Medina",
-              "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
+              "avatar": "/players/ARG/facundo-medina.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -52639,7 +52701,7 @@
             {
               "id": 671,
               "name": "Keito Nakamura",
-              "avatar": "",
+              "avatar": "/players/JPN/keito-nakamura.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -52696,7 +52758,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -52959,7 +53021,7 @@
             {
               "id": 757,
               "name": "Raúl Rangel",
-              "avatar": "/players/MEX/jose-rangel.png",
+              "avatar": "/players/MEX/raul-rangel.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -53222,7 +53284,7 @@
             {
               "id": 671,
               "name": "Keito Nakamura",
-              "avatar": "",
+              "avatar": "/players/JPN/keito-nakamura.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -54800,7 +54862,7 @@
             {
               "id": 241,
               "name": "Nathan Saliba",
-              "avatar": "",
+              "avatar": "/players/CAN/nathan-saliba.png",
               "teamCode": "CAN",
               "teamName": "Canada",
               "crest": "",
@@ -55170,7 +55232,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -55247,7 +55309,7 @@
             {
               "id": 1320,
               "name": "Facundo Medina",
-              "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
+              "avatar": "/players/ARG/facundo-medina.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -55672,7 +55734,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -56084,7 +56146,7 @@
             {
               "id": 1320,
               "name": "Facundo Medina",
-              "avatar": "https://r2.thesportsdb.com/images/media/player/cutout/hqyj8f1766153184.png",
+              "avatar": "/players/ARG/facundo-medina.png",
               "teamCode": "ARG",
               "teamName": "Argentina",
               "crest": "",
@@ -57234,7 +57296,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -58481,7 +58543,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -58941,7 +59003,7 @@
             {
               "id": 241,
               "name": "Nathan Saliba",
-              "avatar": "",
+              "avatar": "/players/CAN/nathan-saliba.png",
               "teamCode": "CAN",
               "teamName": "Canada",
               "crest": "",
@@ -59125,7 +59187,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -59331,7 +59393,7 @@
             {
               "id": 757,
               "name": "Raúl Rangel",
-              "avatar": "/players/MEX/jose-rangel.png",
+              "avatar": "/players/MEX/raul-rangel.png",
               "teamCode": "MEX",
               "teamName": "Mexico",
               "crest": "",
@@ -59559,7 +59621,7 @@
             {
               "id": 682,
               "name": "Daichi Kamada",
-              "avatar": "",
+              "avatar": "/players/JPN/daichi-kamada.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -59857,7 +59919,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -60453,7 +60515,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -60878,7 +60940,7 @@
             {
               "id": 1709,
               "name": "Reece James",
-              "avatar": "/players/ENG/reece-james.webp",
+              "avatar": "/players/ENG/reece-james.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
@@ -61027,7 +61089,7 @@
             {
               "id": 682,
               "name": "Daichi Kamada",
-              "avatar": "",
+              "avatar": "/players/JPN/daichi-kamada.png",
               "teamCode": "JPN",
               "teamName": "Japan",
               "crest": "",
@@ -61154,7 +61216,7 @@
             {
               "id": 468,
               "name": "Harry Kane",
-              "avatar": "/players/ENG/harry-kane.webp",
+              "avatar": "/players/ENG/harry-kane.png",
               "teamCode": "ENG",
               "teamName": "England",
               "crest": "",
