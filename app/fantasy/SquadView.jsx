@@ -500,7 +500,7 @@ function DnpInfo() {
 }
 
 function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false }) {
-  const size = compact ? "w-28 h-32" : "w-32 h-36";
+  const size = compact ? "w-24 h-28 sm:w-28 sm:h-32" : "w-[108px] h-[120px] sm:w-32 sm:h-36";
   const shownPts = p.displayPoints ?? p.points;
   // `p.points` đã gồm x2 đội trưởng (tính ở bước sync) -> so với rawPoints để biết có nhân đôi.
   const captainDoubled = p.isCaptain && Number(p.points || 0) !== Number(p.rawPoints ?? p.points);
@@ -518,7 +518,7 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
       onClick={() => onSelect?.(p)}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onSelect?.(p))}
       title="Xem thống kê chi tiết"
-      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${borderCls} ${compact ? "w-[134px]" : "w-[150px]"} ${dnp ? "opacity-55 grayscale-[35%]" : ""}`}
+      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${borderCls} ${compact ? "w-[112px] sm:w-[134px]" : "w-[126px] sm:w-[150px]"} ${dnp ? "opacity-55 grayscale-[35%]" : ""}`}
     >
       {twelfth && (
         <span className="absolute -top-2 left-1/2 -translate-x-1/2 z-20 px-1.5 py-0.5 rounded bg-[#9b3fc4] text-white text-[9px] font-bold uppercase leading-none shadow tracking-wide">
@@ -593,12 +593,12 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
         {/* Tên đè lên phần dưới avatar, nền bảng baroque (giữ tỉ lệ, không bóp dẹp) */}
         <div className="absolute bottom-1 inset-x-0 z-10 flex justify-center">
           <div
-            className={`relative ${compact ? "w-[136px]" : "w-[164px]"} shrink-0 aspect-[12/3] bg-no-repeat bg-center bg-cover flex items-center justify-center`}
+            className={`relative ${compact ? "w-[114px] sm:w-[136px]" : "w-[138px] sm:w-[164px]"} shrink-0 aspect-[12/3] bg-no-repeat bg-center bg-cover flex items-center justify-center`}
             style={{ backgroundImage: `url(${NAMEPLATE_BG})` }}
           >
             <div
               title={p.name}
-              className={`${compact ? "px-5" : "px-7"} text-center text-[11px] font-bold tracking-wide text-yellow-50 truncate leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.95)]`}
+              className={`${compact ? "px-3 sm:px-5" : "px-4 sm:px-7"} text-center text-[11px] font-bold tracking-wide text-yellow-50 truncate leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.95)]`}
             >
               {shortName(p.name)}
             </div>
@@ -706,12 +706,21 @@ function Pitch({ squad, infoMode, onSelect, twelfthMan }) {
         </div>
       )}
 
-      <div className="relative space-y-5 sm:space-y-7">
+      <div className="relative space-y-3 sm:space-y-7">
         {ROWS.map((r) => (
-          <div key={r.bucket} className="flex justify-center gap-2 sm:gap-4 flex-wrap">
-            {(byBucket[r.bucket] || []).map((p) => (
-              <PlayerCard key={`${p.teamCode}:${p.name}`} p={p} infoMode={infoMode} onSelect={onSelect} />
-            ))}
+          <div
+            key={r.bucket}
+            className="rounded-xl ring-1 ring-white/10 bg-white/[0.05] py-2 sm:py-0 sm:rounded-none sm:ring-0 sm:bg-transparent"
+          >
+            {/* Nhãn tuyến — chỉ hiện trên mobile để phân biệt khi thẻ wrap nhiều dòng */}
+            <div className="sm:hidden mb-1.5 text-center text-[10px] font-label-caps uppercase tracking-wide text-white/45">
+              {POS_LABEL[r.bucket]}
+            </div>
+            <div className="flex justify-center gap-2 sm:gap-4 flex-wrap">
+              {(byBucket[r.bucket] || []).map((p) => (
+                <PlayerCard key={`${p.teamCode}:${p.name}`} p={p} infoMode={infoMode} onSelect={onSelect} />
+              ))}
+            </div>
           </div>
         ))}
       </div>
@@ -868,7 +877,7 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
       {squad ? (
         <>
           {/* Cầu thủ chưa đá hiển thị thông tin gì — chuyển đổi tại đây */}
-          <div className="flex items-center justify-between gap-2 mb-2 px-1">
+          <div className="flex flex-wrap items-center justify-center sm:justify-between gap-2 mb-2 px-1">
             {chip ? (
               <div className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-tertiary/15 ring-1 ring-tertiary/30 pl-1 pr-2.5 py-0.5">
                 {chipIcon}
@@ -879,8 +888,8 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
             ) : (
               <span />
             )}
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] text-on-surface-variant">Chưa đá hiện:</span>
+            <div className="flex items-center gap-2 sm:ml-auto">
+              <span className="hidden sm:inline text-[11px] text-on-surface-variant">Chưa đá hiện:</span>
               <div className="inline-flex gap-0.5 p-0.5 rounded-full bg-surface-container-low border border-outline-variant">
                 {INFO_MODES.map((m) => {
                 const active = infoMode === m.key;
@@ -890,7 +899,7 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
                     onClick={() => setInfoMode(m.key)}
                     title={m.label}
                     className={[
-                      "inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-label-caps uppercase transition-colors",
+                      "inline-flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-label-caps uppercase transition-colors",
                       active ? "bg-primary text-on-primary" : "text-on-surface-variant hover:text-primary",
                     ].join(" ")}
                   >

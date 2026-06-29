@@ -10,10 +10,10 @@ const MEDAL = {
 };
 
 const TABS = [
-  { key: "total", label: "Tổng điểm", icon: "leaderboard" },
-  { key: "round", label: "Round", icon: "calendar_month" },
-  { key: "info", label: "Thông tin giải đấu", icon: "info" },
-  { key: "rules", label: "Luật", icon: "gavel" },
+  { key: "total", label: "Tổng điểm", short: "Tổng", icon: "leaderboard" },
+  { key: "round", label: "Round", short: "Round", icon: "calendar_month" },
+  { key: "info", label: "Thông tin giải đấu", short: "Giải đấu", icon: "info" },
+  { key: "rules", label: "Luật", short: "Luật", icon: "gavel" },
 ];
 
 function Movement({ rank, prev }) {
@@ -1536,8 +1536,8 @@ export default function FantasyTabs({ data = null, standings, squads, squadsByRo
   return (
     <>
       {/* Tab bar — segmented control (pill trong khung) để khác hẳn nav underline ở trên */}
-      <div className="mb-8 -mx-margin-mobile md:-mx-margin-desktop px-margin-mobile md:px-margin-desktop overflow-x-auto">
-        <div className="inline-flex gap-1 p-1 rounded-full bg-surface-container-low border border-outline-variant min-w-max">
+      <div className="mb-8 md:-mx-margin-desktop md:px-margin-desktop md:overflow-x-auto">
+        <div className="flex sm:inline-flex w-full sm:w-auto gap-1 p-1 rounded-full bg-surface-container-low border border-outline-variant sm:min-w-max">
           {TABS.map((t) => {
             const active = tab === t.key;
             return (
@@ -1545,14 +1545,15 @@ export default function FantasyTabs({ data = null, standings, squads, squadsByRo
                 key={t.key}
                 onClick={() => setTab(t.key)}
                 className={[
-                  "inline-flex items-center gap-2 px-4 py-2 rounded-full font-label-caps text-label-caps uppercase whitespace-nowrap transition-colors",
+                  "flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-2 rounded-full font-label-caps text-label-caps uppercase whitespace-nowrap transition-colors",
                   active
                     ? "bg-primary text-on-primary shadow-sm"
                     : "text-on-surface-variant hover:text-primary",
                 ].join(" ")}
               >
-                <span className="material-symbols-outlined text-[18px]">{t.icon}</span>
-                {t.label}
+                <span className="material-symbols-outlined text-[18px] hidden sm:inline">{t.icon}</span>
+                <span className="sm:hidden">{t.short}</span>
+                <span className="hidden sm:inline">{t.label}</span>
               </button>
             );
           })}
