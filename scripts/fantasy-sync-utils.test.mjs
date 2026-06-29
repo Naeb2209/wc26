@@ -122,10 +122,16 @@ test("qualification booster adds +2 per starter who played and advanced (captain
         },
       },
     },
-    // squad 1 đá r32 và CÓ ở r16 (đi tiếp). squad 2 đá r32 nhưng KHÔNG ở r16 (bị loại).
+    // squad 1 THẮNG trận r32 (2-0) -> đi tiếp. squad 2 THUA (0-1) -> bị loại.
     rounds: [
-      { id: 4, status: "complete", tournaments: [{ homeSquadId: 1, awaySquadId: 9, status: "complete" }, { homeSquadId: 2, awaySquadId: 8, status: "complete" }] },
-      { id: 5, status: "scheduled", tournaments: [{ homeSquadId: 1, awaySquadId: 5, status: "scheduled" }] },
+      {
+        id: 4,
+        status: "complete",
+        tournaments: [
+          { homeSquadId: 1, awaySquadId: 9, homeScore: 2, awayScore: 0, status: "complete" },
+          { homeSquadId: 2, awaySquadId: 8, homeScore: 0, awayScore: 1, status: "complete" },
+        ],
+      },
     ],
     players,
     squads: [{ id: 1, abbr: "AAA", name: "A" }, { id: 2, abbr: "BBB", name: "B" }],

@@ -108,39 +108,25 @@ function boosterFor(team, roundId) {
 
 const num = (v) => Number(v || 0);
 
-function squadIdsInRound(round) {
+// Tập squadId ĐI TIẾP (thắng) ở vòng knock-out roundId — dùng cho Qualification Booster.
+// Suy trực tiếp từ tỉ số TỪNG TRẬN của vòng đó (rounds.json không điền sẵn lịch vòng sau):
+// hòa trong 90' -> xét luân lưu (penaltyScore). Trận chưa "complete" -> chưa có đội thắng.
+// Áp dụng đồng nhất cho cả r32→bán kết lẫn chung kết (đội thắng CK = vô địch).
+function advancedSquadIdsFor(roundId, roundsById) {
+  const round = roundsById.get(Number(roundId));
   const ids = new Set();
   for (const match of round?.tournaments || []) {
-    if (match?.homeSquadId != null) ids.add(Number(match.homeSquadId));
-    if (match?.awaySquadId != null) ids.add(Number(match.awaySquadId));
+    if (match?.status !== "complete") continue;
+    const home = Number(match.homeSquadId);
+    const away = Number(match.awaySquadId);
+    const hs = num(match.homeScore);
+    const as = num(match.awayScore);
+    const hp = num(match.homePenaltyScore);
+    const ap = num(match.awayPenaltyScore);
+    if (hs > as || (hs === as && hp > ap)) ids.add(home);
+    else if (as > hs || (hs === as && ap > hp)) ids.add(away);
   }
   return ids;
-}
-
-// Đội vô địch trận chung kết (suy ra từ tỉ số FIFA nếu có, kể cả luân lưu).
-// Không có tỉ số -> Set rỗng (thà KHÔNG cộng còn hơn cộng sai).
-function finalWinnerSquadIds(round) {
-  const ids = new Set();
-  const match = (round?.tournaments || [])[0];
-  if (!match) return ids;
-  const home = Number(match.homeSquadId);
-  const away = Number(match.awaySquadId);
-  const hs = num(match.homeScore ?? match.homeGoals ?? match.scoreHome);
-  const as = num(match.awayScore ?? match.awayGoals ?? match.scoreAway);
-  const hp = num(match.homePenalties ?? match.homeShootoutScore);
-  const ap = num(match.awayPenalties ?? match.awayShootoutScore);
-  if (hs > as || (hs === as && hp > ap)) ids.add(home);
-  else if (as > hs || (hs === as && ap > hp)) ids.add(away);
-  return ids;
-}
-
-// Tập squadId ĐI TIẾP sau vòng knock-out roundId — dùng cho Qualification Booster.
-// - Vòng 4..7 (r32→bán kết): đi tiếp = có mặt trong lịch thi đấu vòng kế tiếp.
-// - Vòng 8 (chung kết): vô địch = thắng trận CK.
-function advancedSquadIdsFor(roundId, roundsById) {
-  const next = roundsById.get(Number(roundId) + 1);
-  if (next) return squadIdsInRound(next);
-  return finalWinnerSquadIds(roundsById.get(Number(roundId)));
 }
 
 // Cầu thủ có RA SÂN ở vòng này không (cần tối thiểu 1 phút cho Qualification Booster).
