@@ -15,7 +15,7 @@
     "SonHoang": { "g1": 51 },
     "Guanhnangtho": { "g1": 45 }
   },
-  "_chipNote": "Booster mỗi người dùng theo round (WC2026: Wildcard, 12th Man, Maximum Captain, Qualification Booster, Mystery Booster). Wildcard không dùng được ở trận đầu vòng bảng và vòng 1/16. Dùng cho card 'Số chip sử dụng' trong tab Round.",
+  "_chipNote": "Booster mỗi người dùng theo round (WC2026: Wildcard, 12th Man, Maximum Captain, Qualification Booster, Clean Sheet Shield). Wildcard không dùng được ở trận đầu vòng bảng và vòng 1/16. Dùng cho card 'Số chip sử dụng' trong tab Round.",
   "chipsByManager": {
     "LONDON is Red so do Viet Nam": { "g1": "Maximum Captain" },
     "TuNgoo": { "g1": "12th Man" },

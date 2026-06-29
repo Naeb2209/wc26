@@ -97,6 +97,55 @@ test("adds the 12th man to the lineup only in the round the booster was used", (
   assert.ok(staleStarters.every((p) => p.isTwelfthMan === false));
 });
 
+test("qualification booster adds +2 per starter who played and advanced (captain not doubled)", () => {
+  // Vòng knock-out (r32 = id 4). Cầu thủ 1 (đội trưởng, squad 1) và 2 (squad 2).
+  const players = [
+    { id: 1, squadId: 1, position: "FWD", stats: { roundPoints: { 4: 5 } } },
+    { id: 2, squadId: 2, position: "MID", stats: { roundPoints: { 4: 3 } } },
+  ];
+  const db = { teams: [], fantasy: { standings: [] } };
+  mergeFantasySync({
+    db,
+    ranks: [{ userId: 7, userName: "Coach", roundPoints: 1, overallPoints: 1 }],
+    roundRankings: { 4: [{ userId: 7, points: 1 }] },
+    histories: {
+      4: {
+        7: {
+          team: {
+            id: 10,
+            captain: 1,
+            qualification: 4, // booster dùng ở vòng này
+            lineup: { GK: [], DEF: [], MID: [2], FWD: [1] },
+            bench: {},
+            benchOrder: [],
+          },
+        },
+      },
+    },
+    // squad 1 đá r32 và CÓ ở r16 (đi tiếp). squad 2 đá r32 nhưng KHÔNG ở r16 (bị loại).
+    rounds: [
+      { id: 4, status: "complete", tournaments: [{ homeSquadId: 1, awaySquadId: 9, status: "complete" }, { homeSquadId: 2, awaySquadId: 8, status: "complete" }] },
+      { id: 5, status: "scheduled", tournaments: [{ homeSquadId: 1, awaySquadId: 5, status: "scheduled" }] },
+    ],
+    players,
+    squads: [{ id: 1, abbr: "AAA", name: "A" }, { id: 2, abbr: "BBB", name: "B" }],
+    playerStats: {
+      1: [{ roundId: 4, points: 5, stats: { MP: 90 } }],
+      2: [{ roundId: 4, points: 3, stats: { MP: 90 } }],
+    },
+    leagueId: 1090,
+  });
+
+  // Cầu thủ 1: 5*2 (đội trưởng) + 2 (đi tiếp, KHÔNG nhân đôi) = 12.
+  // Cầu thủ 2: 3 + 0 (bị loại) = 3.  Tổng = 15.
+  assert.equal(db.fantasy.standings[0].rounds.r32, 15);
+  const starters = db.fantasy.squadsByRound.r32.Coach.starters;
+  assert.equal(starters.find((p) => p.id === 1).points, 12);
+  assert.equal(starters.find((p) => p.id === 1).qualBonus, 2);
+  assert.equal(starters.find((p) => p.id === 2).points, 3);
+  assert.equal(starters.find((p) => p.id === 2).qualBonus, 0);
+});
+
 test("sums the lineup even when a starter is missing from players.json (no FIFA fallback)", () => {
   // Cầu thủ 99 không có trong players.json -> tính 0 điểm, KHÔNG kéo cả vòng về số FIFA (roundPoints: 1).
   const fantasy = sync(team({ lineup: { GK: [], DEF: [], MID: [2, 99], FWD: [1] } }));

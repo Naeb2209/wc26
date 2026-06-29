@@ -335,11 +335,18 @@ function RoundInsights({ squads, standings, sel, matches }) {
     setModal(null);
     setCountry("all"); // đổi tab thì bỏ lọc nước
   };
-  // Danh sách nước có mặt trong tab "Pick" (kèm cờ), xếp theo bảng chữ cái.
+  // Danh sách nước có mặt trong tab "Pick" (kèm cờ + số cầu thủ được chọn), xếp theo bảng chữ cái.
   const countries = useMemo(() => {
     const m = new Map();
-    for (const r of data.pick || []) if (r.team && !m.has(r.team)) m.set(r.team, r.flag);
-    return [...m.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([team, flag]) => ({ team, flag }));
+    for (const r of data.pick || []) {
+      if (!r.team) continue;
+      const e = m.get(r.team) || { flag: r.flag, count: 0 };
+      e.count += 1;
+      m.set(r.team, e);
+    }
+    return [...m.entries()]
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([team, { flag, count }]) => ({ team, flag, count }));
   }, [data.pick]);
   const meta = INSIGHT_TABS.find((t) => t.key === view) ?? INSIGHT_TABS[0];
   const allRows =
@@ -395,7 +402,7 @@ function RoundInsights({ squads, standings, sel, matches }) {
             <option value="all">Tất cả các nước ({countries.length})</option>
             {countries.map((c) => (
               <option key={c.team} value={c.team}>
-                {c.team}
+                {c.team} ({c.count})
               </option>
             ))}
           </select>
@@ -1292,9 +1299,9 @@ const BOOSTERS = [
     desc: "Kích hoạt từ vòng 1/16 trở đi. +2 điểm cho mỗi cầu thủ đá chính đi tiếp vòng sau (hoặc vô địch chung kết), cần ra sân tối thiểu 1 phút. Nếu là đội trưởng thì +2 này không được nhân đôi.",
   },
   {
-    name: "Mystery Booster",
-    icon: "help",
-    desc: "Hé lộ khi Lượt 3 khoá và vòng 1/16 mở. Dùng cho một vòng knock-out bất kỳ, kể cả chung kết. Sẽ có thông báo khi khả dụng.",
+    name: "Clean Sheet Shield",
+    icon: "shield",
+    desc: "Mọi thủ môn, hậu vệ hoặc tiền vệ trong đội chỉ mất sạch lưới sau khi thủng lưới 2 bàn (thay vì 1). Dùng cho một vòng knock-out bất kỳ, kể cả chung kết.",
   },
 ];
 
@@ -1339,11 +1346,12 @@ function BoosterIcon({ name, size = 40 }) {
         </svg>
       );
       break;
-    case "Mystery Booster":
+    case "Clean Sheet Shield":
     default:
       glyph = (
         <svg viewBox="0 0 48 48" style={sv} aria-hidden="true">
-          <text x="24" y="34" textAnchor="middle" fontSize="24" fontWeight="800" fill="#fff">?</text>
+          <path d="M24 7l13 4v11c0 8.4-5.5 14.6-13 17-7.5-2.4-13-8.6-13-17V11l13-4z" fill="#fff" />
+          <path d="M18 24l4.5 4.5L31 20" fill="none" stroke={BOOSTER_ORANGE} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       );
   }
@@ -1495,7 +1503,7 @@ function RulesTab() {
           </li>
           <li className="flex gap-3">
             <span className="material-symbols-outlined text-[20px] text-primary shrink-0">bolt</span>
-            5 booster (Wildcard, 12th Man, Maximum Captain, Qualification Booster, Mystery Booster) — mỗi loại dùng một lần. Chi tiết ở mục Boosters bên trên.
+            5 booster (Wildcard, 12th Man, Maximum Captain, Qualification Booster, Clean Sheet Shield) — mỗi loại dùng một lần. Chi tiết ở mục Boosters bên trên.
           </li>
           <li className="flex gap-3">
             <span className="material-symbols-outlined text-[20px] text-primary shrink-0">lock_clock</span>

@@ -102,11 +102,64 @@ function boosterFor(team, roundId) {
   if (Number(team?.wildCard) === roundId) return "Wildcard";
   if (Number(team?.twelfthMan?.roundId) === roundId) return "12th Man";
   if (Number(team?.qualification) === roundId) return "Qualification Booster";
-  if (Number(team?.cleanSheet) === roundId) return "Mystery Booster";
+  if (Number(team?.cleanSheet) === roundId) return "Clean Sheet Shield";
   return null;
 }
 
-function calculatedTeamRoundPoints(team, roundId, playersById) {
+const num = (v) => Number(v || 0);
+
+function squadIdsInRound(round) {
+  const ids = new Set();
+  for (const match of round?.tournaments || []) {
+    if (match?.homeSquadId != null) ids.add(Number(match.homeSquadId));
+    if (match?.awaySquadId != null) ids.add(Number(match.awaySquadId));
+  }
+  return ids;
+}
+
+// Đội vô địch trận chung kết (suy ra từ tỉ số FIFA nếu có, kể cả luân lưu).
+// Không có tỉ số -> Set rỗng (thà KHÔNG cộng còn hơn cộng sai).
+function finalWinnerSquadIds(round) {
+  const ids = new Set();
+  const match = (round?.tournaments || [])[0];
+  if (!match) return ids;
+  const home = Number(match.homeSquadId);
+  const away = Number(match.awaySquadId);
+  const hs = num(match.homeScore ?? match.homeGoals ?? match.scoreHome);
+  const as = num(match.awayScore ?? match.awayGoals ?? match.scoreAway);
+  const hp = num(match.homePenalties ?? match.homeShootoutScore);
+  const ap = num(match.awayPenalties ?? match.awayShootoutScore);
+  if (hs > as || (hs === as && hp > ap)) ids.add(home);
+  else if (as > hs || (hs === as && ap > hp)) ids.add(away);
+  return ids;
+}
+
+// Tập squadId ĐI TIẾP sau vòng knock-out roundId — dùng cho Qualification Booster.
+// - Vòng 4..7 (r32→bán kết): đi tiếp = có mặt trong lịch thi đấu vòng kế tiếp.
+// - Vòng 8 (chung kết): vô địch = thắng trận CK.
+function advancedSquadIdsFor(roundId, roundsById) {
+  const next = roundsById.get(Number(roundId) + 1);
+  if (next) return squadIdsInRound(next);
+  return finalWinnerSquadIds(roundsById.get(Number(roundId)));
+}
+
+// Cầu thủ có RA SÂN ở vòng này không (cần tối thiểu 1 phút cho Qualification Booster).
+// Ưu tiên phút thật của FIFA (player_stats MP), thiếu thì suy từ trạng thái trận.
+function playerPlayedInRound(player, roundId, round, squadsById, playerStatsById) {
+  const arr = playerStatsById?.get(Number(player?.id)) || [];
+  const entry = arr.find((e) => Number(e.roundId) === Number(roundId));
+  if (entry) return num(entry.stats?.MP) > 0;
+  return fixtureFor(round, Number(player?.squadId), squadsById).played;
+}
+
+// Qualification Booster: +2 cho mỗi cầu thủ đá chính ĐÃ RA SÂN và có đội ĐI TIẾP
+// (hoặc vô địch CK). +2 KHÔNG nhân đôi cho đội trưởng. 0 nếu booster không bật vòng này.
+function qualificationBonus({ player, roundId, qualActive, advancedSquadIds, round, squadsById, playerStatsById }) {
+  if (!qualActive || !player || !advancedSquadIds?.has(Number(player.squadId))) return 0;
+  return playerPlayedInRound(player, roundId, round, squadsById, playerStatsById) ? 2 : 0;
+}
+
+function calculatedTeamRoundPoints(team, roundId, playersById, ctx = {}) {
   if (!team?.id) return null;
 
   const starterIds = flattenPositionMap(team.lineup).map(({ playerId }) => playerId);
@@ -124,13 +177,25 @@ function calculatedTeamRoundPoints(team, roundId, playersById) {
       ? Number(team.maxCaptainBooster?.playerId)
       : 0;
   const captainId = maxCaptainId || Number(team.captain);
+  const qualActive = Number(team?.qualification) === Number(roundId);
+  const { round, squadsById, playerStatsById, advancedSquadIds } = ctx;
 
   // Cầu thủ thiếu trong players.json -> tính 0 điểm (không kéo cả vòng về số FIFA).
-  // Điểm VÒNG = tổng điểm cầu thủ đá chính (đội trưởng x2), KHÔNG trừ phí chuyển nhượng.
-  // Phí chuyển nhượng chỉ trừ vào ĐIỂM TỔNG (xem mergeFantasySync).
+  // Điểm VÒNG = tổng điểm cầu thủ đá chính (đội trưởng x2) + bonus Qualification Booster,
+  // KHÔNG trừ phí chuyển nhượng. Phí chuyển nhượng chỉ trừ vào ĐIỂM TỔNG (xem mergeFantasySync).
   return starterIds.reduce((total, playerId) => {
-    const points = playerRoundPoints(playersById.get(playerId), roundId);
-    return total + points * (playerId === captainId ? 2 : 1);
+    const player = playersById.get(playerId);
+    const base = playerRoundPoints(player, roundId) * (playerId === captainId ? 2 : 1);
+    const bonus = qualificationBonus({
+      player,
+      roundId,
+      qualActive,
+      advancedSquadIds,
+      round,
+      squadsById,
+      playerStatsById,
+    });
+    return total + base + bonus;
   }, 0);
 }
 
@@ -140,8 +205,11 @@ function teamTransferFee(team) {
   return Number(team?.negativeTransfers || 0);
 }
 
-export function normalizeFantasySquad({ team, round, playersById, squadsById, localPlayersByTeam = new Map(), playerStatsById = new Map() }) {
+export function normalizeFantasySquad({ team, round, playersById, squadsById, localPlayersByTeam = new Map(), playerStatsById = new Map(), advancedSquadIds = new Set() }) {
   if (!team?.id) return null;
+
+  // Qualification Booster bật ở ĐÚNG vòng này -> mỗi cầu thủ đá chính ra sân & đi tiếp +2.
+  const qualActive = Number(team?.qualification) === Number(round.id);
 
   // Booster "12th Man" CHỈ áp dụng cho ĐÚNG vòng đã dùng (team.twelfthMan.roundId).
   // team.twelfthMan là bản ghi lịch sử nên vẫn còn ở các vòng sau — không gate theo vòng
@@ -159,7 +227,17 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
       Number(team.maxCaptainBooster?.playerId) === Number(player.id);
     const hasMaxCaptain = Number(team.maxCaptain) === Number(round.id);
     const isCaptain = Number(team.captain) === Number(player.id);
-    const points = isMaxCaptain || (!hasMaxCaptain && isCaptain) ? rawPoints * 2 : rawPoints;
+    const basePoints = isMaxCaptain || (!hasMaxCaptain && isCaptain) ? rawPoints * 2 : rawPoints;
+    const qualBonus = qualificationBonus({
+      player,
+      roundId: round.id,
+      qualActive,
+      advancedSquadIds,
+      round,
+      squadsById,
+      playerStatsById,
+    });
+    const points = basePoints + qualBonus;
 
     // Chỉ số THẬT của FIFA cho cầu thủ này ở vòng này (player_stats/<id>.json).
     const fifaArr = playerStatsById.get(Number(player.id)) || [];
@@ -183,6 +261,7 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
       price: Number(player.price || 0),
       points,
       rawPoints,
+      qualBonus,
       // FIFA stats (khớp với điểm); thiếu FIFA -> 0/null như cũ.
       goals: hasFifa ? num(s.GS) : 0,
       assists: hasFifa ? num(s.AS) : 0,
@@ -248,6 +327,10 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
   const playerStatsById = new Map(Object.entries(playerStats || {}).map(([id, arr]) => [Number(id), arr]));
   const localPlayersByTeam = buildLocalPlayersByTeam(db.teams);
   const roundsById = new Map((rounds || []).map((round) => [Number(round.id), round]));
+  // Tập squadId đi tiếp sau mỗi vòng (cho Qualification Booster) — tính 1 lần, dùng lại.
+  const advancedByRound = new Map(
+    FANTASY_ROUNDS.map((item) => [item.id, advancedSquadIdsFor(item.id, roundsById)])
+  );
   const rankingByRound = new Map(
     Object.entries(roundRankings || {}).map(([roundId, rows]) => [
       Number(roundId),
@@ -266,7 +349,12 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     for (const item of FANTASY_ROUNDS) {
       const row = rankingByRound.get(item.id)?.get(userId);
       const historyTeam = histories?.[item.id]?.[userId]?.team;
-      const calculatedPoints = calculatedTeamRoundPoints(historyTeam, item.id, playersById);
+      const calculatedPoints = calculatedTeamRoundPoints(historyTeam, item.id, playersById, {
+        round: roundsById.get(item.id),
+        squadsById,
+        playerStatsById,
+        advancedSquadIds: advancedByRound.get(item.id),
+      });
       if (calculatedPoints != null) {
         roundPoints[item.key] = calculatedPoints;
         transferFees[item.key] = teamTransferFee(historyTeam);
@@ -334,7 +422,7 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     const byManager = {};
     for (const standing of standings) {
       const raw = histories?.[item.id]?.[standing.userId]?.team;
-      const squad = normalizeFantasySquad({ team: raw, round, playersById, squadsById, localPlayersByTeam, playerStatsById });
+      const squad = normalizeFantasySquad({ team: raw, round, playersById, squadsById, localPlayersByTeam, playerStatsById, advancedSquadIds: advancedByRound.get(item.id) });
       if (squad) byManager[standing.manager] = squad;
     }
     if (Object.keys(byManager).length) squadsByRound[item.key] = byManager;

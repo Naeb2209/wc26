@@ -379,6 +379,15 @@ function PlayerStatsModal({ p, fotmobDetail, onClose }) {
           ) : p.fifa || useReal ? (
             <>
               {p.fifa && <FifaBreakdown fifa={p.fifa} bucket={p.bucket} />}
+              {p.qualBonus > 0 && (
+                <div className="mt-2 flex items-center justify-between gap-3 px-3 py-2 rounded-md bg-tertiary/10 ring-1 ring-tertiary/30 text-[13px]">
+                  <span className="flex items-center gap-1.5 font-bold text-on-surface">
+                    <span className="material-symbols-outlined text-[18px] text-tertiary">trending_up</span>
+                    Qualification Booster · đi tiếp
+                  </span>
+                  <span className="font-data-mono font-bold text-tertiary tabular-nums">+{p.qualBonus}</span>
+                </div>
+              )}
               {useReal && <FotmobStatBlocks fm={fm} />}
             </>
           ) : !d ? (
