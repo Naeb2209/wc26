@@ -145,6 +145,25 @@ function qualificationBonus({ player, roundId, qualActive, advancedSquadIds, rou
   return playerPlayedInRound(player, roundId, round, squadsById, playerStatsById) ? 2 : 0;
 }
 
+// Điểm sạch lưới (60'+) theo vị trí — khớp luật hiển thị trong app.
+const CLEAN_SHEET_REWARD = { GK: 5, DEF: 5, MID: 1 };
+
+// Clean Sheet Shield: GK/DEF/MID đá ≥60' mà thủng ĐÚNG 1 bàn vẫn được tính sạch lưới
+// (ngưỡng mất sạch lưới nâng từ 1 lên 2). FIFA đã trừ điểm sạch lưới ngay khi thủng 1 trái,
+// nên cộng BÙ lại đúng giá trị sạch lưới (GK/DEF +5, MID +1). FWD không có sạch lưới -> 0.
+// Cộng vào điểm THÔ của cầu thủ nên ĐƯỢC nhân đôi nếu là đội trưởng (giống điểm sạch lưới thật).
+// 0 nếu chip không bật, thiếu chỉ số FIFA, đá <60', hoặc thủng ≠ 1.
+function cleanSheetShieldBonus({ player, roundId, shieldActive, playerStatsById }) {
+  if (!shieldActive || !player) return 0;
+  const reward = CLEAN_SHEET_REWARD[player.position] || 0;
+  if (!reward) return 0;
+  const arr = playerStatsById?.get(Number(player.id)) || [];
+  const entry = arr.find((e) => Number(e.roundId) === Number(roundId));
+  if (!entry) return 0;
+  const s = entry.stats || {};
+  return num(s.MP) >= 60 && num(s.GC) === 1 ? reward : 0;
+}
+
 function calculatedTeamRoundPoints(team, roundId, playersById, ctx = {}) {
   if (!team?.id) return null;
 
@@ -164,6 +183,7 @@ function calculatedTeamRoundPoints(team, roundId, playersById, ctx = {}) {
       : 0;
   const captainId = maxCaptainId || Number(team.captain);
   const qualActive = Number(team?.qualification) === Number(roundId);
+  const shieldActive = Number(team?.cleanSheet) === Number(roundId);
   const { round, squadsById, playerStatsById, advancedSquadIds } = ctx;
 
   // Cầu thủ thiếu trong players.json -> tính 0 điểm (không kéo cả vòng về số FIFA).
@@ -171,7 +191,8 @@ function calculatedTeamRoundPoints(team, roundId, playersById, ctx = {}) {
   // KHÔNG trừ phí chuyển nhượng. Phí chuyển nhượng chỉ trừ vào ĐIỂM TỔNG (xem mergeFantasySync).
   return starterIds.reduce((total, playerId) => {
     const player = playersById.get(playerId);
-    const base = playerRoundPoints(player, roundId) * (playerId === captainId ? 2 : 1);
+    const csBonus = cleanSheetShieldBonus({ player, roundId, shieldActive, playerStatsById });
+    const base = (playerRoundPoints(player, roundId) + csBonus) * (playerId === captainId ? 2 : 1);
     const bonus = qualificationBonus({
       player,
       roundId,
@@ -203,6 +224,9 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
   // tạo ra cầu thủ thứ 12 sai ở vòng không hề dùng booster này.
   const twelfthManThisRound = Number(team?.twelfthMan?.roundId) === Number(round.id);
 
+  // Clean Sheet Shield bật ở ĐÚNG vòng này -> GK/DEF/MID thủng đúng 1 bàn vẫn được tính sạch lưới.
+  const shieldActive = Number(team?.cleanSheet) === Number(round.id);
+
   const makePlayer = ({ playerId, position }) => {
     const player = playersById.get(Number(playerId));
     if (!player) return null;
@@ -213,7 +237,9 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
       Number(team.maxCaptainBooster?.playerId) === Number(player.id);
     const hasMaxCaptain = Number(team.maxCaptain) === Number(round.id);
     const isCaptain = Number(team.captain) === Number(player.id);
-    const basePoints = isMaxCaptain || (!hasMaxCaptain && isCaptain) ? rawPoints * 2 : rawPoints;
+    const csBonus = cleanSheetShieldBonus({ player, roundId: round.id, shieldActive, playerStatsById });
+    const doublePoints = isMaxCaptain || (!hasMaxCaptain && isCaptain);
+    const basePoints = (rawPoints + csBonus) * (doublePoints ? 2 : 1);
     const qualBonus = qualificationBonus({
       player,
       roundId: round.id,
@@ -248,6 +274,7 @@ export function normalizeFantasySquad({ team, round, playersById, squadsById, lo
       points,
       rawPoints,
       qualBonus,
+      csBonus,
       // FIFA stats (khớp với điểm); thiếu FIFA -> 0/null như cũ.
       goals: hasFifa ? num(s.GS) : 0,
       assists: hasFifa ? num(s.AS) : 0,

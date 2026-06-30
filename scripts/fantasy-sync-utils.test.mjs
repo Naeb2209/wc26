@@ -152,6 +152,114 @@ test("qualification booster adds +2 per starter who played and advanced (captain
   assert.equal(starters.find((p) => p.id === 2).qualBonus, 0);
 });
 
+// Sync 1 đội ở vòng knock-out r32 (id 4) với chỉ số FIFA thật (MP/GC) cho Clean Sheet Shield.
+function syncR32({ teamOverrides = {}, players, playerStats }) {
+  const db = { teams: [], fantasy: { standings: [] } };
+  mergeFantasySync({
+    db,
+    ranks: [{ userId: 7, userName: "Coach", roundPoints: 1, overallPoints: 1 }],
+    roundRankings: { 4: [{ userId: 7, points: 1 }] },
+    histories: {
+      4: {
+        7: {
+          team: {
+            id: 10,
+            captain: 1,
+            lineup: { GK: [], DEF: [2], MID: [], FWD: [1] },
+            bench: {},
+            benchOrder: [],
+            ...teamOverrides,
+          },
+        },
+      },
+    },
+    rounds: [{ id: 4, status: "complete", tournaments: [] }],
+    players,
+    squads: [{ id: 1, abbr: "TST", name: "Test" }],
+    playerStats,
+    leagueId: 1090,
+  });
+  return db.fantasy;
+}
+
+const SHIELD_PLAYERS = [
+  { id: 1, squadId: 1, position: "FWD", stats: { roundPoints: { 4: 5 } } },
+  { id: 2, squadId: 1, position: "DEF", stats: { roundPoints: { 4: 2 } } },
+];
+
+test("clean sheet shield restores the clean sheet points for a defender who conceded exactly one", () => {
+  const playerStats = {
+    1: [{ roundId: 4, points: 5, stats: { MP: 90, GC: 0 } }],
+    2: [{ roundId: 4, points: 2, stats: { MP: 120, GC: 1 } }],
+  };
+
+  // Chip bật: hậu vệ 2 thủng đúng 1 trái -> +5 sạch lưới (2 -> 7). Đội trưởng 1 (FWD) không liên quan.
+  const on = syncR32({ teamOverrides: { cleanSheet: 4 }, players: SHIELD_PLAYERS, playerStats });
+  const onDef = on.squadsByRound.r32.Coach.starters.find((p) => p.id === 2);
+  assert.equal(onDef.points, 7);
+  assert.equal(onDef.csBonus, 5);
+  assert.equal(on.standings[0].rounds.r32, 17); // 5*2 (đội trưởng FWD) + 7
+
+  // Chip tắt: không cộng bù, hậu vệ vẫn mất sạch lưới.
+  const off = syncR32({ players: SHIELD_PLAYERS, playerStats });
+  const offDef = off.squadsByRound.r32.Coach.starters.find((p) => p.id === 2);
+  assert.equal(offDef.points, 2);
+  assert.equal(offDef.csBonus, 0);
+});
+
+test("clean sheet shield ignores two goals conceded and doubles the restored points for a captain", () => {
+  // Thủng 2 trái -> vẫn mất sạch lưới kể cả khi bật chip.
+  const twoConceded = syncR32({
+    teamOverrides: { cleanSheet: 4 },
+    players: SHIELD_PLAYERS,
+    playerStats: {
+      1: [{ roundId: 4, points: 5, stats: { MP: 90, GC: 0 } }],
+      2: [{ roundId: 4, points: 2, stats: { MP: 120, GC: 2 } }],
+    },
+  });
+  assert.equal(twoConceded.squadsByRound.r32.Coach.starters.find((p) => p.id === 2).csBonus, 0);
+
+  // Hậu vệ là đội trưởng -> điểm sạch lưới cộng vào điểm THÔ rồi mới nhân đôi: (2+5)*2 = 14.
+  const capDef = syncR32({
+    teamOverrides: { captain: 2, cleanSheet: 4 },
+    players: SHIELD_PLAYERS,
+    playerStats: {
+      1: [{ roundId: 4, points: 5, stats: { MP: 90, GC: 0 } }],
+      2: [{ roundId: 4, points: 2, stats: { MP: 120, GC: 1 } }],
+    },
+  });
+  const cap = capDef.squadsByRound.r32.Coach.starters.find((p) => p.id === 2);
+  assert.equal(cap.points, 14);
+  assert.equal(cap.csBonus, 5);
+});
+
+test("clean sheet shield gives a midfielder +1 and skips players under 60 minutes", () => {
+  // Tiền vệ thủng 1 trái, đá 60' -> +1. Đá <60' -> không có sạch lưới nên không cộng.
+  const players = [
+    { id: 1, squadId: 1, position: "FWD", stats: { roundPoints: { 4: 5 } } },
+    { id: 2, squadId: 1, position: "MID", stats: { roundPoints: { 4: 3 } } },
+  ];
+  const playable = syncR32({
+    teamOverrides: { cleanSheet: 4 },
+    players,
+    playerStats: {
+      1: [{ roundId: 4, points: 5, stats: { MP: 90, GC: 0 } }],
+      2: [{ roundId: 4, points: 3, stats: { MP: 60, GC: 1 } }],
+    },
+  });
+  assert.equal(playable.squadsByRound.r32.Coach.starters.find((p) => p.id === 2).csBonus, 1);
+
+  const benched = syncR32({
+    teamOverrides: { cleanSheet: 4 },
+    players,
+    playerStats: {
+      1: [{ roundId: 4, points: 5, stats: { MP: 90, GC: 0 } }],
+      2: [{ roundId: 4, points: 3, stats: { MP: 45, GC: 1 } }],
+    },
+  });
+  assert.equal(benched.squadsByRound.r32.Coach.starters.find((p) => p.id === 2).csBonus, 0);
+});
+
 test("sums the lineup even when a starter is missing from players.json (no FIFA fallback)", () => {
   // Cầu thủ 99 không có trong players.json -> tính 0 điểm, KHÔNG kéo cả vòng về số FIFA (roundPoints: 1).
   const fantasy = sync(team({ lineup: { GK: [], DEF: [], MID: [2, 99], FWD: [1] } }));
