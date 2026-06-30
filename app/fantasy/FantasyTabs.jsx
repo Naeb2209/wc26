@@ -293,17 +293,17 @@ function chipUsageOf(standings, sel, limit = 10) {
 }
 
 // Panel cột phải: 4 tab Pick / Capt / Chip / Top pts cho vòng đang chọn.
+// (Kết quả các trận tách riêng thành card dưới đội hình — xem MatchResults trong RoundTab.)
 const INSIGHT_TABS = [
   { key: "pick", label: "Pick", icon: "how_to_reg", title: "Được chọn nhiều nhất" },
   { key: "capt", label: "Capt", icon: "star", title: "Đội trưởng nhiều nhất" },
   { key: "chip", label: "Chip", icon: "bolt", title: "Booster dùng nhiều nhất" },
   { key: "pts", label: "Top pts", icon: "military_tech", title: "Điểm cao nhất vòng" },
-  { key: "match", label: "Trận", icon: "stadium", title: "Kết quả các trận" },
 ];
 
 const INSIGHT_COLLAPSED = 10; // số dòng hiển thị trước khi bấm "Xem tất cả"
 
-function RoundInsights({ squads, standings, sel, matches }) {
+function RoundInsights({ squads, standings, sel }) {
   const [view, setView] = useState("pick");
   const [open, setOpen] = useState(false);
   const [modal, setModal] = useState(null); // cầu thủ "Pick" đang mở modal danh sách HLV
@@ -408,10 +408,6 @@ function RoundInsights({ squads, standings, sel, matches }) {
           </select>
         </div>
       )}
-      {view === "match" ? (
-        <MatchResults matches={matches} />
-      ) : (
-       <>
       {rows.length ? (
         <ol className="divide-y divide-surface-variant">
           {rows.map((r, i) => {
@@ -471,8 +467,6 @@ function RoundInsights({ squads, standings, sel, matches }) {
           {open ? "Thu gọn" : `Xem tất cả (${allRows.length})`}
         </button>
       )}
-       </>
-      )}
       {modal && (
         <PickedByModal
           row={modal}
@@ -507,7 +501,7 @@ const shortDate = (d) => (d || "").replace(/,\s*\d{4}\s*$/, "").trim();
 
 // Danh sách kết quả các trận của vòng (nhóm theo bảng). Đã đá -> tỷ số; chưa đá -> giờ + ngày.
 function MatchResults({ matches }) {
-  const [sel, setSel] = useState(null); // trận đang mở modal
+  const [openId, setOpenId] = useState(null); // trận đang mở rộng (hiện chi tiết inline)
   const list = matches || [];
   if (!list.length) {
     return <p className="px-4 py-6 text-sm text-on-surface-variant text-center">Chưa có lịch trận</p>;
@@ -542,76 +536,71 @@ function MatchResults({ matches }) {
             {byGroup.get(g).map((m) => {
               const st = matchStatus(m);
               const score = m.started && m.scoreStr ? m.scoreStr : null;
-              const clickable = m.started; // đã đá -> mở chi tiết
+              const clickable = m.started; // đã đá -> mở rộng xem chi tiết
+              const open = openId === m.id;
               return (
-                <li
-                  key={m.id}
-                  onClick={clickable ? () => setSel(m) : undefined}
-                  className={`flex items-center gap-2 px-4 py-2.5 ${clickable ? "cursor-pointer hover:bg-surface-container-low transition-colors" : ""}`}
-                >
-                  <Side code={m.homeCode} flag={m.homeFlag} />
-                  <div className="shrink-0 text-center min-w-[64px] leading-tight">
-                    {score ? (
-                      <span className="font-data-mono font-bold text-[15px] text-on-surface">{score}</span>
-                    ) : (
-                      <span className="font-data-mono text-[12px] text-on-surface">{shortTime(m.time)}</span>
-                    )}
-                    {st ? (
+                <Fragment key={m.id}>
+                  <li
+                    onClick={clickable ? () => setOpenId(open ? null : m.id) : undefined}
+                    className={`flex items-center gap-2 px-4 py-2.5 ${
+                      clickable ? "cursor-pointer hover:bg-surface-container-low transition-colors" : ""
+                    } ${open ? "bg-surface-container-low" : ""}`}
+                  >
+                    {/* spacer cân với mũi tên bên phải để giữ tỷ số ở giữa */}
+                    <span className="w-[18px] shrink-0" aria-hidden="true" />
+                    <Side code={m.homeCode} flag={m.homeFlag} />
+                    <div className="shrink-0 text-center min-w-[64px] leading-tight">
+                      {score ? (
+                        <span className="font-data-mono font-bold text-[15px] text-on-surface">{score}</span>
+                      ) : (
+                        <span className="font-data-mono text-[12px] text-on-surface">{shortTime(m.time)}</span>
+                      )}
+                      {st ? (
+                        <span
+                          className={`block font-label-caps text-[10px] uppercase mt-0.5 ${
+                            st.live ? "text-error font-bold" : "text-on-surface-variant"
+                          }`}
+                        >
+                          {st.live && (
+                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-error mr-1 align-middle animate-pulse" />
+                          )}
+                          {st.text}
+                        </span>
+                      ) : (
+                        m.date && <span className="block text-[10px] text-on-surface-variant mt-0.5">{shortDate(m.date)}</span>
+                      )}
+                    </div>
+                    <Side code={m.awayCode} flag={m.awayFlag} alignRight />
+                    {clickable ? (
                       <span
-                        className={`block font-label-caps text-[10px] uppercase mt-0.5 ${
-                          st.live ? "text-error font-bold" : "text-on-surface-variant"
+                        className={`material-symbols-outlined text-[18px] text-on-surface-variant shrink-0 transition-transform ${
+                          open ? "rotate-180" : ""
                         }`}
                       >
-                        {st.live && (
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-error mr-1 align-middle animate-pulse" />
-                        )}
-                        {st.text}
+                        expand_more
                       </span>
                     ) : (
-                      m.date && <span className="block text-[10px] text-on-surface-variant mt-0.5">{shortDate(m.date)}</span>
+                      <span className="w-[18px] shrink-0" aria-hidden="true" />
                     )}
-                  </div>
-                  <Side code={m.awayCode} flag={m.awayFlag} alignRight />
-                </li>
+                  </li>
+                  {open && (
+                    <li>
+                      <MatchDetail m={m} />
+                    </li>
+                  )}
+                </Fragment>
               );
             })}
           </ul>
         </div>
       ))}
-      {sel && <MatchModal match={sel} onClose={() => setSel(null)} />}
     </div>
   );
 }
 
-// Nhãn tiếng Việt cho các chỉ số trận (theo key ổn định của FotMob).
-const MATCH_STAT_VI = {
-  BallPossesion: "Kiểm soát bóng",
-  expected_goals: "Bàn thắng kỳ vọng (xG)",
-  total_shots: "Tổng số cú sút",
-  ShotsOnTarget: "Sút trúng đích",
-  touches_opp_box: "Chạm bóng trong vòng cấm đối phương",
-  big_chance: "Cơ hội lớn",
-  big_chance_missed_title: "Cơ hội lớn bỏ lỡ",
-  accurate_passes: "Chuyền chính xác",
-  yellow_cards: "Thẻ vàng",
-  red_cards: "Thẻ đỏ",
-  corners: "Phạt góc",
-  fouls: "Lỗi",
-};
-
-// Lấy số đầu tiên trong giá trị ("467 (90%)" -> 467; 60 -> 60) để so sánh 2 đội.
-function statNum(v) {
-  if (v == null) return null;
-  const m = String(v).match(/-?\d+(\.\d+)?/);
-  return m ? Number(m[0]) : null;
-}
-
-// Modal chi tiết 1 trận: tỷ số, người ghi bàn (2 đội) và thống kê trận.
-function MatchModal({ match: m, onClose }) {
-  useLockBodyScroll();
-  const st = matchStatus(m);
+// Chi tiết 1 trận hiển thị INLINE khi mở rộng hàng: người ghi bàn của 2 đội.
+function MatchDetail({ m }) {
   const goals = m.goals || [];
-  const stats = m.matchStats || [];
   // Bàn phản lưới tính cho đội ĐƯỢC HƯỞNG (đối thủ của người sút).
   const benefitCode = (g) => (g.ownGoal ? (g.teamCode === m.homeCode ? m.awayCode : m.homeCode) : g.teamCode);
   const GoalRow = ({ g, right }) => (
@@ -624,107 +613,42 @@ function MatchModal({ match: m, onClose }) {
         {g.player}
         {g.penalty && <span className="text-on-surface-variant"> (pen)</span>}
         {g.ownGoal && <span className="text-error"> (OG)</span>}
-        {g.assist && <span className="block text-on-surface-variant text-[11px]">🅰️ {g.assist}</span>}
+        {g.assist && (
+          <span className="block text-on-surface-variant text-[11px]">
+            <span
+              className="material-symbols-outlined text-[14px] align-middle mr-0.5"
+              style={{ fontVariationSettings: "'FILL' 1" }}
+            >
+              shoe_cleats
+            </span>
+            {g.assist}
+          </span>
+        )}
       </span>
     </div>
   );
-  const pct = (s) => (s.key === "BallPossesion" && s.home != null ? `${s.home}%` : s.home);
-  const pctA = (s) => (s.key === "BallPossesion" && s.away != null ? `${s.away}%` : s.away);
+  if (!goals.length) {
+    return <div className="px-4 py-4 bg-surface-container-low text-sm text-on-surface-variant text-center">Chưa có bàn thắng</div>;
+  }
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
-      <div
-        className="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-md max-h-[85vh] flex flex-col overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header: đội nhà – tỷ số – đội khách */}
-        <div className="relative px-5 py-4 border-b border-surface-variant">
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Đóng"
-            className="absolute top-3 right-3 text-on-surface-variant hover:text-on-surface"
-          >
-            <span className="material-symbols-outlined">close</span>
-          </button>
-          {m.group && <div className="text-center font-label-caps text-[11px] uppercase text-on-surface-variant mb-2">{m.group}</div>}
-          <div className="flex items-center gap-2">
-            <div className="flex-1 flex flex-col items-center gap-1 min-w-0">
-              {m.homeFlag && <img src={m.homeFlag} alt="" className="w-10 h-7 object-cover rounded-[2px]" />}
-              <span className="font-data-mono text-[13px] text-on-surface">{m.homeCode}</span>
-            </div>
-            <div className="shrink-0 text-center px-2">
-              <div className="font-data-mono font-bold text-2xl text-on-surface">{m.scoreStr || "–"}</div>
-              {st && (
-                <div className={`font-label-caps text-[10px] uppercase mt-0.5 ${st.live ? "text-error font-bold" : "text-on-surface-variant"}`}>
-                  {st.text}
-                </div>
-              )}
-            </div>
-            <div className="flex-1 flex flex-col items-center gap-1 min-w-0">
-              {m.awayFlag && <img src={m.awayFlag} alt="" className="w-10 h-7 object-cover rounded-[2px]" />}
-              <span className="font-data-mono text-[13px] text-on-surface">{m.awayCode}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="overflow-y-auto overscroll-contain">
-          {/* Người ghi bàn */}
-          {goals.length > 0 && (
-            <div className="px-5 py-3 border-b border-surface-variant">
-              <div className="font-label-caps text-[11px] uppercase text-on-surface-variant mb-2 flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px]">sports_soccer</span>
-                Bàn thắng
-              </div>
-              <div className="grid grid-cols-2 gap-x-3">
-                <div>{goals.filter((g) => benefitCode(g) === m.homeCode).map((g, i) => <GoalRow key={i} g={g} />)}</div>
-                <div>{goals.filter((g) => benefitCode(g) === m.awayCode).map((g, i) => <GoalRow key={i} g={g} right />)}</div>
-              </div>
-            </div>
-          )}
-
-          {/* Thống kê trận */}
-          {stats.length > 0 ? (
-            <div className="px-5 py-3">
-              <div className="font-label-caps text-[11px] uppercase text-on-surface-variant mb-2 flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px]">bar_chart</span>
-                Thống kê
-              </div>
-              <ul className="space-y-2">
-                {stats.map((s, i) => {
-                  const hv = statNum(s.home);
-                  const av = statNum(s.away);
-                  const homeWin = hv != null && av != null && hv > av;
-                  const awayWin = hv != null && av != null && av > hv;
-                  const cls = (win) =>
-                    `font-data-mono font-bold text-[12px] ${win ? "text-[#9b3fc4]" : "text-on-surface"}`;
-                  return (
-                    <li key={i}>
-                      <div className="flex items-center justify-between gap-1">
-                        <span className={`${cls(homeWin)} w-16`}>{pct(s)}</span>
-                        <span className="font-label-caps text-[10px] uppercase text-on-surface-variant text-center flex-1 px-1">
-                          {MATCH_STAT_VI[s.key] || s.title}
-                        </span>
-                        <span className={`${cls(awayWin)} w-16 text-right`}>{pctA(s)}</span>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ) : (
-            goals.length === 0 && <p className="px-5 py-6 text-sm text-on-surface-variant text-center">Chưa có dữ liệu chi tiết</p>
-          )}
-        </div>
+    <div className="bg-surface-container-low px-4 py-3">
+      <div className="grid grid-cols-2 gap-x-3">
+        <div>{goals.filter((g) => benefitCode(g) === m.homeCode).map((g, i) => <GoalRow key={i} g={g} />)}</div>
+        <div>{goals.filter((g) => benefitCode(g) === m.awayCode).map((g, i) => <GoalRow key={i} g={g} right />)}</div>
       </div>
     </div>
   );
 }
 
-// Nhãn trạng thái trận: kết thúc -> "FT"/"AET"/"Pen"; nghỉ giữa hiệp -> "HT";
+// Nhãn trạng thái trận: kết thúc -> "FT"/"AET"/"Pen 3 - 4"; nghỉ giữa hiệp -> "HT";
 // đang đá -> phút hiện tại (vd "67'"). Chưa đá -> null (hiện "vs").
 function matchStatus(m) {
   if (!m || !m.started) return null;
-  if (m.finished) return { text: m.reasonShort || "FT", live: false };
+  if (m.finished) {
+    // Phân thắng bại bằng luân lưu -> kèm tỷ số pen (vd "Pen 3 - 4").
+    const text = m.penStr && /pen/i.test(m.reasonShort || "") ? `Pen ${m.penStr}` : m.reasonShort || "FT";
+    return { text, live: false };
+  }
   const short = m.liveShort || m.reasonShort;
   if (short && short.toUpperCase() === "HT") return { text: "HT", live: true };
   return { text: short || "LIVE", live: true };
@@ -967,19 +891,30 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
             </div>
           </div>
 
-          <ManagerLineup
-            manager={current?.manager}
-            squad={roundSquads?.[current?.manager]}
-            points={current?.rpts}
-            chip={current?.chips?.[sel]}
-            chipIcon={current?.chips?.[sel] ? <BoosterIcon name={current.chips[sel]} size={22} /> : null}
-            fotmobDetail={fotmobDetail}
-            roundMatches={roundMatches}
-          />
+          {/* Cột 2: đội hình + kết quả các trận của vòng ngay bên dưới */}
+          <div className="flex flex-col gap-gutter min-w-0">
+            <ManagerLineup
+              manager={current?.manager}
+              squad={roundSquads?.[current?.manager]}
+              points={current?.rpts}
+              chip={current?.chips?.[sel]}
+              chipIcon={current?.chips?.[sel] ? <BoosterIcon name={current.chips[sel]} size={22} /> : null}
+              fotmobDetail={fotmobDetail}
+              roundMatches={roundMatches}
+            />
+
+            <div className="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden">
+              <div className="px-4 py-3 font-label-caps text-label-caps uppercase text-on-surface-variant border-b border-surface-variant flex items-center gap-2">
+                <span className="material-symbols-outlined text-[18px]">stadium</span>
+                Kết quả các trận
+              </div>
+              <MatchResults matches={roundMatches} />
+            </div>
+          </div>
 
           {/* Thống kê vòng (Pick / Capt / Chip / Top pts) — cột phải ở xl, full-width bên dưới ở mốc nhỏ hơn */}
           <div className="lg:col-span-2 xl:col-span-1">
-            <RoundInsights squads={roundSquads} standings={standings} sel={sel} matches={roundMatches} />
+            <RoundInsights squads={roundSquads} standings={standings} sel={sel} />
           </div>
         </div>
       )}

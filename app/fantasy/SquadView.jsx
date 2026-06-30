@@ -499,6 +499,18 @@ function DnpInfo() {
   );
 }
 
+// Icon chỉ số trên thẻ cầu thủ (Material Symbols, trắng + đổ bóng cho rõ trên nền sân).
+function StatIcon({ name }) {
+  return (
+    <span
+      className="material-symbols-outlined text-[14px] align-middle text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]"
+      style={{ fontVariationSettings: "'FILL' 1" }}
+    >
+      {name}
+    </span>
+  );
+}
+
 function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false }) {
   const size = compact ? "w-24 h-28 sm:w-28 sm:h-32" : "w-[108px] h-[120px] sm:w-32 sm:h-36";
   const shownPts = p.displayPoints ?? p.points;
@@ -637,30 +649,30 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
           <div className="mt-0.5 h-5 flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap text-[13px] leading-none">
             {p.played && p.bucket !== "GK" && p.goals > 0 && (
               <span className="inline-flex items-center gap-0.5" title={`${p.goals} bàn thắng`}>
-                ⚽<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.goals}</span>
+                <StatIcon name="sports_soccer" /><span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.goals}</span>
               </span>
             )}
             {p.played && p.bucket !== "GK" && p.assists > 0 && (
               <span className="inline-flex items-center gap-0.5" title={`${p.assists} kiến tạo`}>
-                👟<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.assists}</span>
+                <StatIcon name="shoe_cleats" /><span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.assists}</span>
               </span>
             )}
             {/* Tiền vệ: tắc bóng — chỉ hiện khi có ít nhất 1 pha tắc */}
             {p.played && !compact && p.bucket === "MID" && p.tackles > 0 && (
               <span className="inline-flex items-center gap-0.5" title={`${p.tackles} pha tắc bóng`}>
-                🛡️<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.tackles}</span>
+                <StatIcon name="shield" /><span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.tackles}</span>
               </span>
             )}
             {/* Tiền vệ: cơ hội tạo ra — chỉ hiện khi > 0 */}
             {p.played && !compact && p.bucket === "MID" && p.chancesCreated > 0 && (
               <span className="inline-flex items-center gap-0.5" title={`${p.chancesCreated} cơ hội tạo ra`}>
-                🔑<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.chancesCreated}</span>
+                <StatIcon name="key" /><span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.chancesCreated}</span>
               </span>
             )}
             {/* Tiền đạo: cú sút trúng đích — chung hàng & cùng style emoji */}
             {p.played && !compact && p.bucket === "FWD" && p.sot != null && (
               <span className="inline-flex items-center gap-0.5" title={`${p.sot} cú sút trúng đích`}>
-                🎯<span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.sot}</span>
+                <StatIcon name="target" /><span className="font-data-mono font-bold text-[13px] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.85)]">{p.sot}</span>
               </span>
             )}
             {p.played &&
@@ -746,11 +758,11 @@ function Bench({ squad, infoMode, onSelect }) {
 
 // Chú thích icon trên thẻ cầu thủ.
 const LEGEND = [
-  { icon: "⚽", label: "Bàn thắng" },
-  { icon: "👟", label: "Kiến tạo" },
-  { icon: "🛡️", label: "Tắc bóng (tiền vệ)" },
-  { icon: "🔑", label: "Cơ hội tạo ra (tiền vệ)" },
-  { icon: "🎯", label: "Sút trúng đích (tiền đạo)" },
+  { icon: "sports_soccer", label: "Bàn thắng" },
+  { icon: "shoe_cleats", label: "Kiến tạo" },
+  { icon: "shield", label: "Tắc bóng (tiền vệ)" },
+  { icon: "key", label: "Cơ hội tạo ra (tiền vệ)" },
+  { icon: "target", label: "Sút trúng đích (tiền đạo)" },
 ];
 function StatLegend() {
   return (
@@ -758,7 +770,7 @@ function StatLegend() {
       <span className="font-label-caps uppercase tracking-wide text-on-surface-variant/70">Chú thích:</span>
       {LEGEND.map((it) => (
         <span key={it.label} className="inline-flex items-center gap-1 whitespace-nowrap">
-          <span>{it.icon}</span>
+          <span className="material-symbols-outlined text-[15px] align-middle">{it.icon}</span>
           {it.label}
         </span>
       ))}
