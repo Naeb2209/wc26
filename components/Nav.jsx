@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const LINKS = [
-  { href: "/", label: "Bảng đấu" },
+  { href: "/fantasy", label: "Fantasy" },
+  { href: "/standings", label: "Bảng đấu" },
   { href: "/teams", label: "Đội bóng" },
   { href: "/schedule", label: "Lịch thi đấu" },
   { href: "/live", label: "Trực tiếp" },
-  { href: "/fantasy", label: "Fantasy" },
 ];
 
 export default function Nav() {
