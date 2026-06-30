@@ -1,15 +1,15 @@
-name: Sync Round Player Stats
+name: Sync FotMob (rounds + stats)
 
 on:
   workflow_dispatch:
   schedule:
     # Mỗi 5 phút, CHỈ trong khung 23:00–11:00 giờ VN (ICT/UTC+7) — khung có trận World Cup.
     # GitHub cron tính theo UTC → 23:00–11:00 VN = 16:00–04:00 UTC = giờ UTC 16-23,0-3.
-    # Phút 4,9,…,59 — lệch khỏi sync-fantasy (2,7,…) và sync-stats (7,22,37,52) để không chạy chồng.
+    # Phút 4,9,…,59 — lệch khỏi sync-fantasy (2,7,…) để không chạy chồng.
     - cron: "4-59/5 16-23,0-3 * * *"
 
 concurrency:
-  group: sync-round-stats
+  group: sync-fotmob
   cancel-in-progress: false
 
 permissions:
@@ -18,9 +18,10 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     env:
       FOTMOB_LEAGUE_ID: ${{ vars.FOTMOB_LEAGUE_ID || '77' }}
+      STATS_TOP_N: ${{ vars.STATS_TOP_N || '20' }}
       # Có KV -> script ghi thẳng KV, web đọc runtime (bỏ qua commit bên dưới = không deploy).
       KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
       KV_REST_API_TOKEN: ${{ secrets.KV_REST_API_TOKEN }}
@@ -46,18 +47,31 @@ jobs:
       - name: Sync FotMob round player stats
         run: npm run sync-rounds
 
+      - name: Sync FotMob player stats (every ~15 min)
+        shell: bash
+        run: |
+          # Trên schedule chỉ chạy ~15 phút/lần để giảm tải FotMob; dispatch thì luôn chạy.
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            MIN=$(date -u +%M)
+            if (( 10#$MIN % 15 >= 5 )); then
+              echo "Skipping player stats this cycle (minute=$MIN)."
+              exit 0
+            fi
+          fi
+          npm run sync-stats
+
       - name: Commit updated snapshot
         # Khi đã cấu hình KV: dữ liệu đã ghi thẳng KV -> KHÔNG commit (tránh deploy spam).
         if: ${{ env.KV_REST_API_URL == '' }}
         shell: bash
         run: |
           if git diff --quiet -- data/db.json; then
-            echo "No round-stats changes to commit."
+            echo "No FotMob changes to commit."
             exit 0
           fi
 
           git config user.name "wc26-stats-bot"
           git config user.email "wc26-stats-bot@users.noreply.github.com"
           git add data/db.json
-          git commit -m "Sync FotMob round player stats"
+          git commit -m "Sync FotMob round + player stats"
           git push origin HEAD:main
