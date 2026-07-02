@@ -168,7 +168,7 @@ async function main() {
     if (!status || status === "scheduled") return false; // vòng chưa diễn ra
     // Vòng đã "complete" VÀ đã đồng bộ ít nhất 1 lần khi đã complete -> dữ liệu chốt,
     // không cần fetch lại cầu thủ/HLV nữa (mergeFantasySync giữ nguyên số liệu vòng cũ).
-    if (status === "complete" && storedStatus.get(key) === "complete") {
+    if (process.env.FANTASY_FORCE_REFETCH !== "1" && status === "complete" && storedStatus.get(key) === "complete") {
       console.log(`↷ Bỏ qua vòng ${id} (đã kết thúc & đã chốt).`);
       return false;
     }

@@ -130,19 +130,22 @@ function advancedSquadIdsFor(roundId, roundsById) {
 }
 
 // Cầu thủ có RA SÂN ở vòng này không (cần tối thiểu 1 phút cho Qualification Booster).
-// Ưu tiên phút thật của FIFA (player_stats MP), thiếu thì suy từ trạng thái trận.
-function playerPlayedInRound(player, roundId, round, squadsById, playerStatsById) {
+// Chỉ coi là ra sân khi có dòng chỉ số FIFA (player_stats) với MP > 0. KHÔNG được
+// suy từ trạng thái TRẬN: FIFA luôn phát sinh một dòng cho cầu thủ vào sân, nên thiếu
+// dòng chỉ số => cầu thủ KHÔNG ra sân (vd cầu thủ dự bị ngồi ngoài cả trận). Trước đây
+// fallback dùng fixtureFor(...).played (mức TRẬN) khiến cầu thủ không đá vẫn được +2 khi
+// đội đi tiếp (vd Reece James r32 -> đội tổng bị cộng dư 2 điểm).
+function playerPlayedInRound(player, roundId, playerStatsById) {
   const arr = playerStatsById?.get(Number(player?.id)) || [];
   const entry = arr.find((e) => Number(e.roundId) === Number(roundId));
-  if (entry) return num(entry.stats?.MP) > 0;
-  return fixtureFor(round, Number(player?.squadId), squadsById).played;
+  return entry ? num(entry.stats?.MP) > 0 : false;
 }
 
 // Qualification Booster: +2 cho mỗi cầu thủ đá chính ĐÃ RA SÂN và có đội ĐI TIẾP
 // (hoặc vô địch CK). +2 KHÔNG nhân đôi cho đội trưởng. 0 nếu booster không bật vòng này.
-function qualificationBonus({ player, roundId, qualActive, advancedSquadIds, round, squadsById, playerStatsById }) {
+function qualificationBonus({ player, roundId, qualActive, advancedSquadIds, playerStatsById }) {
   if (!qualActive || !player || !advancedSquadIds?.has(Number(player.squadId))) return 0;
-  return playerPlayedInRound(player, roundId, round, squadsById, playerStatsById) ? 2 : 0;
+  return playerPlayedInRound(player, roundId, playerStatsById) ? 2 : 0;
 }
 
 // Điểm sạch lưới (60'+) theo vị trí — khớp luật hiển thị trong app.
@@ -368,13 +371,17 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
         playerStatsById,
         advancedSquadIds: advancedByRound.get(item.id),
       });
+      // Điểm VÒNG = tổng điểm cầu thủ ĐÁ CHÍNH (đội trưởng x2 + chip), KHÔNG trừ phí chuyển
+      // nhượng — khớp với breakdown từng thẻ cầu thủ hiển thị trong app. Ưu tiên tự tính từ
+      // đội hình; chỉ khi KHÔNG có đội hình mới lấy số FIFA báo (historyTeam.roundPoints / row).
+      // transferFees chỉ là thông tin (không tham gia tính tổng).
       if (calculatedPoints != null) {
         roundPoints[item.key] = calculatedPoints;
         transferFees[item.key] = teamTransferFee(historyTeam);
       } else if (historyTeam?.roundPoints != null) {
         roundPoints[item.key] = Number(historyTeam.roundPoints);
         transferFees[item.key] = teamTransferFee(historyTeam);
-      } else if (row) {
+      } else if (row?.points != null || row?.roundPoints != null) {
         roundPoints[item.key] = Number(row.points ?? row.roundPoints ?? 0);
       }
       const booster = boosterFor(historyTeam, item.id);
@@ -387,16 +394,12 @@ export function mergeFantasySync({ db, ranks, roundRankings, histories, rounds, 
     const currentRoundPoints = currentRound
       ? roundPoints[currentRound.key]
       : Number(rank.roundPoints ?? 0);
-    const syncedRoundKeys = FANTASY_ROUNDS
-      .filter((item) => roundPoints[item.key] != null)
-      .map((item) => item.key);
-    // Điểm TỔNG = tổng điểm các vòng TRỪ phí chuyển nhượng của từng vòng.
-    const totalPoints = syncedRoundKeys.length
-      ? syncedRoundKeys.reduce(
-          (total, key) => total + Number(roundPoints[key] || 0) - Number(transferFees[key] || 0),
-          0
-        )
-      : Number(rank.overallPoints ?? rank.total ?? previous.totalPoints ?? previous.total ?? 0);
+    // Điểm TỔNG = số CHÍNH THỨC của FIFA (rank.overallPoints) để khớp tuyệt đối với BXH FIFA.
+    // KHÔNG cộng dồn điểm vòng tự tính: cách tự tính lệch với FIFA ở vài ca (auto-sub, khoá
+    // đội hình, thời điểm chuyển nhượng...) nên chỉ dùng để hiển thị breakdown từng vòng.
+    const totalPoints = Number(
+      rank.overallPoints ?? rank.total ?? previous.totalPoints ?? previous.total ?? 0
+    );
 
     return {
       userId,

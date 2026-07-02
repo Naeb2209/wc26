@@ -19,18 +19,18 @@ function team(overrides = {}) {
     lineup: { GK: [], DEF: [], MID: [2], FWD: [1] },
     bench: {},
     benchOrder: [],
-    roundPoints: 1,
-    overallPoints: 1,
     ...overrides,
   };
 }
 
+// overallPoints = 226: đây là điểm TỔNG chính thức của FIFA. Điểm vòng vẫn tự tính từ đội hình,
+// nhưng tổng luôn phải = overallPoints (không phải cộng dồn điểm vòng) — xem test tổng bên dưới.
 function sync(historyTeam, players = [player(1, 5), player(2, 3)]) {
   const db = { teams: [], fantasy: { standings: [] } };
   mergeFantasySync({
     db,
-    ranks: [{ userId: 7, userName: "Coach", roundPoints: 1, overallPoints: 1 }],
-    roundRankings: { 1: [{ userId: 7, points: 1 }] },
+    ranks: [{ userId: 7, userName: "Coach", roundPoints: 1, overallPoints: 226 }],
+    roundRankings: { 1: [{ userId: 7 }] },
     histories: { 1: { 7: { team: historyTeam } } },
     rounds: [{ id: 1, status: "complete", tournaments: [] }],
     players,
@@ -40,13 +40,25 @@ function sync(historyTeam, players = [player(1, 5), player(2, 3)]) {
   return db.fantasy;
 }
 
-test("recalculates coach round and total points from synced player points", () => {
+test("recomputes the round from lineup points but takes the total from FIFA overallPoints", () => {
   const fantasy = sync(team());
 
+  // Điểm vòng = tổng điểm đá chính (đội trưởng x2): 5*2 + 3 = 13.
   assert.equal(fantasy.standings[0].roundPoints, 13);
-  assert.equal(fantasy.standings[0].totalPoints, 13);
   assert.equal(fantasy.standings[0].rounds.g1, 13);
   assert.equal(fantasy.squadsByRound.g1.Coach.starters.find((p) => p.id === 1).points, 10);
+  // Tổng = số chính thức FIFA (226), KHÔNG phải điểm vòng cộng dồn (13).
+  assert.equal(fantasy.standings[0].totalPoints, 226);
+});
+
+test("total ignores transfer fee and round sum; it mirrors FIFA overallPoints exactly", () => {
+  // Dù có phí chuyển nhượng (negativeTransfers=4), điểm vòng GIỮ NGUYÊN (13, không trừ phí)
+  // và tổng vẫn bằng overallPoints của FIFA (226) — không trừ phí, không cộng dồn điểm vòng.
+  const fantasy = sync(team({ negativeTransfers: 4 }));
+
+  assert.equal(fantasy.standings[0].roundPoints, 13);
+  assert.equal(fantasy.standings[0].rounds.g1, 13);
+  assert.equal(fantasy.standings[0].totalPoints, 226);
 });
 
 test("uses maximum captain instead of the regular captain", () => {
@@ -67,16 +79,6 @@ test("doubles the regular captain after maximum captain was used in an earlier r
 
   assert.equal(fantasy.standings[0].roundPoints, 13);
   assert.equal(fantasy.squadsByRound.g1.Coach.starters.find((p) => p.id === 1).points, 10);
-});
-
-test("keeps transfer fee out of round points but deducts it from the total", () => {
-  // negativeTransfers = phí chuyển nhượng vượt mức của vòng. Điểm vòng GIỮ NGUYÊN (13),
-  // chỉ điểm tổng bị trừ (13 - 4 = 9).
-  const fantasy = sync(team({ negativeTransfers: 4 }));
-
-  assert.equal(fantasy.standings[0].roundPoints, 13);
-  assert.equal(fantasy.standings[0].rounds.g1, 13);
-  assert.equal(fantasy.standings[0].totalPoints, 9);
 });
 
 test("adds the 12th man to the lineup only in the round the booster was used", () => {
@@ -107,7 +109,7 @@ test("qualification booster adds +2 per starter who played and advanced (captain
   mergeFantasySync({
     db,
     ranks: [{ userId: 7, userName: "Coach", roundPoints: 1, overallPoints: 1 }],
-    roundRankings: { 4: [{ userId: 7, points: 1 }] },
+    roundRankings: { 4: [{ userId: 7 }] },
     histories: {
       4: {
         7: {
@@ -152,13 +154,61 @@ test("qualification booster adds +2 per starter who played and advanced (captain
   assert.equal(starters.find((p) => p.id === 2).qualBonus, 0);
 });
 
+test("qualification booster skips a starter with no FIFA stats row even if his team advanced", () => {
+  // Cầu thủ 1 (đội trưởng) đá 90' -> +2. Cầu thủ 2 cùng đội đi tiếp nhưng KHÔNG ra sân
+  // (không có dòng player_stats cho vòng này, vd Reece James r32) -> KHÔNG được +2.
+  const players = [
+    { id: 1, squadId: 1, position: "FWD", stats: { roundPoints: { 4: 5 } } },
+    { id: 2, squadId: 1, position: "DEF", stats: { roundPoints: { 4: 0 } } },
+  ];
+  const db = { teams: [], fantasy: { standings: [] } };
+  mergeFantasySync({
+    db,
+    ranks: [{ userId: 7, userName: "Coach", roundPoints: 1, overallPoints: 1 }],
+    roundRankings: { 4: [{ userId: 7 }] },
+    histories: {
+      4: {
+        7: {
+          team: {
+            id: 10,
+            captain: 1,
+            qualification: 4,
+            lineup: { GK: [], DEF: [2], MID: [], FWD: [1] },
+            bench: {},
+            benchOrder: [],
+          },
+        },
+      },
+    },
+    // squad 1 THẮNG r32 (2-0) -> đi tiếp, cả hai cầu thủ đều thuộc squad 1.
+    rounds: [
+      {
+        id: 4,
+        status: "complete",
+        tournaments: [{ homeSquadId: 1, awaySquadId: 9, homeScore: 2, awayScore: 0, status: "complete" }],
+      },
+    ],
+    players,
+    squads: [{ id: 1, abbr: "AAA", name: "A" }],
+    // Chỉ cầu thủ 1 có dòng chỉ số FIFA; cầu thủ 2 KHÔNG có -> coi như không ra sân.
+    playerStats: { 1: [{ roundId: 4, points: 5, stats: { MP: 90 } }] },
+    leagueId: 1090,
+  });
+
+  const starters = db.fantasy.squadsByRound.r32.Coach.starters;
+  assert.equal(starters.find((p) => p.id === 1).qualBonus, 2);
+  assert.equal(starters.find((p) => p.id === 2).qualBonus, 0);
+  // Vòng = 5*2 (đội trưởng) + 2 (đi tiếp) + 0 (cầu thủ 2 không ra sân) = 12.
+  assert.equal(db.fantasy.standings[0].rounds.r32, 12);
+});
+
 // Sync 1 đội ở vòng knock-out r32 (id 4) với chỉ số FIFA thật (MP/GC) cho Clean Sheet Shield.
 function syncR32({ teamOverrides = {}, players, playerStats }) {
   const db = { teams: [], fantasy: { standings: [] } };
   mergeFantasySync({
     db,
     ranks: [{ userId: 7, userName: "Coach", roundPoints: 1, overallPoints: 1 }],
-    roundRankings: { 4: [{ userId: 7, points: 1 }] },
+    roundRankings: { 4: [{ userId: 7 }] },
     histories: {
       4: {
         7: {
