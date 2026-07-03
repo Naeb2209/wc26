@@ -60,6 +60,7 @@ export default async function FantasyPage() {
         squadsByRound={squadsByRound}
         roundStats={db.roundStats || null}
         playerStats={db.playerStats ? applyConfiguredAvatars(db.playerStats, db.teams || []) : null}
+        schedule={db.schedule || null}
       />
     </main>
   );

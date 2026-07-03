@@ -1457,7 +1457,7 @@ function RulesTab() {
 }
 
 /* ---------------- Shell ---------------- */
-export default function FantasyTabs({ data = null, standings, squads, squadsByRound = {}, roundStats = null, playerStats = null }) {
+export default function FantasyTabs({ data = null, standings, squads, squadsByRound = {}, roundStats = null, playerStats = null, schedule = null }) {
   const [tab, setTab] = useState("total");
 
   if (standings.length === 0) {
@@ -1497,7 +1497,7 @@ export default function FantasyTabs({ data = null, standings, squads, squadsByRo
         </div>
       </div>
 
-      {tab === "dashboard" && <DashboardTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} playerStats={playerStats} />}
+      {tab === "dashboard" && <DashboardTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} playerStats={playerStats} schedule={schedule} />}
       {tab === "total" && <TotalTab standings={standings} />}
       {tab === "round" && (
         <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} rounds={data?.rounds} />
