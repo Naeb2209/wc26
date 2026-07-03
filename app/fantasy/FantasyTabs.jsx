@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { ManagerLineup } from "./SquadView";
-import DashboardTab from "./DashboardTab";
+import DashboardTab from "./dashboard/DashboardTab";
 
 const MEDAL = {
   1: { bg: "#fff8e1", ring: "#ffd700", label: "🥇" },
@@ -1497,7 +1497,7 @@ export default function FantasyTabs({ data = null, standings, squads, squadsByRo
         </div>
       </div>
 
-      {tab === "dashboard" && <DashboardTab />}
+      {tab === "dashboard" && <DashboardTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} playerStats={playerStats} />}
       {tab === "total" && <TotalTab standings={standings} />}
       {tab === "round" && (
         <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} rounds={data?.rounds} />
