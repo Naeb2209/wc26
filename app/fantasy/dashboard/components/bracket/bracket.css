@@ -1,0 +1,751 @@
+/* ========================================================================== */
+/* Bracket UI - Production Styles                                             */
+/* Architecture-safe visual layer only                                        */
+/* ========================================================================== */
+
+:root {
+  /* Surface + Typography */
+  --color-surface: rgba(20, 31, 50, 0.66);
+  --color-surface-hover: rgba(20, 31, 50, 0.82);
+  --color-border: rgba(148, 163, 184, 0.3);
+  --color-border-strong: rgba(148, 163, 184, 0.45);
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #b8c4d8;
+  --color-text-muted: #8ca1bd;
+
+  /* Accent + States */
+  --color-accent: #4f8cff;
+  --color-winner: #5ea2ff;
+  --color-gold-soft: rgba(255, 214, 107, 0.28);
+
+  --color-status-live: rgba(239, 68, 68, 0.92);
+  --color-status-finished-bg: rgba(37, 99, 235, 0.55);
+  --color-status-finished-text: #cfe0ff;
+  --color-status-finished-border: rgba(96, 165, 250, 0.5);
+  --color-status-upcoming-bg: rgba(71, 85, 105, 0.58);
+  --color-status-upcoming-text: #d4deee;
+  --color-status-upcoming-border: rgba(148, 163, 184, 0.35);
+
+  /* Connector */
+  --color-connector: rgba(148, 163, 184, 0.42);
+  --color-connector-active: rgba(79, 140, 255, 0.95);
+  --color-connector-glow: rgba(79, 140, 255, 0.45);
+
+  /* Utility Neutrals */
+  --white-15: rgba(255, 255, 255, 0.15);
+  --white-08: rgba(255, 255, 255, 0.08);
+  --white-03: rgba(255, 255, 255, 0.03);
+
+  --slate-38: rgba(148, 163, 184, 0.38);
+  --slate-42: rgba(148, 163, 184, 0.42);
+  --slate-44: rgba(148, 163, 184, 0.44);
+  --slate-52: rgba(148, 163, 184, 0.52);
+  --slate-60: rgba(148, 163, 184, 0.6);
+
+  --glass-panel: rgba(20, 31, 50, 0.5);
+  --glass-panel-soft: rgba(20, 31, 50, 0.35);
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.125rem;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-card: 0 8px 18px rgba(2, 8, 20, 0.25);
+  --shadow-card-hover: 0 16px 36px rgba(2, 8, 20, 0.33);
+
+  /* Effects */
+  --blur-card: 12px;
+
+  /* Sizing */
+  --match-width: 13rem;
+  --match-min-height: 5.5rem;
+  --match-padding-y: 0.75rem;
+  --match-padding-x: 0.85rem;
+  --match-row-gap: 0.5rem;
+  --final-width-extra: 1.25rem;
+  --third-scale: 0.97;
+  --trophy-size: 5.25rem;
+
+  /* Layout */
+  --shell-gap: 1.5rem;
+  --container-gap: 4rem;
+  --side-gap: 2.5rem;
+  --stage-header-gap: 0.75rem;
+  --bracket-track-height: 54rem;
+  --slot-count-default: 16;
+
+  /* Connector Geometry */
+  --connector-width: 2px;
+  --connector-run: 1.4rem;
+  --connector-dot-size: calc(var(--connector-width) * 2.5);
+  --connector-radius: 0.8rem;
+
+  /* Motion */
+  --trans-fast: 160ms ease;
+  --trans-base: 240ms ease;
+  --trans-slow: 360ms ease;
+
+  /* Focus */
+  --focus-ring: 0 0 0 2px rgba(11, 18, 32, 0.85), 0 0 0 4px rgba(94, 162, 255, 0.95);
+}
+
+/* ========================================================================== */
+/* Shell + Header                                                             */
+/* ========================================================================== */
+
+.knockout-shell {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--shell-gap);
+}
+
+.knockout-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 2.5rem;
+  padding: 0.2rem 1rem;
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.knockout-header .material-symbols-outlined {
+  font-size: 1.25rem;
+  color: var(--color-accent);
+}
+
+/* ========================================================================== */
+/* Scroll Container + Main Grid                                                */
+/* ========================================================================== */
+
+.knockout-body {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0 0.9rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--slate-60) transparent;
+}
+
+.knockout-body::-webkit-scrollbar {
+  height: 0.45rem;
+}
+
+.knockout-body::-webkit-scrollbar-thumb {
+  background: var(--slate-52);
+  border-radius: var(--radius-pill);
+}
+
+.knockout-body__container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: var(--container-gap);
+  min-width: max-content;
+  isolation: isolate;
+}
+
+/* ========================================================================== */
+/* Bracket Columns + Slot Grid                                                 */
+/* ========================================================================== */
+
+.bracket-side {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  align-items: stretch;
+  gap: var(--side-gap);
+}
+
+.bracket-side--left {
+  justify-content: end;
+}
+
+.bracket-side--right {
+  justify-content: start;
+}
+
+.stage-column {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--stage-header-gap);
+}
+
+.stage-column__header {
+  min-height: 1.55rem;
+  display: grid;
+  place-items: center;
+}
+
+.stage-column__title {
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.stage-column__pairs {
+  --slot-count: var(--slot-count-default);
+  --slot-height: calc(var(--bracket-track-height) / var(--slot-count));
+
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(var(--slot-count), minmax(0, var(--slot-height)));
+  min-height: var(--bracket-track-height);
+}
+
+.stage-slot {
+  --connector-span: 1;
+
+  display: grid;
+  place-items: center;
+}
+
+/* ========================================================================== */
+/* Pair Node + Connector System                                                */
+/* ========================================================================== */
+
+.bracket-pair {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--match-width);
+  height: 100%;
+  border-radius: var(--radius-lg);
+  outline: none;
+  z-index: 0;
+}
+
+.pair-node {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  transition: transform var(--trans-base);
+}
+
+.connector {
+  position: absolute;
+  top: 50%;
+  width: var(--connector-run);
+  border-top: var(--connector-width) solid var(--color-connector);
+  border-radius: var(--connector-radius);
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+  transition: border-color var(--trans-base), filter var(--trans-base);
+}
+
+.connector::before,
+.connector::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  transition: background-color var(--trans-base);
+}
+
+.connector-start::before,
+.connector-end::before {
+  top: 50%;
+  width: var(--connector-dot-size);
+  height: var(--connector-dot-size);
+  border-radius: 50%;
+  background: var(--color-connector);
+  transform: translateY(-50%);
+}
+
+.connector-end::after {
+  width: var(--connector-width);
+  height: calc(var(--slot-height) * var(--connector-span) / 2);
+  border-radius: var(--connector-radius);
+  background: var(--color-connector);
+}
+
+.bracket-pair--left .connector-start {
+  right: 100%;
+}
+
+.bracket-pair--left .connector-start::before {
+  left: calc(var(--connector-run) - var(--connector-width));
+}
+
+.bracket-pair--left .connector-end {
+  left: 100%;
+}
+
+.bracket-pair--left .connector-end::before,
+.bracket-pair--left .connector-end::after {
+  right: calc(var(--connector-run) - var(--connector-width));
+}
+
+.bracket-pair--right .connector-start {
+  left: 100%;
+}
+
+.bracket-pair--right .connector-start::before {
+  right: calc(var(--connector-run) - var(--connector-width));
+}
+
+.bracket-pair--right .connector-end {
+  right: 100%;
+}
+
+.bracket-pair--right .connector-end::before,
+.bracket-pair--right .connector-end::after {
+  left: calc(var(--connector-run) - var(--connector-width));
+}
+
+.bracket-pair[data-connector-direction="down"] .connector-end::after {
+  top: 50%;
+}
+
+.bracket-pair[data-connector-direction="up"] .connector-end::after {
+  bottom: 50%;
+}
+
+.bracket-pair:is(:hover, :focus-within) .connector,
+.bracket-pair--path-active .connector {
+  border-top-color: var(--color-connector-active);
+  filter: drop-shadow(0 0 0.5rem var(--color-connector-glow));
+}
+
+.bracket-pair:is(:hover, :focus-within) .connector::before,
+.bracket-pair:is(:hover, :focus-within) .connector::after,
+.bracket-pair--path-active .connector::before,
+.bracket-pair--path-active .connector::after {
+  background: var(--color-connector-active);
+}
+
+.bracket-pair--connects-center .connector-end {
+  width: calc(var(--container-gap) / 2 + var(--connector-run));
+}
+
+.bracket-pair--connects-center .connector-end::after {
+  display: none;
+}
+
+/* ========================================================================== */
+/* Match Card                                                                  */
+/* ========================================================================== */
+
+.match-card {
+  width: 100%;
+  min-height: var(--match-min-height);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: var(--match-row-gap);
+  padding: var(--match-padding-y) var(--match-padding-x);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: linear-gradient(180deg, var(--white-08), var(--white-03));
+  background-color: var(--color-surface);
+  backdrop-filter: blur(var(--blur-card));
+  -webkit-backdrop-filter: blur(var(--blur-card));
+  box-shadow: var(--shadow-card);
+  transform: translateY(0);
+  transition:
+    transform var(--trans-base),
+    box-shadow var(--trans-base),
+    border-color var(--trans-base),
+    background-color var(--trans-base),
+    opacity var(--trans-fast);
+}
+
+.match-card:hover,
+.bracket-pair:focus-within .match-card,
+.bracket-pair--path-active .match-card {
+  transform: translateY(-0.2rem);
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.knockout-body__container:has(.bracket-pair--path-active) .bracket-pair:not(.bracket-pair--path-active) .match-card {
+  opacity: 0.58;
+}
+
+.match-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 1.1rem;
+}
+
+.match-card__date {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.match-card__status {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.6rem;
+  height: 1.18rem;
+  padding: 0 0.55rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.match-card__status--live {
+  color: #ffffff;
+  background: var(--color-status-live);
+}
+
+.match-card__status--finished {
+  color: var(--color-status-finished-text);
+  background: var(--color-status-finished-bg);
+  border-color: var(--color-status-finished-border);
+}
+
+.match-card__status--upcoming {
+  color: var(--color-status-upcoming-text);
+  background: var(--color-status-upcoming-bg);
+  border-color: var(--color-status-upcoming-border);
+}
+
+.match-card__body {
+  display: grid;
+  row-gap: 0.38rem;
+}
+
+.match-card__footer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  color: var(--color-text-secondary);
+  font-size: 0.68rem;
+  line-height: 1.2;
+}
+
+.match-card__footer .material-symbols-outlined {
+  font-size: 0.9rem;
+}
+
+/* ========================================================================== */
+/* Team Rows                                                                   */
+/* ========================================================================== */
+
+.team-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  min-height: 1.75rem;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--trans-fast), transform var(--trans-fast);
+}
+
+.team-row__team {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.team-row__flag,
+.team-row__flag-placeholder {
+  width: 1.12rem;
+  height: 1.12rem;
+  flex: 0 0 1.12rem;
+  border-radius: 0.25rem;
+}
+
+.team-row__flag {
+  object-fit: contain;
+  background: var(--white-15);
+}
+
+.team-row__flag-placeholder {
+  background: var(--slate-42);
+}
+
+.team-row__code {
+  min-width: 0;
+  color: var(--color-text-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.team-row__score {
+  min-width: 1rem;
+  text-align: right;
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.team-row--winner .team-row__code {
+  font-weight: 700;
+}
+
+.team-row--winner .team-row__score {
+  color: var(--color-winner);
+}
+
+.bracket-pair:is(:hover, :focus-within) .team-row--winner,
+.bracket-pair--path-active .team-row--winner {
+  background: rgba(79, 140, 255, 0.12);
+}
+
+/* ========================================================================== */
+/* Center Stage                                                                */
+/* ========================================================================== */
+
+.center-stage {
+  position: relative;
+  z-index: 4;
+  width: calc(var(--match-width) + var(--final-width-extra));
+  min-width: calc(var(--match-width) + var(--final-width-extra));
+  display: grid;
+  place-items: center;
+}
+
+.center-stage__connector {
+  position: absolute;
+  top: 50%;
+  width: var(--container-gap);
+  border-top: var(--connector-width) solid var(--color-connector);
+  border-radius: var(--connector-radius);
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+  transition: border-color var(--trans-base), filter var(--trans-base);
+}
+
+.center-stage__connector--left {
+  right: 100%;
+}
+
+.center-stage__connector--right {
+  left: 100%;
+}
+
+.center-stage--path-left .center-stage__connector--left,
+.center-stage--path-right .center-stage__connector--right {
+  border-top-color: var(--color-connector-active);
+  filter: drop-shadow(0 0 0.5rem var(--color-connector-glow));
+}
+
+.center-stage__content {
+  width: 100%;
+  display: grid;
+  row-gap: 1rem;
+  place-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.center-stage__hero {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.35rem;
+}
+
+.center-stage__trophy {
+  width: var(--trophy-size);
+  height: var(--trophy-size);
+  display: grid;
+  place-items: center;
+  font-size: calc(var(--trophy-size) * 0.62);
+  line-height: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 214, 107, 0.36), rgba(255, 214, 107, 0.06));
+  box-shadow: 0 0 0 1px rgba(255, 214, 107, 0.18), 0 0 2rem var(--color-gold-soft);
+  transition: transform var(--trans-slow), filter var(--trans-slow), box-shadow var(--trans-slow);
+}
+
+.center-stage__subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.center-stage__title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 1.16rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.center-stage__match {
+  width: 100%;
+}
+
+.center-stage__match .match-card {
+  width: calc(var(--match-width) + var(--final-width-extra));
+  min-height: calc(var(--match-min-height) + 0.45rem);
+  border-color: rgba(255, 214, 107, 0.35);
+  box-shadow: var(--shadow-card-hover), 0 0 2.2rem rgba(255, 214, 107, 0.14);
+}
+
+.center-stage__third {
+  width: 100%;
+  display: grid;
+  row-gap: 0.5rem;
+  justify-items: center;
+}
+
+.center-stage__third-label {
+  color: var(--color-text-muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.center-stage__third .match-card {
+  width: calc(var(--match-width) - 0.4rem);
+  transform: scale(var(--third-scale));
+}
+
+.center-stage__placeholder {
+  width: 100%;
+  min-height: 8rem;
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--slate-44);
+  background: var(--glass-panel);
+  color: var(--color-text-secondary);
+}
+
+.center-stage__placeholder .material-symbols-outlined {
+  font-size: 2rem;
+}
+
+.knockout-body__container:has(.bracket-pair:is(:hover, :focus-within)) .center-stage__trophy {
+  filter: brightness(1.08);
+  box-shadow: 0 0 0 1px rgba(255, 214, 107, 0.24), 0 0 2.6rem rgba(255, 214, 107, 0.36);
+}
+
+/* ========================================================================== */
+/* Empty / Footer / Focus                                                      */
+/* ========================================================================== */
+
+.knockout-footer {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+}
+
+.knockout-empty-state {
+  display: grid;
+  row-gap: 1rem;
+  padding: 1rem 0;
+}
+
+.knockout-empty-state__body {
+  min-height: 10rem;
+  display: grid;
+  place-items: center;
+  gap: 0.55rem;
+  text-align: center;
+  border: 1px dashed var(--slate-38);
+  border-radius: var(--radius-lg);
+  background: var(--glass-panel-soft);
+  color: var(--color-text-secondary);
+}
+
+.knockout-empty-state__body .icon {
+  font-size: 2.3rem;
+  color: var(--color-text-muted);
+}
+
+.bracket-pair:focus-visible .match-card,
+.center-stage:focus-within .match-card {
+  outline: none;
+  box-shadow: var(--shadow-card-hover), var(--focus-ring);
+}
+
+/* ========================================================================== */
+/* Responsive                                                                  */
+/* ========================================================================== */
+
+@media (max-width: 1360px) {
+  :root {
+    --container-gap: 2.8rem;
+    --side-gap: 1.8rem;
+    --connector-run: 1.05rem;
+  }
+}
+
+@media (max-width: 1120px) {
+  :root {
+    --container-gap: 2rem;
+    --side-gap: 1.25rem;
+    --match-width: 12.4rem;
+    --bracket-track-height: 48rem;
+    --trophy-size: 4.7rem;
+  }
+
+  .center-stage {
+    width: calc(var(--match-width) + 1rem);
+    min-width: calc(var(--match-width) + 1rem);
+  }
+}
+
+@media (max-width: 820px) {
+  :root {
+    --container-gap: 1.4rem;
+    --side-gap: 0.9rem;
+    --match-width: 11.7rem;
+    --bracket-track-height: 44rem;
+  }
+
+  .knockout-header {
+    font-size: 0.8rem;
+  }
+
+  .center-stage__title {
+    font-size: 1rem;
+  }
+}
+
+/* ========================================================================== */
+/* Reduced Motion                                                              */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
