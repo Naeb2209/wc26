@@ -60,20 +60,21 @@
   --blur-card: 12px;
 
   /* Sizing */
-  --match-width: 13rem;
-  --match-min-height: 5.5rem;
+  --match-width: 11rem;
+  --match-min-height: 5rem;
   --match-padding-y: 0.75rem;
-  --match-padding-x: 0.85rem;
+  --match-padding-x: 0.7rem;
   --match-row-gap: 0.5rem;
-  --final-width-extra: 1.25rem;
+  --final-width-extra: 1rem;
   --third-scale: 0.97;
-  --trophy-size: 5.25rem;
+  --trophy-size: 4.5rem;
 
   /* Layout */
   --shell-gap: 1.5rem;
   --container-gap: 4rem;
-  --side-gap: 2.5rem;
+  --side-gap: 2rem;
   --stage-header-gap: 0.75rem;
+  --center-stage-internal-gap: 1.2rem;
   --bracket-track-height: 54rem;
   --slot-count-default: 16;
 
@@ -466,9 +467,9 @@
 
 .team-row__flag,
 .team-row__flag-placeholder {
-  width: 1.12rem;
-  height: 1.12rem;
-  flex: 0 0 1.12rem;
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 1rem;
   border-radius: 0.25rem;
 }
 
@@ -484,7 +485,7 @@
 .team-row__code {
   min-width: 0;
   color: var(--color-text-primary);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   white-space: nowrap;
@@ -493,10 +494,10 @@
 }
 
 .team-row__score {
-  min-width: 1rem;
+  min-width: 0.9rem;
   text-align: right;
   color: var(--color-text-primary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
@@ -556,7 +557,7 @@
 .center-stage__content {
   width: 100%;
   display: grid;
-  row-gap: 1rem;
+  row-gap: var(--center-stage-internal-gap);
   place-items: center;
   position: relative;
   z-index: 2;
@@ -612,7 +613,7 @@
 .center-stage__third {
   width: 100%;
   display: grid;
-  row-gap: 0.5rem;
+  row-gap: 0.8rem;
   justify-items: center;
 }
 
@@ -698,19 +699,21 @@
 
 @media (max-width: 1360px) {
   :root {
-    --container-gap: 2.8rem;
-    --side-gap: 1.8rem;
+    --container-gap: 3.2rem;
+    --side-gap: 1.6rem;
     --connector-run: 1.05rem;
+    --center-stage-internal-gap: 1rem;
   }
 }
 
 @media (max-width: 1120px) {
   :root {
-    --container-gap: 2rem;
-    --side-gap: 1.25rem;
-    --match-width: 12.4rem;
+    --container-gap: 2.4rem;
+    --side-gap: 1.2rem;
+    --match-width: 10.4rem;
     --bracket-track-height: 48rem;
-    --trophy-size: 4.7rem;
+    --trophy-size: 4rem;
+    --center-stage-internal-gap: 0.9rem;
   }
 
   .center-stage {
@@ -721,10 +724,11 @@
 
 @media (max-width: 820px) {
   :root {
-    --container-gap: 1.4rem;
-    --side-gap: 0.9rem;
-    --match-width: 11.7rem;
+    --container-gap: 1.6rem;
+    --side-gap: 0.8rem;
+    --match-width: 9.5rem;
     --bracket-track-height: 44rem;
+    --center-stage-internal-gap: 0.75rem;
   }
 
   .knockout-header {
