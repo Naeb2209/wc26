@@ -1458,7 +1458,7 @@ function RulesTab() {
 
 /* ---------------- Shell ---------------- */
 export default function FantasyTabs({ data = null, standings, squads, squadsByRound = {}, roundStats = null, playerStats = null, schedule = null }) {
-  const [tab, setTab] = useState("total");
+  const [tab, setTab] = useState("dashboard");
 
   if (standings.length === 0) {
     return (
