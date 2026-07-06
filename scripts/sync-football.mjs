@@ -52,6 +52,23 @@ function roundLabel(matchday) {
   return number >= 1 && number <= 3 ? `Lượt ${number}` : null;
 }
 
+function stageLabel(stage) {
+  const stageMap = {
+    GROUP_STAGE: "Vòng Bảng",
+    // Actual API stages from football-data.org
+    LAST_32: "Vòng 32 Đội",
+    LAST_16: "Vòng 16 Đội",
+    QUARTER_FINALS: "Tứ Kết",
+    SEMI_FINALS: "Bán Kết",
+    THIRD_PLACE: "Tranh Hạng Ba",
+    FINAL: "Chung Kết",
+    // Backwards compatibility: map old stage names if encountered
+    ROUND_OF_32: "Vòng 32 Đội",
+    ROUND_OF_16: "Vòng 16 Đội",
+  };
+  return stageMap[stage] || stage;
+}
+
 function formatDate(utc) {
   return new Intl.DateTimeFormat("vi-VN", {
     day: "numeric",
@@ -117,44 +134,104 @@ function mapGroups(json, fifaRanks) {
 }
 
 function mapSchedule(json, previousSchedule) {
-  const rounds = ["Lượt 1", "Lượt 2", "Lượt 3"];
-  const matches = Object.fromEntries(rounds.map((round) => [round, []]));
-  const oldMatches = previousSchedule?.["Vòng Bảng"]?.matches || {};
-  const oldByTeams = new Map(
-    Object.values(oldMatches)
-      .flat()
-      .map((match) => [`${match.homeCode}-${match.awayCode}`, match])
-  );
+  const result = {};
 
-  for (const match of json.matches || []) {
-    if (match.stage !== "GROUP_STAGE") continue;
-    const round = roundLabel(match.matchday);
-    if (!round) continue;
+  // Group stage
+  {
+    const rounds = ["Lượt 1", "Lượt 2", "Lượt 3"];
+    const matches = Object.fromEntries(rounds.map((round) => [round, []]));
+    const oldMatches = previousSchedule?.["Vòng Bảng"]?.matches || {};
+    const oldByTeams = new Map(
+      Object.values(oldMatches)
+        .flat()
+        .map((match) => [`${match.homeCode}-${match.awayCode}`, match])
+    );
 
-    const homeCode = match.homeTeam?.tla || match.homeTeam?.shortName || "TBD";
-    const awayCode = match.awayTeam?.tla || match.awayTeam?.shortName || "TBD";
-    const previous = oldByTeams.get(`${homeCode}-${awayCode}`) || {};
-    matches[round].push({
-      id: String(match.id),
-      group: groupLabel(match.group) || "Vòng bảng",
-      date: formatDate(match.utcDate),
-      venue: match.venue || "",
-      homeCode,
-      homeFlag: match.homeTeam?.crest || "",
-      homeIso: "",
-      awayCode,
-      awayFlag: match.awayTeam?.crest || "",
-      awayIso: "",
-      time: formatTime(match.utcDate),
-      lineup: previous.lineup || null,
-      note: previous.note || "",
-    });
+    for (const match of json.matches || []) {
+      if (match.stage !== "GROUP_STAGE") continue;
+      const round = roundLabel(match.matchday);
+      if (!round) continue;
+
+      const homeCode = match.homeTeam?.tla || match.homeTeam?.shortName || "TBD";
+      const awayCode = match.awayTeam?.tla || match.awayTeam?.shortName || "TBD";
+      const previous = oldByTeams.get(`${homeCode}-${awayCode}`) || {};
+      matches[round].push({
+        id: String(match.id),
+        group: groupLabel(match.group) || "Vòng bảng",
+        date: formatDate(match.utcDate),
+        venue: match.venue || "",
+        homeCode,
+        homeFlag: match.homeTeam?.crest || "",
+        homeIso: "",
+        awayCode,
+        awayFlag: match.awayTeam?.crest || "",
+        awayIso: "",
+        time: formatTime(match.utcDate),
+        homeScore: match.score?.fullTime?.home ?? null,
+        awayScore: match.score?.fullTime?.away ?? null,
+        lineup: previous.lineup || null,
+        note: previous.note || "",
+      });
+    }
+
+    for (const round of rounds) {
+      matches[round].sort((a, b) => String(a.id).localeCompare(String(b.id)));
+    }
+    result["Vòng Bảng"] = { rounds, matches };
   }
 
-  for (const round of rounds) {
-    matches[round].sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  // Knockout stages
+  const knockoutStages = ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS", "THIRD_PLACE", "FINAL"];
+  for (const apiStage of knockoutStages) {
+    const stage = stageLabel(apiStage);
+    if (!stage) continue;
+
+    const knockoutMatches = [];
+    const previousStageMatches = previousSchedule?.[stage]?.matches || {};
+    const oldByTeams = new Map(
+      (previousStageMatches[stage] || [])
+        .map((match) => [`${match.homeCode}-${match.awayCode}`, match])
+    );
+
+    for (const match of json.matches || []) {
+      if (match.stage !== apiStage) continue;
+
+      const homeCode = match.homeTeam?.tla || match.homeTeam?.shortName || "TBD";
+      const awayCode = match.awayTeam?.tla || match.awayTeam?.shortName || "TBD";
+      const previous = oldByTeams.get(`${homeCode}-${awayCode}`) || {};
+
+      knockoutMatches.push({
+        id: String(match.id),
+        group: stage,
+        date: formatDate(match.utcDate),
+        venue: match.venue || "",
+        homeCode,
+        homeFlag: match.homeTeam?.crest || "",
+        homeIso: "",
+        awayCode,
+        awayFlag: match.awayTeam?.crest || "",
+        awayIso: "",
+        time: formatTime(match.utcDate),
+        homeScore: match.score?.fullTime?.home ?? null,
+        awayScore: match.score?.fullTime?.away ?? null,
+        penaltyShootout: match.score?.penaltyShootout ? true : false,
+        lineup: previous.lineup || null,
+        note: previous.note || "",
+      });
+    }
+
+    knockoutMatches.sort((a, b) => String(a.id).localeCompare(String(b.id)));
+
+    // Always persist the stage structure, even if matches are empty
+    result[stage] = {
+      rounds: [stage],
+      matches: {
+        [stage]: knockoutMatches,
+      },
+    };
   }
-  return { "Vòng Bảng": { rounds, matches } };
+
+  return result;
 }
 
 function mapTeams(json, previousTeams) {
@@ -204,10 +281,11 @@ async function main() {
   const groups = mapGroups(standingsJson, db.fifaRanks || {});
   const schedule = mapSchedule(matchesJson, db.schedule);
   const teams = mapTeams(teamsJson, db.teams);
-  const matchCount = Object.values(schedule["Vòng Bảng"].matches).flat().length;
+  const groupMatchCount = Object.values(schedule["Vòng Bảng"]?.matches || {}).flat().length;
+  const knockoutStageCount = Object.keys(schedule).filter((s) => s !== "Vòng Bảng").length;
 
   if (!groups.length) throw new Error("API không trả về bảng đấu; db.json chưa được thay đổi");
-  if (!matchCount) throw new Error("API không trả về lịch vòng bảng; db.json chưa được thay đổi");
+  if (!groupMatchCount) throw new Error("API không trả về lịch vòng bảng; db.json chưa được thay đổi");
   if (!teams.length) throw new Error("API không trả về đội tuyển; db.json chưa được thay đổi");
 
   const nextDb = {
@@ -217,7 +295,8 @@ async function main() {
       syncedAt: new Date().toISOString(),
       groups: groups.length,
       teams: teams.length,
-      groupMatches: matchCount,
+      groupMatches: groupMatchCount,
+      knockoutStages: knockoutStageCount,
     },
     groups,
     teams,
@@ -226,7 +305,8 @@ async function main() {
 
   writeFileSync(TMP_PATH, `${JSON.stringify(nextDb, null, 2)}\n`, "utf8");
   renameSync(TMP_PATH, DB_PATH);
-  console.log(`Đã ghi ${groups.length} bảng, ${teams.length} đội và ${matchCount} trận vào data/db.json.`);
+  const knockoutInfo = knockoutStageCount > 0 ? ` + ${knockoutStageCount} knockout stage(s)` : "";
+  console.log(`Đã ghi ${groups.length} bảng, ${teams.length} đội, ${groupMatchCount} trận vòng bảng${knockoutInfo} vào data/db.json.`);
 }
 
 main().catch((error) => {

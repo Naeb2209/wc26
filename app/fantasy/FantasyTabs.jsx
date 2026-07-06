@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { ManagerLineup } from "./SquadView";
+import DashboardTab from "./dashboard/DashboardTab";
 
 const MEDAL = {
   1: { bg: "#fff8e1", ring: "#ffd700", label: "🥇" },
@@ -10,6 +11,7 @@ const MEDAL = {
 };
 
 const TABS = [
+  { key: "dashboard", label: "Dashboard", short: "Dash", icon: "analytics" },
   { key: "total", label: "Tổng điểm", short: "Tổng", icon: "leaderboard" },
   { key: "round", label: "Round", short: "Round", icon: "calendar_month" },
   { key: "info", label: "Thông tin giải đấu", short: "Giải đấu", icon: "info" },
@@ -1455,8 +1457,8 @@ function RulesTab() {
 }
 
 /* ---------------- Shell ---------------- */
-export default function FantasyTabs({ data = null, standings, squads, squadsByRound = {}, roundStats = null, playerStats = null }) {
-  const [tab, setTab] = useState("total");
+export default function FantasyTabs({ data = null, standings, squads, squadsByRound = {}, roundStats = null, playerStats = null, schedule = null }) {
+  const [tab, setTab] = useState("dashboard");
 
   if (standings.length === 0) {
     return (
@@ -1495,6 +1497,7 @@ export default function FantasyTabs({ data = null, standings, squads, squadsByRo
         </div>
       </div>
 
+      {tab === "dashboard" && <DashboardTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} playerStats={playerStats} schedule={schedule} />}
       {tab === "total" && <TotalTab standings={standings} />}
       {tab === "round" && (
         <RoundTab standings={standings} squads={squads} squadsByRound={squadsByRound} roundStats={roundStats} rounds={data?.rounds} />
