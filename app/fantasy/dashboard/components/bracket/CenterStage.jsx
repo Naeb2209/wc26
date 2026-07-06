@@ -42,26 +42,18 @@ export default function CenterStage({
 
       <div className="center-stage__content">
 
-        {/* Trophy */}
+        {/* Branding */}
 
-        <div className="center-stage__hero">
-
-          <div
-            className="center-stage__trophy"
-            aria-hidden="true"
-          >
-            🏆
-          </div>
-
-          <span className="center-stage__subtitle">
-            FIFA WORLD CUP
-          </span>
-
-          <h2 className="center-stage__title">
-            FINAL
-          </h2>
-
+        <div className="center-stage__branding">
+          <img
+            src="/fifa-world-cup-2026-logo.png"
+            className="center-stage__logo"
+          />
         </div>
+
+        <h2 className="center-stage__title">
+          FINAL
+        </h2>
 
         {/* Final */}
 

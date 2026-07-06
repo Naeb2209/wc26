@@ -111,7 +111,7 @@
   gap: 0.6rem;
   min-height: 2.5rem;
   padding: 0.2rem 1rem;
-  color: var(--color-text-primary);
+  color: #000000;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -592,21 +592,39 @@
   row-gap: 0.55rem;
 }
 
-.center-stage__trophy {
-  width: var(--trophy-size);
-  height: var(--trophy-size);
-  display: grid;
-  place-items: center;
-  font-size: calc(var(--trophy-size) * 0.62);
-  line-height: 1;
+.center-stage__branding {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.center-stage__branding::before {
+  content: '';
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 214, 107, 0.25), rgba(255, 214, 107, 0.05));
   border-radius: 50%;
-  background: radial-gradient(circle at 50% 30%, rgba(255, 214, 107, 0.42), rgba(255, 214, 107, 0.08));
-  box-shadow:
-    0 0 0 1px rgba(255, 214, 107, 0.25),
-    0 0 1.5rem rgba(255, 214, 107, 0.24),
-    0 0 3rem var(--color-gold-soft),
-    inset 0 0 2rem rgba(255, 214, 107, 0.12);
-  transition: transform var(--trans-slow), filter var(--trans-slow), box-shadow var(--trans-slow);
+  filter: blur(20px);
+  z-index: 1;
+}
+
+.center-stage__logo {
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.center-stage__logo:hover {
+  transform: scale(1.04);
+  filter: brightness(1.1);
 }
 
 .center-stage__subtitle {
@@ -696,13 +714,9 @@
   font-size: 2rem;
 }
 
-.knockout-body__container:has(.bracket-pair:is(:hover, :focus-within)) .center-stage__trophy {
-  filter: brightness(1.12) drop-shadow(0 0 1.2rem rgba(255, 214, 107, 0.4));
-  box-shadow:
-    0 0 0 1.5px rgba(255, 214, 107, 0.35),
-    0 0 2rem rgba(255, 214, 107, 0.32),
-    0 0 3.5rem rgba(255, 214, 107, 0.24),
-    inset 0 0 2rem rgba(255, 214, 107, 0.18);
+.knockout-body__container:has(.bracket-pair:is(:hover, :focus-within)) .center-stage__logo {
+  transform: scale(1.06);
+  filter: brightness(1.15);
 }
 
 /* ========================================================================== */
@@ -791,7 +805,7 @@
   }
 
   .knockout-header {
-    font-size: 0.8rem;
+    font-size: 3rem;
   }
 
   .center-stage__title {

@@ -68,14 +68,7 @@ export default function KnockoutBracket({ schedule }) {
     return (
       <section className="knockout-empty-state">
         <header className="knockout-header">
-          <span
-            className="material-symbols-outlined"
-            aria-hidden="true"
-          >
-            tournament
-          </span>
-
-          Tournament Bracket
+          ROAD TO WORLD CUP 2026 FINAL
         </header>
 
         <div className="knockout-empty-state__body">
@@ -106,16 +99,7 @@ export default function KnockoutBracket({ schedule }) {
     <section className="knockout-shell">
 
       <header className="knockout-header">
-
-        <span
-          className="material-symbols-outlined"
-          aria-hidden="true"
-        >
-          tournament
-        </span>
-
-        Tournament Bracket
-
+        ROAD TO WORLD CUP 2026 FINAL
       </header>
 
       <div className="knockout-body">
