@@ -4,174 +4,85 @@ import { useMemo } from "react";
 import MatchCard from "./MatchCard";
 
 /**
- * MatchCenter - Displays tournament matches prioritizing today's, then upcoming, then completed
- *
- * Props:
- * - schedule: Tournament schedule data (contains matches by stage and round)
+ * MatchCenter - Displays match timeline (2 finished + 2 upcoming)
+ * Chronological order: shows 2 before first upcoming + 2 from that point
  */
 
-// Configuration for match display
-const UPCOMING_MATCH_PREVIEW_COUNT = 4;
-const COMPLETED_MATCH_PREVIEW_COUNT = 4;
-
-// Vietnamese month mapping
-const MONTH_MAP = {
-  tháng1: 1,
-  tháng2: 2,
-  tháng3: 3,
-  tháng4: 4,
-  tháng5: 5,
-  tháng6: 6,
-  tháng7: 7,
-  tháng8: 8,
-  tháng9: 9,
-  tháng10: 10,
-  tháng11: 11,
-  tháng12: 12,
-};
-
-// Helper: Parse Vietnamese date format "DD tháng MM, YYYY" to Date object
-function parseVietnameseDate(dateStr) {
-  if (!dateStr) return null;
-
-  // Remove extra spaces and normalize
-  const normalized = dateStr.replace(/\s+/g, " ").trim();
-
-  // Try to match pattern: "DD tháng MM, YYYY"
-  const match = normalized.match(/(\d{1,2})\s+(tháng\d{1,2}),?\s+(\d{4})/);
-  if (!match) return null;
-
-  const day = parseInt(match[1]);
-  const monthStr = match[2];
-  const year = parseInt(match[3]);
-
-  // Find month number
-  const monthNum = MONTH_MAP[monthStr];
-  if (!monthNum) return null;
-
-  return new Date(year, monthNum - 1, day);
-}
-
-// Helper: Check if two dates are the same day (ignoring time)
-function isSameDay(date1, date2) {
-  return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
-  );
-}
-
-// Helper: Get all matches from schedule
+// Helper: Get all matches from schedule in chronological order
 function getAllMatches(schedule) {
   const matches = [];
+  if (!schedule || typeof schedule !== "object") return matches;
 
-  if (!schedule || typeof schedule !== "object") {
-    return matches;
-  }
-
-  // Iterate through stages (e.g., "Vòng Bảng" = Group Stage)
   for (const stageName in schedule) {
     const stage = schedule[stageName];
-
-    if (stage && stage.matches && typeof stage.matches === "object") {
-      // Iterate through rounds (e.g., "Lượt 1", "Lượt 2")
+    if (stage?.matches && typeof stage.matches === "object") {
       for (const roundName in stage.matches) {
         const roundMatches = stage.matches[roundName];
-
         if (Array.isArray(roundMatches)) {
           matches.push(
-            ...roundMatches.map((m) => ({
-              ...m,
-              stageName,
-              roundName,
-            }))
+            ...roundMatches.map((m) => ({...m, stageName, roundName}))
           );
         }
       }
     }
   }
-
   return matches;
 }
 
-// Helper: Categorize matches by priority
-function categorizematches(matches) {
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+// Helper: Convert Vietnamese date "6 tháng 7, 2026" to ISO "2026-07-06"
+function parseVietnameseDate(dateStr) {
+  const parts = dateStr.split(" ");
+  const day = String(parts[0]).padStart(2, "0");
+  const month = String(parts[2].replace(",", "")).padStart(2, "0");
+  const year = parts[3];
+  return `${year}-${month}-${day}`;
+}
 
-  const today_matches = [];
-  const upcoming_matches = [];
-  const completed_matches = [];
+// Helper: Get matches from current date onwards, sorted chronologically
+function getMatchesFromToday(allMatches) {
+  // Get today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split("T")[0];
 
-  for (const match of matches) {
+  // Filter matches from today onwards
+  const filtered = allMatches.filter((match) => {
     const matchDate = parseVietnameseDate(match.date);
+    return matchDate >= today;
+  });
 
-    if (!matchDate) {
-      // If we can't parse the date, treat as upcoming
-      upcoming_matches.push(match);
-      continue;
-    }
-
-    if (isSameDay(matchDate, today)) {
-      today_matches.push(match);
-    } else if (matchDate > today) {
-      upcoming_matches.push(match);
-    } else {
-      completed_matches.push(match);
-    }
-  }
-
-  // Sort each category by date
-  const sortByDate = (a, b) => {
-    const dateA = parseVietnameseDate(a.date) || new Date();
-    const dateB = parseVietnameseDate(b.date) || new Date();
-    return dateA - dateB;
-  };
-
-  today_matches.sort(sortByDate);
-  upcoming_matches.sort(sortByDate);
-  completed_matches.sort(sortByDate);
-
-  return { today_matches, upcoming_matches, completed_matches };
+  // Sort by date chronologically (earliest first)
+  return filtered.sort((a, b) => {
+    const dateA = parseVietnameseDate(a.date);
+    const dateB = parseVietnameseDate(b.date);
+    return dateA.localeCompare(dateB);
+  });
 }
 
 export default function MatchCenter({ schedule = null }) {
   const displayMatches = useMemo(() => {
-    if (!schedule) {
-      return {
-        matches: [],
-        title: "",
-        today: [],
-        upcoming: [],
-        completed: [],
-      };
-    }
+    if (!schedule) return { matches: [] };
 
     const allMatches = getAllMatches(schedule);
-    const { today_matches, upcoming_matches, completed_matches } = categorizematches(allMatches);
+    if (allMatches.length === 0) return { matches: [] };
 
-    // Priority: today > upcoming > completed
-    let matches = [];
-    let title = "";
+    // Get matches from today onwards
+    const matchesFromToday = getMatchesFromToday(allMatches);
+    if (matchesFromToday.length === 0) return { matches: [] };
 
-    if (today_matches.length > 0) {
-      matches = today_matches;
-      title = `Today's Matches (${today_matches.length})`;
-    } else if (upcoming_matches.length > 0) {
-      matches = upcoming_matches.slice(0, UPCOMING_MATCH_PREVIEW_COUNT);
-      title = `Upcoming Matches (${upcoming_matches.length})`;
-    } else if (completed_matches.length > 0) {
-      matches = completed_matches.slice(-COMPLETED_MATCH_PREVIEW_COUNT);
-      title = `Latest Results (${completed_matches.length})`;
+    // Find first match with no scores (upcoming match)
+    const firstUpcomingIndex = matchesFromToday.findIndex(
+      (m) => m.homeScore === null && m.awayScore === null
+    );
+
+    // If no upcoming matches, return empty
+    if (firstUpcomingIndex === -1) {
+      return { matches: [] };
     }
 
-    return {
-      matches,
-      title,
-      today: today_matches,
-      upcoming: upcoming_matches,
-      completed: completed_matches,
-    };
+    // Show 2 before + 2 from that index (4 total)
+    const startIndex = Math.max(0, firstUpcomingIndex - 2);
+    const matches = matchesFromToday.slice(startIndex, startIndex + 4);
+
+    return { matches };
   }, [schedule]);
 
   if (displayMatches.matches.length === 0) {
@@ -199,34 +110,36 @@ export default function MatchCenter({ schedule = null }) {
         Match Center
       </div>
 
-      {/* Title showing what matches are displayed */}
+      {/* Title */}
       <div className="px-6 pt-4 pb-2">
         <h3 className="text-sm font-label-large text-on-surface">
-          {displayMatches.title}
+          Match Timeline
         </h3>
       </div>
 
       {/* Matches grid */}
-      <div className="px-6 pb-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
-        {displayMatches.matches.map((match) => (
-          <MatchCard
-            key={match.id}
-            homeCode={match.homeCode}
-            awayCode={match.awayCode}
-            homeFlag={match.homeFlag}
-            awayFlag={match.awayFlag}
-            time={match.time}
-            date={match.date}
-            group={match.group}
-            status="scheduled"
-          />
-        ))}
-      </div>
+      <div className="px-6 pb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
+        {displayMatches.matches.map((match) => {
+          // Determine status based on scores
+          const hasScores = match.homeScore !== null && match.awayScore !== null;
+          const status = hasScores ? "completed" : "scheduled";
 
-      {/* Info footer */}
-      <div className="bg-surface-container-highest px-6 py-3 flex items-center gap-2 text-xs text-on-surface-variant">
-        <span className="material-symbols-outlined text-[16px]">info</span>
-        <span>Live badges and knockout stage labels coming soon</span>
+          return (
+            <MatchCard
+              key={match.id}
+              homeCode={match.homeCode}
+              awayCode={match.awayCode}
+              homeFlag={match.homeFlag}
+              awayFlag={match.awayFlag}
+              time={match.time}
+              date={match.date}
+              group={match.group}
+              status={status}
+              homeScore={match.homeScore}
+              awayScore={match.awayScore}
+            />
+          );
+        })}
       </div>
     </div>
   );
