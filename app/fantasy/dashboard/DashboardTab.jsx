@@ -15,11 +15,11 @@ export default function DashboardTab({ standings = [], squads = {}, squadsByRoun
       {/* Match Center: Tournament matches with smart priority */}
       <MatchCenter schedule={schedule} />
 
-      {/* Fantasy Spotlight: Interesting insights from player and manager data */}
-      <FantasySpotlight roundStats={roundStats} standings={standings} squadsByRound={squadsByRound} />
-
       {/* Knockout Bracket Preview: Upcoming knockout stage matches */}
       <KnockoutBracket schedule={schedule} />
+
+      {/* Fantasy Spotlight: Interesting insights from player and manager data */}
+      <FantasySpotlight roundStats={roundStats} standings={standings} squadsByRound={squadsByRound} />
 
       {/* Activity Feed: Recent Fantasy League events */}
       <DashboardActivityFeed standings={standings} roundStats={roundStats} playerStats={playerStats} />

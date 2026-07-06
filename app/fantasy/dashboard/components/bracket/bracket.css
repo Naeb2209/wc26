@@ -238,12 +238,13 @@
   position: absolute;
   top: 50%;
   width: var(--connector-run);
+  height: var(--connector-width);
   border-top: var(--connector-width) solid var(--color-connector);
   border-radius: var(--connector-radius);
   transform: translateY(-50%);
   pointer-events: none;
   z-index: 1;
-  transition: border-color var(--trans-base), filter var(--trans-base), border-width var(--trans-fast);
+  transition: border-color var(--trans-base), filter var(--trans-base);
 }
 
 .connector::before,
@@ -252,16 +253,16 @@
   position: absolute;
   pointer-events: none;
   transition: background-color var(--trans-base);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .connector-start::before,
 .connector-end::before {
-  top: 50%;
   width: var(--connector-dot-size);
   height: var(--connector-dot-size);
   border-radius: 50%;
   background: var(--color-connector);
-  transform: translateY(-50%);
 }
 
 .connector-end::after {
@@ -269,6 +270,8 @@
   height: calc(var(--slot-height) * var(--connector-span) / 2);
   border-radius: var(--connector-radius);
   background: var(--color-connector);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .bracket-pair--left .connector-start {
@@ -276,16 +279,19 @@
 }
 
 .bracket-pair--left .connector-start::before {
-  left: calc(var(--connector-run) - var(--connector-width));
+  left: calc(100% - var(--connector-width) / 2);
 }
 
 .bracket-pair--left .connector-end {
   left: 100%;
 }
 
-.bracket-pair--left .connector-end::before,
+.bracket-pair--left .connector-end::before {
+  left: calc(var(--connector-run) - var(--connector-dot-size) / 2);
+}
+
 .bracket-pair--left .connector-end::after {
-  right: calc(var(--connector-run) - var(--connector-width));
+  left: calc(var(--connector-run) - var(--connector-width) / 2);
 }
 
 .bracket-pair--right .connector-start {
@@ -293,24 +299,29 @@
 }
 
 .bracket-pair--right .connector-start::before {
-  right: calc(var(--connector-run) - var(--connector-width));
+  right: calc(100% - var(--connector-width) / 2);
 }
 
 .bracket-pair--right .connector-end {
   right: 100%;
 }
 
-.bracket-pair--right .connector-end::before,
+.bracket-pair--right .connector-end::before {
+  right: calc(var(--connector-run) - var(--connector-dot-size) / 2);
+}
+
 .bracket-pair--right .connector-end::after {
-  left: calc(var(--connector-run) - var(--connector-width));
+  right: calc(var(--connector-run) - var(--connector-width) / 2);
 }
 
 .bracket-pair[data-connector-direction="down"] .connector-end::after {
   top: 50%;
+  bottom: auto;
 }
 
 .bracket-pair[data-connector-direction="up"] .connector-end::after {
   bottom: 50%;
+  top: auto;
 }
 
 .bracket-pair:is(:hover, :focus-within) .connector,
