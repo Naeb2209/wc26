@@ -2,6 +2,13 @@
 
 import { useMemo } from "react";
 
+// Helper: Get current round key from roundStats
+function getCurrentRoundKey(roundStats) {
+  if (!roundStats?.rounds || typeof roundStats.rounds !== "object") return null;
+  const roundKeys = Object.keys(roundStats.rounds);
+  return roundKeys.length > 0 ? roundKeys[roundKeys.length - 1] : null;
+}
+
 // Helper: Extract current round from standings and roundStats
 function getCurrentRound(standings, roundStats) {
   if (!roundStats?.rounds) return null;
@@ -17,14 +24,57 @@ function getCurrentRound(standings, roundStats) {
     "g1": "Group Stage • Matchday 1",
     "g2": "Group Stage • Matchday 2",
     "g3": "Group Stage • Matchday 3",
-    "r32": "Round of 16",
-    "r16": "Quarterfinals",
+    "r32": "Round of 32",
+    "r16": "Round of 16",
     "qf": "Quarterfinals",
     "sf": "Semifinals",
     "f": "Final",
   };
   
   return roundLabels[currentRoundKey] || currentRoundKey;
+}
+
+// Helper: Get round matches progress
+function getRoundMatchesProgress(roundStats) {
+  if (!roundStats?.rounds) return null;
+  
+  const roundKeys = Object.keys(roundStats.rounds);
+  const currentRoundKey = roundKeys[roundKeys.length - 1];
+  
+  if (!currentRoundKey) return null;
+  
+  const roundData = roundStats.rounds[currentRoundKey];
+  if (!roundData) return null;
+  
+  // Count total and played matches
+  const total = roundData.totalMatches || 0;
+  const played = roundData.playedMatches || 0;
+  
+  return { played, total };
+}
+
+// Helper: Get round leader from standings for the current round
+function getRoundLeader(standings, roundStats) {
+  if (!standings || standings.length === 0 || !roundStats?.rounds) return null;
+  
+  // Get current round key
+  const roundKeys = Object.keys(roundStats.rounds);
+  if (roundKeys.length === 0) return null;
+  const currentRoundKey = roundKeys[roundKeys.length - 1];
+  
+  // Find manager with highest points in current round
+  let roundLeader = null;
+  let maxRoundPoints = 0;
+  
+  standings.forEach((manager) => {
+    const roundPoints = manager.rounds?.[currentRoundKey] ?? 0;
+    if (roundPoints > maxRoundPoints) {
+      maxRoundPoints = roundPoints;
+      roundLeader = manager;
+    }
+  });
+  
+  return roundLeader && maxRoundPoints > 0 ? roundLeader : null;
 }
 
 // Helper: Format last synced timestamp
@@ -53,8 +103,8 @@ function formatLastSynced(iso) {
   }
 }
 
-// Helper: Get leader info from standings
-function getLeader(standings) {
+// Helper: Get tournament leader from standings
+function getTournamentLeader(standings) {
   return standings?.[0] || null;
 }
 
@@ -80,15 +130,18 @@ function Avatar({ src, name, size = "w-16 h-16" }) {
 
 export default function DashboardHero({ standings = [], roundStats = null, playerStats = null }) {
   const computedData = useMemo(() => {
-    const leader = getLeader(standings);
+    const tournamentLeader = getTournamentLeader(standings);
+    const roundLeader = getRoundLeader(standings, roundStats);
     const managerCount = getManagerCount(standings);
     const currentRound = getCurrentRound(standings, roundStats);
+    const currentRoundKey = getCurrentRoundKey(roundStats);
+    const matchesProgress = getRoundMatchesProgress(roundStats);
     const lastSynced = formatLastSynced(playerStats?.updated);
     
-    return { leader, managerCount, currentRound, lastSynced };
+    return { tournamentLeader, roundLeader, managerCount, currentRound, currentRoundKey, matchesProgress, lastSynced };
   }, [standings, roundStats, playerStats]);
 
-  const { leader, managerCount, currentRound, lastSynced } = computedData;
+  const { tournamentLeader, roundLeader, managerCount, currentRound, currentRoundKey, matchesProgress, lastSynced } = computedData;
 
   return (
     <div className="bg-gradient-to-br from-primary/10 to-tertiary/5 border border-primary/20 rounded-2xl overflow-hidden mb-8">
@@ -105,7 +158,7 @@ export default function DashboardHero({ standings = [], roundStats = null, playe
             {currentRound && (
               <div className="flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-lg border border-outline-variant">
                 <span className="material-symbols-outlined text-[16px] text-primary">calendar_month</span>
-                <span className="text-on-surface-variant">{currentRound}</span>
+                <span className="text-on-surface-variant text-xs">{currentRound.split(" • ")[0]}</span>
               </div>
             )}
             
@@ -119,32 +172,79 @@ export default function DashboardHero({ standings = [], roundStats = null, playe
         </div>
       </div>
 
-      {/* Leader Section */}
-      {leader ? (
+      {/* Content: Two-column layout */}
+      {tournamentLeader ? (
         <div className="px-6 py-8">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-            {/* Leader Avatar + Info */}
-            <div className="flex items-center gap-4 flex-shrink-0">
-              <Avatar src={leader.avatar} name={leader.manager} size="w-20 h-20" />
-              <div className="min-w-0">
-                <div className="text-xs font-label-caps text-on-surface-variant uppercase tracking-wide">Current Leader</div>
-                <div className="font-bold text-lg text-on-surface mt-1 truncate">{leader.manager}</div>
-                {leader.team && (
-                  <div className="text-xs text-on-surface-variant mt-0.5 truncate">{leader.team}</div>
-                )}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left: Tournament Leader - Large */}
+            <div className="lg:col-span-1">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-xl">🏆</span>
+                <span className="text-xs font-label-caps text-on-surface-variant uppercase tracking-wide">Tournament Leader</span>
+              </div>
+              <div className="flex items-center gap-4 mb-4">
+                <Avatar src={tournamentLeader.avatar} name={tournamentLeader.manager} size="w-16 h-16" />
+                <div className="min-w-0 flex-1">
+                  <div className="font-bold text-lg text-on-surface truncate">{tournamentLeader.manager}</div>
+                  {tournamentLeader.team && (
+                    <div className="text-xs text-on-surface-variant mt-0.5 truncate">{tournamentLeader.team}</div>
+                  )}
+                </div>
+              </div>
+              <div className="bg-surface-container-low rounded-lg border border-outline-variant px-4 py-4">
+                <div className="text-xs font-label-caps text-on-surface-variant uppercase tracking-wide">Total Points</div>
+                <div className="text-3xl font-bold text-primary mt-2">{tournamentLeader.totalPoints}</div>
               </div>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4 flex-grow">
+            {/* Right: KPI Cards Stack */}
+            <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Round Leader */}
               <div className="bg-surface-container-low rounded-lg border border-outline-variant px-4 py-3">
-                <div className="text-xs font-label-caps text-on-surface-variant uppercase tracking-wide">Points</div>
-                <div className="text-2xl font-bold text-primary mt-1">{leader.totalPoints}</div>
+                <div className="flex items-start gap-3">
+                  <div className="text-lg shrink-0 pt-0.5">🔥</div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-xs font-label-caps text-on-surface-variant uppercase tracking-wide">Round Leader</div>
+                    {roundLeader && currentRoundKey ? (
+                      <>
+                        <div className="font-semibold text-on-surface mt-1 truncate">{roundLeader.manager}</div>
+                        <div className="text-sm font-bold text-tertiary mt-1">
+                          {roundLeader.rounds?.[currentRoundKey] || 0} pts
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-on-surface-variant text-sm mt-1">No data yet</div>
+                    )}
+                  </div>
+                </div>
               </div>
-              
+
+              {/* Managers KPI */}
               <div className="bg-surface-container-low rounded-lg border border-outline-variant px-4 py-3">
-                <div className="text-xs font-label-caps text-on-surface-variant uppercase tracking-wide">Managers</div>
-                <div className="text-2xl font-bold text-tertiary mt-1">{managerCount}</div>
+                <div className="flex items-start gap-3">
+                  <div className="text-lg shrink-0 pt-0.5">👥</div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-xs font-label-caps text-on-surface-variant uppercase tracking-wide">Managers</div>
+                    <div className="text-2xl font-bold text-tertiary mt-1">{managerCount}</div>
+                    <div className="text-xs text-on-surface-variant mt-0.5">Active Managers</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Current Round */}
+              <div className="bg-surface-container-low rounded-lg border border-outline-variant px-4 py-3 sm:col-span-2">
+                <div className="flex items-start gap-3">
+                  <div className="text-lg shrink-0 pt-0.5">⚽</div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-xs font-label-caps text-on-surface-variant uppercase tracking-wide">Current Round</div>
+                    <div className="font-semibold text-on-surface mt-1">{currentRound ? currentRound.split(" • ")[0] : "N/A"}</div>
+                    {matchesProgress && (
+                      <div className="text-xs text-on-surface-variant mt-1">
+                        {matchesProgress.played} / {matchesProgress.total} Matches Played
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
