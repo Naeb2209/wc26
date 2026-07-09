@@ -11,7 +11,8 @@ const MEDAL = {
 };
 
 const TABS = [
-  { key: "dashboard", label: "Dashboard", short: "Dash", icon: "analytics" },
+  // Tạm ẩn tab Dashboard
+  // { key: "dashboard", label: "Dashboard", short: "Dash", icon: "analytics" },
   { key: "total", label: "Tổng điểm", short: "Tổng", icon: "leaderboard" },
   { key: "round", label: "Round", short: "Round", icon: "calendar_month" },
   { key: "info", label: "Thông tin giải đấu", short: "Giải đấu", icon: "info" },
@@ -1458,7 +1459,7 @@ function RulesTab() {
 
 /* ---------------- Shell ---------------- */
 export default function FantasyTabs({ data = null, standings, squads, squadsByRound = {}, roundStats = null, playerStats = null, schedule = null }) {
-  const [tab, setTab] = useState("dashboard");
+  const [tab, setTab] = useState("round");
 
   if (standings.length === 0) {
     return (
