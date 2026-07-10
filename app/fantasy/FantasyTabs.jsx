@@ -728,6 +728,211 @@ function PickedByModal({ row, mgrInfo, onClose, countLabel = "lượt chọn", l
   );
 }
 
+/* ---------------- Xác suất vô địch vòng (dự phóng) ---------------- */
+// "Cửa vô địch" = xác suất một HLV về nhất KHI VÒNG KẾT THÚC, không chỉ dựa vào điểm
+// hiện tại. Điểm cuối vòng dự phóng = điểm đã chốt (trận đã đá) + điểm kỳ vọng của các
+// cầu thủ mà đội tuyển CHƯA đá (đội trưởng nhân hệ số). Vì phần còn lại bất định, ta mô
+// phỏng Monte Carlo nhiều lượt rồi đếm số lần mỗi HLV về nhất. RNG có seed theo vòng nên
+// kết quả ổn định giữa các lần render (không dùng Math.random để tránh nhấp nháy).
+function hashSeed(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+function mulberry32(a) {
+  return function () {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+// Chuẩn tắc N(0,1) bằng Box–Muller từ 2 số ngẫu nhiên đều.
+function randNormal(rng) {
+  let u = 0, v = 0;
+  while (u === 0) u = rng();
+  while (v === 0) v = rng();
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+// Điểm kỳ vọng mặc định cho 1 cầu thủ chưa đá, theo vị trí (dùng khi mẫu thực tế còn mỏng).
+const PROJ_DEFAULT = {
+  GK: { mu: 2.5, sd: 2.5 },
+  DEF: { mu: 2.5, sd: 3 },
+  MID: { mu: 3, sd: 3.5 },
+  FWD: { mu: 3.5, sd: 4 },
+};
+
+// Map: manager -> xác suất (%) về nhất vòng khi kết thúc.
+// "Đã đá" xác định qua cờ `played` của cầu thủ (CÙNG NGUỒN với điểm FIFA). KHÔNG dùng
+// lịch trận FotMob (roundStats.matches) vì hai nguồn có thể lệch nhịp — cầu thủ đã có điểm
+// nhưng lịch vẫn báo "chưa bắt đầu", dẫn tới đếm trùng nếu dựa vào match.started.
+function computeWinProbabilities({ ranked, roundSquads, sel, trials = 4000 }) {
+  // Mẫu điểm gốc của cầu thủ đá chính ĐÃ ĐÁ, gom theo vị trí, để ước lượng điểm kỳ vọng
+  // của cầu thủ chưa đá trong CHÍNH vòng này (tự thích ứng với vòng điểm cao/thấp).
+  const samples = { GK: [], DEF: [], MID: [], FWD: [], all: [] };
+  for (const p of ranked) {
+    for (const pl of roundSquads?.[p.manager]?.starters || []) {
+      if (!pl.played) continue;
+      const v = pl.rawPoints ?? pl.points ?? 0;
+      (samples[pl.bucket] || samples.all).push(v);
+      samples.all.push(v);
+    }
+  }
+  const meanStd = (arr) => {
+    if (!arr.length) return null;
+    const mu = arr.reduce((s, x) => s + x, 0) / arr.length;
+    const varc = arr.reduce((s, x) => s + (x - mu) ** 2, 0) / arr.length;
+    return { mu, sd: Math.max(1, Math.sqrt(varc)) };
+  };
+  const pooled = meanStd(samples.all) || { mu: 3, sd: 3 };
+  // Làm mượt điểm kỳ vọng của cầu thủ chưa đá để cột "Cửa vô địch" không quá "phũ":
+  //  - Co cụm mẫu theo vị trí về trung bình chung (pseudo-count) -> mẫu nhỏ (vd FWD toàn cú
+  //    haul) không bị thổi phồng; đồng thời CHẶN TRẦN mu ở mức trung bình chung.
+  //  - Chiết khấu mu và bơm thêm phương sai -> số cầu thủ còn lại không lấn át hoàn toàn
+  //    điểm hiện tại, kết quả bớt "chắc như đinh".
+  const SHRINK_K = 10, MU_DAMP = 0.8, SD_INFLATE = 1.6, SD_FLOOR = 5;
+  const statFor = (bucket) => {
+    const s = meanStd(samples[bucket]);
+    const n = samples[bucket].length;
+    let mu, sd;
+    if (s) {
+      mu = (s.mu * n + pooled.mu * SHRINK_K) / (n + SHRINK_K);
+      sd = (s.sd * n + pooled.sd * SHRINK_K) / (n + SHRINK_K);
+    } else {
+      const d = PROJ_DEFAULT[bucket] || PROJ_DEFAULT.MID;
+      mu = d.mu; sd = d.sd;
+    }
+    return { mu: Math.min(mu, pooled.mu) * MU_DAMP, sd: Math.max(SD_FLOOR, sd * SD_INFLATE) };
+  };
+
+  // Tham số hiệu ứng bổ sung:
+  const P_BLANK = 0.08;    // xác suất 1 cầu thủ chưa đá rốt cuộc KHÔNG ra sân (0 phút) -> có thể bị dự bị thay
+  const QUAL_ADV_P = 0.5;  // xác suất đội của cầu thủ đi tiếp (Qualification Booster: +2/cầu thủ)
+  const CS_KEEP_P = 0.32;  // xác suất đủ điều kiện giữ sạch lưới (Clean Sheet Shield: GK/DEF +5, MID +1)
+  const PRICE_BETA = 0.6;  // mức giá ảnh hưởng điểm dự kiến (tương quan giá–điểm thực tế ~0.5)
+  const isKnockout = ["r32", "r16", "qf", "sf", "f"].includes(sel);
+
+  // Điểm dự kiến RIÊNG cho từng cầu thủ: lấy trung bình theo vị trí rồi scale theo giá (đắt hơn
+  // ~ ghi điểm cao hơn) -> để mô phỏng việc HLV "thay người thủ công", chọn cầu thủ điểm dự
+  // kiến cao hơn vào đá chính. Giá trung bình theo vị trí tính từ toàn bộ cầu thủ trong vòng.
+  const priceSum = { GK: 0, DEF: 0, MID: 0, FWD: 0 }, priceN = { GK: 0, DEF: 0, MID: 0, FWD: 0 };
+  for (const p of ranked) {
+    const sq = roundSquads?.[p.manager];
+    for (const pl of [...(sq?.starters || []), ...(sq?.bench || [])]) {
+      if (priceN[pl.bucket] == null) continue;
+      priceSum[pl.bucket] += pl.price || 0; priceN[pl.bucket] += 1;
+    }
+  }
+  const playerStat = (pl) => {
+    const base = statFor(pl.bucket);
+    const avgP = priceN[pl.bucket] ? priceSum[pl.bucket] / priceN[pl.bucket] : 0;
+    const factor = avgP > 0
+      ? Math.min(1.5, Math.max(0.6, 1 + PRICE_BETA * ((pl.price || avgP) / avgP - 1)))
+      : 1;
+    return { mu: base.mu * factor, sd: base.sd };
+  };
+
+  // Với mỗi HLV: điểm đã chốt (= điểm vòng, chip của cầu thủ đã đá đã nằm trong đó) + đội hình
+  // CHƯA đá tối ưu. Gom cầu thủ chưa đá theo vị trí (đá chính + dự bị) rồi cho HLV "thay người
+  // thủ công": mỗi vị trí ưu tiên người ĐIỂM DỰ KIẾN cao nhất vào đá chính (đội trưởng luôn đá),
+  // số còn lại xuống ghế dự bị làm bảo hiểm khi có cầu thủ tịt. 12th Man đã là starter thứ 12.
+  const coaches = ranked.map((p) => {
+    const sq = roundSquads?.[p.manager];
+    const chip = p.chips?.[sel] || null;
+    const qualChip = chip === "Qualification Booster" && isKnockout;
+    const csChip = chip === "Clean Sheet Shield";
+    const chipBonus = (bucket) => {
+      let b = 0;
+      if (qualChip) b += 2 * QUAL_ADV_P;                                   // không nhân đội trưởng
+      if (csChip && (bucket === "GK" || bucket === "DEF")) b += 5 * CS_KEEP_P;
+      else if (csChip && bucket === "MID") b += 1 * CS_KEEP_P;
+      return b;
+    };
+    // Gom theo vị trí: slots = số suất đá chính chưa đá của vị trí đó; pool = đá chính + dự bị.
+    const byBucket = {};
+    for (const pl of sq?.starters || []) {
+      if (pl.played) continue;
+      (byBucket[pl.bucket] ||= { slots: 0, pool: [] });
+      byBucket[pl.bucket].slots += 1;
+      const s = playerStat(pl);
+      byBucket[pl.bucket].pool.push({ mu: s.mu, sd: s.sd, cap: pl.isCaptain || pl.isMaxCaptain });
+    }
+    for (const pl of sq?.bench || []) {
+      if (pl.played) continue;
+      (byBucket[pl.bucket] ||= { slots: 0, pool: [] });
+      const s = playerStat(pl);
+      byBucket[pl.bucket].pool.push({ mu: s.mu, sd: s.sd, cap: false });
+    }
+    const pending = [], bench = [];
+    for (const bk of Object.keys(byBucket)) {
+      const { slots, pool } = byBucket[bk];
+      // Đội trưởng luôn đá; còn lại xếp theo điểm dự kiến giảm dần -> top `slots` vào đá chính.
+      pool.sort((a, z) => (z.cap ? 1 : 0) - (a.cap ? 1 : 0) || z.mu - a.mu);
+      pool.slice(0, slots).forEach((pl) =>
+        pending.push({ stat: { mu: pl.mu, sd: pl.sd }, bonus: chipBonus(bk), isGK: bk === "GK", cap: pl.cap })
+      );
+      pool.slice(slots).forEach((pl) =>
+        bench.push({ stat: { mu: pl.mu, sd: pl.sd }, isGK: bk === "GK" })
+      );
+    }
+    // Băng đội trưởng: nếu đội trưởng chỉ định VẪN CHƯA đá (armband còn hiệu lực), trao ×2 cho
+    // cầu thủ có ĐIỂM DỰ KIẾN cao nhất trong đội hình chưa đá — mô phỏng đổi đội trưởng sang
+    // người kỳ vọng cao hơn (Max Captain cũng tự trao băng cho người điểm cao nhất). Nếu đội
+    // trưởng đã đá thì ×2 đã nằm trong điểm chốt -> không đổi.
+    const capLive = pending.some((x) => x.cap);
+    let capIdx = -1, bestMu = -Infinity;
+    if (capLive) pending.forEach((x, i) => { if (x.stat.mu > bestMu) { bestMu = x.stat.mu; capIdx = i; } });
+    pending.forEach((x, i) => { x.mult = i === capIdx ? 2 : 1; });
+    return { manager: p.manager, secured: p.rpts, pending, bench };
+  });
+
+  const out = new Map(coaches.map((c) => [c.manager, 0]));
+  const anyPending = coaches.some((c) => c.pending.length);
+
+  // Không còn trận nào chưa đá -> kết quả đã ngã ngũ theo điểm hiện tại (hoà đỉnh thì chia đều).
+  if (!anyPending) {
+    let best = -Infinity, leaders = [];
+    for (const c of coaches) {
+      if (c.secured > best + 1e-9) { best = c.secured; leaders = [c.manager]; }
+      else if (Math.abs(c.secured - best) <= 1e-9) leaders.push(c.manager);
+    }
+    for (const mgr of leaders) out.set(mgr, 100 / leaders.length);
+    return out;
+  }
+
+  const rng = mulberry32(hashSeed(`winprob:${sel}`));
+  const sample = (stat) => Math.max(-1, stat.mu + stat.sd * randNormal(rng));
+  for (let t = 0; t < trials; t++) {
+    let best = -Infinity, leaders = [];
+    for (const c of coaches) {
+      let f = c.secured;
+      // Điểm dự bị mô phỏng sẵn (thứ tự giữ nguyên) để làm quân thay khi đá chính tịt.
+      const benchPts = c.bench.map((b) => ({ isGK: b.isGK, pts: sample(b.stat), used: false }));
+      for (const pl of c.pending) {
+        if (rng() < P_BLANK) {
+          // Tịt (0 phút): auto-sub bằng dự bị phù hợp (GK cho GK, ngoài cho ngoài); dự bị KHÔNG là đội trưởng.
+          const sub = benchPts.find((b) => !b.used && b.isGK === pl.isGK)
+            || benchPts.find((b) => !b.used && !b.isGK);
+          if (sub) { sub.used = true; f += Math.max(0, sub.pts); }
+        } else {
+          f += pl.mult * sample(pl.stat) + pl.bonus;
+        }
+      }
+      if (f > best + 1e-9) { best = f; leaders = [c.manager]; }
+      else if (Math.abs(f - best) <= 1e-9) leaders.push(c.manager);
+    }
+    const share = 1 / leaders.length;
+    for (const mgr of leaders) out.set(mgr, out.get(mgr) + share);
+  }
+  for (const [k, v] of out) out.set(k, (v / trials) * 100);
+  return out;
+}
+
 function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
   const hasData = useMemo(() => {
     const m = {};
@@ -744,8 +949,6 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
   const [sel, setSel] = useState(defaultKey);
 
   const meta = ALL_ROUNDS.find((r) => r.key === sel) ?? ALL_ROUNDS[0];
-  // Vòng đã kết thúc -> ẩn cột "Tổng điểm" (tổng tích lũy cả mùa chỉ có nghĩa ở vòng đang diễn ra).
-  const selFinished = (rounds || []).find((r) => r.key === sel)?.status === "complete";
   const empty = !hasData[sel];
   const syncedSquads = squadsByRound?.[sel] || {};
   const roundSquads = Object.keys(syncedSquads).length ? syncedSquads : squads;
@@ -764,6 +967,12 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
   );
 
   const winner = ranked[0];
+
+  // Xác suất mỗi HLV về nhất vòng khi kết thúc (dự phóng, tính cả điểm cầu thủ chưa đá).
+  const winProb = useMemo(
+    () => computeWinProbabilities({ ranked, roundSquads, sel }),
+    [ranked, roundSquads, sel]
+  );
 
   // Manager đang xem đội hình (mặc định bám theo người thắng vòng).
   const [picked, setPicked] = useState(null);
@@ -814,14 +1023,12 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] xl:grid-cols-[minmax(0,5fr)_minmax(0,11fr)_minmax(0,4fr)] gap-gutter items-start">
           <div className="bg-surface-container-lowest border border-surface-variant rounded-xl">
             <div className="overflow-x-auto px-2">
-              <table className="w-full text-left border-separate border-spacing-y-2 min-w-[360px]">
+              <table className="w-full text-left border-separate border-spacing-y-2 min-w-[300px] sm:min-w-[420px]">
                 <thead className="text-on-primary font-label-caps text-label-caps">
                   <tr>
                     <th className="py-3 px-4 bg-primary rounded-l-lg">Người chơi</th>
-                    <th className={`py-3 px-4 text-center font-bold bg-primary ${selFinished ? "rounded-r-lg" : ""}`}>Điểm {meta.label}</th>
-                    {!selFinished && (
-                      <th className="py-3 px-2 text-center bg-primary text-on-primary/80 rounded-r-lg">Tổng điểm</th>
-                    )}
+                    <th className="py-3 px-4 text-center font-bold bg-primary">Điểm {meta.label}</th>
+                    <th className="py-3 px-2 text-center bg-primary text-on-primary/80 rounded-r-lg whitespace-nowrap" title="Xác suất về nhất vòng khi kết thúc (dự phóng, tính cả điểm cầu thủ chưa đá)">Win rate</th>
                   </tr>
                 </thead>
                 <tbody className="font-data-mono text-data-mono">
@@ -840,6 +1047,8 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
                       ...extra,
                     });
                     const cellBg = "bg-white group-hover:bg-surface-container";
+                    const prob = winProb.get(p.manager) ?? 0;
+                    const probText = prob >= 9.95 ? `${Math.round(prob)}%` : prob < 0.05 ? "0%" : `${prob.toFixed(1)}%`;
                     return (
                       <tr
                         key={p.rank}
@@ -860,9 +1069,9 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
                           {isBottom && (
                             <span title="Bét bảng" className="absolute -top-2 -left-2 z-10 text-[18px] leading-none drop-shadow -rotate-45">💣</span>
                           )}
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-2">
-                              <span className={`font-bold truncate ${isSel ? "text-primary" : "text-on-surface"}`}>{p.manager}</span>
+                          <div className="min-w-0 max-w-[42vw] sm:max-w-[210px] lg:max-w-none">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span className={`font-bold truncate min-w-0 ${isSel ? "text-primary" : "text-on-surface"}`}>{p.manager}</span>
                               {p.chips?.[sel] && (
                                 <span title={p.chips[sel]} className="shrink-0 cursor-help">
                                   <BoosterIcon name={p.chips[sel]} size={28} />
@@ -876,16 +1085,18 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
                           </div>
                         </td>
                         <td
-                          className={`py-2 px-4 text-center font-bold text-primary text-[16px] ${cellBg} ${selFinished ? "rounded-r-lg" : ""}`}
-                          style={ring(selFinished ? { borderRightWidth: 2 } : {})}
+                          className={`py-2 px-4 text-center font-bold text-primary text-[16px] ${cellBg}`}
+                          style={ring({})}
                         >
                           {p.rpts}
                         </td>
-                        {!selFinished && (
-                          <td className={`py-2 px-2 text-center text-on-surface-variant rounded-r-lg ${cellBg}`} style={ring({ borderRightWidth: 2 })}>
-                            {p.total ?? p.totalPoints ?? 0}
-                          </td>
-                        )}
+                        <td
+                          className={`py-2 px-2 text-center rounded-r-lg ${cellBg}`}
+                          style={ring({ borderRightWidth: 2 })}
+                          title="Xác suất về nhất vòng khi kết thúc (dự phóng, tính cả điểm cầu thủ chưa đá)"
+                        >
+                          <span className="font-bold text-secondary">{probText}</span>
+                        </td>
                       </tr>
                     );
                   })}
