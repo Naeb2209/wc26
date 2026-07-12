@@ -1,6 +1,7 @@
 /* Be Vietnam Pro & Hanken Grotesk: load qua <link> trong app/layout.js.
    Material Symbols Outlined: self-host để icon luôn load khi deploy (không phụ thuộc CDN runtime). */
 /* touch: regen Tailwind cho class rộng cột tên (max-w-[42vw]...) trong tab Round */
+/* touch: buộc Turbopack build lại win rate (mô hình trận đang đá) */
 @font-face {
   font-family: "Material Symbols Outlined";
   font-style: normal;

@@ -768,16 +768,48 @@ const PROJ_DEFAULT = {
 };
 
 // Map: manager -> xác suất (%) về nhất vòng khi kết thúc.
-// "Đã đá" xác định qua cờ `played` của cầu thủ (CÙNG NGUỒN với điểm FIFA). KHÔNG dùng
-// lịch trận FotMob (roundStats.matches) vì hai nguồn có thể lệch nhịp — cầu thủ đã có điểm
-// nhưng lịch vẫn báo "chưa bắt đầu", dẫn tới đếm trùng nếu dựa vào match.started.
-function computeWinProbabilities({ ranked, roundSquads, sel, trials = 4000 }) {
-  // Mẫu điểm gốc của cầu thủ đá chính ĐÃ ĐÁ, gom theo vị trí, để ước lượng điểm kỳ vọng
-  // của cầu thủ chưa đá trong CHÍNH vòng này (tự thích ứng với vòng điểm cao/thấp).
+// Trạng thái mỗi cầu thủ suy từ CỜ `played` + SỐ PHÚT của FIFA (cùng nguồn với điểm) và cờ
+// `finished` của trận (FotMob) — không dựa riêng cờ nào vì hai nguồn lệch nhịp:
+//   - finished (trận đã hết / đá đủ ~90') -> điểm đã CHỐT, không còn dư địa.
+//   - live (đang đá, còn phút) -> điểm hiện tại đã ghi vào điểm vòng, nhưng CÒN nửa sau để ghi
+//     thêm -> vẫn còn dư địa (remFrac theo số phút còn lại). ĐÂY là ca khiến vòng "chưa ngã ngũ".
+//   - chưa đá (0 phút, trận chưa xong) -> còn nguyên cả trận.
+function computeWinProbabilities({ ranked, roundSquads, roundMatches, sel, trials = 4000 }) {
+  // Ghép cầu thủ với trận của vòng qua cặp (teamCode, oppCode) để biết trận đã kết thúc chưa.
+  const mLookup = new Map();
+  for (const mt of roundMatches || []) {
+    mLookup.set(`${mt.homeCode}|${mt.awayCode}`, mt);
+    mLookup.set(`${mt.awayCode}|${mt.homeCode}`, mt);
+  }
+  // Số phút CAO NHẤT mỗi đội tuyển trong vòng (từ mọi cầu thủ được pick) -> suy trận của đội đã
+  // xong chưa NGAY CẢ KHI thiếu lịch FotMob: trận đã hết thì luôn có cầu thủ đá tới ~90'. Tránh
+  // coi cầu thủ bị thay ra sớm (vd 43') ở trận ĐÃ KẾT THÚC là "đang đá" -> dư địa ảo.
+  const teamMaxMin = new Map();
+  for (const p of ranked) {
+    const sq = roundSquads?.[p.manager];
+    for (const pl of [...(sq?.starters || []), ...(sq?.bench || [])]) {
+      teamMaxMin.set(pl.teamCode, Math.max(teamMaxMin.get(pl.teamCode) || 0, pl.minutes || 0));
+    }
+  }
+  // Trạng thái: finished (đã hết), remFrac (phần trận còn lại 0..1), notStarted (chưa vào sân).
+  const statusOf = (pl) => {
+    const mt = mLookup.get(`${pl.teamCode}|${pl.oppCode}`);
+    const teamMax = teamMaxMin.get(pl.teamCode) || 0;
+    // Trận coi như XONG nếu FotMob báo finished, HOẶC đội đã có người đá tới ~90' (đội bóng trận
+    // đã hết), HOẶC bản thân cầu thủ này đã đá đủ ~90'.
+    const finished = (mt ? !!mt.finished : false) || teamMax >= 85 || (pl.minutes || 0) >= 88;
+    if (finished) return { finished: true, remFrac: 0, notStarted: false };
+    if (teamMax === 0) return { finished: false, remFrac: 1, notStarted: true }; // cả đội chưa ra sân
+    const ref = pl.minutes > 0 ? pl.minutes : teamMax; // đội đang đá -> dư địa theo phút hiện tại
+    return { finished: false, remFrac: Math.min(1, Math.max(0.1, (90 - ref) / 90)), notStarted: false };
+  };
+
+  // Mẫu điểm gốc của cầu thủ đá chính đã đá XONG (trận finished) -> ước lượng điểm CẢ TRẬN kỳ
+  // vọng của cầu thủ còn dư địa (không lấy cầu thủ đang đá dở kẻo mẫu bị thấp giả tạo).
   const samples = { GK: [], DEF: [], MID: [], FWD: [], all: [] };
   for (const p of ranked) {
     for (const pl of roundSquads?.[p.manager]?.starters || []) {
-      if (!pl.played) continue;
+      if (!statusOf(pl).finished) continue;
       const v = pl.rawPoints ?? pl.points ?? 0;
       (samples[pl.bucket] || samples.all).push(v);
       samples.all.push(v);
@@ -837,10 +869,10 @@ function computeWinProbabilities({ ranked, roundSquads, sel, trials = 4000 }) {
     return { mu: base.mu * factor, sd: base.sd };
   };
 
-  // Với mỗi HLV: điểm đã chốt (= điểm vòng, chip của cầu thủ đã đá đã nằm trong đó) + đội hình
-  // CHƯA đá tối ưu. Gom cầu thủ chưa đá theo vị trí (đá chính + dự bị) rồi cho HLV "thay người
-  // thủ công": mỗi vị trí ưu tiên người ĐIỂM DỰ KIẾN cao nhất vào đá chính (đội trưởng luôn đá),
-  // số còn lại xuống ghế dự bị làm bảo hiểm khi có cầu thủ tịt. 12th Man đã là starter thứ 12.
+  // Với mỗi HLV: điểm đã chốt (= điểm vòng, gồm cả điểm cầu thủ đang đá dở đã ghi) + phần điểm
+  // CÒN LẠI dự phóng. Cầu thủ ĐANG ĐÁ (live) bị khoá trong đội hình, chỉ cộng dư địa nửa còn lại
+  // (remFrac). Cầu thủ CHƯA VÀO SÂN mới được "thay người thủ công": mỗi vị trí ưu tiên người điểm
+  // dự kiến cao nhất (đá chính + dự bị), số dư xuống ghế làm bảo hiểm. 12th Man đã là starter 12.
   const coaches = ranked.map((p) => {
     const sq = roundSquads?.[p.manager];
     const chip = p.chips?.[sel] || null;
@@ -853,40 +885,55 @@ function computeWinProbabilities({ ranked, roundSquads, sel, trials = 4000 }) {
       else if (csChip && bucket === "MID") b += 1 * CS_KEEP_P;
       return b;
     };
-    // Gom theo vị trí: slots = số suất đá chính chưa đá của vị trí đó; pool = đá chính + dự bị.
-    const byBucket = {};
+    const scale = (s, rf) => ({ mu: s.mu * rf, sd: s.sd * Math.sqrt(rf) }); // dư địa theo phần trận còn lại
+    const pending = [];
+    const byBucket = {}; // gom cầu thủ CHƯA VÀO SÂN theo vị trí để tối ưu thay người
     for (const pl of sq?.starters || []) {
-      if (pl.played) continue;
-      (byBucket[pl.bucket] ||= { slots: 0, pool: [] });
-      byBucket[pl.bucket].slots += 1;
+      const st = statusOf(pl);
+      if (st.finished) continue;                    // đã chốt -> nằm trong secured
       const s = playerStat(pl);
-      byBucket[pl.bucket].pool.push({ mu: s.mu, sd: s.sd, cap: pl.isCaptain || pl.isMaxCaptain });
+      const cap = pl.isCaptain || pl.isMaxCaptain;
+      if (!st.notStarted) {
+        // Đang đá: khoá trong đội hình, chỉ còn dư địa nửa sau.
+        pending.push({ stat: scale(s, st.remFrac), bonus: chipBonus(pl.bucket) * st.remFrac, isGK: pl.bucket === "GK", cap, live: true, canBlank: false });
+      } else {
+        (byBucket[pl.bucket] ||= { slots: 0, pool: [] });
+        byBucket[pl.bucket].slots += 1;
+        byBucket[pl.bucket].pool.push({ mu: s.mu, sd: s.sd, cap, bonus: chipBonus(pl.bucket) });
+      }
     }
     for (const pl of sq?.bench || []) {
-      if (pl.played) continue;
-      (byBucket[pl.bucket] ||= { slots: 0, pool: [] });
+      const st = statusOf(pl);
+      if (st.finished || !st.notStarted) continue;  // dự bị đã đá/đang đá không dùng để thay
       const s = playerStat(pl);
-      byBucket[pl.bucket].pool.push({ mu: s.mu, sd: s.sd, cap: false });
+      (byBucket[pl.bucket] ||= { slots: 0, pool: [] });
+      byBucket[pl.bucket].pool.push({ mu: s.mu, sd: s.sd, cap: false, bonus: chipBonus(pl.bucket) });
     }
-    const pending = [], bench = [];
+    const bench = [];
     for (const bk of Object.keys(byBucket)) {
       const { slots, pool } = byBucket[bk];
       // Đội trưởng luôn đá; còn lại xếp theo điểm dự kiến giảm dần -> top `slots` vào đá chính.
       pool.sort((a, z) => (z.cap ? 1 : 0) - (a.cap ? 1 : 0) || z.mu - a.mu);
       pool.slice(0, slots).forEach((pl) =>
-        pending.push({ stat: { mu: pl.mu, sd: pl.sd }, bonus: chipBonus(bk), isGK: bk === "GK", cap: pl.cap })
+        pending.push({ stat: { mu: pl.mu, sd: pl.sd }, bonus: pl.bonus, isGK: bk === "GK", cap: pl.cap, live: false, canBlank: true })
       );
       pool.slice(slots).forEach((pl) =>
         bench.push({ stat: { mu: pl.mu, sd: pl.sd }, isGK: bk === "GK" })
       );
     }
-    // Băng đội trưởng: nếu đội trưởng chỉ định VẪN CHƯA đá (armband còn hiệu lực), trao ×2 cho
-    // cầu thủ có ĐIỂM DỰ KIẾN cao nhất trong đội hình chưa đá — mô phỏng đổi đội trưởng sang
-    // người kỳ vọng cao hơn (Max Captain cũng tự trao băng cho người điểm cao nhất). Nếu đội
-    // trưởng đã đá thì ×2 đã nằm trong điểm chốt -> không đổi.
-    const capLive = pending.some((x) => x.cap);
-    let capIdx = -1, bestMu = -Infinity;
-    if (capLive) pending.forEach((x, i) => { if (x.stat.mu > bestMu) { bestMu = x.stat.mu; capIdx = i; } });
+    // Băng đội trưởng ×2:
+    //  - Đội trưởng đang đá -> băng đã khoá trên người đó (điểm đã ghi ×2 nằm trong secured, phần
+    //    còn lại cũng ×2).
+    //  - Đội trưởng CHƯA vào sân -> có thể đổi băng sang người điểm dự kiến cao nhất trong nhóm
+    //    chưa vào sân (Max Captain cũng tự trao băng cho người điểm cao nhất).
+    //  - Đội trưởng đã đá xong -> ×2 đã nằm trong secured, không cần đánh dấu.
+    let capIdx = -1;
+    const liveCap = pending.findIndex((x) => x.cap && x.live);
+    if (liveCap >= 0) capIdx = liveCap;
+    else if (pending.some((x) => x.cap && !x.live)) {
+      let bestMu = -Infinity;
+      pending.forEach((x, i) => { if (!x.live && x.stat.mu > bestMu) { bestMu = x.stat.mu; capIdx = i; } });
+    }
     pending.forEach((x, i) => { x.mult = i === capIdx ? 2 : 1; });
     return { manager: p.manager, secured: p.rpts, pending, bench };
   });
@@ -914,7 +961,7 @@ function computeWinProbabilities({ ranked, roundSquads, sel, trials = 4000 }) {
       // Điểm dự bị mô phỏng sẵn (thứ tự giữ nguyên) để làm quân thay khi đá chính tịt.
       const benchPts = c.bench.map((b) => ({ isGK: b.isGK, pts: sample(b.stat), used: false }));
       for (const pl of c.pending) {
-        if (rng() < P_BLANK) {
+        if (pl.canBlank && rng() < P_BLANK) {
           // Tịt (0 phút): auto-sub bằng dự bị phù hợp (GK cho GK, ngoài cho ngoài); dự bị KHÔNG là đội trưởng.
           const sub = benchPts.find((b) => !b.used && b.isGK === pl.isGK)
             || benchPts.find((b) => !b.used && !b.isGK);
@@ -970,8 +1017,8 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
 
   // Xác suất mỗi HLV về nhất vòng khi kết thúc (dự phóng, tính cả điểm cầu thủ chưa đá).
   const winProb = useMemo(
-    () => computeWinProbabilities({ ranked, roundSquads, sel }),
-    [ranked, roundSquads, sel]
+    () => computeWinProbabilities({ ranked, roundSquads, roundMatches, sel }),
+    [ranked, roundSquads, roundMatches, sel]
   );
 
   // Manager đang xem đội hình (mặc định bám theo người thắng vòng).
