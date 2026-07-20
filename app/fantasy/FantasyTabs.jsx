@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { ManagerLineup } from "./SquadView";
 import DashboardTab from "./dashboard/DashboardTab";
+import Fireworks from "./Fireworks";
 
 const MEDAL = {
   1: { bg: "#fff8e1", ring: "#ffd700", label: "🥇" },
@@ -63,7 +64,9 @@ function PodiumCard({ p, place }) {
   const m = MEDAL[place] || MEDAL[3];
   return (
     <div
-      className="rounded-xl border p-5 flex flex-col items-center text-center gap-2 shadow-sm"
+      className={`rounded-xl border p-5 flex flex-col items-center text-center gap-2 shadow-sm ${
+        place === 1 ? "champion-podium" : ""
+      }`}
       style={{ background: m.bg, borderColor: m.ring }}
     >
       <div className="text-3xl">{m.label}</div>
@@ -89,10 +92,51 @@ function PodiumCard({ p, place }) {
 }
 
 /* ---------------- Tab: Tổng điểm ---------------- */
+// Banner vô địch: World Cup 2026 đã kết thúc -> tôn vinh người dẫn đầu chung cuộc.
+function ChampionBanner({ p, onReplay }) {
+  return (
+    <div className="champion-banner relative overflow-hidden rounded-2xl border p-5 sm:p-6 mb-8">
+      <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-5 text-center sm:text-left">
+        <div className="champion-avatar w-20 h-20 rounded-full bg-white border-[3px] flex items-center justify-center overflow-hidden shrink-0">
+          {p.avatar ? (
+            <img src={p.avatar} alt="" className="w-full h-full object-contain p-1" />
+          ) : (
+            <span className="font-display-lg text-headline-md text-on-surface">
+              {(p.manager || "?").trim()[0]?.toUpperCase()}
+            </span>
+          )}
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="font-label-caps text-label-caps uppercase text-[#8a6d00] flex items-center justify-center sm:justify-start gap-1.5">
+            <span className="material-symbols-outlined text-[18px]">emoji_events</span>
+            Vô địch FIFA World Cup 2026 Fantasy
+          </div>
+          <div className="font-display-lg text-headline-md text-on-surface mt-1 flex items-center justify-center sm:justify-start gap-2">
+            <span className="champion-crown text-[26px] leading-none">👑</span>
+            <span className="truncate">{p.manager}</span>
+          </div>
+          <div className="font-data-mono text-data-mono text-[#8a6d00] mt-0.5">
+            {p.totalPoints} điểm · Chúc mừng nhà vô địch!
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={onReplay}
+          className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#c9a227] bg-white/70 text-[#8a6d00] font-label-caps text-label-caps uppercase hover:bg-white transition-colors"
+        >
+          <span className="material-symbols-outlined text-[18px]">celebration</span>
+          Bắn pháo hoa
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function TotalTab({ standings }) {
   const top3 = standings.slice(0, 3);
   const seasonLeader = standings[0];
   const bottom = standings.at(-1);
+  const [burst, setBurst] = useState(0); // bấm "Bắn pháo hoa" -> chạy lại hiệu ứng
 
   // Vòng đang xét = vòng mới nhất đã có điểm hoặc đã có người dùng booster.
   const currentKey = useMemo(
@@ -105,8 +149,12 @@ function TotalTab({ standings }) {
 
   return (
     <>
+      <Fireworks key={burst} replayKey={burst} />
+
+      {seasonLeader && <ChampionBanner p={seasonLeader} onReplay={() => setBurst((v) => v + 1)} />}
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
-        <SummaryCard icon="military_tech" title="Dẫn đầu" value={seasonLeader?.manager || "-"} subtitle={`${seasonLeader?.totalPoints || 0} pts`} />
+        <SummaryCard icon="military_tech" title="Vô địch" value={seasonLeader?.manager || "-"} subtitle={`${seasonLeader?.totalPoints || 0} pts`} />
         <SummaryCard icon="groups" title="Số người chơi" value={standings.length} subtitle="manager" />
         <SummaryCard icon="sentiment_very_dissatisfied" title="Cuối bảng" value={bottom?.manager || "-"} subtitle={`${bottom?.totalPoints || 0} pts`} color="text-error" />
       </div>
@@ -149,10 +197,13 @@ function TotalTab({ standings }) {
             <tbody className="font-data-mono text-data-mono">
               {standings.map((p) => {
                 const top = p.rank <= 3;
+                const champ = p.rank === 1;
                 return (
                   <tr
                     key={p.rank}
-                    className="table-zebra border-b border-surface-variant hover:bg-surface-container transition-colors"
+                    className={`border-b border-surface-variant transition-colors ${
+                      champ ? "champion-row" : "table-zebra hover:bg-surface-container"
+                    }`}
                   >
                     <td
                       className="py-3 px-4 text-center font-bold"
@@ -163,9 +214,17 @@ function TotalTab({ standings }) {
                     <td className="py-3 px-2 text-center"><Movement rank={p.rank} prev={p.prev} /></td>
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-3">
-                        <Avatar src={p.avatar} name={p.manager} />
+                        <Avatar src={p.avatar} name={p.manager} size={champ ? "w-10 h-10" : "w-8 h-8"} />
                         <div className="min-w-0">
-                          <div className="font-bold text-on-surface truncate">{p.manager}</div>
+                          <div className="font-bold text-on-surface truncate flex items-center gap-1.5">
+                            {champ && <span className="champion-crown text-[16px] leading-none shrink-0">👑</span>}
+                            <span className="truncate">{p.manager}</span>
+                            {champ && (
+                              <span className="shrink-0 px-2 py-0.5 rounded-full bg-[#ffd700] text-[#5c4500] font-label-caps text-[10px] uppercase">
+                                Vô địch
+                              </span>
+                            )}
+                          </div>
                           {p.team && <div className="text-on-surface-variant text-[12px] truncate">{p.team}</div>}
                           <ManagerChips chips={p.chips} currentKey={currentKey} />
                         </div>
@@ -1717,7 +1776,8 @@ function RulesTab() {
 
 /* ---------------- Shell ---------------- */
 export default function FantasyTabs({ data = null, standings, squads, squadsByRound = {}, roundStats = null, playerStats = null, schedule = null }) {
-  const [tab, setTab] = useState("round");
+  // World Cup 2026 đã kết thúc -> mặc định mở tab Tổng điểm (bảng vàng chung cuộc).
+  const [tab, setTab] = useState("total");
 
   if (standings.length === 0) {
     return (

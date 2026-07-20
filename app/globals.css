@@ -534,6 +534,73 @@ body {
   background: radial-gradient(circle at top right, rgba(173, 255, 47, 0.1), transparent 70%);
 }
 
+/* ---- Chúc mừng nhà vô địch (tab Tổng điểm) ---- */
+.champion-banner {
+  background: linear-gradient(115deg, #fff7d6 0%, #ffe9a3 45%, #fff9e6 100%);
+  border-color: #e3c352;
+  box-shadow: 0 6px 24px rgba(201, 162, 39, 0.22);
+}
+/* Vệt sáng chạy ngang cho cảm giác cúp vàng lấp lánh. */
+.champion-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.75) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: champion-shine 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.champion-avatar {
+  border-color: #ffd700;
+  box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.28);
+}
+.champion-crown {
+  display: inline-block;
+  animation: champion-bounce 2.2s ease-in-out infinite;
+}
+.champion-row {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.28) 0%, rgba(255, 248, 225, 0.55) 100%);
+  box-shadow: inset 4px 0 0 0 #ffd700;
+}
+.champion-podium {
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.45), 0 10px 30px rgba(201, 162, 39, 0.3);
+  animation: champion-glow 2.8s ease-in-out infinite;
+}
+@keyframes champion-shine {
+  0%,
+  60% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+@keyframes champion-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(6deg);
+  }
+}
+@keyframes champion-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.45), 0 10px 30px rgba(201, 162, 39, 0.28);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.6), 0 14px 38px rgba(201, 162, 39, 0.45);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .champion-banner::after,
+  .champion-crown,
+  .champion-podium {
+    animation: none;
+  }
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
