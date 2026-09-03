@@ -197,15 +197,15 @@ function FotmobStatBlocks({ fm }) {
 function Stat({ label, value }) {
   return (
     <div className="flex items-center justify-between gap-3 px-3 py-1.5 text-[13px] odd:bg-black/[0.035]">
-      <span className="text-on-surface-variant">{label}</span>
-      <span className="font-data-mono font-semibold text-on-surface tabular-nums">{value}</span>
+      <span className="text-dc-ink-2">{label}</span>
+      <span className="font-data-mono font-semibold text-dc-ink tabular-nums">{value}</span>
     </div>
   );
 }
 function StatSection({ title, children }) {
   return (
     <div className="mt-3">
-      <div className="px-3 py-1 text-label-caps font-label-caps uppercase tracking-wide text-primary rounded-md bg-primary/10">
+      <div className="px-3 py-1 text-label-caps font-dc-display uppercase tracking-wide text-dc-gold rounded-md bg-dc-ink/10">
         {title}
       </div>
       <div className="mt-1 rounded-md overflow-hidden border border-black/5">{children}</div>
@@ -248,26 +248,26 @@ function FifaBreakdown({ fifa, bucket }) {
   const rows = fifaBreakdownRows(bucket, fifa.stats);
   return (
     <div className="mt-3">
-      <div className="px-3 py-1 text-label-caps font-label-caps uppercase tracking-wide text-primary rounded-md bg-primary/10">
+      <div className="px-3 py-1 text-label-caps font-dc-display uppercase tracking-wide text-dc-gold rounded-md bg-dc-ink/10">
         Bảng điểm (FIFA)
       </div>
       <div className="mt-1 rounded-md overflow-hidden border border-black/5">
-        <div className="flex items-center justify-between gap-3 px-3 py-1.5 text-[11px] font-label-caps uppercase text-on-surface-variant bg-black/[0.04]">
+        <div className="flex items-center justify-between gap-3 px-3 py-1.5 text-[11px] font-dc-display uppercase text-dc-ink-2 bg-black/[0.04]">
           <span>Hạng mục</span>
           <span className="flex items-center gap-3"><span className="w-10 text-right">Giá trị</span><span className="w-8 text-right">Điểm</span></span>
         </div>
         {rows.map((r, i) => (
           <div key={i} className="flex items-center justify-between gap-3 px-3 py-1.5 text-[13px] odd:bg-black/[0.035]">
-            <span className="text-on-surface-variant">{r.label}</span>
+            <span className="text-dc-ink-2">{r.label}</span>
             <span className="flex items-center gap-3 font-data-mono tabular-nums">
-              <span className="w-10 text-right text-on-surface">{r.value}</span>
-              <span className={`w-8 text-right font-bold ${r.pts > 0 ? "text-tertiary" : r.pts < 0 ? "text-error" : "text-on-surface-variant"}`}>{ptsStr(r.pts)}</span>
+              <span className="w-10 text-right text-dc-ink">{r.value}</span>
+              <span className={`w-8 text-right font-bold ${r.pts > 0 ? "text-dc-pitch" : r.pts < 0 ? "text-red-600" : "text-dc-ink-2"}`}>{ptsStr(r.pts)}</span>
             </span>
           </div>
         ))}
-        <div className="flex items-center justify-between gap-3 px-3 py-1.5 text-[13px] border-t border-black/10 bg-primary/5">
-          <span className="font-bold text-on-surface">Tổng điểm</span>
-          <span className="font-data-mono font-bold text-primary tabular-nums">{ptsStr(Number(fifa.points || 0))}</span>
+        <div className="flex items-center justify-between gap-3 px-3 py-1.5 text-[13px] border-t border-black/10 bg-dc-ink/5">
+          <span className="font-bold text-dc-ink">Tổng điểm</span>
+          <span className="font-data-mono font-bold text-dc-gold tabular-nums">{ptsStr(Number(fifa.points || 0))}</span>
         </div>
       </div>
     </div>
@@ -332,7 +332,7 @@ function PlayerStatsModal({ p, fotmobDetail, onClose }) {
           </div>
           <div className="min-w-0 w-full text-center">
             <div className="flex items-center justify-center gap-1.5">
-              <span className="font-bold text-on-surface text-lg truncate">{p.name}</span>
+              <span className="font-bold text-dc-ink text-lg truncate">{p.name}</span>
               {p.isCaptain && (
                 <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-yellow-400 text-black leading-none">C</span>
               )}
@@ -340,10 +340,10 @@ function PlayerStatsModal({ p, fotmobDetail, onClose }) {
                 <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-gray-400 text-black leading-none">V</span>
               )}
             </div>
-            <div className="mt-1 flex items-center justify-center gap-1.5 text-[12px] text-on-surface-variant font-data-mono">
+            <div className="mt-1 flex items-center justify-center gap-1.5 text-[12px] text-dc-ink-2 font-data-mono">
               {p.crest && <img src={p.crest} alt="" className="w-5 h-3.5 object-cover rounded-[1px]" />}
               <span className="truncate">{p.teamName || p.teamCode}</span>
-              <span className="text-on-surface-variant/50">·</span>
+              <span className="text-dc-ink-2/50">·</span>
               <span>{POS_LABEL[p.bucket] || ""}</span>
             </div>
             <div className="mt-1.5 flex items-center justify-center gap-2 text-[12px] font-data-mono">
@@ -358,9 +358,9 @@ function PlayerStatsModal({ p, fotmobDetail, onClose }) {
                 </span>
               )}
               {played ? (
-                <span className="text-on-surface-variant">{shownMinutes}&apos; thi đấu</span>
+                <span className="text-dc-ink-2">{shownMinutes}&apos; thi đấu</span>
               ) : (
-                <span className="text-on-surface-variant">vs {p.oppCode || "?"} · {p.matchDate}</span>
+                <span className="text-dc-ink-2">vs {p.oppCode || "?"} · {p.matchDate}</span>
               )}
             </div>
           </div>
@@ -369,8 +369,8 @@ function PlayerStatsModal({ p, fotmobDetail, onClose }) {
         {/* Body (vùng cuộn — thanh cuộn chỉ nằm ở đây) */}
         <div className="flex-1 overflow-y-auto overscroll-contain px-3 pb-4 [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.2)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/20 hover:[&::-webkit-scrollbar-thumb]:bg-black/30">
           {!played ? (
-            <div className="py-10 text-center text-on-surface-variant">
-              <div className="material-symbols-outlined text-4xl text-on-surface-variant/60">{p.dnp ? "do_not_disturb_on" : "schedule"}</div>
+            <div className="py-10 text-center text-dc-ink-2">
+              <div className="material-symbols-outlined text-4xl text-dc-ink-2/60">{p.dnp ? "do_not_disturb_on" : "schedule"}</div>
               <div className="mt-2 font-bold">{p.dnp ? "Không ra sân vòng này" : "Chưa thi đấu vòng này"}</div>
               <div className="mt-1 text-[13px] font-data-mono">
                 Gặp {p.oppName || p.oppCode || "?"} · {p.matchDate}
@@ -380,19 +380,19 @@ function PlayerStatsModal({ p, fotmobDetail, onClose }) {
             <>
               {p.fifa && <FifaBreakdown fifa={p.fifa} bucket={p.bucket} />}
               {p.qualBonus > 0 && (
-                <div className="mt-2 flex items-center justify-between gap-3 px-3 py-2 rounded-md bg-tertiary/10 ring-1 ring-tertiary/30 text-[13px]">
-                  <span className="flex items-center gap-1.5 font-bold text-on-surface">
-                    <span className="material-symbols-outlined text-[18px] text-tertiary">trending_up</span>
+                <div className="mt-2 flex items-center justify-between gap-3 px-3 py-2 rounded-md bg-dc-pitch/10 ring-1 ring-dc-pitch/30 text-[13px]">
+                  <span className="flex items-center gap-1.5 font-bold text-dc-ink">
+                    <span className="material-symbols-outlined text-[18px] text-dc-pitch">trending_up</span>
                     Qualification Booster · đi tiếp
                   </span>
-                  <span className="font-data-mono font-bold text-tertiary tabular-nums">+{p.qualBonus}</span>
+                  <span className="font-data-mono font-bold text-dc-pitch tabular-nums">+{p.qualBonus}</span>
                 </div>
               )}
               {useReal && <FotmobStatBlocks fm={fm} />}
             </>
           ) : !d ? (
-            <div className="py-10 text-center text-on-surface-variant">
-              <div className="material-symbols-outlined text-4xl text-on-surface-variant/60">{p.dnp ? "do_not_disturb_on" : "schedule"}</div>
+            <div className="py-10 text-center text-dc-ink-2">
+              <div className="material-symbols-outlined text-4xl text-dc-ink-2/60">{p.dnp ? "do_not_disturb_on" : "schedule"}</div>
               <div className="mt-2 font-bold">{p.dnp ? "Không ra sân vòng này" : "Chưa thi đấu vòng này"}</div>
               <div className="mt-1 text-[13px] font-data-mono">
                 Gặp {p.oppName || p.oppCode || "?"} · {p.matchDate}
@@ -530,7 +530,7 @@ function PlayerCard({ p, compact, infoMode = "opp", onSelect, twelfth = false })
       onClick={() => onSelect?.(p)}
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onSelect?.(p))}
       title="Xem thống kê chi tiết"
-      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${borderCls} ${compact ? "w-[112px] sm:w-[134px]" : "w-[126px] sm:w-[150px]"} ${dnp ? "opacity-55 grayscale-[35%]" : ""}`}
+      className={`relative flex flex-col items-center rounded-xl border-2 backdrop-blur-[1px] px-1.5 pt-2 pb-1.5 cursor-pointer transition hover:brightness-110 hover:ring-2 hover:ring-dc-gold/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-dc-gold ${borderCls} ${compact ? "w-[112px] sm:w-[134px]" : "w-[126px] sm:w-[150px]"} ${dnp ? "opacity-55 grayscale-[35%]" : ""}`}
     >
       {twelfth && (
         <span className="absolute -top-2 left-1/2 -translate-x-1/2 z-20 px-1.5 py-0.5 rounded bg-[#9b3fc4] text-white text-[9px] font-bold uppercase leading-none shadow tracking-wide">
@@ -725,7 +725,7 @@ function Pitch({ squad, infoMode, onSelect, twelfthMan }) {
             className="rounded-xl ring-1 ring-white/10 bg-white/[0.05] py-2 sm:py-0 sm:rounded-none sm:ring-0 sm:bg-transparent"
           >
             {/* Nhãn tuyến — chỉ hiện trên mobile để phân biệt khi thẻ wrap nhiều dòng */}
-            <div className="sm:hidden mb-1.5 text-center text-[10px] font-label-caps uppercase tracking-wide text-white/45">
+            <div className="sm:hidden mb-1.5 text-center text-[10px] font-dc-display uppercase tracking-wide text-white/45">
               {POS_LABEL[r.bucket]}
             </div>
             <div className="flex justify-center gap-2 sm:gap-4 flex-wrap">
@@ -742,8 +742,8 @@ function Pitch({ squad, infoMode, onSelect, twelfthMan }) {
 
 function Bench({ squad, infoMode, onSelect }) {
   return (
-    <div className="mt-4 bg-surface-container-low border border-outline-variant rounded-xl p-3">
-      <div className="font-label-caps text-label-caps uppercase text-on-surface-variant mb-2 flex items-center gap-1">
+    <div className="mt-4 bg-dc-paper border border-dc-line rounded-2xl p-3">
+      <div className="font-dc-display text-label-caps uppercase text-dc-ink-2 mb-2 flex items-center gap-1">
         <span className="material-symbols-outlined text-[16px]">event_seat</span>
         Ghế dự bị (Bench)
       </div>
@@ -766,8 +766,8 @@ const LEGEND = [
 ];
 function StatLegend() {
   return (
-    <div className="mb-3 px-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-on-surface-variant">
-      <span className="font-label-caps uppercase tracking-wide text-on-surface-variant/70">Chú thích:</span>
+    <div className="mb-3 px-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-dc-ink-2">
+      <span className="font-dc-display uppercase tracking-wide text-dc-ink-2/70">Chú thích:</span>
       {LEGEND.map((it) => (
         <span key={it.label} className="inline-flex items-center gap-1 whitespace-nowrap">
           <span className="material-symbols-outlined text-[15px] align-middle">{it.icon}</span>
@@ -869,17 +869,17 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
   }, [squad, chip, fotmobDetail, matchByPair]);
 
   return (
-    <div className="bg-surface-container-lowest border border-surface-variant rounded-xl p-2 sm:p-4 self-start">
+    <div className="bg-white border border-dc-line rounded-2xl p-2 sm:p-4 self-start">
       <div className="flex items-center justify-between gap-3 mb-3 px-1">
         <div className="min-w-0">
-          <div className="font-bold text-on-surface truncate">{manager}</div>
+          <div className="font-bold text-dc-ink truncate">{manager}</div>
         </div>
         {squad && (
           <div className="text-right shrink-0">
-            <div className="font-data-mono text-sm text-on-surface">
+            <div className="font-data-mono text-sm text-dc-ink">
               Sơ đồ <span className="font-bold">{squad.formation}</span>
             </div>
-            <div className="font-data-mono text-[12px] text-on-surface-variant">
+            <div className="font-data-mono text-[12px] text-dc-ink-2">
               Giá trị {squad.squadValue}M{points != null ? ` · ${points} pts` : ""}
             </div>
           </div>
@@ -891,9 +891,9 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
           {/* Cầu thủ chưa đá hiển thị thông tin gì — chuyển đổi tại đây */}
           <div className="flex flex-wrap items-center justify-center sm:justify-between gap-2 mb-2 px-1">
             {chip ? (
-              <div className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-tertiary/15 ring-1 ring-tertiary/30 pl-1 pr-2.5 py-0.5">
+              <div className="shrink-0 inline-flex items-center gap-1.5 rounded-lg bg-dc-pitch/15 ring-1 ring-dc-pitch/30 pl-1 pr-2.5 py-0.5">
                 {chipIcon}
-                <span className="font-label-caps text-label-caps uppercase text-tertiary">
+                <span className="font-dc-display text-label-caps uppercase text-dc-pitch">
                   Booster: {chip}
                 </span>
               </div>
@@ -901,8 +901,8 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
               <span />
             )}
             <div className="flex items-center gap-2 sm:ml-auto">
-              <span className="hidden sm:inline text-[11px] text-on-surface-variant">Chưa đá hiện:</span>
-              <div className="inline-flex gap-0.5 p-0.5 rounded-full bg-surface-container-low border border-outline-variant">
+              <span className="hidden sm:inline text-[11px] text-dc-ink-2">Chưa đá hiện:</span>
+              <div className="inline-flex gap-0.5 p-0.5 rounded-full bg-dc-paper border border-dc-line">
                 {INFO_MODES.map((m) => {
                 const active = infoMode === m.key;
                 return (
@@ -911,8 +911,8 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
                     onClick={() => setInfoMode(m.key)}
                     title={m.label}
                     className={[
-                      "inline-flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-label-caps uppercase transition-colors",
-                      active ? "bg-primary text-on-primary" : "text-on-surface-variant hover:text-primary",
+                      "inline-flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-dc-display uppercase transition-colors",
+                      active ? "bg-dc-ink text-white" : "text-dc-ink-2 hover:text-dc-gold",
                     ].join(" ")}
                   >
                     <span className="material-symbols-outlined text-[14px]">{m.icon}</span>
@@ -934,7 +934,7 @@ export function ManagerLineup({ manager, squad, points, chip, chipIcon, fotmobDe
           {selected && <PlayerStatsModal p={selected} fotmobDetail={fotmobDetail} onClose={() => setSelected(null)} />}
         </>
       ) : (
-        <div className="p-10 text-center text-on-surface-variant">Chưa có đội hình cho người chơi này.</div>
+        <div className="p-10 text-center text-dc-ink-2">Chưa có đội hình cho người chơi này.</div>
       )}
     </div>
   );

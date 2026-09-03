@@ -1,36 +1,42 @@
+import Link from "next/link";
+
+const LINKS = [
+  { href: "/the-thao/bong-da", label: "Bóng đá" },
+  { href: "/the-thao/cau-long", label: "Cầu lông" },
+  { href: "/su-kien", label: "Sự kiện" },
+  { href: "/moments", label: "Moments" },
+  { href: "/bang-tin", label: "Bảng tin" },
+];
+
 export default function Footer() {
-  const links = ["Privacy Policy", "Terms of Service", "Sponsorships", "Contact Us", "Media Kit"];
   return (
-    <footer className="bg-on-surface w-full py-8 px-margin-mobile md:px-margin-desktop mt-auto">
-      <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        {/* Logo */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          <span className="grid place-items-center w-9 h-9 rounded-lg bg-primary text-on-primary shrink-0">
-            <span className="material-symbols-outlined text-[20px]">sports_soccer</span>
-          </span>
-          <span className="leading-none">
-            <span className="block font-display-lg text-[16px] text-on-primary uppercase tracking-tight">World Cup</span>
-            <span className="block font-label-caps text-[10px] tracking-widest text-surface-variant">FIFA 2026</span>
-          </span>
+    <footer className="mt-auto w-full bg-dc-ink px-margin-mobile py-10 md:px-margin-desktop">
+      <div className="mx-auto flex w-full max-w-container-max flex-col items-center justify-between gap-6 md:flex-row md:items-start">
+        <div>
+          <p className="font-dc-display text-[26px] font-bold italic leading-none text-white">
+            DC<span className="text-dc-gold">42</span>
+          </p>
+          <p className="mt-2 max-w-[36ch] text-[13.5px] leading-relaxed text-white/60">
+            Sân chơi của anh em DC: thể thao hằng tuần, giải đấu trong năm, sự kiện ngày đặc biệt và kho ảnh chung.
+          </p>
         </div>
 
-        {/* Links */}
         <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-          {links.map((l) => (
-            <a
-              key={l}
-              href="#"
-              className="font-label-caps text-label-caps text-surface-variant hover:text-tertiary-fixed-dim transition-colors uppercase opacity-90 hover:opacity-100"
+          {LINKS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="font-dc-display text-[11px] font-bold uppercase tracking-[0.14em] text-white/70 transition-colors hover:text-dc-gold"
             >
-              {l}
-            </a>
+              {l.label}
+            </Link>
           ))}
         </nav>
 
-        {/* Copyright */}
-        <div className="font-data-mono text-[12px] text-tertiary-fixed text-center md:text-right opacity-90">
-          © 2026 FIFA World Cup. Official Broadcaster: VTV.
-        </div>
+        <p className="text-center text-[12px] text-white/50 md:text-right">
+          Nội bộ DC · TMA
+          <span className="block">Dữ liệu World Cup 2026 dùng cho tab Fantasy.</span>
+        </p>
       </div>
     </footer>
   );

@@ -22,37 +22,37 @@ const TABS = [
 
 function Movement({ rank, prev }) {
   if (prev == null || prev === rank) {
-    return <span className="text-outline font-data-mono text-[12px]">—</span>;
+    return <span className="text-dc-ink-2 font-data-mono text-[12px]">—</span>;
   }
   const up = prev > rank;
   return (
-    <span className={`inline-flex items-center font-data-mono text-[12px] ${up ? "text-tertiary" : "text-error"}`}>
+    <span className={`inline-flex items-center font-data-mono text-[12px] ${up ? "text-dc-pitch" : "text-red-600"}`}>
       <span className="material-symbols-outlined text-[16px]">{up ? "arrow_drop_up" : "arrow_drop_down"}</span>
       {Math.abs(prev - rank)}
     </span>
   );
 }
 
-function SummaryCard({ icon, title, value, subtitle, color = "text-primary" }) {
+function SummaryCard({ icon, title, value, subtitle, color = "text-dc-gold" }) {
   return (
-    <div className="bg-surface-container-low border border-outline-variant rounded-xl p-4">
-      <div className="flex items-center gap-2 text-on-surface-variant text-sm">
+    <div className="rounded-2xl border border-dc-line bg-white p-5">
+      <div className="flex items-center gap-2 text-dc-ink-2 text-sm">
         <span className={`material-symbols-outlined ${color}`}>{icon}</span>
         {title}
       </div>
-      <div className="mt-2 font-bold text-xl text-on-surface truncate">{value}</div>
-      {subtitle && <div className="text-sm text-on-surface-variant mt-1">{subtitle}</div>}
+      <div className="mt-2 font-bold text-xl text-dc-ink truncate">{value}</div>
+      {subtitle && <div className="text-sm text-dc-ink-2 mt-1">{subtitle}</div>}
     </div>
   );
 }
 
 function Avatar({ src, name, size = "w-8 h-8" }) {
   return (
-    <div className={`${size} rounded-full bg-white border border-outline-variant overflow-hidden flex items-center justify-center shrink-0`}>
+    <div className={`${size} rounded-full bg-white border border-dc-line overflow-hidden flex items-center justify-center shrink-0`}>
       {src ? (
         <img src={src} alt="" className="w-full h-full object-contain p-0.5" />
       ) : (
-        <span className="font-data-mono text-[12px] text-on-surface-variant">
+        <span className="font-data-mono text-[12px] text-dc-ink-2">
           {(name || "?").trim()[0]?.toUpperCase()}
         </span>
       )}
@@ -71,7 +71,7 @@ function PodiumCard({ p, place }) {
     >
       <div className="text-3xl">{m.label}</div>
       <div
-        className="w-14 h-14 rounded-full flex items-center justify-center font-display-lg text-headline-md text-on-surface border-2 overflow-hidden"
+        className="w-14 h-14 rounded-full flex items-center justify-center font-dc-display text-headline-md text-dc-ink border-2 overflow-hidden"
         style={{ borderColor: m.ring, background: "#fff" }}
       >
         {p.avatar ? (
@@ -81,12 +81,12 @@ function PodiumCard({ p, place }) {
         )}
       </div>
       <div>
-        <div className="font-bold text-on-surface">{p.manager}</div>
-        {p.team && <div className="font-data-mono text-data-mono text-on-surface-variant">{p.team}</div>}
+        <div className="font-bold text-dc-ink">{p.manager}</div>
+        {p.team && <div className="font-data-mono text-data-mono text-dc-ink-2">{p.team}</div>}
       </div>
-      <div className="font-display-lg text-display-lg-mobile text-primary leading-none mt-1">{p.totalPoints}</div>
-      <div className="font-label-caps text-label-caps text-on-surface-variant uppercase">Tổng điểm</div>
-      <div className="font-data-mono text-[12px] text-on-surface-variant">Vòng này: {p.roundPoints}</div>
+      <div className="font-dc-display text-display-lg-mobile text-dc-gold leading-none mt-1">{p.totalPoints}</div>
+      <div className="font-dc-display text-label-caps text-dc-ink-2 uppercase">Tổng điểm</div>
+      <div className="font-data-mono text-[12px] text-dc-ink-2">Vòng này: {p.roundPoints}</div>
     </div>
   );
 }
@@ -101,17 +101,17 @@ function ChampionBanner({ p, onReplay }) {
           {p.avatar ? (
             <img src={p.avatar} alt="" className="w-full h-full object-contain p-1" />
           ) : (
-            <span className="font-display-lg text-headline-md text-on-surface">
+            <span className="font-dc-display text-headline-md text-dc-ink">
               {(p.manager || "?").trim()[0]?.toUpperCase()}
             </span>
           )}
         </div>
         <div className="min-w-0 flex-1">
-          <div className="font-label-caps text-label-caps uppercase text-[#8a6d00] flex items-center justify-center sm:justify-start gap-1.5">
+          <div className="font-dc-display text-label-caps uppercase text-[#8a6d00] flex items-center justify-center sm:justify-start gap-1.5">
             <span className="material-symbols-outlined text-[18px]">emoji_events</span>
             Vô địch FIFA World Cup 2026 Fantasy
           </div>
-          <div className="font-display-lg text-headline-md text-on-surface mt-1 flex items-center justify-center sm:justify-start gap-2">
+          <div className="font-dc-display text-headline-md text-dc-ink mt-1 flex items-center justify-center sm:justify-start gap-2">
             <span className="champion-crown text-[26px] leading-none">👑</span>
             <span className="truncate">{p.manager}</span>
           </div>
@@ -122,7 +122,7 @@ function ChampionBanner({ p, onReplay }) {
         <button
           type="button"
           onClick={onReplay}
-          className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#c9a227] bg-white/70 text-[#8a6d00] font-label-caps text-label-caps uppercase hover:bg-white transition-colors"
+          className="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#c9a227] bg-white/70 text-[#8a6d00] font-dc-display text-label-caps uppercase hover:bg-white transition-colors"
         >
           <span className="material-symbols-outlined text-[18px]">celebration</span>
           Bắn pháo hoa
@@ -156,7 +156,7 @@ function TotalTab({ standings }) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
         <SummaryCard icon="military_tech" title="Vô địch" value={seasonLeader?.manager || "-"} subtitle={`${seasonLeader?.totalPoints || 0} pts`} />
         <SummaryCard icon="groups" title="Số người chơi" value={standings.length} subtitle="manager" />
-        <SummaryCard icon="sentiment_very_dissatisfied" title="Cuối bảng" value={bottom?.manager || "-"} subtitle={`${bottom?.totalPoints || 0} pts`} color="text-error" />
+        <SummaryCard icon="sentiment_very_dissatisfied" title="Cuối bảng" value={bottom?.manager || "-"} subtitle={`${bottom?.totalPoints || 0} pts`} color="text-red-600" />
       </div>
 
       {top3.length === 3 && (
@@ -167,25 +167,25 @@ function TotalTab({ standings }) {
         </div>
       )}
 
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2 font-data-mono text-[11px] text-on-surface-variant">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2 font-data-mono text-[11px] text-dc-ink-2">
         <span className="inline-flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-[3px]" style={{ background: BOOSTER_ORANGE }} />
+          <span className="w-3 h-3 rounded-[3px]" style={{ background: BOOSTER_GOLD }} />
           Booster đã dùng (kèm vòng)
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-[3px] ring-2 ring-tertiary" style={{ background: BOOSTER_ORANGE }} />
-          <span className="text-tertiary font-bold">Đang dùng vòng này</span>
+          <span className="w-3 h-3 rounded-[3px] ring-2 ring-dc-pitch" style={{ background: BOOSTER_GOLD }} />
+          <span className="text-dc-pitch font-bold">Đang dùng vòng này</span>
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-[3px] opacity-25" style={{ background: BOOSTER_ORANGE, filter: "grayscale(1)" }} />
+          <span className="w-3 h-3 rounded-[3px] opacity-25" style={{ background: BOOSTER_GOLD, filter: "grayscale(1)" }} />
           Chưa dùng
         </span>
       </div>
 
-      <div className="bg-surface-container-lowest border border-surface-variant overflow-hidden">
+      <div className="bg-white border border-dc-line overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[560px]">
-            <thead className="bg-primary text-on-primary font-label-caps text-label-caps">
+            <thead className="bg-dc-ink text-white font-dc-display text-label-caps">
               <tr>
                 <th className="py-3 px-4 w-16 text-center">Hạng</th>
                 <th className="py-3 px-2 w-12 text-center" title="Biến động so với vòng trước">+/-</th>
@@ -201,8 +201,8 @@ function TotalTab({ standings }) {
                 return (
                   <tr
                     key={p.rank}
-                    className={`border-b border-surface-variant transition-colors ${
-                      champ ? "champion-row" : "table-zebra hover:bg-surface-container"
+                    className={`border-b border-dc-line transition-colors ${
+                      champ ? "champion-row" : "table-zebra hover:bg-dc-paper"
                     }`}
                   >
                     <td
@@ -216,22 +216,22 @@ function TotalTab({ standings }) {
                       <div className="flex items-center gap-3">
                         <Avatar src={p.avatar} name={p.manager} size={champ ? "w-10 h-10" : "w-8 h-8"} />
                         <div className="min-w-0">
-                          <div className="font-bold text-on-surface truncate flex items-center gap-1.5">
+                          <div className="font-bold text-dc-ink truncate flex items-center gap-1.5">
                             {champ && <span className="champion-crown text-[16px] leading-none shrink-0">👑</span>}
                             <span className="truncate">{p.manager}</span>
                             {champ && (
-                              <span className="shrink-0 px-2 py-0.5 rounded-full bg-[#ffd700] text-[#5c4500] font-label-caps text-[10px] uppercase">
+                              <span className="shrink-0 px-2 py-0.5 rounded-full bg-[#ffd700] text-[#5c4500] font-dc-display text-[10px] uppercase">
                                 Vô địch
                               </span>
                             )}
                           </div>
-                          {p.team && <div className="text-on-surface-variant text-[12px] truncate">{p.team}</div>}
+                          {p.team && <div className="text-dc-ink-2 text-[11.5px] truncate">{p.team}</div>}
                           <ManagerChips chips={p.chips} currentKey={currentKey} />
                         </div>
                       </div>
                     </td>
-                    <td className="py-3 px-2 text-center text-on-surface-variant">{p.roundPoints}</td>
-                    <td className="py-3 px-4 text-center font-bold text-primary text-[16px]">{p.totalPoints}</td>
+                    <td className="py-3 px-2 text-center text-dc-ink-2">{p.roundPoints}</td>
+                    <td className="py-3 px-4 text-center font-bold text-dc-gold text-[16px]">{p.totalPoints}</td>
                   </tr>
                 );
               })}
@@ -420,8 +420,8 @@ function RoundInsights({ squads, standings, sel }) {
   const isPts = view === "pts";
 
   return (
-    <div className="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden">
-      <div className="flex gap-0.5 p-1 bg-surface-container-low border-b border-surface-variant">
+    <div className="bg-white border border-dc-line rounded-2xl overflow-hidden">
+      <div className="flex gap-0.5 p-1 bg-dc-paper border-b border-dc-line">
         {INSIGHT_TABS.map((t) => {
           const active = view === t.key;
           return (
@@ -430,8 +430,8 @@ function RoundInsights({ squads, standings, sel }) {
               onClick={() => selectView(t.key)}
               title={t.title}
               className={[
-                "flex-1 inline-flex items-center justify-center gap-1 px-1.5 py-1.5 rounded-lg font-label-caps text-[11px] uppercase whitespace-nowrap transition-colors",
-                active ? "bg-primary text-on-primary" : "text-on-surface-variant hover:text-primary",
+                "flex-1 inline-flex items-center justify-center gap-1 px-1.5 py-1.5 rounded-lg font-dc-display text-[11px] uppercase whitespace-nowrap transition-colors",
+                active ? "bg-dc-ink text-white" : "text-dc-ink-2 hover:text-dc-gold",
               ].join(" ")}
             >
               <span className="material-symbols-outlined text-[15px]">{t.icon}</span>
@@ -440,12 +440,12 @@ function RoundInsights({ squads, standings, sel }) {
           );
         })}
       </div>
-      <div className="px-4 py-2 font-label-caps text-label-caps uppercase text-on-surface-variant border-b border-surface-variant">
+      <div className="px-3 py-2 font-dc-display text-label-caps uppercase text-dc-ink-2 border-b border-dc-line">
         {meta.title}
       </div>
       {view === "pick" && countries.length > 0 && (
-        <div className="px-4 py-2 flex items-center gap-2 border-b border-surface-variant">
-          <span className="material-symbols-outlined text-[18px] text-on-surface-variant shrink-0">flag</span>
+        <div className="px-3 py-2 flex items-center gap-1.5 border-b border-dc-line">
+          <span className="material-symbols-outlined text-[18px] text-dc-ink-2 shrink-0">flag</span>
           {country !== "all" && (
             <img
               src={countries.find((c) => c.team === country)?.flag}
@@ -459,7 +459,7 @@ function RoundInsights({ squads, standings, sel }) {
               setCountry(e.target.value);
               setOpen(false);
             }}
-            className="flex-1 min-w-0 bg-surface-container-low border border-surface-variant rounded-lg px-2.5 py-1.5 text-[13px] text-on-surface focus:outline-none focus:border-primary"
+            className="flex-1 min-w-0 bg-dc-paper border border-dc-line rounded-lg px-2.5 py-1.5 text-[13px] text-dc-ink focus:outline-none focus:border-dc-gold"
           >
             <option value="all">Tất cả các nước ({countries.length})</option>
             {countries.map((c) => (
@@ -471,7 +471,7 @@ function RoundInsights({ squads, standings, sel }) {
         </div>
       )}
       {rows.length ? (
-        <ol className="divide-y divide-surface-variant">
+        <ol className="divide-y divide-dc-line">
           {rows.map((r, i) => {
             const managers = Array.isArray(r.managers) ? r.managers : null; // chỉ tab "Pick" có danh sách HLV
             const clickable = managers && managers.length > 0;
@@ -479,16 +479,16 @@ function RoundInsights({ squads, standings, sel }) {
               <li
                 key={`${r.name}-${i}`}
                 onClick={clickable ? () => setModal(r) : undefined}
-                className={`flex items-center gap-3 px-4 py-2.5 ${clickable ? "cursor-pointer hover:bg-surface-container-low transition-colors" : ""}`}
+                className={`flex items-center gap-2 px-3 py-2 ${clickable ? "cursor-pointer hover:bg-dc-paper transition-colors" : ""}`}
               >
                 {r.chip ? (
-                  <BoosterIcon name={r.name} size={40} />
+                  <BoosterIcon name={r.name} size={32} />
                 ) : r.avatar ? (
-                  <img src={r.avatar} alt="" className="w-14 h-14 object-contain object-bottom shrink-0" />
+                  <img src={r.avatar} alt="" className="w-10 h-10 object-contain object-bottom shrink-0" />
                 ) : (
-                  <div className="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-dc-paper flex items-center justify-center shrink-0">
                     <span
-                      className="material-symbols-outlined text-[34px] bg-gradient-to-b from-[#5ab9d4] via-[#9b3fc4] to-[#f0456f] bg-clip-text text-transparent"
+                      className="material-symbols-outlined text-[26px] bg-gradient-to-b from-[#c9a869] via-[#987c4b] to-[#5f4a26] bg-clip-text text-transparent"
                       style={{ fontVariationSettings: "'FILL' 1" }}
                     >
                       person
@@ -496,35 +496,35 @@ function RoundInsights({ squads, standings, sel }) {
                   </div>
                 )}
                 <div className="min-w-0 flex-1">
-                  <div className={`truncate ${i === 0 ? "font-bold text-on-surface" : "text-on-surface"}`}>{r.name}</div>
+                  <div className={`truncate text-[13px] ${i === 0 ? "font-bold text-dc-ink" : "text-dc-ink"}`}>{r.name}</div>
                   {r.team && (
-                    <div className="flex items-center gap-1.5 text-on-surface-variant text-[12px] truncate">
+                    <div className="flex items-center gap-1 text-dc-ink-2 text-[11px] truncate">
                       {r.flag && (
-                        <img src={r.flag} alt="" className="w-6 h-4 object-cover rounded-[1px] shrink-0" />
+                        <img src={r.flag} alt="" className="w-[18px] h-3 object-cover rounded-[1px] shrink-0" />
                       )}
                       <span className="truncate">{r.team}</span>
                     </div>
                   )}
                 </div>
-                <span className={`font-data-mono font-bold text-[16px] shrink-0 ${isPts ? "text-secondary" : "text-primary"}`}>
+                <span className={`font-data-mono font-bold text-[14px] tabular-nums shrink-0 ${isPts ? "text-dc-court" : "text-dc-gold"}`}>
                   {r.value}
                   {isPts && <span className="text-[10px] ml-0.5">pts</span>}
                 </span>
                 {clickable && (
-                  <span className="material-symbols-outlined text-[18px] text-on-surface-variant shrink-0">chevron_right</span>
+                  <span className="material-symbols-outlined text-[16px] text-dc-ink-2 shrink-0">chevron_right</span>
                 )}
               </li>
             );
           })}
         </ol>
       ) : (
-        <p className="px-4 py-6 text-sm text-on-surface-variant text-center">Chưa có dữ liệu</p>
+        <p className="px-4 py-6 text-sm text-dc-ink-2 text-center">Chưa có dữ liệu</p>
       )}
       {extra > 0 && (
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="w-full font-label-caps text-label-caps uppercase text-primary hover:bg-surface-container-low transition-colors py-2.5 border-t border-surface-variant"
+          className="w-full font-dc-display text-label-caps uppercase text-dc-gold hover:bg-dc-paper transition-colors py-2.5 border-t border-dc-line"
         >
           {open ? "Thu gọn" : `Xem tất cả (${allRows.length})`}
         </button>
@@ -566,7 +566,7 @@ function MatchResults({ matches }) {
   const [openId, setOpenId] = useState(null); // trận đang mở rộng (hiện chi tiết inline)
   const list = matches || [];
   if (!list.length) {
-    return <p className="px-4 py-6 text-sm text-on-surface-variant text-center">Chưa có lịch trận</p>;
+    return <p className="px-4 py-6 text-sm text-dc-ink-2 text-center">Chưa có lịch trận</p>;
   }
   // Gom theo bảng để dễ đọc (vòng bảng).
   const groups = [];
@@ -582,7 +582,7 @@ function MatchResults({ matches }) {
   const Side = ({ code, flag, alignRight }) => (
     <div className={`flex items-center gap-1.5 min-w-0 flex-1 ${alignRight ? "flex-row-reverse text-right" : ""}`}>
       {flag && <img src={flag} alt="" className="w-6 h-4 object-cover rounded-[1px] shrink-0" />}
-      <span className="font-data-mono text-[13px] text-on-surface truncate">{code}</span>
+      <span className="font-data-mono text-[13px] text-dc-ink truncate">{code}</span>
     </div>
   );
   return (
@@ -590,11 +590,11 @@ function MatchResults({ matches }) {
       {groups.map((g) => (
         <div key={g || "_"}>
           {g && (
-            <div className="px-4 py-1.5 bg-surface-container-low font-label-caps text-[11px] uppercase text-on-surface-variant border-b border-surface-variant">
+            <div className="px-4 py-1.5 bg-dc-paper font-dc-display text-[11px] uppercase text-dc-ink-2 border-b border-dc-line">
               {g}
             </div>
           )}
-          <ul className="divide-y divide-surface-variant">
+          <ul className="divide-y divide-dc-line">
             {byGroup.get(g).map((m) => {
               const st = matchStatus(m);
               const score = m.started && m.scoreStr ? m.scoreStr : null;
@@ -605,37 +605,37 @@ function MatchResults({ matches }) {
                   <li
                     onClick={clickable ? () => setOpenId(open ? null : m.id) : undefined}
                     className={`flex items-center gap-2 px-4 py-2.5 ${
-                      clickable ? "cursor-pointer hover:bg-surface-container-low transition-colors" : ""
-                    } ${open ? "bg-surface-container-low" : ""}`}
+                      clickable ? "cursor-pointer hover:bg-dc-paper transition-colors" : ""
+                    } ${open ? "bg-dc-paper" : ""}`}
                   >
                     {/* spacer cân với mũi tên bên phải để giữ tỷ số ở giữa */}
                     <span className="w-[18px] shrink-0" aria-hidden="true" />
                     <Side code={m.homeCode} flag={m.homeFlag} />
                     <div className="shrink-0 text-center min-w-[64px] leading-tight">
                       {score ? (
-                        <span className="font-data-mono font-bold text-[15px] text-on-surface">{score}</span>
+                        <span className="font-data-mono font-bold text-[15px] text-dc-ink">{score}</span>
                       ) : (
-                        <span className="font-data-mono text-[12px] text-on-surface">{shortTime(m.time)}</span>
+                        <span className="font-data-mono text-[12px] text-dc-ink">{shortTime(m.time)}</span>
                       )}
                       {st ? (
                         <span
-                          className={`block font-label-caps text-[10px] uppercase mt-0.5 ${
-                            st.live ? "text-error font-bold" : "text-on-surface-variant"
+                          className={`block font-dc-display text-[10px] uppercase mt-0.5 ${
+                            st.live ? "text-red-600 font-bold" : "text-dc-ink-2"
                           }`}
                         >
                           {st.live && (
-                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-error mr-1 align-middle animate-pulse" />
+                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-600 mr-1 align-middle animate-pulse" />
                           )}
                           {st.text}
                         </span>
                       ) : (
-                        m.date && <span className="block text-[10px] text-on-surface-variant mt-0.5">{shortDate(m.date)}</span>
+                        m.date && <span className="block text-[10px] text-dc-ink-2 mt-0.5">{shortDate(m.date)}</span>
                       )}
                     </div>
                     <Side code={m.awayCode} flag={m.awayFlag} alignRight />
                     {clickable ? (
                       <span
-                        className={`material-symbols-outlined text-[18px] text-on-surface-variant shrink-0 transition-transform ${
+                        className={`material-symbols-outlined text-[18px] text-dc-ink-2 shrink-0 transition-transform ${
                           open ? "rotate-180" : ""
                         }`}
                       >
@@ -667,16 +667,16 @@ function MatchDetail({ m }) {
   const benefitCode = (g) => (g.ownGoal ? (g.teamCode === m.homeCode ? m.awayCode : m.homeCode) : g.teamCode);
   const GoalRow = ({ g, right }) => (
     <div className={`flex items-start gap-1.5 py-1 ${right ? "flex-row-reverse text-right" : ""}`}>
-      <span className="material-symbols-outlined text-[15px] text-on-surface-variant shrink-0 mt-0.5" style={{ fontVariationSettings: "'FILL' 1" }}>
+      <span className="material-symbols-outlined text-[15px] text-dc-ink-2 shrink-0 mt-0.5" style={{ fontVariationSettings: "'FILL' 1" }}>
         sports_soccer
       </span>
-      <span className="text-[13px] text-on-surface leading-snug">
-        <span className="font-data-mono text-on-surface-variant mr-1">{g.min}'</span>
+      <span className="text-[13px] text-dc-ink leading-snug">
+        <span className="font-data-mono text-dc-ink-2 mr-1">{g.min}'</span>
         {g.player}
-        {g.penalty && <span className="text-on-surface-variant"> (pen)</span>}
-        {g.ownGoal && <span className="text-error"> (OG)</span>}
+        {g.penalty && <span className="text-dc-ink-2"> (pen)</span>}
+        {g.ownGoal && <span className="text-red-600"> (OG)</span>}
         {g.assist && (
-          <span className="block text-on-surface-variant text-[11px]">
+          <span className="block text-dc-ink-2 text-[11px]">
             <span
               className="material-symbols-outlined text-[14px] align-middle mr-0.5"
               style={{ fontVariationSettings: "'FILL' 1" }}
@@ -690,10 +690,10 @@ function MatchDetail({ m }) {
     </div>
   );
   if (!goals.length) {
-    return <div className="px-4 py-4 bg-surface-container-low text-sm text-on-surface-variant text-center">Chưa có bàn thắng</div>;
+    return <div className="px-4 py-4 bg-dc-paper text-sm text-dc-ink-2 text-center">Chưa có bàn thắng</div>;
   }
   return (
-    <div className="bg-surface-container-low px-4 py-3">
+    <div className="bg-dc-paper px-4 py-3">
       <div className="grid grid-cols-2 gap-x-3">
         <div>{goals.filter((g) => benefitCode(g) === m.homeCode).map((g, i) => <GoalRow key={i} g={g} />)}</div>
         <div>{goals.filter((g) => benefitCode(g) === m.awayCode).map((g, i) => <GoalRow key={i} g={g} right />)}</div>
@@ -726,17 +726,17 @@ function PickedByModal({ row, mgrInfo, onClose, countLabel = "lượt chọn", l
       onClick={onClose}
     >
       <div
-        className="bg-surface-container-lowest rounded-2xl shadow-xl w-full max-w-sm max-h-[85vh] flex flex-col overflow-hidden"
+        className="bg-white rounded-2xl shadow-xl w-full max-w-sm max-h-[85vh] flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header: avatar + tên + đội + số lượt chọn */}
-        <div className="relative flex items-center gap-3 px-5 py-4 border-b border-surface-variant">
+        <div className="relative flex items-center gap-3 px-5 py-4 border-b border-dc-line">
           {row.avatar ? (
             <img src={row.avatar} alt="" className="w-16 h-16 object-contain object-bottom shrink-0" />
           ) : (
-            <div className="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+            <div className="w-16 h-16 rounded-full bg-dc-paper flex items-center justify-center shrink-0">
               <span
-                className="material-symbols-outlined text-[40px] bg-gradient-to-b from-[#5ab9d4] via-[#9b3fc4] to-[#f0456f] bg-clip-text text-transparent"
+                className="material-symbols-outlined text-[40px] bg-gradient-to-b from-[#c9a869] via-[#987c4b] to-[#5f4a26] bg-clip-text text-transparent"
                 style={{ fontVariationSettings: "'FILL' 1" }}
               >
                 person
@@ -744,14 +744,14 @@ function PickedByModal({ row, mgrInfo, onClose, countLabel = "lượt chọn", l
             </div>
           )}
           <div className="min-w-0 flex-1">
-            <div className="font-bold text-on-surface text-lg truncate">{row.name}</div>
+            <div className="font-bold text-dc-ink text-lg truncate">{row.name}</div>
             {row.team && (
-              <div className="flex items-center gap-1.5 text-on-surface-variant text-[12px] truncate">
+              <div className="flex items-center gap-1.5 text-dc-ink-2 text-[12px] truncate">
                 {row.flag && <img src={row.flag} alt="" className="w-6 h-4 object-cover rounded-[1px] shrink-0" />}
                 <span className="truncate">{row.team}</span>
               </div>
             )}
-            <div className="mt-1 font-data-mono text-[13px] text-primary font-bold">
+            <div className="mt-1 font-data-mono text-[13px] text-dc-gold font-bold">
               {row.value} {countLabel}
             </div>
           </div>
@@ -759,24 +759,24 @@ function PickedByModal({ row, mgrInfo, onClose, countLabel = "lượt chọn", l
             type="button"
             onClick={onClose}
             aria-label="Đóng"
-            className="absolute top-3 right-3 text-on-surface-variant hover:text-on-surface"
+            className="absolute top-3 right-3 text-dc-ink-2 hover:text-dc-ink"
           >
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
         {/* Danh sách HLV đã chọn */}
-        <div className="px-5 py-2 font-label-caps text-label-caps uppercase text-on-surface-variant border-b border-surface-variant">
+        <div className="px-5 py-2 font-dc-display text-label-caps uppercase text-dc-ink-2 border-b border-dc-line">
           {listLabel} ({managers.length})
         </div>
-        <ul className="overflow-y-auto overscroll-contain divide-y divide-surface-variant">
+        <ul className="overflow-y-auto overscroll-contain divide-y divide-dc-line">
           {managers.map((m) => {
             const info = mgrInfo.get(m);
             return (
               <li key={m} className="flex items-center gap-3 px-5 py-2.5">
                 <Avatar src={info?.avatar} name={m} />
                 <div className="min-w-0">
-                  <div className="text-on-surface text-sm truncate">{m}</div>
-                  {info?.team && <div className="text-on-surface-variant text-[11px] truncate">{info.team}</div>}
+                  <div className="text-dc-ink text-sm truncate">{m}</div>
+                  {info?.team && <div className="text-dc-ink-2 text-[11px] truncate">{info.team}</div>}
                 </div>
               </li>
             );
@@ -1091,7 +1091,7 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
         {ROUND_GROUPS.map((g, gi) => (
           <Fragment key={g.title}>
             {gi > 0 && (
-              <span className="hidden sm:block w-px h-6 bg-outline-variant mx-1" aria-hidden="true" />
+              <span className="hidden sm:block w-px h-6 bg-dc-line mx-1" aria-hidden="true" />
             )}
             {g.rounds.map((r) => {
               const active = sel === r.key;
@@ -1101,12 +1101,12 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
                   onClick={() => setSel(r.key)}
                   title={r.full}
                   className={[
-                    "px-3.5 py-1.5 rounded-full font-label-caps text-label-caps uppercase border transition-colors",
+                    "px-3.5 py-1.5 rounded-full font-dc-display text-label-caps uppercase border transition-colors",
                     active
-                      ? "bg-primary text-on-primary border-primary"
+                      ? "bg-dc-ink text-white border-dc-gold"
                       : hasData[r.key]
-                      ? "bg-surface-container-low text-on-surface border-outline-variant hover:border-primary hover:text-primary"
-                      : "bg-surface-container-low text-outline border-outline-variant hover:border-primary",
+                      ? "bg-dc-paper text-dc-ink border-dc-line hover:border-dc-gold hover:text-dc-gold"
+                      : "bg-dc-paper text-dc-ink-2 border-dc-line hover:border-dc-gold",
                   ].join(" ")}
                 >
                   {r.label}
@@ -1118,23 +1118,25 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
       </div>
 
       {empty ? (
-        <div className="bg-surface-container-low border border-outline-variant rounded-xl p-10 text-center">
-          <span className="material-symbols-outlined text-[40px] text-primary">hourglass_empty</span>
-          <p className="mt-3 font-bold text-on-surface">Chưa có dữ liệu {meta.full}</p>
-          <p className="text-sm text-on-surface-variant">
+        <div className="bg-dc-paper border border-dc-line rounded-2xl p-10 text-center">
+          <span className="material-symbols-outlined text-[40px] text-dc-gold">hourglass_empty</span>
+          <p className="mt-3 font-bold text-dc-ink">Chưa có dữ liệu {meta.full}</p>
+          <p className="text-sm text-dc-ink-2">
             Thêm điểm từng vòng vào trường <span className="font-data-mono">rounds</span> của mỗi người chơi trong data/db.json.
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] xl:grid-cols-[minmax(0,5fr)_minmax(0,11fr)_minmax(0,4fr)] gap-gutter items-start">
-          <div className="bg-surface-container-lowest border border-surface-variant rounded-xl">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(300px,420px)_minmax(0,1fr)] xl:grid-cols-[minmax(290px,4.5fr)_minmax(0,11fr)_minmax(268px,4.5fr)] xl:gap-5 items-start">
+          <div className="bg-white border border-dc-line rounded-2xl">
             <div className="overflow-x-auto px-2">
-              <table className="w-full text-left border-separate border-spacing-y-2 min-w-[300px] sm:min-w-[420px]">
-                <thead className="text-on-primary font-label-caps text-label-caps">
+              <table className="w-full table-fixed text-left border-separate border-spacing-y-2 min-w-[276px] sm:min-w-[330px] lg:min-w-0">
+                <thead className="text-white font-dc-display text-label-caps">
                   <tr>
-                    <th className="py-3 px-4 bg-primary rounded-l-lg">Người chơi</th>
-                    <th className="py-3 px-4 text-center font-bold bg-primary">Điểm {meta.label}</th>
-                    <th className="py-3 px-2 text-center bg-primary text-on-primary/80 rounded-r-lg whitespace-nowrap" title="Xác suất về nhất vòng khi kết thúc (dự phóng, tính cả điểm cầu thủ chưa đá)">Win rate</th>
+                    <th className="py-2.5 px-3 bg-dc-ink rounded-l-lg">Người chơi</th>
+                    <th className="w-[60px] py-2.5 px-1.5 text-center font-bold bg-dc-ink leading-[1.15]" title={`Điểm ${meta.full}`}>
+                      Điểm
+                    </th>
+                    <th className="w-[54px] py-2.5 px-1.5 text-center bg-dc-ink text-white/80 rounded-r-lg leading-[1.15]" title="Xác suất về nhất vòng khi kết thúc (dự phóng, tính cả điểm cầu thủ chưa đá)">Win rate</th>
                   </tr>
                 </thead>
                 <tbody className="font-data-mono text-data-mono">
@@ -1152,7 +1154,7 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
                       ...(tint ? { background: tint } : {}),
                       ...extra,
                     });
-                    const cellBg = "bg-white group-hover:bg-surface-container";
+                    const cellBg = "bg-white group-hover:bg-dc-paper";
                     const prob = winProb.get(p.manager) ?? 0;
                     const probText = prob >= 9.95 ? `${Math.round(prob)}%` : prob < 0.05 ? "0%" : `${prob.toFixed(1)}%`;
                     return (
@@ -1168,40 +1170,40 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
                             : undefined
                         }
                       >
-                        <td className={`relative py-2 px-4 rounded-l-lg ${cellBg}`} style={ring({ borderLeftWidth: 2 })}>
+                        <td className={`relative py-2 px-3 rounded-l-lg ${cellBg}`} style={ring({ borderLeftWidth: 2 })}>
                           {p.roundRank === 1 && (
                             <span title="Hạng nhất" className="absolute -top-2 -left-2 z-10 text-[18px] leading-none drop-shadow -rotate-45">👑</span>
                           )}
                           {isBottom && (
                             <span title="Bét bảng" className="absolute -top-2 -left-2 z-10 text-[18px] leading-none drop-shadow -rotate-45">💣</span>
                           )}
-                          <div className="min-w-0 max-w-[42vw] sm:max-w-[210px] lg:max-w-none">
-                            <div className="flex items-center gap-2 min-w-0">
-                              <span className={`font-bold truncate min-w-0 ${isSel ? "text-primary" : "text-on-surface"}`}>{p.manager}</span>
+                          <div className="min-w-0 max-w-[42vw] sm:max-w-[210px] lg:max-w-none xl:max-w-[168px]">
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              <span title={p.manager} className={`font-bold truncate min-w-0 text-[13.5px] ${isSel ? "text-dc-gold" : "text-dc-ink"}`}>{p.manager}</span>
                               {p.chips?.[sel] && (
                                 <span title={p.chips[sel]} className="shrink-0 cursor-help">
-                                  <BoosterIcon name={p.chips[sel]} size={28} />
+                                  <BoosterIcon name={p.chips[sel]} size={22} />
                                 </span>
                               )}
                             </div>
                             {captain && (
-                              <div className="text-on-surface-variant text-[12px] truncate mt-0.5">{captain}</div>
+                              <div className="text-dc-ink-2 text-[11.5px] truncate mt-0.5">{captain}</div>
                             )}
-                            {p.team && <div className="text-on-surface-variant text-[12px] truncate">{p.team}</div>}
+                            {p.team && <div className="text-dc-ink-2 text-[11.5px] truncate">{p.team}</div>}
                           </div>
                         </td>
                         <td
-                          className={`py-2 px-4 text-center font-bold text-primary text-[16px] ${cellBg}`}
+                          className={`py-2 px-1.5 text-center font-bold text-dc-gold text-[15px] tabular-nums ${cellBg}`}
                           style={ring({})}
                         >
                           {p.rpts}
                         </td>
                         <td
-                          className={`py-2 px-2 text-center rounded-r-lg ${cellBg}`}
+                          className={`py-2 px-1.5 text-center rounded-r-lg ${cellBg}`}
                           style={ring({ borderRightWidth: 2 })}
                           title="Xác suất về nhất vòng khi kết thúc (dự phóng, tính cả điểm cầu thủ chưa đá)"
                         >
-                          <span className="font-bold text-secondary">{probText}</span>
+                          <span className="font-bold text-dc-court text-[12.5px] tabular-nums">{probText}</span>
                         </td>
                       </tr>
                     );
@@ -1223,8 +1225,8 @@ function RoundTab({ standings, squads, squadsByRound, roundStats, rounds }) {
               roundMatches={roundMatches}
             />
 
-            <div className="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden">
-              <div className="px-4 py-3 font-label-caps text-label-caps uppercase text-on-surface-variant border-b border-surface-variant flex items-center gap-2">
+            <div className="bg-white border border-dc-line rounded-2xl overflow-hidden">
+              <div className="px-4 py-3 font-dc-display text-label-caps uppercase text-dc-ink-2 border-b border-dc-line flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px]">stadium</span>
                 Kết quả các trận
               </div>
@@ -1259,11 +1261,11 @@ const STAT_GROUP_ICON = {
 
 // Màu nhấn header + màu giá trị theo nhóm.
 const STAT_GROUP_STYLE = {
-  top: { accent: "bg-primary text-on-primary", valueColor: "text-primary" },
-  attack: { accent: "bg-secondary text-on-secondary", valueColor: "text-secondary" },
-  defend: { accent: "bg-tertiary text-on-tertiary", valueColor: "text-tertiary" },
-  goalkeeping: { accent: "bg-primary text-on-primary", valueColor: "text-primary" },
-  discipline: { accent: "bg-error text-on-error", valueColor: "text-on-surface" },
+  top: { accent: "bg-dc-ink text-white", valueColor: "text-dc-gold" },
+  attack: { accent: "bg-dc-gold-deep text-white", valueColor: "text-dc-gold" },
+  defend: { accent: "bg-dc-ink-2 text-white", valueColor: "text-dc-ink" },
+  goalkeeping: { accent: "bg-dc-ink text-white", valueColor: "text-dc-gold" },
+  discipline: { accent: "bg-red-600 text-white", valueColor: "text-dc-ink" },
 };
 
 // Icon riêng cho từng hạng mục (theo tên FotMob); thiếu thì rơi về icon nhóm.
@@ -1314,7 +1316,7 @@ function StatAvatar({ src }) {
   return (
     <div className="w-[72px] h-[72px] flex items-center justify-center shrink-0">
       <span
-        className="material-symbols-outlined select-none bg-gradient-to-b from-[#5ab9d4] via-[#9b3fc4] to-[#f0456f] bg-clip-text text-transparent"
+        className="material-symbols-outlined select-none bg-gradient-to-b from-[#c9a869] via-[#987c4b] to-[#5f4a26] bg-clip-text text-transparent"
         style={{ fontVariationSettings: "'FILL' 1", fontSize: 56, lineHeight: 1 }}
       >
         person
@@ -1325,27 +1327,27 @@ function StatAvatar({ src }) {
 
 // Một bảng xếp hạng (vua phá lưới / kiến tạo / xG / cứu thua ...).
 // rows: [{ name, team?, flag, avatar?, value }]. Mặc định gấp lại còn STAT_COLLAPSED dòng.
-function LeaderboardCard({ icon, title, unit, rows, accent = "bg-primary text-on-primary", valueColor = "text-primary" }) {
+function LeaderboardCard({ icon, title, unit, rows, accent = "bg-dc-ink text-white", valueColor = "text-dc-gold" }) {
   const [open, setOpen] = useState(false);
   const all = rows || [];
   const shown = open ? all : all.slice(0, STAT_COLLAPSED);
   const extra = all.length - STAT_COLLAPSED;
 
   return (
-    <div className="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden flex flex-col">
-      <div className={`${accent} font-label-caps text-label-caps uppercase px-4 py-3 flex items-center gap-2`}>
+    <div className="bg-white border border-dc-line rounded-2xl overflow-hidden flex flex-col">
+      <div className={`${accent} font-dc-display text-label-caps uppercase px-4 py-3 flex items-center gap-2`}>
         <span className="material-symbols-outlined text-[18px]">{icon}</span>
         {title}
       </div>
       {shown.length ? (
-        <ol className="divide-y divide-surface-variant">
+        <ol className="divide-y divide-dc-line">
           {shown.map((r, i) => (
             <li key={`${r.name}-${i}`} className="flex items-center gap-3 px-4 py-2.5">
               <StatAvatar src={r.avatar} />
               <div className="min-w-0 flex-1">
-                <div className={`truncate ${i === 0 && !open ? "font-bold text-on-surface" : "text-on-surface"}`}>{r.name}</div>
+                <div className={`truncate ${i === 0 && !open ? "font-bold text-dc-ink" : "text-dc-ink"}`}>{r.name}</div>
                 {r.team && (
-                  <div className="flex items-center gap-1.5 text-on-surface-variant text-[12px] truncate">
+                  <div className="flex items-center gap-1.5 text-dc-ink-2 text-[12px] truncate">
                     {r.flag && (
                       <img src={r.flag} alt="" className="w-6 h-4 object-cover rounded-[2px] shrink-0" />
                     )}
@@ -1358,19 +1360,19 @@ function LeaderboardCard({ icon, title, unit, rows, accent = "bg-primary text-on
           ))}
         </ol>
       ) : (
-        <p className="px-4 py-6 text-sm text-on-surface-variant text-center">Chưa có dữ liệu</p>
+        <p className="px-4 py-6 text-sm text-dc-ink-2 text-center">Chưa có dữ liệu</p>
       )}
       {extra > 0 && (
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="font-label-caps text-label-caps uppercase text-primary hover:bg-surface-container-low transition-colors py-2.5 border-t border-surface-variant"
+          className="font-dc-display text-label-caps uppercase text-dc-gold hover:bg-dc-paper transition-colors py-2.5 border-t border-dc-line"
         >
           {open ? "Thu gọn" : `Xem tất cả (${all.length})`}
         </button>
       )}
       {unit && shown.length > 0 && (
-        <p className="px-4 py-2 border-t border-surface-variant font-label-caps text-label-caps text-on-surface-variant uppercase text-right">
+        <p className="px-4 py-2 border-t border-dc-line font-dc-display text-label-caps text-dc-ink-2 uppercase text-right">
           Đơn vị: {unit}
         </p>
       )}
@@ -1388,18 +1390,18 @@ function TournamentStats({ stats }) {
   return (
     <div>
       {/* Nguồn + thời điểm sync */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-6 text-on-surface-variant">
-        <span className="inline-flex items-center gap-1.5 font-label-caps text-label-caps uppercase">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-6 text-dc-ink-2">
+        <span className="inline-flex items-center gap-1.5 font-dc-display text-label-caps uppercase">
           <span className="material-symbols-outlined text-[16px]">database</span>
           Nguồn: {stats.sourceUrl ? (
-            <a href={stats.sourceUrl} target="_blank" rel="noreferrer" className="text-primary hover:underline">
+            <a href={stats.sourceUrl} target="_blank" rel="noreferrer" className="text-dc-gold hover:underline">
               FotMob
             </a>
           ) : (
             "FotMob"
           )}
         </span>
-        {updated && <span className="font-label-caps text-label-caps uppercase">Cập nhật: {updated}</span>}
+        {updated && <span className="font-dc-display text-label-caps uppercase">Cập nhật: {updated}</span>}
       </div>
 
       {/* Tab nhóm thống kê */}
@@ -1412,10 +1414,10 @@ function TournamentStats({ stats }) {
               type="button"
               onClick={() => setActive(g.key)}
               className={[
-                "inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-label-caps text-label-caps uppercase transition-colors",
+                "inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-dc-display text-label-caps uppercase transition-colors",
                 on
-                  ? "bg-primary text-on-primary"
-                  : "bg-surface border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary",
+                  ? "bg-dc-ink text-white"
+                  : "bg-white border border-dc-line text-dc-ink-2 hover:border-dc-gold hover:text-dc-gold",
               ].join(" ")}
             >
               <span className="material-symbols-outlined text-[18px]">{STAT_GROUP_ICON[g.key] || "leaderboard"}</span>
@@ -1453,10 +1455,10 @@ function TournamentStats({ stats }) {
 function InfoTab({ playerStats }) {
   if (!playerStats || !(playerStats.groups || []).length) {
     return (
-      <div className="bg-surface-container-low border border-outline-variant rounded-xl p-10 text-center">
-        <span className="material-symbols-outlined text-[40px] text-primary">query_stats</span>
-        <p className="mt-3 font-bold text-on-surface">Chưa có dữ liệu thống kê</p>
-        <p className="text-sm text-on-surface-variant">
+      <div className="bg-dc-paper border border-dc-line rounded-2xl p-10 text-center">
+        <span className="material-symbols-outlined text-[40px] text-dc-gold">query_stats</span>
+        <p className="mt-3 font-bold text-dc-ink">Chưa có dữ liệu thống kê</p>
+        <p className="text-sm text-dc-ink-2">
           Chạy <span className="font-data-mono">npm run sync-stats</span> để đồng bộ từ FotMob.
         </p>
       </div>
@@ -1560,8 +1562,9 @@ const BOOSTERS = [
   },
 ];
 
-// Icon tự vẽ cho 5 booster — tile cam, glyph trắng, lấy gợi ý từ bộ icon chính thức.
-const BOOSTER_ORANGE = "#e8730c";
+// Icon tự vẽ cho 5 booster — tile vàng DC42, glyph trắng (hình glyph phân biệt từng booster,
+// không dựa vào màu). Đổi hằng số này nếu muốn quay lại màu cam của FIFA Fantasy: #e8730c.
+const BOOSTER_GOLD = "#987c4b";
 function BoosterIcon({ name, size = 40 }) {
   const sv = { width: size, height: size, display: "block" };
   let glyph = null;
@@ -1570,8 +1573,8 @@ function BoosterIcon({ name, size = 40 }) {
       glyph = (
         <svg viewBox="0 0 48 48" style={sv} aria-hidden="true">
           <rect x="8" y="14" width="32" height="20" rx="6" fill="#fff" />
-          <text x="24" y="27" textAnchor="middle" fontSize="13" fontWeight="800" fill={BOOSTER_ORANGE}>C</text>
-          <text x="24" y="33" textAnchor="middle" fontSize="6" fontWeight="700" letterSpacing="0.6" fill={BOOSTER_ORANGE}>MAX</text>
+          <text x="24" y="27" textAnchor="middle" fontSize="13" fontWeight="800" fill={BOOSTER_GOLD}>C</text>
+          <text x="24" y="33" textAnchor="middle" fontSize="6" fontWeight="700" letterSpacing="0.6" fill={BOOSTER_GOLD}>MAX</text>
         </svg>
       );
       break;
@@ -1584,7 +1587,7 @@ function BoosterIcon({ name, size = 40 }) {
             d="M24 8c-2.6 0-4.2.9-5.2 1.7L11.5 12 8 19.2l5 4.3 2-1.9V41h18V21.6l2 1.9 5-4.3-3.5-7.2-7.3-2.3C28.2 8.9 26.6 8 24 8z"
             fill="#fff"
           />
-          <text x="24" y="35" textAnchor="middle" fontSize={name === "Wildcard" ? "17" : "13"} fontWeight="800" fill={BOOSTER_ORANGE}>
+          <text x="24" y="35" textAnchor="middle" fontSize={name === "Wildcard" ? "17" : "13"} fontWeight="800" fill={BOOSTER_GOLD}>
             {label}
           </text>
         </svg>
@@ -1597,7 +1600,7 @@ function BoosterIcon({ name, size = 40 }) {
           <path d="M17 9l5 13h4L21 9z" fill="#fff" />
           <path d="M31 9l-5 13h-4l5-13z" fill="#fff" />
           <circle cx="24" cy="31" r="9" fill="#fff" />
-          <text x="24" y="35" textAnchor="middle" fontSize="11" fontWeight="800" fill={BOOSTER_ORANGE}>{"★"}</text>
+          <text x="24" y="35" textAnchor="middle" fontSize="11" fontWeight="800" fill={BOOSTER_GOLD}>{"★"}</text>
         </svg>
       );
       break;
@@ -1606,14 +1609,14 @@ function BoosterIcon({ name, size = 40 }) {
       glyph = (
         <svg viewBox="0 0 48 48" style={sv} aria-hidden="true">
           <path d="M24 7l13 4v11c0 8.4-5.5 14.6-13 17-7.5-2.4-13-8.6-13-17V11l13-4z" fill="#fff" />
-          <path d="M18 24l4.5 4.5L31 20" fill="none" stroke={BOOSTER_ORANGE} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M18 24l4.5 4.5L31 20" fill="none" stroke={BOOSTER_GOLD} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       );
   }
   return (
     <div
       className="flex items-center justify-center shrink-0"
-      style={{ width: size, height: size, borderRadius: size * 0.2, background: BOOSTER_ORANGE }}
+      style={{ width: size, height: size, borderRadius: size * 0.2, background: BOOSTER_GOLD }}
     >
       {glyph}
     </div>
@@ -1640,14 +1643,14 @@ function ManagerChips({ chips, currentKey }) {
         return (
           <div key={b.name} title={title} className="flex flex-col items-center gap-0.5">
             <div
-              className={isActive ? "rounded-md ring-2 ring-tertiary ring-offset-1 ring-offset-surface-container-lowest" : ""}
+              className={isActive ? "rounded-md ring-2 ring-dc-pitch ring-offset-1 ring-offset-white" : ""}
               style={{ opacity: isUsed ? 1 : 0.25, filter: isUsed ? "none" : "grayscale(1)" }}
             >
               <BoosterIcon name={b.name} size={20} />
             </div>
             <span
               className={`font-data-mono text-[9px] leading-none ${
-                isActive ? "text-tertiary font-bold" : "text-on-surface-variant"
+                isActive ? "text-dc-pitch font-bold" : "text-dc-ink-2"
               }`}
             >
               {isActive ? "● vòng này" : isUsed ? roundLabel : "—"}
@@ -1660,18 +1663,18 @@ function ManagerChips({ chips, currentKey }) {
 }
 
 function ptsColor(pts) {
-  if (pts.startsWith("-")) return "text-error";
-  if (pts === "+0") return "text-on-surface-variant";
-  return "text-tertiary";
+  if (pts.startsWith("-")) return "text-red-600";
+  if (pts === "+0") return "text-dc-ink-2";
+  return "text-dc-pitch";
 }
 
 function RuleRow({ it }) {
   return (
     <li className="flex items-center gap-3 px-4 py-2.5">
-      <span className="material-symbols-outlined text-[20px] text-on-surface-variant shrink-0">{it.icon}</span>
+      <span className="material-symbols-outlined text-[20px] text-dc-ink-2 shrink-0">{it.icon}</span>
       <span className="flex-1 min-w-0">
-        <span className="text-on-surface text-sm">{it.label}</span>
-        {it.sub && <span className="block text-on-surface-variant text-[12px] leading-snug">{it.sub}</span>}
+        <span className="text-dc-ink text-sm">{it.label}</span>
+        {it.sub && <span className="block text-dc-ink-2 text-[12px] leading-snug">{it.sub}</span>}
       </span>
       <span className={`font-data-mono font-bold shrink-0 ${ptsColor(it.pts)}`}>{it.pts}</span>
     </li>
@@ -1680,12 +1683,12 @@ function RuleRow({ it }) {
 
 function RuleCard({ title, icon, items, accent }) {
   return (
-    <div className="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden">
-      <div className={`${accent} font-label-caps text-label-caps uppercase px-4 py-3 flex items-center gap-2`}>
+    <div className="bg-white border border-dc-line rounded-2xl overflow-hidden">
+      <div className={`${accent} font-dc-display text-label-caps uppercase px-4 py-3 flex items-center gap-2`}>
         <span className="material-symbols-outlined text-[18px]">{icon}</span>
         {title}
       </div>
-      <ul className="divide-y divide-surface-variant">
+      <ul className="divide-y divide-dc-line">
         {items.map((it) => (
           <RuleRow key={it.label} it={it} />
         ))}
@@ -1699,73 +1702,73 @@ function RulesTab() {
     <div className="space-y-8">
       {/* Áp dụng cho mọi vị trí: luật chung + điểm thưởng */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-gutter max-w-3xl">
-        <RuleCard title="Tất cả cầu thủ" icon="groups" items={SCORING_ALL} accent="bg-primary text-on-primary" />
-        <RuleCard title="Điểm thưởng" icon="emoji_events" items={SCORING_BONUS} accent="bg-secondary text-on-secondary" />
+        <RuleCard title="Tất cả cầu thủ" icon="groups" items={SCORING_ALL} accent="bg-dc-ink text-white" />
+        <RuleCard title="Điểm thưởng" icon="emoji_events" items={SCORING_BONUS} accent="bg-dc-gold-deep text-white" />
       </div>
 
       {/* Luật riêng theo vị trí */}
       <div>
-        <h3 className="font-display-lg text-headline-md text-primary flex items-center gap-2 mb-4">
+        <h3 className="font-dc-display text-headline-md text-dc-gold flex items-center gap-2 mb-4">
           <span className="material-symbols-outlined">person_pin</span>
           Điểm theo vị trí
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-gutter">
           {SCORING_BY_POSITION.map((g) => (
-            <RuleCard key={g.title} title={g.title} icon={g.icon} items={g.items} accent="bg-tertiary text-on-tertiary" />
+            <RuleCard key={g.title} title={g.title} icon={g.icon} items={g.items} accent="bg-dc-ink-2 text-white" />
           ))}
         </div>
       </div>
 
-      <div className="bg-surface-container-lowest border border-surface-variant rounded-xl overflow-hidden">
-        <div className="bg-tertiary text-on-tertiary font-label-caps text-label-caps uppercase px-4 py-3 flex items-center gap-2">
+      <div className="bg-white border border-dc-line rounded-2xl overflow-hidden">
+        <div className="bg-dc-ink-2 text-white font-dc-display text-label-caps uppercase px-4 py-3 flex items-center gap-2">
           <span className="material-symbols-outlined text-[18px]">bolt</span>
           Boosters — 5 lượt tăng tốc
         </div>
-        <ul className="divide-y divide-surface-variant">
+        <ul className="divide-y divide-dc-line">
           {BOOSTERS.map((b) => (
             <li key={b.name} className="flex gap-3 px-4 py-3">
               <BoosterIcon name={b.name} size={40} />
               <div className="min-w-0">
-                <div className="font-bold text-on-surface">{b.name}</div>
-                <div className="text-sm text-on-surface-variant leading-relaxed">{b.desc}</div>
+                <div className="font-bold text-dc-ink">{b.name}</div>
+                <div className="text-sm text-dc-ink-2 leading-relaxed">{b.desc}</div>
               </div>
             </li>
           ))}
         </ul>
-        <p className="px-4 py-3 border-t border-surface-variant font-label-caps text-label-caps text-on-surface-variant uppercase flex items-start gap-1">
+        <p className="px-4 py-3 border-t border-dc-line font-dc-display text-label-caps text-dc-ink-2 uppercase flex items-start gap-1">
           <span className="material-symbols-outlined text-[16px]">info</span>
           Mỗi booster chỉ dùng một lần, không dùng nhiều booster cùng lúc. Trừ Wildcard, các booster có thể huỷ trước khi vòng khoá.
         </p>
       </div>
 
-      <div className="bg-surface-container-low border border-outline-variant rounded-xl p-6">
-        <h3 className="font-display-lg text-headline-md text-primary flex items-center gap-2 mb-4">
+      <div className="bg-dc-paper border border-dc-line rounded-2xl p-6">
+        <h3 className="font-dc-display text-headline-md text-dc-gold flex items-center gap-2 mb-4">
           <span className="material-symbols-outlined">menu_book</span>
           Luật chung
         </h3>
-        <ul className="space-y-3 font-body-lg text-body-lg text-on-surface leading-relaxed">
+        <ul className="space-y-3 font-body-lg text-body-lg text-dc-ink leading-relaxed">
           <li className="flex gap-3">
-            <span className="material-symbols-outlined text-[20px] text-primary shrink-0">groups</span>
+            <span className="material-symbols-outlined text-[20px] text-dc-gold shrink-0">groups</span>
             Đội hình gồm 15 cầu thủ (2 TM, 5 HV, 5 TV, 3 TĐ) với ngân sách 100.0M.
           </li>
           <li className="flex gap-3">
-            <span className="material-symbols-outlined text-[20px] text-primary shrink-0">star</span>
+            <span className="material-symbols-outlined text-[20px] text-dc-gold shrink-0">star</span>
             Đội trưởng (Captain) được nhân đôi điểm. Vice-captain thay thế nếu Captain không ra sân.
           </li>
           <li className="flex gap-3">
-            <span className="material-symbols-outlined text-[20px] text-primary shrink-0">swap_horiz</span>
+            <span className="material-symbols-outlined text-[20px] text-dc-gold shrink-0">swap_horiz</span>
             Mỗi vòng được chuyển nhượng miễn phí; chuyển nhượng thừa bị trừ điểm.
           </li>
           <li className="flex gap-3">
-            <span className="material-symbols-outlined text-[20px] text-primary shrink-0">bolt</span>
+            <span className="material-symbols-outlined text-[20px] text-dc-gold shrink-0">bolt</span>
             5 booster (Wildcard, 12th Man, Maximum Captain, Qualification Booster, Clean Sheet Shield) — mỗi loại dùng một lần. Chi tiết ở mục Boosters bên trên.
           </li>
           <li className="flex gap-3">
-            <span className="material-symbols-outlined text-[20px] text-primary shrink-0">lock_clock</span>
+            <span className="material-symbols-outlined text-[20px] text-dc-gold shrink-0">lock_clock</span>
             Hạn chốt đội hình trước trận đầu tiên của mỗi vòng đấu.
           </li>
         </ul>
-        <p className="mt-5 font-label-caps text-label-caps text-on-surface-variant uppercase flex items-center gap-1">
+        <p className="mt-5 font-dc-display text-label-caps text-dc-ink-2 uppercase flex items-center gap-1">
           <span className="material-symbols-outlined text-[16px]">info</span>
           Luật tham khảo theo thể thức FIFA World Cup Fantasy — chi tiết xem trên trang chính thức.
         </p>
@@ -1781,33 +1784,33 @@ export default function FantasyTabs({ data = null, standings, squads, squadsByRo
 
   if (standings.length === 0) {
     return (
-      <div className="bg-surface-container-low border border-outline-variant rounded-xl p-10 text-center">
-        <span className="material-symbols-outlined text-[40px] text-primary">leaderboard</span>
-        <p className="mt-3 font-bold text-on-surface">Fantasy League Empty</p>
-        <p className="text-sm text-on-surface-variant">Sync FIFA Fantasy to get started.</p>
+      <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-dc-line bg-dc-paper px-6 py-12 text-center">
+        <span className="material-symbols-outlined text-[32px] text-dc-ink-2">leaderboard</span>
+        <p className="font-dc-display text-[15px] font-bold text-dc-ink">Chưa có dữ liệu Fantasy</p>
+        <p className="max-w-[46ch] text-body-md text-dc-ink-2">Chạy sync FIFA Fantasy để nạp bảng điểm cho mùa này.</p>
       </div>
     );
   }
 
   return (
     <>
-      {/* Tab bar — segmented control (pill trong khung) để khác hẳn nav underline ở trên */}
-      <div className="mb-8 md:-mx-margin-desktop md:px-margin-desktop md:overflow-x-auto">
-        <div className="flex sm:inline-flex w-full sm:w-auto gap-1 p-1 rounded-full bg-surface-container-low border border-outline-variant sm:min-w-max">
+      {/* Tab bar — pill cùng ngôn ngữ với sub-nav của tab Thể thao */}
+      <div className="mb-8">
+        <div className="hide-scrollbar -mx-1 flex gap-1 overflow-x-auto px-1">
           {TABS.map((t) => {
             const active = tab === t.key;
             return (
               <button
                 key={t.key}
                 onClick={() => setTab(t.key)}
+                aria-current={active ? "page" : undefined}
                 className={[
-                  "flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-2 rounded-full font-label-caps text-label-caps uppercase whitespace-nowrap transition-colors",
-                  active
-                    ? "bg-primary text-on-primary shadow-sm"
-                    : "text-on-surface-variant hover:text-primary",
+                  "inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full px-3.5 py-2",
+                  "font-dc-display text-[11px] font-bold uppercase tracking-[0.1em] whitespace-nowrap transition-colors",
+                  active ? "bg-dc-ink text-white" : "text-dc-ink-2 hover:bg-dc-paper hover:text-dc-ink",
                 ].join(" ")}
               >
-                <span className="material-symbols-outlined text-[18px] hidden sm:inline">{t.icon}</span>
+                <span className="material-symbols-outlined text-[16px]">{t.icon}</span>
                 <span className="sm:hidden">{t.short}</span>
                 <span className="hidden sm:inline">{t.label}</span>
               </button>

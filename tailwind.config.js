@@ -8,6 +8,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // DC42 Hub — bảng màu lấy từ side rail (ink / gold / bone) + màu nhận diện từng môn.
+        "dc-ink": "#151515",
+        "dc-ink-2": "#5f5a52",
+        "dc-gold": "#987c4b",
+        "dc-gold-deep": "#7d6339",
+        "dc-gold-soft": "#f0e7d6",
+        "dc-bone": "#ededed",
+        "dc-paper": "#faf8f5",
+        "dc-line": "#e2ded6",
+        "dc-pitch": "#2f6b45",
+        "dc-court": "#1f5f8b",
+        "dc-social": "#8c3a52",
+        "dc-fantasy": "#6b4a86",
         "surface-tint": "#1d4ed8",
         "on-tertiary-fixed": "#112000",
         "on-tertiary-container": "#8fdb00",
@@ -74,6 +87,7 @@ module.exports = {
         "container-max": "1280px",
       },
       fontFamily: {
+        "dc-display": ["Chakra Petch", "Be Vietnam Pro", "sans-serif"],
         "display-lg-mobile": ["Be Vietnam Pro", "sans-serif"],
         "label-caps": ["Hanken Grotesk", "sans-serif"],
         "data-mono": ["Hanken Grotesk", "sans-serif"],

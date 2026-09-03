@@ -1,11 +1,11 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import Nav from "@/components/Nav";
+import SideRail from "@/components/SideRail";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "FIFA World Cup 2026 | Pitch Pulse",
-  description: "Lịch thi đấu, bảng xếp hạng, đội bóng và trực tiếp World Cup 2026 trên VTV.",
+  title: "DC42 Hub",
+  description: "Sân chơi của anh em DC: giải đấu, kèo giao lưu hằng tuần, sự kiện, kho ảnh và Fantasy theo mùa.",
 };
 
 export default function RootLayout({ children }) {
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;800&family=Hanken+Grotesk:wght@600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;800&family=Chakra+Petch:wght@600;700&family=Hanken+Grotesk:wght@600;700&display=swap"
         />
         {/* Material Symbols được self-host (public/fonts) qua @font-face trong globals.css
             để icon luôn load khi deploy, không phụ thuộc CDN runtime. */}
@@ -28,8 +28,8 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
       </head>
-      <body className="bg-background text-on-background antialiased min-h-screen flex flex-col">
-        <Nav />
+      <body className="bg-background text-on-background antialiased min-h-screen flex flex-col pb-[74px] md:pb-0 md:pl-[110px]">
+        <SideRail />
         <div className="flex-grow flex flex-col">{children}</div>
         <Footer />
         <Analytics />

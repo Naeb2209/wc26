@@ -2,9 +2,19 @@ import { getFantasy } from "@/lib/fifa-api";
 import { readDb } from "@/lib/db";
 import { buildSquads } from "@/lib/fantasy-squad";
 import { applyConfiguredAvatars, buildAvatarLookup, buildAvatarPosLookup } from "@/lib/stats-avatars";
+import Link from "next/link";
 import FantasyTabs from "./FantasyTabs";
+import FantasySeasonBar from "@/components/hub/FantasySeasonBar";
+import SportNav from "@/components/hub/SportNav";
+import { Chip, PageHeader, Section } from "@/components/hub/ui";
+import { findSeason, predictionLeagueBySlug, sportBySlug } from "@/lib/dc42";
 
 export const dynamic = "force-dynamic";
+
+export const metadata = {
+  title: "Fantasy World Cup 2026 | DC42 Hub",
+  description: "Bảng điểm Fantasy World Cup 2026 của DC — tổng điểm, từng vòng, thông tin giải và luật.",
+};
 
 export default async function FantasyPage() {
   const data = await getFantasy();
@@ -51,17 +61,50 @@ export default async function FantasyPage() {
     }
   }
 
+  const football = sportBySlug("bong-da");
+  // Trang này là bảng điểm của một mùa cụ thể: Fantasy World Cup 2026.
+  const league = predictionLeagueBySlug("fantasy-world-cup");
+  const season = findSeason(league, "2026");
+
   return (
-    <main className="flex-grow w-full px-margin-mobile md:px-margin-desktop py-12">
-      <FantasyTabs
-        data={data}
-        standings={standings}
-        squads={squads}
-        squadsByRound={squadsByRound}
-        roundStats={db.roundStats || null}
-        playerStats={db.playerStats ? applyConfiguredAvatars(db.playerStats, db.teams || []) : null}
-        schedule={db.schedule || null}
+    <>
+      {football ? <SportNav sport={football} active="prediction" /> : null}
+
+      <PageHeader
+        wide
+        eyebrow={
+          <>
+            <Link href="/the-thao/bong-da/du-doan" className="hover:text-dc-ink">
+              Dự đoán &amp; Fantasy
+            </Link>{" "}
+            · Mùa {season?.season || "2026"}
+          </>
+        }
+        title={league ? `${league.name} ${season?.season || ""}`.trim() : "Fantasy World Cup 2026"}
+        lede={season?.note || league?.note}
+        aside={
+          <div className="flex flex-wrap gap-2">
+            <Chip tone="fantasy" icon="stadium">
+              Fantasy
+            </Chip>
+            <Chip icon="check_circle">Đã kết thúc</Chip>
+            {season?.players ? <Chip tone="gold">{season.players} người chơi</Chip> : null}
+          </div>
+        }
       />
-    </main>
+
+      <Section wide>
+        <FantasySeasonBar current={{ league: "fantasy-world-cup", season: "2026" }} />
+        <FantasyTabs
+          data={data}
+          standings={standings}
+          squads={squads}
+          squadsByRound={squadsByRound}
+          roundStats={db.roundStats || null}
+          playerStats={db.playerStats ? applyConfiguredAvatars(db.playerStats, db.teams || []) : null}
+          schedule={db.schedule || null}
+        />
+      </Section>
+    </>
   );
 }

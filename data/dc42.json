@@ -1,0 +1,502 @@
+{
+  "org": {
+    "name": "DC42",
+    "tagline": "Sân chơi của anh em DC",
+    "parent": "TMA"
+  },
+  "sports": [
+    {
+      "id": "football",
+      "slug": "bong-da",
+      "name": "Bóng đá",
+      "icon": "sports_soccer",
+      "tone": "pitch",
+      "blurb": "Sân 5 tối thứ 4 ở Cầu Suối, TMA Futsal League mỗi năm và các giải dự đoán / Fantasy theo mùa.",
+      "hasPrediction": true
+    },
+    {
+      "id": "badminton",
+      "slug": "cau-long",
+      "name": "Cầu lông",
+      "icon": "sports_tennis",
+      "tone": "court",
+      "blurb": "Hai buổi mỗi tuần và giải đôi nam / đôi nữ của TMA.",
+      "hasPrediction": false
+    }
+  ],
+  "venues": [
+    { "id": "v-tanbinh", "name": "Sân Tân Bình", "address": "149 Cộng Hoà, Tân Bình", "sport": "football" },
+    { "id": "v-causuoi", "name": "Sân Cầu Suối", "address": "", "sport": "football" },
+    { "id": "v-sanpm", "name": "Sân PM", "address": "Hẻm 104 Tân Sơn, P.15, Q.Tân Bình", "sport": "football" },
+    { "id": "v-quan7", "name": "Sân Thảo Điền Mini", "address": "Nguyễn Văn Hưởng, Quận 2", "sport": "football" },
+    { "id": "v-nhathidau", "name": "NTĐ Phú Thọ", "address": "1 Lữ Gia, Quận 11", "sport": "badminton" },
+    { "id": "v-cauLong-tb", "name": "CLB Cầu lông Bàu Cát", "address": "Bàu Cát 2, Tân Bình", "sport": "badminton" }
+  ],
+  "members": [
+    { "id": "m01", "name": "Nguyễn Minh Quân", "short": "Quân", "team": "DC42 FC", "sports": ["football"], "role": "Ban tổ chức" },
+    { "id": "m02", "name": "Trần Hoàng Anh", "short": "Hoàng Anh", "team": "DC42 FC", "sports": ["football", "badminton"], "role": "Ban tổ chức" },
+    { "id": "m03", "name": "Lê Tuấn Kiệt", "short": "Kiệt", "team": "DC42 FC", "sports": ["football"] },
+    { "id": "m04", "name": "Phạm Gia Bảo", "short": "Bảo", "team": "DC42 FC", "sports": ["football"] },
+    { "id": "m05", "name": "Đỗ Thanh Tùng", "short": "Tùng", "team": "DC42 FC", "sports": ["football"] },
+    { "id": "m06", "name": "Vũ Đình Nam", "short": "Nam", "team": "Delta United", "sports": ["football"] },
+    { "id": "m07", "name": "Bùi Khánh Duy", "short": "Duy", "team": "Delta United", "sports": ["football", "badminton"] },
+    { "id": "m08", "name": "Hoàng Trọng Nghĩa", "short": "Nghĩa", "team": "Delta United", "sports": ["football"] },
+    { "id": "m09", "name": "Ngô Thái Sơn", "short": "Sơn", "team": "Delta United", "sports": ["football"] },
+    { "id": "m10", "name": "Đặng Quốc Huy", "short": "Huy", "team": "Core Rangers", "sports": ["football"] },
+    { "id": "m11", "name": "Lý Minh Trí", "short": "Trí", "team": "Core Rangers", "sports": ["football", "badminton"] },
+    { "id": "m12", "name": "Trịnh Văn Lâm", "short": "Lâm", "team": "Core Rangers", "sports": ["football"] },
+    { "id": "m13", "name": "Nguyễn Thu Hà", "short": "Hà", "sports": ["badminton"], "role": "Ban tổ chức" },
+    { "id": "m14", "name": "Phan Mỹ Linh", "short": "Linh", "sports": ["badminton"] },
+    { "id": "m15", "name": "Võ Hải Đăng", "short": "Đăng", "sports": ["badminton"] },
+    { "id": "m16", "name": "Trương Nhật Vy", "short": "Vy", "sports": ["badminton"] },
+    { "id": "m20", "name": "Hậu Phạm", "short": "Hậu Phạm", "number": "2", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m21", "name": "Anh Thạch", "short": "Anh Thạch", "number": "3", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m22", "name": "Đông Nguyễn", "short": "Đông Nguyễn", "number": "4", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m23", "name": "Hiếu Lê", "short": "Hiếu Lê", "number": "5", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m24", "name": "Thông Nguyễn", "short": "Thông Nguyễn", "number": "6", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m25", "name": "Huy Huỳnh", "short": "Huy Huỳnh", "number": "7", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m26", "name": "Tuân Cao", "short": "Tuân Cao", "number": "8", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m27", "name": "Tú Ngô", "short": "Tú Ngô", "number": "9", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m28", "name": "Đồng Dương", "short": "Đồng Dương", "number": "10", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m29", "name": "Duy Trịnh", "short": "Duy Trịnh", "number": "11", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m30", "name": "Vũ Đỗ", "short": "Vũ Đỗ", "number": "12", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m31", "name": "Nghĩa Hồ", "short": "Nghĩa Hồ", "number": "13", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m32", "name": "Hảo Lê", "short": "Hảo Lê", "number": "14", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m33", "name": "Nhật Nguyễn", "short": "Nhật Nguyễn", "number": "25", "team": "DC42", "sports": [ "football" ] },
+    { "id": "m34", "name": "Sơn Võ", "short": "Sơn Võ", "number": "60", "team": "DC42", "sports": [ "football" ] }
+  ],
+  "teams": [
+    { "id": "t-dc42", "name": "DC42", "sport": "football", "short": "DC42" },
+    { "id": "t-dc12", "name": "DC12", "sport": "football", "short": "DC12" },
+    { "id": "t-dc21", "name": "DC21", "sport": "football", "short": "DC21" },
+    { "id": "t-dc22", "name": "DC22", "sport": "football", "short": "DC22" },
+    { "id": "t-dc34", "name": "DC34", "sport": "football", "short": "DC34" },
+    { "id": "t-dc44", "name": "DC44", "sport": "football", "short": "DC44" },
+    { "id": "t-delta", "name": "Delta United", "sport": "football", "short": "DEL" },
+    { "id": "t-core", "name": "Core Rangers", "sport": "football", "short": "COR" },
+    { "id": "t-atlas", "name": "Atlas Team", "sport": "football", "short": "ATL" }
+  ],
+
+  "sessionTemplates": [
+    {
+      "id": "st-football-thu",
+      "sport": "football",
+      "title": "Đá giao lưu tối thứ 4",
+      "weekday": 3,
+      "start": "19:30",
+      "end": "21:00",
+      "venueId": "v-causuoi",
+      "capacity": 14,
+      "fee": 60000,
+      "host": "m01",
+      "note": "Sân 5. Mang cả áo sáng và áo tối.",
+      "regulars": ["m01", "m02", "m03", "m05", "m06", "m08", "m10", "m12"]
+    },
+    {
+      "id": "st-badminton-tue",
+      "sport": "badminton",
+      "title": "Cầu lông tối thứ 3",
+      "weekday": 2,
+      "start": "19:00",
+      "end": "21:00",
+      "venueId": "v-cauLong-tb",
+      "capacity": 12,
+      "fee": 50000,
+      "host": "m13",
+      "note": "2 sân. Cầu do CLB lo, ai đi thì chia tiền sân.",
+      "regulars": ["m13", "m14", "m02", "m07", "m11", "m15"]
+    },
+    {
+      "id": "st-badminton-sat",
+      "sport": "badminton",
+      "title": "Cầu lông sáng thứ 7",
+      "weekday": 6,
+      "start": "08:00",
+      "end": "10:00",
+      "venueId": "v-nhathidau",
+      "capacity": 8,
+      "fee": 45000,
+      "host": "m13",
+      "note": "Buổi nhẹ, ưu tiên người mới tập.",
+      "regulars": ["m13", "m16", "m15"]
+    }
+  ],
+  "sessionOverrides": [],
+
+  "tournaments": [
+    {
+      "slug": "tma-futsal-league-2026",
+      "name": "TMA Futsal League 2026 – League B",
+      "sport": "football",
+      "host": "TMA",
+      "season": "2026",
+      "format": "Vòng tròn một lượt, 6 đội – futsal 5 người",
+      "status": "running",
+      "startDate": "2026-04-18",
+      "endDate": "2026-09-12",
+      "venueId": "v-sanpm",
+      "summary": "Giải futsal thường niên của TMA. League B gồm 6 đội đá vòng tròn một lượt, DC42 là đội của DC.",
+      "standingNote": "Xếp hạng tính theo điểm, sau đó tới hiệu số và số bàn thắng.",
+      "focusTeam": "t-dc42",
+      "teams": [ "t-dc12", "t-dc21", "t-dc22", "t-dc34", "t-dc42", "t-dc44" ],
+      "roster": [ "m20", "m21", "m22", "m23", "m24", "m25", "m26", "m27", "m28", "m29", "m30", "m31", "m32", "m33", "m34" ],
+      "matches": [
+        { "id": "tfl26-v1-dc44-dc42", "date": "2026-04-18T07:30:00", "round": "Vòng 1", "home": "t-dc44", "away": "t-dc42", "hs": 4, "as": 2, "status": "done", "goals": [ { "m": "m28", "n": 2 } ] },
+        { "id": "tfl26-v1-dc21-dc12", "date": "2026-04-18T08:50:00", "round": "Vòng 1", "home": "t-dc21", "away": "t-dc12", "hs": 6, "as": 1, "status": "done" },
+        { "id": "tfl26-v2-dc44-dc21", "date": "2026-05-09T07:45:00", "round": "Vòng 2", "home": "t-dc44", "away": "t-dc21", "hs": 7, "as": 2, "status": "done" },
+        { "id": "tfl26-v2-dc12-dc34", "date": "2026-05-09T07:45:00", "round": "Vòng 2", "home": "t-dc12", "away": "t-dc34", "hs": 2, "as": 4, "status": "done" },
+        { "id": "tfl26-v2-dc22-dc42", "date": "2026-05-09T08:35:00", "round": "Vòng 2", "home": "t-dc22", "away": "t-dc42", "hs": 0, "as": 1, "status": "done", "goals": [ { "m": "m30", "n": 1 } ] },
+        { "id": "tfl26-v3-dc44-dc22", "date": "2026-05-16T07:45:00", "round": "Vòng 3", "home": "t-dc44", "away": "t-dc22", "hs": 1, "as": 2, "status": "done" },
+        { "id": "tfl26-v3-dc42-dc12", "date": "2026-05-16T08:35:00", "round": "Vòng 3", "home": "t-dc42", "away": "t-dc12", "hs": 2, "as": 0, "status": "done", "goals": [ { "m": "m29", "n": 1 }, { "m": "m20", "n": 1 } ] },
+        { "id": "tfl26-v3-dc21-dc34", "date": "2026-05-16T08:35:00", "round": "Vòng 3", "home": "t-dc21", "away": "t-dc34", "hs": 1, "as": 3, "status": "done" },
+        { "id": "tfl26-v4-dc34-dc42", "date": "2026-05-23T07:45:00", "round": "Vòng 4", "home": "t-dc34", "away": "t-dc42", "hs": 3, "as": 1, "status": "done", "goals": [ { "m": "m22", "n": 1 } ] },
+        { "id": "tfl26-v4-dc22-dc21", "date": "2026-05-23T07:45:00", "round": "Vòng 4", "home": "t-dc22", "away": "t-dc21", "hs": 3, "as": 2, "status": "done" },
+        { "id": "tfl26-v4-dc12-dc44", "date": "2026-05-23T08:35:00", "round": "Vòng 4", "home": "t-dc12", "away": "t-dc44", "hs": 2, "as": 4, "status": "done" },
+        { "id": "tfl26-v5-dc22-dc12", "date": "2026-06-06T07:45:00", "round": "Vòng 5", "home": "t-dc22", "away": "t-dc12", "hs": 3, "as": 1, "status": "done" },
+        { "id": "tfl26-v5-dc21-dc42", "date": "2026-06-06T08:35:00", "round": "Vòng 5", "home": "t-dc21", "away": "t-dc42", "hs": 2, "as": 3, "status": "done", "goals": [ { "m": "m21", "n": 1 }, { "m": "m29", "n": 1 }, { "m": "m30", "n": 1 } ] },
+        { "id": "tfl26-v1-dc34-dc22", "date": "2026-06-13T07:45:00", "round": "Vòng 1", "home": "t-dc34", "away": "t-dc22", "hs": 2, "as": 1, "status": "done" },
+        { "id": "tfl26-v5-dc44-dc34", "date": "2026-06-27T08:35:00", "round": "Vòng 5", "home": "t-dc44", "away": "t-dc34", "hs": 2, "as": 3, "status": "done" },
+        { "id": "tfl26-v6-dc42-dc34", "date": "2026-07-04T07:45:00", "round": "Vòng 6", "home": "t-dc42", "away": "t-dc34", "hs": 0, "as": 2, "status": "done" },
+        { "id": "tfl26-v6-dc22-dc21", "date": "2026-07-04T08:35:00", "round": "Vòng 6", "home": "t-dc22", "away": "t-dc21", "hs": 2, "as": 1, "status": "done" },
+        { "id": "tfl26-v6-dc44-dc12", "date": "2026-07-04T08:35:00", "round": "Vòng 6", "home": "t-dc44", "away": "t-dc12", "hs": 2, "as": 2, "status": "done" },
+        { "id": "tfl26-v7-dc34-dc12", "date": "2026-07-11T07:45:00", "round": "Vòng 7", "home": "t-dc34", "away": "t-dc12", "hs": 5, "as": 2, "status": "done" },
+        { "id": "tfl26-v7-dc44-dc21", "date": "2026-07-11T07:45:00", "round": "Vòng 7", "home": "t-dc44", "away": "t-dc21", "hs": 6, "as": 0, "status": "done" },
+        { "id": "tfl26-v8-dc22-dc44", "date": "2026-07-25T07:45:00", "round": "Vòng 8", "home": "t-dc22", "away": "t-dc44", "hs": 4, "as": 1, "status": "done" },
+        { "id": "tfl26-v8-dc12-dc42", "date": "2026-07-25T08:35:00", "round": "Vòng 8", "home": "t-dc12", "away": "t-dc42", "hs": 3, "as": 2, "status": "done", "goals": [ { "m": "m22", "n": 1 }, { "m": "m29", "n": 1 } ] },
+        { "id": "tfl26-v9-dc21-dc12", "date": "2026-08-01T07:45:00", "round": "Vòng 9", "home": "t-dc21", "away": "t-dc12", "hs": 3, "as": 0, "status": "done" },
+        { "id": "tfl26-v9-dc22-dc34", "date": "2026-08-01T07:45:00", "round": "Vòng 9", "home": "t-dc22", "away": "t-dc34", "hs": 3, "as": 1, "status": "done" },
+        { "id": "tfl26-v9-dc44-dc42", "date": "2026-08-01T08:35:00", "round": "Vòng 9", "home": "t-dc44", "away": "t-dc42", "hs": 1, "as": 1, "status": "done", "goals": [ { "m": "m29", "n": 1 } ] },
+        { "id": "tfl26-v7-dc42-dc22", "date": "2026-08-08T07:45:00", "round": "Vòng 7", "home": "t-dc42", "away": "t-dc22", "hs": 2, "as": 3, "status": "done", "goals": [ { "m": "m31", "n": 2 } ] },
+        { "id": "tfl26-v8-dc21-dc34", "date": "2026-08-08T08:35:00", "round": "Vòng 8", "home": "t-dc21", "away": "t-dc34", "hs": 0, "as": 1, "status": "done" },
+        { "id": "tfl26-v10-dc21-dc42", "date": "2026-08-22T07:45:00", "round": "Vòng 10", "home": "t-dc21", "away": "t-dc42", "hs": 2, "as": 5, "status": "done", "goals": [ { "m": "m20", "n": 1 }, { "m": "m25", "n": 1 }, { "m": "m30", "n": 3 } ] },
+        { "id": "tfl26-v10-dc34-dc44", "date": "2026-09-12T00:00:00", "round": "Vòng 10", "home": "t-dc34", "away": "t-dc44", "status": "scheduled" },
+        { "id": "tfl26-v10-dc12-dc22", "date": "2026-09-12T00:00:00", "round": "Vòng 10", "home": "t-dc12", "away": "t-dc22", "status": "scheduled" }
+      ]
+    },
+    {
+      "slug": "tma-badminton-open-2026",
+      "name": "TMA Badminton Open 2026",
+      "sport": "badminton",
+      "host": "TMA",
+      "season": "2026",
+      "format": "Đôi nam & đôi nữ, loại trực tiếp",
+      "status": "running",
+      "startDate": "2026-08-16",
+      "endDate": "2026-09-13",
+      "venueId": "v-nhathidau",
+      "summary": "Giải toàn công ty do TMA tổ chức. DC góp 3 cặp đôi nam và 1 cặp đôi nữ.",
+      "entries": [
+        { "id": "e1", "pair": ["m02", "m07"], "label": "Hoàng Anh / Duy", "bracket": "Đôi nam" },
+        { "id": "e2", "pair": ["m11", "m15"], "label": "Trí / Đăng", "bracket": "Đôi nam" },
+        { "id": "e3", "pair": ["m13", "m14"], "label": "Hà / Linh", "bracket": "Đôi nữ" }
+      ],
+      "matches": [
+        { "id": "tb26-1", "date": "2026-08-16T09:00:00", "round": "Vòng 1 · Đôi nam", "home": "Hoàng Anh / Duy", "away": "QA Team A", "score": "2-0 (21-15, 21-18)", "status": "done", "win": "home" },
+        { "id": "tb26-2", "date": "2026-08-16T10:00:00", "round": "Vòng 1 · Đôi nam", "home": "Trí / Đăng", "away": "BU3 Smash", "score": "1-2 (21-19, 17-21, 18-21)", "status": "done", "win": "away" },
+        { "id": "tb26-3", "date": "2026-08-23T09:30:00", "round": "Tứ kết · Đôi nam", "home": "Hoàng Anh / Duy", "away": "Infra Ducks", "score": "2-1 (21-17, 19-21, 21-16)", "status": "done", "win": "home" },
+        { "id": "tb26-4", "date": "2026-08-23T11:00:00", "round": "Vòng 1 · Đôi nữ", "home": "Hà / Linh", "away": "HR Feathers", "score": "2-0 (21-12, 21-14)", "status": "done", "win": "home" },
+        { "id": "tb26-5", "date": "2026-09-06T09:00:00", "round": "Bán kết · Đôi nam", "home": "Hoàng Anh / Duy", "away": "Chưa xác định", "status": "scheduled" },
+        { "id": "tb26-6", "date": "2026-09-06T10:30:00", "round": "Tứ kết · Đôi nữ", "home": "Hà / Linh", "away": "Chưa xác định", "status": "scheduled" },
+        { "id": "tb26-7", "date": "2026-09-13T09:00:00", "round": "Chung kết", "home": null, "away": null, "status": "scheduled" }
+      ]
+    },
+    {
+      "slug": "dc-league-2025",
+      "name": "DC League 2025",
+      "sport": "football",
+      "host": "DC",
+      "season": "2025",
+      "format": "Vòng tròn hai lượt, 4 đội",
+      "status": "finished",
+      "startDate": "2025-03-06",
+      "endDate": "2025-06-26",
+      "venueId": "v-quan7",
+      "summary": "Mùa giải dài nhất từ trước tới nay: 12 vòng, kết thúc bằng cú nước rút của DC42 FC ở hai vòng cuối.",
+      "champion": "DC42 FC",
+      "runnerUp": "Core Rangers",
+      "topScorer": { "memberId": "m03", "goals": 14 },
+      "teams": ["t-dc42", "t-delta", "t-core", "t-atlas"],
+      "matches": []
+    },
+    {
+      "slug": "tma-football-cup-2025",
+      "name": "TMA Football Cup 2025",
+      "sport": "football",
+      "host": "TMA",
+      "season": "2025",
+      "format": "Vòng bảng + loại trực tiếp, 12 đội toàn công ty",
+      "status": "finished",
+      "startDate": "2025-09-13",
+      "endDate": "2025-11-22",
+      "venueId": "v-tanbinh",
+      "summary": "DC góp một đội duy nhất và đi tới trận chung kết, thua sau loạt luân lưu.",
+      "champion": "BU5 Warriors",
+      "runnerUp": "DC42 FC",
+      "topScorer": { "memberId": "m05", "goals": 6 },
+      "teams": ["t-dc42"],
+      "matches": []
+    }
+  ],
+
+  "events": [
+    {
+      "slug": "trung-thu-2026",
+      "name": "Trung Thu DC42",
+      "type": "Lễ hội",
+      "date": "2026-09-25T17:30:00",
+      "endDate": "2026-09-25T21:00:00",
+      "place": "Sân thượng toà nhà TMA",
+      "status": "upcoming",
+      "rsvp": true,
+      "summary": "Bày cỗ trông trăng, làm lồng đèn cho các bé và bốc thăm quà.",
+      "program": [
+        { "time": "17:30", "what": "Nhận bàn, chụp hình check-in" },
+        { "time": "18:00", "what": "Làm lồng đèn cùng các bé" },
+        { "time": "19:00", "what": "Phá cỗ & văn nghệ" },
+        { "time": "20:15", "what": "Bốc thăm trúng thưởng" }
+      ]
+    },
+    {
+      "slug": "8-3-2026",
+      "name": "Ngày 8/3 tại DC",
+      "type": "Kỷ niệm",
+      "date": "2026-03-06T16:00:00",
+      "place": "Phòng họp lớn tầng 5",
+      "status": "past",
+      "summary": "Tặng hoa, mini game và tiệc trà chiều cho các chị em trong DC.",
+      "recap": "Buổi chiều 8/3 gọn nhẹ nhưng đông đủ nhất từ trước tới giờ: 31 người tham gia, đội hậu cần chuẩn bị 24 bó hoa và một bàn bánh do chính anh em tự làm."
+    },
+    {
+      "slug": "noel-2025",
+      "name": "Giáng sinh DC42",
+      "type": "Lễ hội",
+      "date": "2025-12-24T18:00:00",
+      "place": "Nhà hàng Sen Việt, Quận 3",
+      "status": "past",
+      "summary": "Tiệc tất niên kết hợp Giáng sinh, có trao cúp DC League 2025 và trò chơi đổi quà.",
+      "recap": "Đêm Giáng sinh khép lại một năm đầy giải: cúp DC League 2025 được trao ngay giữa tiệc, phần đổi quà bí mật kéo dài tới gần 22h."
+    },
+    {
+      "slug": "trip-da-lat-2025",
+      "name": "Trip Đà Lạt",
+      "type": "Du lịch",
+      "date": "2025-10-17T06:00:00",
+      "endDate": "2025-10-19T20:00:00",
+      "place": "Đà Lạt, Lâm Đồng",
+      "status": "past",
+      "summary": "Ba ngày hai đêm: săn mây Cầu Đất, đạp xe quanh hồ Tuyền Lâm và một đêm BBQ.",
+      "recap": "38 người, hai xe giường nằm, một buổi săn mây dậy từ 4h sáng. Album trip này hiện là album nhiều ảnh nhất của DC."
+    },
+    {
+      "slug": "teambuilding-vung-tau-2025",
+      "name": "Teambuilding Vũng Tàu",
+      "type": "Teambuilding",
+      "date": "2025-05-24T07:00:00",
+      "endDate": "2025-05-25T17:00:00",
+      "place": "Bãi Sau, Vũng Tàu",
+      "status": "past",
+      "summary": "Trò chơi vận động trên bãi biển, tối gala và trao giải cho đội thắng chung cuộc.",
+      "recap": "Đội Cam thắng chung cuộc sau vòng kéo co cuối cùng. Trời mưa lúc 15h nên phần thi cát bị rút ngắn, đổi lại có màn hát hò dài hơn dự kiến."
+    },
+    {
+      "slug": "sinh-nhat-dc-2025",
+      "name": "Sinh nhật DC 12 tuổi",
+      "type": "Kỷ niệm",
+      "date": "2025-07-11T16:30:00",
+      "place": "Sảnh tầng trệt TMA",
+      "status": "past",
+      "summary": "Cắt bánh, xem lại video 12 năm và vinh danh những người gắn bó lâu nhất.",
+      "recap": "Video 12 năm do chính anh em dựng được chiếu hai lần theo yêu cầu. Sáu người có thâm niên trên 10 năm được vinh danh."
+    }
+  ],
+
+  "media": [
+    { "id": "md01", "activity": "trip-da-lat-2025", "type": "image", "caption": "Săn mây Cầu Đất, 5h20 sáng", "by": "m02", "tone": 1 },
+    { "id": "md02", "activity": "trip-da-lat-2025", "type": "image", "caption": "Cả đoàn trước nhà ga Đà Lạt", "by": "m02", "tone": 2 },
+    { "id": "md03", "activity": "trip-da-lat-2025", "type": "video", "caption": "Đạp xe quanh hồ Tuyền Lâm", "by": "m07", "tone": 3 },
+    { "id": "md04", "activity": "trip-da-lat-2025", "type": "image", "caption": "Đêm BBQ ở homestay", "by": "m05", "tone": 4 },
+    { "id": "md05", "activity": "trip-da-lat-2025", "type": "image", "caption": "Cà phê sáng ngày cuối", "by": "m14", "tone": 5 },
+    { "id": "md06", "activity": "noel-2025", "type": "image", "caption": "Trao cúp DC League 2025", "by": "m01", "tone": 6 },
+    { "id": "md07", "activity": "noel-2025", "type": "image", "caption": "Bàn tiệc và cây thông tự dựng", "by": "m13", "tone": 1 },
+    { "id": "md08", "activity": "noel-2025", "type": "video", "caption": "Màn đổi quà bí mật", "by": "m11", "tone": 2 },
+    { "id": "md09", "activity": "8-3-2026", "type": "image", "caption": "24 bó hoa chuẩn bị từ sáng", "by": "m13", "tone": 3 },
+    { "id": "md10", "activity": "8-3-2026", "type": "image", "caption": "Mini game đoán tên bài hát", "by": "m16", "tone": 4 },
+    { "id": "md11", "activity": "teambuilding-vung-tau-2025", "type": "image", "caption": "Kéo co vòng cuối", "by": "m03", "tone": 5 },
+    { "id": "md12", "activity": "teambuilding-vung-tau-2025", "type": "image", "caption": "Đội Cam nhận cúp", "by": "m03", "tone": 6 },
+    { "id": "md13", "activity": "teambuilding-vung-tau-2025", "type": "video", "caption": "Gala tối bãi Sau", "by": "m09", "tone": 1 },
+    { "id": "md14", "activity": "sinh-nhat-dc-2025", "type": "image", "caption": "Cắt bánh 12 tuổi", "by": "m01", "tone": 2 },
+    { "id": "md15", "activity": "sinh-nhat-dc-2025", "type": "video", "caption": "Video 12 năm DC", "by": "m11", "tone": 3 },
+    { "id": "md19", "activity": "tma-badminton-open-2026", "type": "image", "caption": "Cặp Hoàng Anh / Duy vào bán kết", "by": "m13", "tone": 1 },
+    { "id": "md20", "activity": "tma-badminton-open-2026", "type": "image", "caption": "Góc khán đài của DC", "by": "m16", "tone": 2 },
+    { "id": "md21", "activity": "dc-league-2025", "type": "image", "caption": "Vòng cuối quyết định ngôi vô địch", "by": "m01", "tone": 3 },
+    { "id": "md22", "activity": "dc-league-2025", "type": "image", "caption": "Kiệt và danh hiệu vua phá lưới", "by": "m01", "tone": 4 },
+    { "id": "md23", "activity": "tma-football-cup-2025", "type": "image", "caption": "Loạt luân lưu chung kết", "by": "m05", "tone": 5 },
+    { "id": "md24", "activity": "tma-football-cup-2025", "type": "image", "caption": "Huy chương bạc toàn công ty", "by": "m05", "tone": 6 }
+  ],
+
+  "posts": [
+    {
+      "slug": "mo-dang-ky-trung-thu-2026",
+      "title": "Mở đăng ký Trung Thu DC42",
+      "kind": "Thông báo",
+      "date": "2026-08-26",
+      "pinned": true,
+      "author": "m13",
+      "activity": "trung-thu-2026",
+      "excerpt": "Đăng ký trước 18/9 để bên hậu cần chốt số phần quà cho các bé.",
+      "body": "Trung Thu năm nay tổ chức trên sân thượng toà nhà, bắt đầu 17h30 ngày 25/9. Ai có con nhỏ đi cùng thì ghi rõ số bé khi đăng ký để chuẩn bị phần quà và nguyên liệu làm lồng đèn. Hạn chốt danh sách là hết ngày 18/9."
+    },
+    {
+      "slug": "doi-san-cau-long-thu-3",
+      "title": "Cầu lông thứ 3 đổi sang CLB Bàu Cát",
+      "kind": "Thông báo",
+      "date": "2026-08-20",
+      "author": "m13",
+      "excerpt": "NTĐ Phú Thọ sửa sàn tới hết tháng 9, buổi tối thứ 3 chuyển sang Bàu Cát.",
+      "body": "NTĐ Phú Thọ đóng cửa sửa sàn tới hết tháng 9. Buổi tối thứ 3 chuyển sang CLB Cầu lông Bàu Cát, vẫn 19h–21h, phí sân giữ nguyên 50k/người. Buổi sáng thứ 7 không đổi."
+    },
+    {
+      "slug": "recap-tma-badminton-tu-ket",
+      "title": "Recap: DC có mặt ở bán kết đôi nam TMA Open",
+      "kind": "Recap",
+      "date": "2026-08-23",
+      "author": "m02",
+      "activity": "tma-badminton-open-2026",
+      "excerpt": "Cặp Hoàng Anh / Duy ngược dòng thắng 2-1 sau khi thua set hai.",
+      "body": "Trận tứ kết kéo dài gần một tiếng. Thua set hai 19-21, cặp đôi của DC chuyển sang đánh chậm và ăn điểm bằng bỏ nhỏ, thắng set quyết định 21-16. Bán kết đá ngày 6/9."
+    },
+    {
+      "slug": "quy-hoat-dong-quy-3-2026",
+      "title": "Công khai quỹ hoạt động quý 3/2026",
+      "kind": "Điều lệ",
+      "date": "2026-08-10",
+      "author": "m01",
+      "excerpt": "Thu chi sân bãi, nước và giải thưởng ba tháng gần nhất.",
+      "body": "Quỹ nhận đóng góp theo buổi, phần dư dùng cho giải thưởng nội bộ. Chi tiết thu chi được dán ở kênh chat và cập nhật cuối mỗi tháng. Ai cần bản chi tiết thì nhắn ban tổ chức."
+    }
+  ],
+
+  "attendanceLog": [
+    {"date": "2026-08-27", "sport": "football", "members": ["m01", "m02", "m03", "m05", "m06", "m08", "m10", "m12", "m04"]},
+    {"date": "2026-08-25", "sport": "badminton", "members": ["m13", "m14", "m02", "m07", "m11"]},
+    {"date": "2026-08-22", "sport": "badminton", "members": ["m13", "m16", "m15"]},
+    {"date": "2026-08-20", "sport": "football", "members": ["m01", "m03", "m05", "m06", "m09", "m10", "m12"]},
+    {"date": "2026-08-18", "sport": "badminton", "members": ["m13", "m14", "m11", "m15"]},
+    {"date": "2026-08-13", "sport": "football", "members": ["m01", "m02", "m03", "m04", "m05", "m08", "m10"]},
+    {"date": "2026-08-11", "sport": "badminton", "members": ["m13", "m14", "m02", "m07"]},
+    {"date": "2026-08-06", "sport": "football", "members": ["m01", "m03", "m05", "m06", "m08", "m12", "m11"]},
+    {"date": "2026-08-04", "sport": "badminton", "members": ["m13", "m15", "m16", "m11"]},
+    {"date": "2026-07-30", "sport": "football", "members": ["m01", "m02", "m03", "m05", "m10", "m12"]},
+    {"date": "2026-07-28", "sport": "badminton", "members": ["m13", "m14", "m07"]},
+    {"date": "2026-07-23", "sport": "football", "members": ["m01", "m03", "m04", "m05", "m06", "m08", "m09"]},
+    {"date": "2026-07-21", "sport": "badminton", "members": ["m13", "m14", "m15", "m02"]},
+    {"date": "2026-07-16", "sport": "football", "members": ["m01", "m02", "m05", "m10", "m12", "m11"]}
+  ],
+
+  "honours": [
+    {"year": 2025, "title": "Vô địch DC League 2025", "sport": "football", "winner": "DC42 FC", "kind": "team", "tournament": "dc-league-2025"},
+    {"year": 2025, "title": "Á quân TMA Football Cup 2025", "sport": "football", "winner": "DC42 FC", "kind": "team", "tournament": "tma-football-cup-2025"},
+    {"year": 2025, "title": "Vua phá lưới DC League 2025", "sport": "football", "winner": "m03", "kind": "member", "detail": "14 bàn"},
+    {"year": 2025, "title": "Cầu thủ xuất sắc DC League 2025", "sport": "football", "winner": "m12", "kind": "member"},
+    {"year": 2025, "title": "Vô địch đôi nữ TMA Badminton 2025", "sport": "badminton", "winner": "m13", "kind": "member", "detail": "cùng Phan Mỹ Linh"},
+    {"year": 2024, "title": "Vô địch DC League 2024", "sport": "football", "winner": "Core Rangers", "kind": "team"},
+    {"year": 2024, "title": "Vua phá lưới DC League 2024", "sport": "football", "winner": "m05", "kind": "member", "detail": "11 bàn"},
+    {"year": 2024, "title": "Vô địch đôi nam nội bộ 2024", "sport": "badminton", "winner": "m02", "kind": "member", "detail": "cùng Bùi Khánh Duy"}
+  ],
+
+  "predictionLeagues": [
+    {
+      "slug": "fantasy-world-cup",
+      "name": "Fantasy World Cup",
+      "kind": "Fantasy",
+      "sport": "football",
+      "note": "Chọn đội hình từ cầu thủ dự World Cup, tính điểm theo từng vòng của giải.",
+      "seasons": [
+        {
+          "id": "2026",
+          "label": "2026",
+          "season": "2026",
+          "status": "finished",
+          "href": "/fantasy",
+          "players": 21,
+          "champion": "SonHoang",
+          "note": "Mùa vừa khép lại — bảng tổng điểm và nhà vô địch đã chốt."
+        }
+      ]
+    },
+    {
+      "slug": "fpl",
+      "name": "Fantasy Premier League",
+      "kind": "Fantasy",
+      "sport": "football",
+      "note": "Mini-league của DC trên FPL, chơi lại mỗi mùa Premier League.",
+      "seasons": [
+        {
+          "id": "2026-27",
+          "label": "26/27",
+          "season": "2026/27",
+          "status": "running",
+          "href": null,
+          "players": 12,
+          "note": "Mùa mới vừa khởi tranh giữa tháng 8/2026, vẫn nhận thêm người tới hết vòng 5."
+        },
+        {
+          "id": "2025-26",
+          "label": "25/26",
+          "season": "2025/26",
+          "status": "finished",
+          "href": null,
+          "players": 16,
+          "champion": "Trần Hoàng Anh",
+          "note": "Cách nhau 4 điểm ở vòng cuối — mùa sát nhất từ trước tới nay."
+        },
+        {
+          "id": "2024-25",
+          "label": "24/25",
+          "season": "2024/25",
+          "status": "finished",
+          "href": null,
+          "players": 11,
+          "champion": "Đỗ Thanh Tùng",
+          "note": "Mùa đầu DC lập mini-league riêng trên FPL."
+        }
+      ]
+    },
+    {
+      "slug": "du-doan-world-cup",
+      "name": "Dự đoán World Cup",
+      "kind": "Dự đoán",
+      "sport": "football",
+      "note": "Dự đoán tỉ số từng trận và đội vô địch, tính điểm theo vòng.",
+      "seasons": [
+        {
+          "id": "2026",
+          "label": "2026",
+          "season": "2026",
+          "status": "finished",
+          "href": null,
+          "players": 24,
+          "champion": "Lý Minh Trí",
+          "note": "24 người tham gia, chốt điểm sau trận chung kết."
+        }
+      ]
+    },
+    {
+      "slug": "du-doan-euro",
+      "name": "Dự đoán Euro",
+      "kind": "Dự đoán",
+      "sport": "football",
+      "note": "Dùng chung luật tính điểm với bản World Cup.",
+      "seasons": [
+        {
+          "id": "2028",
+          "label": "2028",
+          "season": "2028",
+          "status": "planned",
+          "href": null,
+          "note": "Mở lại khi tới kỳ Euro 2028."
+        }
+      ]
+    }
+  ]
+}

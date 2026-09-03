@@ -217,7 +217,7 @@ export default function ScheduleView({ stages, schedule }) {
 
             {/* Formation panel */}
             <div className="md:col-span-5 h-full">
-              <div className="sticky top-28 bg-surface-container-low/70 backdrop-blur rounded-2xl p-6 shadow-xl border border-surface-variant">
+              <div className="sticky top-6 bg-surface-container-low/70 backdrop-blur rounded-2xl p-6 shadow-xl border border-surface-variant">
                 <Pitch match={selected} />
               </div>
             </div>
