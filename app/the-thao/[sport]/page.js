@@ -53,7 +53,7 @@ export default async function SportOverviewPage({ params }) {
     <>
       <SportNav sport={sp} active="overview" />
 
-      <PageHeader eyebrow="Thể thao" title={sp.name} lede={sp.blurb} />
+      <PageHeader eyebrow="Thể thao" title={sp.name} />
 
       <SportHero sport={sp} />
 
