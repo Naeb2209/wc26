@@ -85,6 +85,8 @@ module.exports = {
       },
       maxWidth: {
         "container-max": "1280px",
+        // Trần bề ngang cho thẻ nội dung: thẻ đứng một mình trong lưới không kéo dài hết khung.
+        "card-max": "500px",
       },
       fontFamily: {
         "dc-display": ["Chakra Petch", "Be Vietnam Pro", "sans-serif"],
