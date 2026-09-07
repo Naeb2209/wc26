@@ -137,14 +137,30 @@ export function Card({ as = "div", href, children, className = "", ...rest }) {
   );
 }
 
-export function Stat({ label, value, sub }) {
-  return (
-    <div className="rounded-2xl border border-dc-line bg-white px-5 py-4">
+export function Stat({ label, value, sub, href }) {
+  const body = (
+    <>
       <p className="font-dc-display text-[10px] font-bold uppercase tracking-[0.16em] text-dc-ink-2">{label}</p>
       <p className="mt-1 font-dc-display text-[26px] font-bold leading-none text-dc-ink tabular-nums">{value}</p>
       {sub ? <p className="mt-1 text-[13px] text-dc-ink-2">{sub}</p> : null}
-    </div>
+    </>
   );
+  const base = "rounded-2xl border border-dc-line bg-white px-5 py-4";
+  // Ô số liệu nào có mục tương ứng để xem tiếp thì cho bấm luôn — mũi vàng ở góc là dấu hiệu.
+  if (href) {
+    return (
+      <Link href={href} className={`${base} group relative block transition-colors hover:border-dc-gold`}>
+        {body}
+        <span
+          aria-hidden="true"
+          className="material-symbols-outlined absolute right-3 top-3 text-[16px] text-dc-line transition-colors group-hover:text-dc-gold"
+        >
+          arrow_outward
+        </span>
+      </Link>
+    );
+  }
+  return <div className={base}>{body}</div>;
 }
 
 export function EmptyState({ icon = "inbox", title, hint }) {

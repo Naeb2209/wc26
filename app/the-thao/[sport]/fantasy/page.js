@@ -52,8 +52,11 @@ export default async function FantasyPage({ params }) {
           <EmptyState icon="stadium" title="Chưa có giải Fantasy nào" />
         ) : (
           <div className="grid gap-4 md:grid-cols-2">
+            {/* CM */}
             {leagues.map((l) => (
-              <LeagueCard key={l.slug} league={l} defaultSeasonId={defaultSeasonOf(l)?.id} />
+              <div key={l.slug} id={l.slug} className="scroll-mt-24">
+                <LeagueCard league={l} defaultSeasonId={defaultSeasonOf(l)?.id} />
+              </div>
             ))}
           </div>
         )}

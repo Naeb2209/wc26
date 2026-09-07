@@ -15,6 +15,7 @@ import {
   upcomingSessionsOf,
   weekdayOf,
 } from "@/lib/dc42";
+import { getRsvp, rosterOf } from "@/lib/dc42-rsvp";
 import { Card, Chip, EmptyState, PageHeader, Section, Stat, StatusChip } from "@/components/hub/ui";
 import SportNav from "@/components/hub/SportNav";
 import SportHero from "@/components/hub/SportHero";
@@ -40,7 +41,11 @@ export default async function SportOverviewPage({ params }) {
   // Cửa sổ 3 tuần: mỗi môn có 1 buổi/tuần nên vừa đủ 3 thẻ lấp kín hàng.
   // Stat "buổi kế tiếp" lấy từ đúng danh sách này (buổi đã huỷ thì nhảy sang buổi sau),
   // để con số trên stat không bao giờ lệch với các thẻ ngay bên dưới.
-  const sessions = upcomingSessionsOf(sp.id, 3);
+  // Kéo cả điểm danh vào đây (giống tab Giao lưu): hero hứa "buổi kế tiếp còn chỗ hay không",
+  // thẻ chỉ in sức chứa thì chưa trả lời được câu đó.
+  const sessions = await Promise.all(
+    upcomingSessionsOf(sp.id, 3).map(async (x) => ({ ...x, ...rosterOf(x, await getRsvp(x.id)) }))
+  );
   const nextSessions = sessions.slice(0, 3);
   const nextPlayable = sessions.find((s) => !s.cancelled) || null;
   const tours = sortedTournamentsOf(sp.id);
@@ -60,16 +65,23 @@ export default async function SportOverviewPage({ params }) {
       <Section>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Stat label="Buổi mỗi tuần" value={sum.sessionsPerWeek} sub="Giao lưu cố định" />
-          <Stat label="Giải đang diễn ra" value={sum.running} sub={`${sum.tournaments} giải đã lưu`} />
+          <Stat
+            label="Giải đang diễn ra"
+            value={sum.running}
+            sub={`${sum.tournaments} giải đã lưu`}
+            href={`/the-thao/${sp.slug}/giai-dau`}
+          />
           <Stat
             label="Buổi kế tiếp"
             value={nextPlayable ? relativeDay(nextPlayable.startsAt) : "—"}
             sub={nextPlayable ? `${weekdayOf(nextPlayable.startsAt)} · ${fmtTime(nextPlayable.startsAt)}` : "Ba tuần tới chưa có buổi nào"}
+            href={`/the-thao/${sp.slug}/giao-luu`}
           />
           <Stat
             label={sp.hasPrediction ? "Fantasy" : "Kết quả đã lưu"}
             value={sp.hasPrediction ? sum.fantasyLeagues : results.length}
             sub={sp.hasPrediction ? "giải theo mùa" : "trận gần đây"}
+            href={sp.hasPrediction ? `/the-thao/${sp.slug}/fantasy` : undefined}
           />
         </div>
       </Section>
@@ -95,13 +107,18 @@ export default async function SportOverviewPage({ params }) {
                 <Card key={s.id} href={`/the-thao/${sp.slug}/giao-luu#${s.id}`} className="flex flex-col gap-2 p-5">
                   <div className="flex items-center gap-2">
                     <Chip tone={s.cancelled ? "live" : "gold"}>{s.cancelled ? "Đã huỷ" : relativeDay(s.startsAt)}</Chip>
+                    {!s.cancelled ? (
+                      <Chip tone={s.slotsLeft === 0 ? "live" : "neutral"}>
+                        {s.slotsLeft === 0 ? "Hết chỗ" : `Còn ${s.slotsLeft} chỗ`}
+                      </Chip>
+                    ) : null}
                   </div>
                   <p className="font-dc-display text-[17px] font-bold leading-snug text-dc-ink">{s.title}</p>
                   <p className="text-[13px] text-dc-ink-2">
                     {weekdayOf(s.startsAt)}, {fmtDate(s.startsAt)} · {fmtTime(s.startsAt)}
                   </p>
                   <p className="text-[13px] text-dc-ink-2">
-                    {s.venue?.name} · {s.capacity} chỗ · {formatFee(s.fee)}
+                    {s.venue?.name} · {s.going.length}/{s.capacity} chỗ · {formatFee(s.fee)}
                   </p>
                 </Card>
               ))}
@@ -195,7 +212,11 @@ export default async function SportOverviewPage({ params }) {
                 const bets = (cur?.predictions || []).length;
                 const champs = (l.seasons || []).filter((s) => s.champion);
                 return (
-                  <Card key={l.slug} href={`/the-thao/${sp.slug}/fantasy`} className="flex w-full max-w-card-max flex-col overflow-hidden">
+                  <Card
+                    key={l.slug}
+                    href={`/the-thao/${sp.slug}/fantasy#${l.slug}`}
+                    className="flex w-full max-w-card-max flex-col overflow-hidden"
+                  >
                     <div className="flex items-center justify-center gap-2 border-b border-dc-line bg-dc-paper px-5 py-2.5">
                       <Chip tone="fantasy" icon="stadium">
                         {l.kind}
