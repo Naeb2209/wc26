@@ -17,7 +17,7 @@ export default function SportsHubPage() {
       <PageHeader
         eyebrow="Thể thao"
         title="Chọn môn"
-        lede="Mỗi môn gồm kèo giao lưu hằng tuần và giải đấu trong năm — bóng đá thêm phần dự đoán & Fantasy. Bấm vào một môn để xem cụ thể."
+        lede="Mỗi môn gồm kèo giao lưu hằng tuần và giải đấu trong năm — bóng đá thêm phần Fantasy. Bấm vào một môn để xem cụ thể."
       />
 
       <Section>

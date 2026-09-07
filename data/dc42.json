@@ -20,7 +20,7 @@
       "name": "Cầu lông",
       "icon": "sports_tennis",
       "tone": "court",
-      "blurb": "Hai buổi mỗi tuần và giải đôi nam / đôi nữ của TMA.",
+      "blurb": "Một buổi tối thứ 5 hằng tuần ở Sân Cầu Lông Đức Kim, Quận 12 và giải đôi nam / đôi nữ của TMA.",
       "hasPrediction": false
     }
   ],
@@ -30,7 +30,8 @@
     { "id": "v-sanpm", "name": "Sân PM", "address": "Hẻm 104 Tân Sơn, P.15, Q.Tân Bình", "sport": "football" },
     { "id": "v-quan7", "name": "Sân Thảo Điền Mini", "address": "Nguyễn Văn Hưởng, Quận 2", "sport": "football" },
     { "id": "v-nhathidau", "name": "NTĐ Phú Thọ", "address": "1 Lữ Gia, Quận 11", "sport": "badminton" },
-    { "id": "v-cauLong-tb", "name": "CLB Cầu lông Bàu Cát", "address": "Bàu Cát 2, Tân Bình", "sport": "badminton" }
+    { "id": "v-cauLong-tb", "name": "CLB Cầu lông Bàu Cát", "address": "Bàu Cát 2, Tân Bình", "sport": "badminton" },
+    { "id": "v-duckim", "name": "Sân Cầu Lông Đức Kim", "address": "Quận 12", "sport": "badminton" }
   ],
   "members": [
     { "id": "m01", "name": "Nguyễn Minh Quân", "short": "Quân", "team": "DC42 FC", "sports": ["football"], "role": "Ban tổ chức" },
@@ -93,32 +94,18 @@
       "regulars": ["m01", "m02", "m03", "m05", "m06", "m08", "m10", "m12"]
     },
     {
-      "id": "st-badminton-tue",
+      "id": "st-badminton-thu",
       "sport": "badminton",
-      "title": "Cầu lông tối thứ 3",
-      "weekday": 2,
-      "start": "19:00",
-      "end": "21:00",
-      "venueId": "v-cauLong-tb",
+      "title": "Cầu lông tối thứ 5",
+      "weekday": 4,
+      "start": "18:00",
+      "end": "20:00",
+      "venueId": "v-duckim",
       "capacity": 12,
       "fee": 50000,
       "host": "m13",
       "note": "2 sân. Cầu do CLB lo, ai đi thì chia tiền sân.",
-      "regulars": ["m13", "m14", "m02", "m07", "m11", "m15"]
-    },
-    {
-      "id": "st-badminton-sat",
-      "sport": "badminton",
-      "title": "Cầu lông sáng thứ 7",
-      "weekday": 6,
-      "start": "08:00",
-      "end": "10:00",
-      "venueId": "v-nhathidau",
-      "capacity": 8,
-      "fee": 45000,
-      "host": "m13",
-      "note": "Buổi nhẹ, ưu tiên người mới tập.",
-      "regulars": ["m13", "m16", "m15"]
+      "regulars": ["m13", "m14", "m02", "m07", "m11", "m15", "m16"]
     }
   ],
   "sessionOverrides": [],
@@ -347,13 +334,13 @@
       "body": "Trung Thu năm nay tổ chức trên sân thượng toà nhà, bắt đầu 17h30 ngày 25/9. Ai có con nhỏ đi cùng thì ghi rõ số bé khi đăng ký để chuẩn bị phần quà và nguyên liệu làm lồng đèn. Hạn chốt danh sách là hết ngày 18/9."
     },
     {
-      "slug": "doi-san-cau-long-thu-3",
-      "title": "Cầu lông thứ 3 đổi sang CLB Bàu Cát",
+      "slug": "gop-cau-long-ve-thu-5",
+      "title": "Cầu lông gộp về một buổi tối thứ 5",
       "kind": "Thông báo",
       "date": "2026-08-20",
       "author": "m13",
-      "excerpt": "NTĐ Phú Thọ sửa sàn tới hết tháng 9, buổi tối thứ 3 chuyển sang Bàu Cát.",
-      "body": "NTĐ Phú Thọ đóng cửa sửa sàn tới hết tháng 9. Buổi tối thứ 3 chuyển sang CLB Cầu lông Bàu Cát, vẫn 19h–21h, phí sân giữ nguyên 50k/người. Buổi sáng thứ 7 không đổi."
+      "excerpt": "Từ nay cầu lông chỉ còn một buổi mỗi tuần: tối thứ 5 ở Sân Cầu Lông Đức Kim, Quận 12.",
+      "body": "Hai buổi cũ (tối thứ 3 và sáng thứ 7) gộp lại còn một buổi mỗi tuần: tối thứ 5, 18h–20h tại Sân Cầu Lông Đức Kim, Quận 12. Phí sân 50k/người, cầu do CLB lo, sân đủ cho 12 người. Ai quen đi thứ 3 hoặc thứ 7 thì chuyển hết sang thứ 5."
     },
     {
       "slug": "recap-tma-badminton-tu-ket",
@@ -377,19 +364,19 @@
   ],
 
   "attendanceLog": [
+    {"date": "2026-09-03", "sport": "badminton", "members": ["m13", "m14", "m02", "m07", "m11"]},
     {"date": "2026-08-27", "sport": "football", "members": ["m01", "m02", "m03", "m05", "m06", "m08", "m10", "m12", "m04"]},
-    {"date": "2026-08-25", "sport": "badminton", "members": ["m13", "m14", "m02", "m07", "m11"]},
-    {"date": "2026-08-22", "sport": "badminton", "members": ["m13", "m16", "m15"]},
+    {"date": "2026-08-27", "sport": "badminton", "members": ["m13", "m16", "m15"]},
     {"date": "2026-08-20", "sport": "football", "members": ["m01", "m03", "m05", "m06", "m09", "m10", "m12"]},
-    {"date": "2026-08-18", "sport": "badminton", "members": ["m13", "m14", "m11", "m15"]},
+    {"date": "2026-08-20", "sport": "badminton", "members": ["m13", "m14", "m11", "m15"]},
     {"date": "2026-08-13", "sport": "football", "members": ["m01", "m02", "m03", "m04", "m05", "m08", "m10"]},
-    {"date": "2026-08-11", "sport": "badminton", "members": ["m13", "m14", "m02", "m07"]},
+    {"date": "2026-08-13", "sport": "badminton", "members": ["m13", "m14", "m02", "m07"]},
     {"date": "2026-08-06", "sport": "football", "members": ["m01", "m03", "m05", "m06", "m08", "m12", "m11"]},
-    {"date": "2026-08-04", "sport": "badminton", "members": ["m13", "m15", "m16", "m11"]},
+    {"date": "2026-08-06", "sport": "badminton", "members": ["m13", "m15", "m16", "m11"]},
     {"date": "2026-07-30", "sport": "football", "members": ["m01", "m02", "m03", "m05", "m10", "m12"]},
-    {"date": "2026-07-28", "sport": "badminton", "members": ["m13", "m14", "m07"]},
+    {"date": "2026-07-30", "sport": "badminton", "members": ["m13", "m14", "m07"]},
     {"date": "2026-07-23", "sport": "football", "members": ["m01", "m03", "m04", "m05", "m06", "m08", "m09"]},
-    {"date": "2026-07-21", "sport": "badminton", "members": ["m13", "m14", "m15", "m02"]},
+    {"date": "2026-07-23", "sport": "badminton", "members": ["m13", "m14", "m15", "m02"]},
     {"date": "2026-07-16", "sport": "football", "members": ["m01", "m02", "m05", "m10", "m12", "m11"]}
   ],
 
@@ -410,6 +397,7 @@
       "name": "Fantasy World Cup",
       "kind": "Fantasy",
       "sport": "football",
+      "logo": "/fifa-world-cup-2026-logo.png",
       "note": "Chọn đội hình từ cầu thủ dự World Cup, tính điểm theo từng vòng của giải.",
       "seasons": [
         {
@@ -420,7 +408,29 @@
           "href": "/fantasy",
           "players": 21,
           "champion": "SonHoang",
-          "note": "Mùa vừa khép lại — bảng tổng điểm và nhà vô địch đã chốt."
+          "note": "Mùa vừa khép lại — bảng tổng điểm và nhà vô địch đã chốt.",
+          "predictions": [
+            {
+              "id": "champion",
+              "question": "Đội vô địch",
+              "icon": "emoji_events",
+              "status": "finished",
+              "players": 24,
+              "answer": null,
+              "winners": ["Lý Minh Trí"],
+              "note": "Chốt ngay sau trận chung kết."
+            },
+            {
+              "id": "topscorer",
+              "question": "Vua phá lưới",
+              "icon": "sports_soccer",
+              "status": "finished",
+              "players": 24,
+              "answer": "Kylian Mbappé · 10 bàn",
+              "winners": [],
+              "note": null
+            }
+          ]
         }
       ]
     },
@@ -429,6 +439,7 @@
       "name": "Fantasy Premier League",
       "kind": "Fantasy",
       "sport": "football",
+      "logo": "/logos/premier-league.png",
       "note": "Mini-league của DC trên FPL, chơi lại mỗi mùa Premier League.",
       "seasons": [
         {
@@ -438,7 +449,29 @@
           "status": "running",
           "href": null,
           "players": 12,
-          "note": "Mùa mới vừa khởi tranh giữa tháng 8/2026, vẫn nhận thêm người tới hết vòng 5."
+          "note": "Mùa mới vừa khởi tranh giữa tháng 8/2026, vẫn nhận thêm người tới hết vòng 5.",
+          "predictions": [
+            {
+              "id": "champion",
+              "question": "Đội vô địch Premier League",
+              "icon": "emoji_events",
+              "status": "open",
+              "players": 12,
+              "answer": null,
+              "winners": [],
+              "note": "Chốt dự đoán trước vòng 5."
+            },
+            {
+              "id": "top-defender",
+              "question": "Hậu vệ ghi bàn nhiều nhất",
+              "icon": "shield_person",
+              "status": "open",
+              "players": 12,
+              "answer": null,
+              "winners": [],
+              "note": null
+            }
+          ]
         },
         {
           "id": "2025-26",
@@ -459,42 +492,6 @@
           "players": 11,
           "champion": "Đỗ Thanh Tùng",
           "note": "Mùa đầu DC lập mini-league riêng trên FPL."
-        }
-      ]
-    },
-    {
-      "slug": "du-doan-world-cup",
-      "name": "Dự đoán World Cup",
-      "kind": "Dự đoán",
-      "sport": "football",
-      "note": "Dự đoán tỉ số từng trận và đội vô địch, tính điểm theo vòng.",
-      "seasons": [
-        {
-          "id": "2026",
-          "label": "2026",
-          "season": "2026",
-          "status": "finished",
-          "href": null,
-          "players": 24,
-          "champion": "Lý Minh Trí",
-          "note": "24 người tham gia, chốt điểm sau trận chung kết."
-        }
-      ]
-    },
-    {
-      "slug": "du-doan-euro",
-      "name": "Dự đoán Euro",
-      "kind": "Dự đoán",
-      "sport": "football",
-      "note": "Dùng chung luật tính điểm với bản World Cup.",
-      "seasons": [
-        {
-          "id": "2028",
-          "label": "2028",
-          "season": "2028",
-          "status": "planned",
-          "href": null,
-          "note": "Mở lại khi tới kỳ Euro 2028."
         }
       ]
     }

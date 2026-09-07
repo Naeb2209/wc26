@@ -68,14 +68,14 @@ export default async function FantasyPage() {
 
   return (
     <>
-      {football ? <SportNav sport={football} active="prediction" /> : null}
+      {football ? <SportNav sport={football} active="fantasy" /> : null}
 
       <PageHeader
         wide
         eyebrow={
           <>
-            <Link href="/the-thao/bong-da/du-doan" className="hover:text-dc-ink">
-              Dự đoán &amp; Fantasy
+            <Link href="/the-thao/bong-da/fantasy" className="hover:text-dc-ink">
+              Fantasy bóng đá
             </Link>{" "}
             · Mùa {season?.season || "2026"}
           </>

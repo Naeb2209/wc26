@@ -16,7 +16,7 @@ export default function SportNav({ sport, active }) {
     { key: "tournaments", href: `${base}/giai-dau`, label: "Giải đấu", icon: "emoji_events" },
   ];
   if (sport.hasPrediction) {
-    tabs.push({ key: "prediction", href: `${base}/du-doan`, label: "Fantasy", icon: "casino" });
+    tabs.push({ key: "fantasy", href: `${base}/fantasy`, label: "Fantasy", icon: "stadium" });
   }
 
   return (

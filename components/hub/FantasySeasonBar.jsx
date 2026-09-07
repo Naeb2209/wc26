@@ -32,7 +32,7 @@ export default function FantasySeasonBar({ current }) {
         <p className="mt-0.5 text-[13.5px] text-dc-ink-2">
           {playable > 1
             ? "Chọn mùa để xem bảng điểm tương ứng."
-            : "Các mùa khác chưa có bảng điểm trên web — xem trạng thái ở trang Dự đoán & Fantasy."}
+            : "Các mùa khác chưa có bảng điểm trên web — xem trạng thái ở trang Fantasy."}
         </p>
       </div>
 
@@ -56,8 +56,8 @@ export default function FantasySeasonBar({ current }) {
         </select>
 
         <Link
-          href="/the-thao/bong-da/du-doan"
-          title="Tất cả giải dự đoán & Fantasy"
+          href="/the-thao/bong-da/fantasy"
+          title="Tất cả giải Fantasy"
           className="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-dc-line px-3 py-2.5 font-dc-display text-[11px] font-bold uppercase tracking-[0.1em] text-dc-ink-2 transition-colors hover:border-dc-ink hover:text-dc-ink"
         >
           <span className="material-symbols-outlined text-[16px]">apps</span>

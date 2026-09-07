@@ -106,6 +106,20 @@ export function StatusChip({ status }) {
   return null;
 }
 
+/* Ô logo giải, dùng chung cho các thẻ nhỏ (tổng quan môn, xếp hạng).
+   `logoWide: true` -> ô rộng cho logo nằm ngang; `logoBg: "dark"` -> nền mực cho logo nét trắng.
+   Giải chưa khai `logo` thì không hiện gì, thẻ tự thu lại. */
+export function LeagueLogo({ league }) {
+  if (!league?.logo) return null;
+  const skin = league.logoBg === "dark" ? "border-dc-ink bg-dc-ink" : "border-dc-line bg-white";
+  const shape = league.logoWide ? "h-8 w-auto max-w-[84px] px-1.5" : "size-8";
+  return (
+    <span className={`grid shrink-0 place-items-center rounded-lg border p-1 ${skin} ${shape}`}>
+      <img src={league.logo} alt="" aria-hidden="true" className="max-h-full w-auto max-w-full object-contain" />
+    </span>
+  );
+}
+
 export function Card({ as = "div", href, children, className = "", ...rest }) {
   const base = `rounded-2xl border border-dc-line bg-white ${className}`;
   if (href) {

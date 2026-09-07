@@ -1,10 +1,10 @@
-{
+﻿{
   "version": "0.0.1",
   "configurations": [
     {
       "name": "wc26-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "C:/Users/hoang/node/node.exe",
+      "runtimeArgs": ["node_modules/next/dist/bin/next", "dev"],
       "port": 3000
     }
   ]

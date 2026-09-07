@@ -10,7 +10,7 @@ Thể thao  /the-thao
 ├── Bóng đá   /the-thao/bong-da
 │   ├── Giao lưu hằng tuần      /the-thao/bong-da/giao-luu
 │   ├── Giải đấu trong năm      /the-thao/bong-da/giai-dau[/<slug>]
-│   └── Dự đoán & Fantasy       /the-thao/bong-da/du-doan
+│   └── Fantasy                 /the-thao/bong-da/fantasy
 └── Cầu lông  /the-thao/cau-long
     ├── Giao lưu hằng tuần      /the-thao/cau-long/giao-luu
     └── Giải đấu trong năm      /the-thao/cau-long/giai-dau[/<slug>]
@@ -37,7 +37,7 @@ Thêm một phần tử vào `sports[]` là có ngay hub + hai trang con:
 }
 ```
 
-`hasPrediction: true` mới hiện tab "Dự đoán & Fantasy" (hiện chỉ bóng đá). Muốn môn mới có màu riêng
+`hasPrediction: true` mới hiện tab "Fantasy" (hiện chỉ bóng đá). Muốn môn mới có màu riêng
 thì thêm khoá vào `SPORT_META` trong `components/hub/ui.jsx` và token `dc-*` trong `tailwind.config.js`;
 không thêm thì dùng màu trung tính, không vỡ.
 
@@ -47,7 +47,7 @@ không thêm thì dùng màu trung tính, không vỡ.
 |---|---|---|---|
 | Giải đấu | `tournaments[]` (có `sport`) | Thể thao › môn | Giải đấu trong năm, Xếp hạng, Trang chủ |
 | Buổi giao lưu | `sessionTemplates[]` (có `sport`) | Thể thao › môn | Giao lưu hằng tuần, Trang chủ |
-| Dự đoán / Fantasy | `predictionLeagues[]` (có `sport`) | Thể thao › môn | Dự đoán & Fantasy, Xếp hạng |
+| Fantasy | `predictionLeagues[]` (có `sport`) | Thể thao › môn | Fantasy, Xếp hạng |
 | Sự kiện đặc biệt | `events[]` | Sự kiện | Sự kiện, Trang chủ |
 
 Bốn loại trên dùng chung ba tầng cắt ngang: `media[]` (ảnh/video), `attendanceLog[]` (chuyên cần),
@@ -94,8 +94,24 @@ Override cũng ghi đè được `venueId`, `start`, `end`, `capacity`, `note`.
 - `roster[]`: danh sách `member id` đăng ký mùa đó → hiện khối "Đội hình mùa này" (số áo lấy từ `number` của member,
   số bàn tự tính từ `goals` trong `matches`). Không khai thì khối này ẩn.
 - `focusTeam`: id một đội → khối "Lịch & kết quả" chỉ liệt kê trận của đội đó (dùng cho giải của TMA, không phải giải DC tự tổ
-  chức). BXH và số trận ở phần đầu trang vẫn tính đủ các đội.
+  chức). BXH và số trận ở phần đầu trang vẫn tính đủ các đội. Trên **thẻ giải** ở trang danh sách, nếu đội này nằm
+  ngoài top 3 thì vẫn được ghim thêm một dòng (nền gold nhạt) để biết DC đang đứng đâu.
 - `standingNote`: dòng chú thích dưới BXH. Không khai thì dùng câu mầu "hai đội dẫn đầu vào chung kết".
+
+### Khối podium trên thẻ giải
+
+Thẻ giải ở `/the-thao/[môn]/giai-dau` có một khối bảng ngắn, `podiumOf()` trong `lib/dc42.js` tự chọn
+nội dung theo dữ liệu sẵn có — không khai thêm gì:
+
+| Trường hợp | Khối hiện gì |
+|---|---|
+| Có `champion` | *Kết quả cuối* — Vô địch / Á quân, hàng vô địch tô gold |
+| `standingsOf()` ra bảng (bóng đá có `teams` + `matches`) | *Bảng xếp hạng hiện tại* — top 3 + dòng ghim `focusTeam` |
+| Có `entries[]` (cầu lông loại trực tiếp) | *Các cặp của DC* — vòng đi xa nhất, cặp còn trong giải nền gold nhạt |
+| Không có gì ở trên | Ẩn khối |
+
+Dòng *Quy mô* chỉ nói "N đội" khi `teams[]` lưu đủ các đội (> 1). Giải của TMA mà chỉ lưu đúng đội DC
+(vd `tma-football-cup-2025`) thì bỏ số đội, chỉ nói số trận — tránh hiện "1 đội" sai lệch.
 
 ## Thêm một sự kiện
 
@@ -124,7 +140,7 @@ báo trạng thái này ngay trên đầu.
 Chưa có đăng nhập: mỗi người tự chọn tên mình một lần, lưu ở `localStorage["dc42:me"]`. Khi nối SSO thì
 thay chỗ chọn tên trong `components/hub/SessionList.jsx` bằng danh tính thật.
 
-## Dự đoán & Fantasy
+## Fantasy
 
 `predictionLeagues[]` là phần chơi cùng giải bên ngoài, **không phải** giải DC tự tổ chức.
 Mỗi phần tử là **một giải gom nhiều mùa** trong `seasons[]` — thẻ trên web có sẵn bộ chọn mùa:
@@ -133,8 +149,9 @@ Mỗi phần tử là **một giải gom nhiều mùa** trong `seasons[]` — th
 {
   "slug": "fpl",
   "name": "Fantasy Premier League",
-  "kind": "Fantasy",          // "Fantasy" hoặc "Dự đoán" -> quyết định nhóm trên trang
+  "kind": "Fantasy",
   "sport": "football",
+  "logo": "/logos/premier-league.png",  // xem mục "Logo giải" bên dưới
   "note": "Mô tả chung của giải (dùng khi mùa không có note riêng).",
   "seasons": [
     {
@@ -145,11 +162,52 @@ Mỗi phần tử là **một giải gom nhiều mùa** trong `seasons[]` — th
       "href": null,           // null = chưa có bảng điểm; có link thì hiện nút "Mở bảng điểm"
       "players": 12,
       "champion": null,       // điền khi mùa đã xong -> hiện chip vô địch
-      "note": "Ghi chú riêng của mùa này."
+      "note": "Ghi chú riêng của mùa này.",
+      "predictions": []       // mini game dự đoán kèm theo mùa này, xem mục dưới
     }
   ]
 }
 ```
+
+### Mini game dự đoán nằm trong mùa, không phải giải riêng
+
+Dự đoán **không có tab riêng**. Mỗi mùa Fantasy tự khai `predictions[]` — các mini game ăn theo giải đó
+(đội vô địch, vua phá lưới, hậu vệ ghi bàn nhiều nhất…), hiện thành khối "Mini game dự đoán"
+ngay trong thẻ giải:
+
+```json
+{
+  "id": "champion",              // duy nhất trong mùa
+  "question": "Đội vô địch",     // câu hỏi hiện trên web
+  "icon": "emoji_events",        // tên icon Material Symbols, bỏ trống -> "casino"
+  "status": "open",              // open = đang mở | finished = đã có kết quả
+  "players": 12,
+  "answer": null,                // đáp án thật; null -> web hiện "đang mở" / "chờ kết quả"
+  "winners": [],                 // tên người đoán đúng -> hiện chip vàng
+  "note": "Chốt dự đoán trước vòng 5."
+}
+```
+
+Mùa không có mini game thì bỏ `predictions` hoặc để `[]` — khối tự ẩn.
+
+### Logo giải
+
+Đặt file vào `public/logos/` rồi khai đường dẫn tuyệt đối trong `logo`. Ba trường, hai trường sau
+đều tùy chọn:
+
+| Trường | Ý nghĩa |
+|---|---|
+| `logo` | Đường dẫn file, vd `/logos/premier-league.svg`. Không khai → dùng ô icon theo tông màu giải |
+| `logoWide` | `true` cho logo nằm ngang (lockup lân + chữ) → ô rộng, cao 40px (mobile) / 48px |
+| `logoBg` | `"dark"` cho logo vẽ bằng mực trắng → ô nền mực, để nét trắng không mất hút trên thẻ trắng |
+
+Logo hiện ở ba chỗ: thẻ lớn trang Fantasy (`components/hub/LeagueCard.jsx`), thẻ nhỏ ở tổng quan môn
+và trang Xếp hạng (`LeagueLogo` trong `components/hub/ui.jsx`). File thiếu thì thẻ lớn tự rơi về ô
+icon, không hiện ảnh vỡ.
+
+Đang dùng: `fantasy-world-cup` → `/fifa-world-cup-2026-logo.png`, `fpl` → `/logos/premier-league.png`
+(bản chỉ đầu lân, hình vuông). Cả hai đều là logo vuông nên chưa giải nào cần `logoWide` /
+`logoBg` — hai trường đó để sẵn cho logo nằm ngang hoặc logo nét trắng về sau.
 
 Mùa nên xếp **mới nhất trước**. Mùa hiện ra mặc định do `defaultSeasonOf()` chọn theo thứ tự
 ưu tiên `running` → `upcoming` → `finished` → `planned`, cùng mức thì lấy mùa mới hơn.

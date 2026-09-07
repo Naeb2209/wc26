@@ -10,7 +10,7 @@ import {
   sportSlug,
   todayVn,
 } from "@/lib/dc42";
-import { Card, Chip, EmptyState, PageHeader, Section, SportChip, Stat, StatusChip } from "@/components/hub/ui";
+import { Card, Chip, EmptyState, LeagueLogo, PageHeader, Section, SportChip, Stat, StatusChip } from "@/components/hub/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -139,21 +139,24 @@ export default function RankingPage() {
       </div>
 
       <Section
-        title="Dự đoán & Fantasy"
-        hint="Phần chơi cùng các giải lớn. Chi tiết nằm trong Thể thao › Bóng đá › Dự đoán & Fantasy."
+        title="Fantasy"
+        hint="Phần chơi cùng các giải lớn. Chi tiết nằm trong Thể thao › Bóng đá › Fantasy."
       >
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {leagues.map((l) => {
             const cur = defaultSeasonOf(l);
             return (
-              <Card key={l.slug} href={`/the-thao/${sportSlug(l.sport)}/du-doan`} className="flex flex-col gap-2 p-5">
+              <Card key={l.slug} href={`/the-thao/${sportSlug(l.sport)}/fantasy`} className="flex flex-col gap-2 p-5">
                 <div className="flex items-center justify-between gap-2">
-                  <Chip tone={l.kind === "Fantasy" ? "fantasy" : "neutral"} icon={l.kind === "Fantasy" ? "stadium" : "casino"}>
+                  <Chip tone="fantasy" icon="stadium">
                     {l.kind}
                   </Chip>
                   <StatusChip status={cur?.status} />
                 </div>
-                <p className="font-dc-display text-[17px] font-bold leading-snug text-dc-ink">{l.name}</p>
+                <div className="flex items-center gap-2.5">
+                  <LeagueLogo league={l} />
+                  <p className="font-dc-display text-[17px] font-bold leading-snug text-dc-ink">{l.name}</p>
+                </div>
                 <p className="text-[13.5px] text-dc-ink-2 tabular-nums">
                   {(l.seasons || []).length} mùa · đang xem {cur?.season}
                 </p>

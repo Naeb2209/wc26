@@ -15,7 +15,7 @@ import {
   upcomingSessionsOf,
   weekdayOf,
 } from "@/lib/dc42";
-import { Card, Chip, EmptyState, PageHeader, Section, Stat, StatusChip } from "@/components/hub/ui";
+import { Card, Chip, EmptyState, LeagueLogo, PageHeader, Section, Stat, StatusChip } from "@/components/hub/ui";
 import SportNav from "@/components/hub/SportNav";
 import SportHero from "@/components/hub/SportHero";
 
@@ -61,8 +61,8 @@ export default async function SportOverviewPage({ params }) {
             sub={sum.nextSession ? `${weekdayOf(sum.nextSession.startsAt)} · ${fmtTime(sum.nextSession.startsAt)}` : undefined}
           />
           <Stat
-            label={sp.hasPrediction ? "Dự đoán & Fantasy" : "Kết quả đã lưu"}
-            value={sp.hasPrediction ? sum.predictions : results.length}
+            label={sp.hasPrediction ? "Fantasy" : "Kết quả đã lưu"}
+            value={sp.hasPrediction ? sum.fantasyLeagues : results.length}
             sub={sp.hasPrediction ? "giải theo mùa" : "trận gần đây"}
           />
         </div>
@@ -140,11 +140,11 @@ export default async function SportOverviewPage({ params }) {
       {sp.hasPrediction && (
         <div className="border-t border-dc-line bg-dc-paper">
           <Section
-            title="Dự đoán & Fantasy"
-            hint="Phần chơi cùng các giải lớn — không phải giải DC tự tổ chức."
+            title="Fantasy"
+            hint="Phần chơi cùng các giải lớn — không phải giải DC tự tổ chức. Mini game dự đoán nằm trong từng mùa."
             action={
               <Link
-                href={`/the-thao/${sp.slug}/du-doan`}
+                href={`/the-thao/${sp.slug}/fantasy`}
                 className="font-dc-display text-[11px] font-bold uppercase tracking-[0.14em] text-dc-gold"
               >
                 Xem tất cả →
@@ -154,20 +154,25 @@ export default async function SportOverviewPage({ params }) {
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
               {leagues.map((l) => {
                 const cur = defaultSeasonOf(l);
+                const bets = (cur?.predictions || []).length;
                 return (
-                  <Card key={l.slug} href={`/the-thao/${sp.slug}/du-doan`} className="flex flex-col gap-2 p-5">
+                  <Card key={l.slug} href={`/the-thao/${sp.slug}/fantasy`} className="flex flex-col gap-2 p-5">
                     <div className="flex items-center justify-between gap-2">
-                      <Chip tone={l.kind === "Fantasy" ? "fantasy" : "neutral"} icon={l.kind === "Fantasy" ? "stadium" : "casino"}>
+                      <Chip tone="fantasy" icon="stadium">
                         {l.kind}
                       </Chip>
                       <span className="font-dc-display text-[10px] font-bold uppercase tracking-[0.12em] text-dc-ink-2">
                         {(l.seasons || []).length} mùa
                       </span>
                     </div>
-                    <p className="font-dc-display text-[16px] font-bold leading-snug text-dc-ink">{l.name}</p>
+                    <div className="flex items-center gap-2.5">
+                      <LeagueLogo league={l} />
+                      <p className="font-dc-display text-[16px] font-bold leading-snug text-dc-ink">{l.name}</p>
+                    </div>
                     <p className="mt-auto text-[12.5px] text-dc-ink-2 tabular-nums">
                       Mùa {cur?.season}
                       {cur?.players ? ` · ${cur.players} người chơi` : ""}
+                      {bets ? ` · ${bets} mini game` : ""}
                     </p>
                   </Card>
                 );
