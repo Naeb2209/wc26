@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sportBySlug, sports, tournamentsOf } from "@/lib/dc42";
+import { sortedTournamentsOf, sportBySlug, sports } from "@/lib/dc42";
 import { EmptyState, PageHeader, Section } from "@/components/hub/ui";
 import SportNav from "@/components/hub/SportNav";
 import TournamentCard from "@/components/hub/TournamentCard";
 
 export const dynamic = "force-dynamic";
-
-const ORDER = { running: 0, upcoming: 1, finished: 2 };
 
 const STATUS_TABS = [
   { value: "all", label: "Tất cả" },
@@ -49,9 +47,7 @@ export default async function SportTournamentsPage({ params, searchParams }) {
   const host = HOSTS.some((h) => h.value === sq.don_vi) ? sq.don_vi : "all";
   const status = STATUS_TABS.some((s) => s.value === sq.trang_thai) ? sq.trang_thai : "all";
 
-  const all = [...tournamentsOf(sp.id)].sort(
-    (a, b) => (ORDER[a.status] ?? 3) - (ORDER[b.status] ?? 3) || String(b.startDate).localeCompare(String(a.startDate))
-  );
+  const all = sortedTournamentsOf(sp.id);
   const list = all.filter((t) => (host === "all" || t.host === host) && (status === "all" || t.status === status));
   const seasons = [...new Set(list.map((t) => t.season))].sort().reverse();
 
