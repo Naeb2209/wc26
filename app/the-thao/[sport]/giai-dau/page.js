@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { sortedTournamentsOf, sportBySlug, sports } from "@/lib/dc42";
+import { groupByLeague, sortedTournamentsOf, sportBySlug, sports } from "@/lib/dc42";
 import { EmptyState, PageHeader, Section } from "@/components/hub/ui";
 import SportNav from "@/components/hub/SportNav";
 import TournamentCard from "@/components/hub/TournamentCard";
@@ -49,11 +49,15 @@ export default async function SportTournamentsPage({ params, searchParams }) {
 
   const all = sortedTournamentsOf(sp.id);
   const list = all.filter((t) => (host === "all" || t.host === host) && (status === "all" || t.status === status));
-  const seasons = [...new Set(list.map((t) => t.season))].sort().reverse();
+  // Giải nhiều mùa gộp thành một thẻ, xếp theo mùa đại diện (mùa đầu tiên còn lại sau bộ lọc).
+  const groups = groupByLeague(list);
+  const seasons = [...new Set(groups.map((g) => g.current.season))].sort().reverse();
+  const groupsOf = (season) => groups.filter((g) => g.current.season === season);
 
   // Số giải mỗi trạng thái, tính sau bộ lọc đơn vị -> con số trên tab luôn khớp thứ sẽ thấy.
   const inHost = all.filter((t) => host === "all" || t.host === host);
-  const countOf = (value) => (value === "all" ? inHost.length : inHost.filter((t) => t.status === value).length);
+  const countOf = (value) =>
+    groupByLeague(value === "all" ? inHost : inHost.filter((t) => t.status === value)).length;
 
   return (
     <>
@@ -134,16 +138,20 @@ export default async function SportTournamentsPage({ params, searchParams }) {
                   </h2>
                   <span aria-hidden="true" className="h-px flex-1 bg-dc-line" />
                   <span className="font-dc-display text-[10px] font-bold uppercase tracking-[0.14em] text-dc-ink-2 tabular-nums">
-                    {list.filter((t) => t.season === season).length} giải
+                    {groupsOf(season).length} giải
                   </span>
                 </div>
 
-                <div className="grid items-start gap-4 md:grid-cols-2">
-                  {list
-                    .filter((t) => t.season === season)
-                    .map((t) => (
-                      <TournamentCard key={t.slug} tournament={t} sportSlug={sp.slug} />
-                    ))}
+                <div className="grid gap-4 md:grid-cols-2">
+                  {groupsOf(season).map((g) => (
+                    <TournamentCard
+                      key={g.current.slug}
+                      tournament={g.current}
+                      league={g.league}
+                      seasons={g.seasons}
+                      sportSlug={sp.slug}
+                    />
+                  ))}
                 </div>
               </div>
             ))}

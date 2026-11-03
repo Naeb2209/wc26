@@ -108,7 +108,46 @@
       "regulars": ["m13", "m14", "m02", "m07", "m11", "m15", "m16"]
     }
   ],
-  "sessionOverrides": [],
+  "sessionOverrides": [
+    {
+      "templateId": "st-football-thu",
+      "date": "2026-10-28",
+      "teams": [
+        { "id": "do", "name": "Đỏ", "color": "red", "members": ["m01", "m03", "m10"] },
+        { "id": "xanh", "name": "Xanh", "color": "blue", "members": ["m02", "m06", "m12"] },
+        { "id": "vang", "name": "Vàng", "color": "yellow", "members": ["m05", "m08"] }
+      ],
+      "matches": [
+        { "a": "do", "b": "xanh", "as": 3, "bs": 2, "goals": [{ "m": "m03", "n": 2 }, { "m": "m01" }, { "m": "m02" }, { "m": "m06" }] },
+        { "a": "xanh", "b": "vang", "as": 1, "bs": 1, "goals": [{ "m": "m12" }, { "m": "m05" }] },
+        { "a": "do", "b": "vang", "as": 2, "bs": 4, "goals": [{ "m": "m10", "n": 2 }, { "m": "m05", "n": 3 }, { "m": "m08" }] }
+      ]
+    },
+    {
+      "templateId": "st-football-thu",
+      "date": "2026-10-21",
+      "teams": [
+        { "id": "sang", "name": "Áo sáng", "color": "light", "members": ["m01", "m02", "m05", "m10"] },
+        { "id": "toi", "name": "Áo tối", "color": "dark", "members": ["m03", "m06", "m08", "m12"] }
+      ],
+      "matches": [
+        { "a": "sang", "b": "toi", "as": 4, "bs": 4, "goals": [{ "m": "m05", "n": 2 }, { "m": "m02" }, { "m": "m10" }, { "m": "m08", "n": 3 }, { "m": "m12" }] },
+        { "a": "sang", "b": "toi", "as": 2, "bs": 1, "goals": [{ "m": "m01" }, { "m": "m05" }, { "m": "m06" }] }
+      ]
+    },
+    {
+      "templateId": "st-badminton-thu",
+      "date": "2026-10-29",
+      "teams": [
+        { "id": "a", "name": "Đội A", "color": "red", "members": ["m13", "m02", "m15"] },
+        { "id": "b", "name": "Đội B", "color": "blue", "members": ["m14", "m07", "m16"] }
+      ],
+      "matches": [
+        { "a": "a", "b": "b", "as": 21, "bs": 17, "goals": [{ "m": "m13", "n": 12 }, { "m": "m02", "n": 9 }, { "m": "m14", "n": 10 }, { "m": "m07", "n": 7 }] },
+        { "a": "a", "b": "b", "as": 18, "bs": 21, "goals": [{ "m": "m15", "n": 11 }, { "m": "m13", "n": 7 }, { "m": "m16", "n": 13 }, { "m": "m14", "n": 8 }] }
+      ]
+    }
+  ],
 
   "tournaments": [
     {
@@ -227,6 +266,40 @@
 
   "events": [
     {
+      "slug": "hoi-thao-tma-2026",
+      "name": "TMA Sport & Music Festival 2026",
+      "type": "Hội thao",
+      "theme": "hoi-thao",
+      "date": "2026-10-24T08:00:00",
+      "endDate": "2026-12-19T17:00:00",
+      "dateNote": "Lịch thi đấu dự kiến trong quý 4, BTC chốt sau khi khoá đăng ký.",
+      "place": "TMA HCM",
+      "status": "upcoming",
+      "rsvp": true,
+      "deadline": "2026-10-01",
+      "registerNote": "Đăng ký theo form của BTC hội thao (link trong mail nội bộ), rồi báo bộ môn mình chọn vào nhóm DC để bên mình xếp cặp đôi và đội.",
+      "summary": "Đại hội Thể thao - Văn nghệ thường niên của TMA trở lại cùng Lễ Bế mạc TMA Futsal League 2026: 11 bộ môn, từ sân đấu tới bàn cờ và ánh đèn sân khấu.",
+      "lineup": [
+        { "name": "Cầu lông", "icon": "sports_tennis", "note": "DC đang chơi đều mỗi tối thứ 5" },
+        { "name": "Bida", "icon": "trip_origin" },
+        { "name": "Cờ vua", "icon": "grid_view" },
+        { "name": "Bóng bàn", "icon": "sports_tennis" },
+        { "name": "Chạy bộ", "icon": "directions_run" },
+        { "name": "Cờ tướng", "icon": "grid_view" },
+        { "name": "Quần vợt", "icon": "sports_tennis" },
+        { "name": "Ném phi tiêu", "icon": "target" },
+        { "name": "Cờ úp", "icon": "grid_view" },
+        { "name": "Pickleball", "icon": "sports_tennis" },
+        { "name": "Văn nghệ", "icon": "mic" }
+      ],
+      "program": [
+        { "time": "Nay", "what": "Chọn bộ môn, rủ đồng đội trong nhóm DC" },
+        { "time": "01/10", "what": "Hạn chót đăng ký — quá hạn BTC không nhận thêm" },
+        { "time": "Quý 4", "what": "Vòng loại các bộ môn thể thao và trí tuệ" },
+        { "time": "Bế mạc", "what": "Chung kết, đêm văn nghệ và trao giải cùng Lễ Bế mạc TMA Futsal League 2026" }
+      ]
+    },
+    {
       "slug": "trung-thu-2026",
       "name": "Trung Thu DC42",
       "type": "Lễ hội",
@@ -322,6 +395,17 @@
   ],
 
   "posts": [
+    {
+      "slug": "mo-dang-ky-hoi-thao-tma-2026",
+      "title": "Hội thao TMA 2026 mở đăng ký — chốt ngày 01/10",
+      "kind": "Thông báo",
+      "date": "2026-09-15",
+      "pinned": true,
+      "author": "m13",
+      "activity": "hoi-thao-tma-2026",
+      "excerpt": "11 bộ môn, thi đấu trong quý 4. Đăng ký trước hết ngày 01/10/2026 — DC gom danh sách sớm để còn xếp cặp đôi và chốt tiết mục.",
+      "body": "TMA Sport & Music Festival 2026 — Đại hội Thể thao - Văn nghệ thường niên của TMA — chính thức trở lại, mở màn cùng Lễ Bế mạc TMA Futsal League 2026. Năm nay có 11 bộ môn tại TMA HCM: cầu lông, bida, cờ vua, bóng bàn, chạy bộ, cờ tướng, quần vợt, ném phi tiêu, cờ úp, pickleball và văn nghệ. Thi đấu dự kiến trong quý 4.\n\nAi tham gia thì đăng ký theo form của BTC trước hết ngày 01/10/2026, đồng thời báo bộ môn mình chọn vào nhóm DC. Bên mình gom sớm để còn ghép cặp đôi cầu lông, bóng bàn, pickleball và chốt tiết mục văn nghệ — mấy bộ môn đánh đôi mà đăng ký lẻ thì rất khó xếp vào phút chót.\n\nKhông nhất thiết phải nhắm huy chương. Đi cho vui, xả stress và quen thêm vài cạ cứng phòng khác cũng đã đáng một mùa hội thao."
+    },
     {
       "slug": "mo-dang-ky-trung-thu-2026",
       "title": "Mở đăng ký Trung Thu DC42",

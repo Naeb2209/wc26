@@ -83,6 +83,34 @@ Huỷ hoặc đổi một buổi cụ thể thì thêm vào `sessionOverrides[]`
 
 Override cũng ghi đè được `venueId`, `start`, `end`, `capacity`, `note`.
 
+### Chia đội và kết quả một buổi
+
+Buổi đã đá thì khai `teams[]` (2 hoặc 3 đội) + `matches[]` vào chính override của ngày đó.
+**Bảng xếp, hiệu số và danh sách ghi bàn tự tính từ `matches`** — không nhập tay con số nào:
+
+```json
+{
+  "templateId": "st-football-thu",
+  "date": "2026-10-28",
+  "teams": [
+    { "id": "do", "name": "Đỏ", "color": "red", "members": ["m01", "m03", "m10"] },
+    { "id": "xanh", "name": "Xanh", "color": "blue", "members": ["m02", "m06", "m12"] },
+    { "id": "vang", "name": "Vàng", "color": "yellow", "members": ["m05", "m08"] }
+  ],
+  "matches": [
+    { "a": "do", "b": "xanh", "as": 3, "bs": 2, "goals": [{ "m": "m03", "n": 2 }, { "m": "m01" }] },
+    { "a": "do", "b": "vang", "as": 2, "bs": 4, "goals": [{ "m": "m10", "n": 2 }] }
+  ]
+}
+```
+
+- `a` / `b` trỏ tới `teams[].id`; `as` / `bs` là tỉ số trận đó. Ba đội thì cứ khai đủ các cặp đã đá.
+- `goals`: `{ "m": "<memberId>", "n": <số bàn> }`, bỏ `n` nghĩa là 1 bàn.
+- `color`: `red` · `blue` · `yellow` · `green` · `light` · `dark` — chỉ để chấm màu trước tên đội.
+- Điểm: thắng 3, hoà 1. Xếp theo điểm → hiệu số → số bàn thắng.
+- Cầu lông dùng đúng cấu trúc này, chỉ khác chữ hiển thị: "bàn" đổi thành "điểm".
+- Chỉ buổi đã qua mới hiện khối kết quả; buổi sắp tới vẫn là khối điểm danh.
+
 ## Thêm một giải
 
 - `status`: `running` | `finished` | `upcoming`
@@ -91,12 +119,52 @@ Override cũng ghi đè được `venueId`, `start`, `end`, `capacity`, `note`.
   `goals: [{ "m": "m03", "n": 2 }]` nuôi bảng vua phá lưới.
 - Cầu lông: khai `entries[]` (các cặp của DC) + `matches[]` dạng `score: "2-1 (21-17, …)"`.
 - Giải cũ không còn dữ liệu từng trận: bỏ trống `matches`, điền `champion` / `runnerUp` / `topScorer`.
-- `roster[]`: danh sách `member id` đăng ký mùa đó → hiện khối "Đội hình mùa này" (số áo lấy từ `number` của member,
-  số bàn tự tính từ `goals` trong `matches`). Không khai thì khối này ẩn.
+- `roster[]`: danh sách người đăng ký mùa đó → hiện khối "Đội hình mùa này", số bàn tự tính từ `goals`
+  trong `matches`. Không khai thì khối này ẩn. **Số áo đổi theo từng mùa**, nên mỗi phần tử nhận hai dạng:
+
+  ```json
+  "roster": [
+    { "m": "m29", "number": "5" },   // số áo của riêng mùa này, đè lên số mặc định
+    "m31"                             // không khai số -> lấy `number` của member
+  ]
+  ```
+
+  Trộn hai dạng trong cùng một `roster[]` cũng chạy. Số ở `members[]` chỉ là số mặc định, dùng khi mùa
+  không khai — cùng một người có thể mang #74 mùa 2024 và #9 mùa 2025.
 - `focusTeam`: id một đội → khối "Lịch & kết quả" chỉ liệt kê trận của đội đó (dùng cho giải của TMA, không phải giải DC tự tổ
   chức). BXH và số trận ở phần đầu trang vẫn tính đủ các đội. Trên **thẻ giải** ở trang danh sách, nếu đội này nằm
   ngoài top 3 thì vẫn được ghim thêm một dòng (nền gold nhạt) để biết DC đang đứng đâu.
 - `standingNote`: dòng chú thích dưới BXH. Không khai thì dùng câu mầu "hai đội dẫn đầu vào chung kết".
+
+### Giải nhiều mùa (bộ chọn mùa)
+
+Giải chạy lại hằng năm thì **mỗi mùa vẫn là một phần tử `tournaments[]` riêng** — BXH, lịch, đội hình
+tính theo mùa, không trộn. Thứ gom chúng lại thành một giải là khoá `league`:
+
+```json
+"leagues": [
+  { "id": "tma-futsal-league", "name": "TMA Futsal League", "sport": "football",
+    "blurb": "Giải futsal thường niên của TMA. Mỗi năm là một mùa, DC góp một đội." }
+]
+```
+
+Rồi mỗi mùa khai thêm hai trường:
+
+| Trường | Ý nghĩa |
+|---|---|
+| `league` | id một phần tử trong `leagues[]`. Hai mùa cùng `league` → gộp thành một thẻ có bộ chọn mùa |
+| `division` | hạng/bảng của mùa đó, vd `"League B"` → hiện thành chip cạnh đơn vị tổ chức |
+
+Có từ **hai mùa trở lên** mới sinh bộ chọn mùa (`components/hub/SeasonPicker.jsx`). Khi đó:
+
+- Trang `giai-dau` chỉ hiện **một thẻ** mang tên giải trong `leagues[]`, không phải một thẻ mỗi mùa.
+  Thẻ hiện số liệu của **mùa đại diện** — mùa đầu tiên còn lại sau bộ lọc trạng thái/đơn vị, nên lọc
+  "Đã kết thúc" thì thẻ tự nhảy sang mùa đã xong. Pill mùa còn lại là link sang trang mùa đó.
+- Trang chi tiết lấy tên giải làm tiêu đề, mùa nằm ở dòng eyebrow, kèm khối bộ chọn mùa ở đầu trang.
+- Đếm "N giải" ở hub môn và tab trạng thái đếm **theo giải**, không theo mùa.
+
+Mùa mới = thêm một phần tử `tournaments[]` với `league` cũ. Giải chỉ có một mùa thì bỏ hẳn `league`,
+mọi thứ chạy y như trước.
 
 ### Khối podium trên thẻ giải
 
@@ -117,6 +185,29 @@ Dòng *Quy mô* chỉ nói "N đội" khi `teams[]` lưu đủ các đội (> 1)
 
 `status: "upcoming"` thì hiện ở khối đầu trang Sự kiện và trong "Sắp diễn ra" ở Trang chủ;
 `"past"` thì rơi xuống dòng thời gian theo năm. Trước sự kiện dùng `program[]`, sau sự kiện dùng `recap`.
+
+Bốn trường tuỳ chọn dành cho sự kiện cần kêu gọi đăng ký (vd hội thao công ty) — không khai thì khối tương ứng ẩn:
+
+| Trường | Hiện ở đâu |
+|---|---|
+| `dateNote` | Dòng phụ dưới ô *Thời gian*, dùng khi lịch mới là dự kiến |
+| `lineup[]` | Khối *Bộ môn* — mỗi phần tử `{ name, icon?, note? }`, `icon` là tên Material Symbols |
+| `deadline` | Dòng hạn chót trong thẻ *Đăng ký*, kèm đếm ngược (cần `rsvp: true`) |
+| `registerNote` | Thay câu mặc định trong thẻ *Đăng ký* — ghi rõ đăng ký ở đâu |
+
+### Trang trí riêng cho từng sự kiện
+
+Mỗi sự kiện có trang riêng `/su-kien/<slug>` với bảng màu và hoạ tiết nền riêng, khai báo ở
+[`lib/eventThemes.js`](../lib/eventThemes.js). Thứ tự khớp theme: `event.theme` (ghi thẳng trong
+JSON) → tiền tố slug → `type` → mặc định.
+
+Theme có sẵn: `trung-thu` (trăng, lồng đèn), `noel` (tuyết rơi, thông), `du-lich` (núi, mây),
+`teambuilding` (biển, sóng), `quoc-te-phu-nu` (cánh hoa), `sinh-nhat` (confetti),
+`hoi-thao` (đèn sân khấu, dụng cụ các bộ môn — dùng cho hội thao TMA).
+
+Nhờ khớp theo tiền tố slug nên `trung-thu-2027` tự ăn theme `trung-thu`, không cần sửa gì. Muốn
+làm theme mới thì thêm một mục vào `THEMES` (màu + `decor`) và một cảnh SVG cùng tên `decor`
+trong [`components/hub/EventDecor.jsx`](../components/hub/EventDecor.jsx).
 
 ## Ảnh / video
 

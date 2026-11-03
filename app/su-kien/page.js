@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { eventsByYear, fmtDate, fmtTime, mediaFor, relativeDay, weekdayOf } from "@/lib/dc42";
 import { Card, Chip, MediaTile, PageHeader, Section, StatusChip } from "@/components/hub/ui";
+import { eventTheme, themeVars } from "@/lib/eventThemes";
 
 export const dynamic = "force-dynamic";
 
@@ -34,20 +35,31 @@ export default async function EventsPage({ searchParams }) {
       {upcoming.length > 0 && (
         <Section title="Sắp diễn ra">
           <div className="grid gap-4 md:grid-cols-2">
-            {upcoming.map((e) => (
-              <Card key={e.slug} href={`/su-kien/${e.slug}`} className="flex flex-col gap-3 border-dc-gold/40 bg-dc-gold-soft p-6">
+            {upcoming.map((e) => {
+              const theme = eventTheme(e);
+              return (
+              <Card
+                key={e.slug}
+                href={`/su-kien/${e.slug}`}
+                className="flex flex-col gap-3 p-6"
+                style={{ ...themeVars(theme), borderColor: "var(--ev-line)", background: "var(--ev-soft)" }}
+              >
                 <div className="flex flex-wrap items-center gap-2">
                   <Chip tone="social">{e.type}</Chip>
                   <StatusChip status={e.status} />
                   <Chip tone="gold">{relativeDay(e.date)}</Chip>
                 </div>
-                <p className="font-dc-display text-[24px] font-bold leading-tight text-dc-ink">{e.name}</p>
+                <p className="flex items-center gap-2 font-dc-display text-[24px] font-bold leading-tight text-dc-ink">
+                  <span className="material-symbols-outlined text-[22px] text-[color:var(--ev-accent)]">{theme.icon}</span>
+                  {e.name}
+                </p>
                 <p className="text-body-md text-dc-ink-2">{e.summary}</p>
                 <p className="text-[13.5px] text-dc-ink">
                   {weekdayOf(e.date)}, {fmtDate(e.date)} · {fmtTime(e.date)} · {e.place}
                 </p>
               </Card>
-            ))}
+              );
+            })}
           </div>
         </Section>
       )}
@@ -69,14 +81,17 @@ export default async function EventsPage({ searchParams }) {
                 <div className="flex flex-col gap-3">
                   {list.map((e) => {
                     const album = mediaFor(e.slug);
+                    const theme = eventTheme(e);
                     return (
                       <Link
                         key={e.slug}
                         href={`/su-kien/${e.slug}`}
-                        className="grid gap-4 rounded-2xl border border-dc-line bg-white p-5 transition-shadow hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] md:grid-cols-[150px_minmax(0,1fr)_auto] md:items-center"
+                        style={{ ...themeVars(theme), borderLeftColor: "var(--ev-accent)" }}
+                        className="grid gap-4 rounded-2xl border border-dc-line border-l-4 bg-white p-5 transition-shadow hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] md:grid-cols-[150px_minmax(0,1fr)_auto] md:items-center"
                       >
                         <div>
-                          <p className="font-dc-display text-[11px] font-bold uppercase tracking-[0.12em] text-dc-gold">
+                          <p className="flex items-center gap-1.5 font-dc-display text-[11px] font-bold uppercase tracking-[0.12em] text-[color:var(--ev-accent-deep)]">
+                            <span className="material-symbols-outlined text-[15px]">{theme.icon}</span>
                             {e.type}
                           </p>
                           <p className="text-[13.5px] tabular-nums text-dc-ink-2">{fmtDate(e.date)}</p>

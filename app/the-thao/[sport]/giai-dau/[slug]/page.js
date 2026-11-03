@@ -3,13 +3,15 @@ import { notFound } from "next/navigation";
 import {
   fmtDate,
   fmtTime,
+  leagueById,
   mediaFor,
-  memberById,
   memberName,
+  rosterOf,
   scorersOf,
   splitMatches,
   standingsOf,
   teamName,
+  siblingSeasonsOf,
   sportBySlug,
   sports,
   tournamentBySlug,
@@ -19,6 +21,7 @@ import {
 } from "@/lib/dc42";
 import { Card, Chip, EmptyState, MediaTile, PageHeader, Section, SportChip, Stat, StatusChip } from "@/components/hub/ui";
 import SportNav from "@/components/hub/SportNav";
+import SeasonPicker from "@/components/hub/SeasonPicker";
 
 // Trang tĩnh nhưng có nhãn thời gian tương đối ("còn 3 ngày") -> làm mới mỗi giờ.
 export const revalidate = 3600;
@@ -48,16 +51,15 @@ export default async function TournamentPage({ params }) {
   // Một danh sách duy nhất: trận chưa đá lên đầu, rồi tới trận đã đá mới nhất trước.
   const timeline = [...upcoming, ...played];
   const table = standingsOf(t);
-  const allScorers = scorersOf(t);
-  const scorers = allScorers.slice(0, 6);
-  // Đội hình mùa này: chỉ những giải có khai roster (danh sách member id) mới hiện.
-  const goalsBy = new Map(allScorers.map((s) => [s.memberId, s.goals]));
-  const roster = (t.roster || [])
-    .map((id) => ({ id, m: memberById(id), goals: goalsBy.get(id) || 0 }))
-    .sort((a, b) => b.goals - a.goals || Number(a.m?.number || 999) - Number(b.m?.number || 999));
+  const scorers = scorersOf(t).slice(0, 6);
+  // Đội hình mùa này: chỉ những giải có khai roster mới hiện. Số áo lấy theo mùa.
+  const roster = rosterOf(t);
   const album = mediaFor(t.slug);
   const venue = venueById(t.venueId);
   const isFootball = t.sport === "football";
+  // Giải nhiều mùa (vd TMA Futsal League): tiêu đề mang tên giải, mùa do bộ chọn mùa nói.
+  const seasons = siblingSeasonsOf(t);
+  const league = seasons.length > 1 ? leagueById(t.league) : null;
 
   return (
     <>
@@ -72,16 +74,28 @@ export default async function TournamentPage({ params }) {
             · Mùa {t.season}
           </>
         }
-        title={t.name}
+        title={league?.name || t.name}
         lede={t.summary}
         aside={
           <div className="flex flex-wrap gap-2">
             <SportChip sport={t.sport} />
             <Chip tone={t.host === "TMA" ? "neutral" : "gold"}>{t.host}</Chip>
+            {league && t.division ? <Chip tone="neutral">{t.division}</Chip> : null}
             <StatusChip status={t.status} />
           </div>
         }
       />
+
+      {league ? (
+        <Section>
+          <div className="rounded-2xl border border-dc-line bg-white px-5 py-4">
+            <SeasonPicker seasons={seasons} current={t.slug} sportSlug={sp.slug} />
+            <p className="mt-2 text-[13px] text-dc-ink-2">
+              {league.blurb || "Mỗi mùa có bảng xếp hạng, lịch đấu và đội hình riêng."}
+            </p>
+          </div>
+        </Section>
+      ) : null}
 
       <Section>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -166,10 +180,10 @@ export default async function TournamentPage({ params }) {
             {roster.map((r) => (
               <div key={r.id} className="flex items-center gap-3 rounded-2xl border border-dc-line bg-white px-4 py-3">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-dc-bone font-dc-display text-[13px] font-bold tabular-nums text-dc-ink-2">
-                  {r.m?.number || "–"}
+                  {r.number || "–"}
                 </span>
                 <span className="min-w-0 flex-1 truncate font-dc-display text-[15px] font-bold text-dc-ink">
-                  {r.m?.name || r.id}
+                  {r.member?.name || r.id}
                 </span>
                 {r.goals > 0 ? (
                   <span className="shrink-0 font-dc-display text-[13px] font-bold tabular-nums text-dc-gold">

@@ -899,3 +899,419 @@ body {
     mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 22px), transparent 100%);
   }
 }
+
+/* ---- Icon động trên rail ----
+   Animation chạy khi hover / focus / đang ở trang đó. Dùng chính glyph Material
+   Symbols nên không tốn thêm asset; mỗi icon có một nhịp riêng hợp với ý nghĩa. */
+.rail__item .material-symbols-outlined,
+.rail__foot-btn .material-symbols-outlined,
+.rail__flyout-item .material-symbols-outlined {
+  display: inline-block;
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* Trang chủ: nhún nhẹ như bước vào nhà */
+@keyframes rail-bob {
+  0%, 100% { transform: translateY(0); }
+  35% { transform: translateY(-4px); }
+  65% { transform: translateY(1px); }
+}
+/* Bóng đá: lăn một vòng */
+@keyframes rail-roll {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+/* Sự kiện: lắc như bắn pháo giấy */
+@keyframes rail-shake {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-14deg) scale(1.08); }
+  45% { transform: rotate(12deg) scale(1.08); }
+  70% { transform: rotate(-6deg) scale(1.04); }
+}
+/* Xếp hạng: bật lên rồi đứng vững như trao cúp */
+@keyframes rail-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.28); }
+  70% { transform: scale(0.94); }
+  100% { transform: scale(1.1); }
+}
+/* Moments: lật trang ảnh */
+@keyframes rail-flip {
+  0% { transform: perspective(200px) rotateY(0deg); }
+  50% { transform: perspective(200px) rotateY(-32deg) scale(1.06); }
+  100% { transform: perspective(200px) rotateY(0deg); }
+}
+/* Bảng tin: loa rung phát thanh */
+@keyframes rail-ring {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(-10deg); }
+  30% { transform: rotate(8deg); }
+  45% { transform: rotate(-6deg); }
+  60% { transform: rotate(4deg); }
+}
+/* Ngôn ngữ: xoay quả địa cầu */
+@keyframes rail-globe {
+  from { transform: perspective(240px) rotateY(0deg); }
+  to { transform: perspective(240px) rotateY(360deg); }
+}
+/* More: nhích ngang gợi ý còn nữa */
+@keyframes rail-nudge {
+  0%, 100% { transform: translateX(0); }
+  40% { transform: translateX(3px); }
+  70% { transform: translateX(-2px); }
+}
+
+.rail__item:hover [data-anim="home"],
+.rail__item:focus-visible [data-anim="home"],
+.rail__item[aria-current="page"] [data-anim="home"] {
+  animation: rail-bob 0.55s ease-out;
+}
+.rail__item:hover [data-anim="sports_soccer"],
+.rail__item:focus-visible [data-anim="sports_soccer"],
+.rail__item[aria-current="page"] [data-anim="sports_soccer"] {
+  animation: rail-roll 0.9s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+.rail__item:hover [data-anim="celebration"],
+.rail__item:focus-visible [data-anim="celebration"],
+.rail__item[aria-current="page"] [data-anim="celebration"] {
+  animation: rail-shake 0.6s ease-in-out;
+}
+.rail__item:hover [data-anim="workspace_premium"],
+.rail__item:focus-visible [data-anim="workspace_premium"],
+.rail__item[aria-current="page"] [data-anim="workspace_premium"] {
+  animation: rail-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.rail__item:hover [data-anim="photo_library"],
+.rail__item:focus-visible [data-anim="photo_library"],
+.rail__item[aria-current="page"] [data-anim="photo_library"] {
+  animation: rail-flip 0.7s ease-in-out;
+}
+.rail__item:hover [data-anim="campaign"],
+.rail__item:focus-visible [data-anim="campaign"],
+.rail__item[aria-current="page"] [data-anim="campaign"] {
+  animation: rail-ring 0.7s ease-in-out;
+}
+.rail__item:hover [data-anim="more_horiz"],
+.rail__item:focus-visible [data-anim="more_horiz"] {
+  animation: rail-nudge 0.5s ease-out;
+}
+.rail__foot-btn:hover [data-anim="language"],
+.rail__foot-btn:focus-visible [data-anim="language"] {
+  animation: rail-globe 1.1s ease-in-out;
+}
+.rail__foot-btn:hover [data-anim="how_to_reg"],
+.rail__foot-btn:focus-visible [data-anim="how_to_reg"] {
+  animation: rail-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.rail__flyout-item:hover .material-symbols-outlined {
+  animation: rail-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail__item .material-symbols-outlined,
+  .rail__foot-btn .material-symbols-outlined,
+  .rail__flyout-item .material-symbols-outlined {
+    animation: none !important;
+  }
+}
+
+/* ---- Morph FILL trên rail ----
+   Font Material Symbols self-host là variable font, nên icon có thể chuyển
+   outline → filled bằng cách interpolate trục FILL thay vì đổi glyph. Đây là
+   phần "động" chính của rail: 0 KB thêm, không phụ thuộc thư viện. */
+.rail__item .material-symbols-outlined,
+.rail__foot-btn .material-symbols-outlined,
+.rail__flyout-item .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  transition: font-variation-settings 0.28s cubic-bezier(0.4, 0, 0.2, 1), color 0.16s ease;
+}
+
+/* Trang đang mở: icon đặc, nét dày hơn — thay cho việc chỉ đổi màu */
+.rail__item[aria-current="page"] .material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 0, "opsz" 24;
+}
+
+/* Hover/focus: morph tới lưng chừng để phản hồi mà không giả làm trang active */
+.rail__item:hover .material-symbols-outlined,
+.rail__item:focus-visible .material-symbols-outlined,
+.rail__flyout-item:hover .material-symbols-outlined,
+.rail__foot-btn:hover .material-symbols-outlined,
+.rail__foot-btn:focus-visible .material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 450, "GRAD" 0, "opsz" 24;
+}
+
+/* CTA "Điểm danh" nền tối: đặc sẵn cho đủ tương phản */
+.rail__foot-btn--cta .material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail__item .material-symbols-outlined,
+  .rail__foot-btn .material-symbols-outlined,
+  .rail__flyout-item .material-symbols-outlined {
+    transition: color 0.16s ease;
+  }
+}
+
+/* ============================================================
+   Trang trí trang sự kiện (/su-kien/[slug])
+   Màu do lib/eventThemes.js bơm vào qua biến --ev-*; phần dưới chỉ lo
+   hình nền và chuyển động. Tất cả hoạ tiết đều pointer-events: none.
+   ============================================================ */
+
+.ev-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(160deg, var(--ev-hero-from) 0%, var(--ev-hero-to) 100%);
+  border-bottom: 1px solid var(--ev-line);
+}
+
+.ev-hero--dark {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.ev-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Dải hoạ tiết bám chân hero (núi, tuyết, mái ngói...) */
+.ev-baseline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: clamp(70px, 16vw, 190px);
+}
+
+/* --- Trung thu: sao + trăng + lồng đèn --- */
+.ev-star {
+  position: absolute;
+  border-radius: 9999px;
+  background: #fff3d6;
+  animation: ev-twinkle 4.5s ease-in-out infinite;
+}
+
+.ev-moon {
+  position: absolute;
+  top: 4px;
+  right: 4%;
+  animation: ev-float 9s ease-in-out infinite;
+}
+
+.ev-lantern {
+  position: absolute;
+  transform-origin: 50% 0;
+  scale: var(--ev-lantern-scale, 1);
+  animation: ev-sway 5.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 14px rgba(232, 163, 61, 0.45));
+}
+
+/* --- Giáng sinh: tuyết rơi --- */
+.ev-flake {
+  position: absolute;
+  top: -12px;
+  border-radius: 9999px;
+  background: #ffffff;
+  animation: ev-fall linear infinite;
+}
+
+/* --- Du lịch / teambuilding: mặt trời + mây --- */
+.ev-sun {
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  width: clamp(90px, 14vw, 160px);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 244, 214, 0.9) 0%, rgba(255, 226, 150, 0.35) 45%, rgba(255, 226, 150, 0) 70%);
+  animation: ev-pulse 7s ease-in-out infinite;
+}
+
+.ev-sun--warm {
+  background: radial-gradient(circle, rgba(255, 236, 196, 0.95) 0%, rgba(255, 176, 88, 0.4) 45%, rgba(255, 176, 88, 0) 70%);
+}
+
+.ev-cloud {
+  position: absolute;
+  left: -180px;
+  scale: var(--ev-cloud-scale, 1);
+  animation: ev-drift 42s linear infinite;
+}
+
+.ev-waves {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.ev-waves svg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: clamp(60px, 12vw, 120px);
+}
+
+.ev-waves svg:first-child {
+  animation: ev-wave 14s ease-in-out infinite alternate;
+}
+
+.ev-waves svg:last-child {
+  animation: ev-wave 9s ease-in-out infinite alternate-reverse;
+}
+
+/* --- 8/3: cánh hoa rơi --- */
+.ev-petal {
+  position: absolute;
+  top: -16px;
+  animation: ev-petal-fall linear infinite;
+}
+
+/* --- Sinh nhật: confetti --- */
+.ev-confetti {
+  position: absolute;
+  top: -14px;
+  border-radius: 1px;
+  animation: ev-confetti-fall linear infinite;
+}
+
+/* --- Hội thao: đèn sân khấu + dụng cụ bộ môn --- */
+.ev-beam {
+  position: absolute;
+  top: -30%;
+  width: clamp(120px, 22vw, 280px);
+  height: 160%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0));
+  filter: blur(6px);
+  transform-origin: 50% 0;
+  animation: ev-sweep 11s ease-in-out infinite;
+}
+
+.ev-beam--left {
+  left: 8%;
+  rotate: 14deg;
+}
+
+.ev-beam--right {
+  right: 6%;
+  rotate: -12deg;
+  animation-delay: -5.5s;
+}
+
+.ev-kit {
+  position: absolute;
+  scale: var(--ev-kit-scale, 1);
+  animation: ev-bob 6.5s ease-in-out infinite;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes ev-sweep {
+  0%, 100% { rotate: 12deg; opacity: 0.5; }
+  50% { rotate: -10deg; opacity: 0.85; }
+}
+
+@keyframes ev-bob {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-14px) rotate(8deg); }
+}
+
+@keyframes ev-twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@keyframes ev-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes ev-sway {
+  0%, 100% { rotate: -4deg; }
+  50% { rotate: 4deg; }
+}
+
+@keyframes ev-fall {
+  0% { transform: translateY(-10px) translateX(0); }
+  100% { transform: translateY(360px) translateX(26px); }
+}
+
+@keyframes ev-pulse {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes ev-drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(100vw + 240px)); }
+}
+
+@keyframes ev-wave {
+  0% { transform: translateX(-6%); }
+  100% { transform: translateX(-24%); }
+}
+
+@keyframes ev-petal-fall {
+  0% { transform: translateY(-16px) rotate(0deg); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translateY(340px) translateX(60px) rotate(320deg); opacity: 0; }
+}
+
+@keyframes ev-confetti-fall {
+  0% { transform: translateY(-14px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(330px) translateX(-40px) rotate(540deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ev-star,
+  .ev-moon,
+  .ev-lantern,
+  .ev-flake,
+  .ev-sun,
+  .ev-cloud,
+  .ev-petal,
+  .ev-confetti,
+  .ev-beam,
+  .ev-kit,
+  .ev-waves svg {
+    animation: none !important;
+  }
+  /* Hạt rơi không chuyển động thì giấu đi cho sạch, giữ lại phần nền tĩnh. */
+  .ev-flake,
+  .ev-petal,
+  .ev-confetti {
+    display: none;
+  }
+}
+
+/* Màn hình hẹp: thu nhỏ hoạ tiết lớn để không đè lên tiêu đề. */
+@media (max-width: 640px) {
+  .ev-moon {
+    scale: 0.6;
+    transform-origin: top right;
+    right: 0;
+  }
+
+  .ev-lantern {
+    scale: calc(var(--ev-lantern-scale, 1) * 0.7);
+  }
+
+  /* Màn hẹp: dụng cụ bộ môn rơi đúng vào chỗ chữ -> giấu, giữ đèn + confetti. */
+  .ev-kit {
+    display: none;
+  }
+
+  .ev-sun {
+    top: 4%;
+    right: 4%;
+    opacity: 0.7;
+  }
+}

@@ -63,7 +63,7 @@ export default function SideRail() {
           {LINKS.map((l) => (
             <li key={l.href} className="rail__slot">
               <Link href={l.href} className="rail__item" aria-current={isActive(l) ? "page" : undefined}>
-                <span className="material-symbols-outlined">{l.icon}</span>
+                <span className="material-symbols-outlined" data-anim={l.icon}>{l.icon}</span>
                 <span className="rail__label">{l.label}</span>
               </Link>
             </li>
@@ -78,7 +78,7 @@ export default function SideRail() {
               aria-current={moreActive ? "page" : undefined}
               onClick={() => setMoreOpen((v) => !v)}
             >
-              <span className="material-symbols-outlined">more_horiz</span>
+              <span className="material-symbols-outlined" data-anim="more_horiz">more_horiz</span>
               <span className="rail__label">More</span>
             </button>
 
@@ -87,7 +87,7 @@ export default function SideRail() {
                 <p className="rail__flyout-head">Lối tắt · World Cup 2026</p>
                 {MORE.map((l) => (
                   <Link key={l.href} href={l.href} role="menuitem" className="rail__flyout-item">
-                    <span className="material-symbols-outlined">{l.icon}</span>
+                    <span className="material-symbols-outlined" data-anim={l.icon}>{l.icon}</span>
                     {l.label}
                   </Link>
                 ))}
@@ -99,11 +99,11 @@ export default function SideRail() {
 
       <div className="rail__foot">
         <button type="button" className="rail__foot-btn rail__foot-btn--lang">
-          <span className="material-symbols-outlined">language</span>
+          <span className="material-symbols-outlined" data-anim="language">language</span>
           <span className="rail__label">Tiếng Việt</span>
         </button>
         <Link href="/the-thao" className="rail__foot-btn rail__foot-btn--cta">
-          <span className="material-symbols-outlined">how_to_reg</span>
+          <span className="material-symbols-outlined" data-anim="how_to_reg">how_to_reg</span>
           <span className="rail__label">Điểm danh</span>
         </Link>
       </div>

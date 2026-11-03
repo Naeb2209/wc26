@@ -1,16 +1,24 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { fmtDate, fmtTime, formatFee, relativeDay, weekdayOf, WEEKDAYS } from "@/lib/dc42";
 import { Card, Chip, EmptyState, SportChip } from "./ui";
+import SessionResult from "./SessionResult";
 
 const ME_KEY = "dc42:me";
 
+// Số cột của lưới lịch cố định, theo số mẫu buổi thực có.
+const COLS = { 2: "md:grid-cols-2", 3: "md:grid-cols-3" };
+
 /* Danh sách buổi giao lưu + điểm danh.
    Chưa có đăng nhập -> người dùng tự chọn tên mình một lần, lưu ở localStorage.
-   (Đây là chỗ thay bằng tài khoản thật khi có SSO.) */
+   (Đây là chỗ thay bằng tài khoản thật khi có SSO.)
 
-export default function SessionList({ sessions, members, templates, shared }) {
+   Buổi sắp tới: thẻ đầy đủ, có danh sách đăng ký và hai nút điểm danh.
+   Buổi đã đá: thẻ gọn xếp hai cột, chỉ bảng đội + hiệu số; bấm vào thẻ mở trang buổi. */
+
+export default function SessionList({ sessions, members, templates, shared, sportSlug }) {
   const [me, setMe] = useState("");
   const [state, setState] = useState(() =>
     Object.fromEntries(sessions.map((s) => [s.id, { going: s.going, out: s.out, slotsLeft: s.slotsLeft }]))
@@ -63,15 +71,10 @@ export default function SessionList({ sessions, members, templates, shared }) {
     }
   }
 
-  const byWeek = useMemo(() => {
-    const groups = new Map();
-    for (const s of sessions) {
-      const key = weekLabel(s.date);
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(s);
-    }
-    return [...groups.entries()];
-  }, [sessions]);
+  const upcoming = useMemo(() => sessions.filter((s) => !s.past), [sessions]);
+  const past = useMemo(() => sessions.filter((s) => s.past), [sessions]);
+  const hrefOf = (s) => `/the-thao/${sportSlug}/giao-luu/${encodeURIComponent(s.id)}`;
+  const rowOf = (s) => state[s.id] || { going: [], out: [], slotsLeft: s.capacity };
 
   return (
     <div className="flex flex-col gap-8">
@@ -104,113 +107,164 @@ export default function SessionList({ sessions, members, templates, shared }) {
         </p>
       ) : null}
 
-      {/* Danh sách buổi */}
-      {sessions.length === 0 ? (
-        <EmptyState icon="event_busy" title="Ba tuần tới chưa có buổi nào" />
-      ) : (
-        byWeek.map(([week, list]) => (
-          <div key={week}>
-            <h2 className="mb-3 font-dc-display text-[11px] font-bold uppercase tracking-[0.18em] text-dc-ink-2">{week}</h2>
-            <div className="grid gap-3 lg:grid-cols-2">
-              {list.map((s) => {
-                const row = state[s.id] || { going: [], out: [], slotsLeft: s.capacity };
-                const iAmIn = me && row.going.includes(me);
-                const iAmOut = me && row.out.includes(me);
-                const full = row.slotsLeft === 0 && !iAmIn;
-                const pct = Math.min(100, Math.round((row.going.length / (s.capacity || 1)) * 100));
+      {sessions.length === 0 ? <EmptyState icon="event_busy" title="Chưa có buổi nào sắp tới hay vừa đá" /> : null}
 
-                return (
-                  <Card key={s.id} id={s.id} className={`flex flex-col gap-4 p-5 ${s.cancelled ? "opacity-60" : ""}`}>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <div className="mb-2 flex flex-wrap items-center gap-2">
-                          <SportChip sport={s.sport} />
-                          {s.cancelled ? <Chip tone="live">Đã huỷ</Chip> : <Chip>{relativeDay(s.startsAt)}</Chip>}
-                        </div>
-                        <p className="font-dc-display text-[19px] font-bold leading-tight text-dc-ink">{s.title}</p>
-                        <p className="mt-1 text-[13.5px] text-dc-ink-2">
-                          {weekdayOf(s.startsAt)}, {fmtDate(s.startsAt)} · {fmtTime(s.startsAt)}–{fmtTime(s.endsAt)}
-                        </p>
-                        <p className="text-[13.5px] text-dc-ink-2">
-                          {s.venue?.name} · {formatFee(s.fee)}
-                        </p>
+      {/* Buổi sắp tới */}
+      {upcoming.length > 0 && (
+        <div>
+          <h2 className="mb-3 font-dc-display text-[11px] font-bold uppercase tracking-[0.18em] text-dc-ink-2">
+            Buổi sắp tới
+          </h2>
+          <div className={`grid gap-3 ${upcoming.length > 1 ? "lg:grid-cols-2" : ""}`}>
+            {upcoming.map((s) => {
+              const row = rowOf(s);
+              const iAmIn = me && row.going.includes(me);
+              const iAmOut = me && row.out.includes(me);
+              const full = row.slotsLeft === 0 && !iAmIn;
+              const pct = Math.min(100, Math.round((row.going.length / (s.capacity || 1)) * 100));
+
+              return (
+                <Card key={s.id} id={s.id} className={`flex flex-col gap-4 p-5 ${s.cancelled ? "opacity-60" : ""}`}>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <div className="mb-2 flex flex-wrap items-center gap-2">
+                        <SportChip sport={s.sport} />
+                        {s.cancelled ? <Chip tone="live">Đã huỷ</Chip> : <Chip>{relativeDay(s.startsAt)}</Chip>}
                       </div>
-                      <div className="shrink-0 text-right">
-                        <p className="font-dc-display text-[26px] font-bold leading-none tabular-nums text-dc-ink">
-                          {row.going.length}
-                          <span className="text-[15px] text-dc-ink-2">/{s.capacity}</span>
-                        </p>
-                        <p className="mt-1 font-dc-display text-[10px] font-bold uppercase tracking-[0.12em] text-dc-ink-2">
-                          {row.slotsLeft > 0 ? `còn ${row.slotsLeft} chỗ` : "đã đủ"}
-                        </p>
-                      </div>
+                      <Link
+                        href={hrefOf(s)}
+                        className="font-dc-display text-[19px] font-bold leading-tight text-dc-ink hover:text-dc-gold"
+                      >
+                        {s.title}
+                      </Link>
+                      <p className="mt-1 text-[13.5px] text-dc-ink-2">
+                        {weekdayOf(s.startsAt)}, {fmtDate(s.startsAt)} · {fmtTime(s.startsAt)}–{fmtTime(s.endsAt)}
+                      </p>
+                      <p className="text-[13.5px] text-dc-ink-2">
+                        {s.venue?.name} · {formatFee(s.fee)}
+                      </p>
                     </div>
-
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-dc-bone">
-                      <div
-                        className={`h-full rounded-full ${pct >= 100 ? "bg-dc-gold" : "bg-dc-ink"}`}
-                        style={{ width: `${pct}%` }}
-                      />
+                    <div className="shrink-0 text-right">
+                      <p className="font-dc-display text-[26px] font-bold leading-none tabular-nums text-dc-ink">
+                        {row.going.length}
+                        <span className="text-[15px] text-dc-ink-2">/{s.capacity}</span>
+                      </p>
+                      <p className="mt-1 font-dc-display text-[10px] font-bold uppercase tracking-[0.12em] text-dc-ink-2">
+                        {row.slotsLeft > 0 ? `còn ${row.slotsLeft} chỗ` : "đã đủ"}
+                      </p>
                     </div>
+                  </div>
 
-                    {row.going.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5">
-                        {row.going.map((id) => (
-                          <span
-                            key={id}
-                            className={`rounded-lg px-2 py-1 text-[12.5px] ${
-                              id === me ? "bg-dc-ink text-white" : "bg-dc-bone text-dc-ink"
-                            }`}
-                          >
-                            {nameOf[id] || id}
-                          </span>
-                        ))}
-                        {row.out.length > 0 && (
-                          <span className="px-1 py-1 text-[12.5px] text-dc-ink-2">
-                            · vắng: {row.out.map((id) => nameOf[id] || id).join(", ")}
-                          </span>
-                        )}
-                      </div>
-                    )}
+                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-dc-bone">
+                    <div
+                      className={`h-full rounded-full ${pct >= 100 ? "bg-dc-gold" : "bg-dc-ink"}`}
+                      style={{ width: `${pct}%` }}
+                    />
+                  </div>
 
-                    {s.note ? <p className="text-[13px] text-dc-ink-2">{s.note}</p> : null}
-
-                    {!s.cancelled && (
-                      <div className="flex flex-wrap gap-2">
-                        <button
-                          type="button"
-                          disabled={!me || busy === s.id + "in" || full || iAmIn}
-                          onClick={() => rsvp(s.id, "in")}
-                          className="inline-flex items-center gap-1.5 rounded-full bg-dc-ink px-4 py-2 font-dc-display text-[11px] font-bold uppercase tracking-[0.12em] text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-35"
+                  {row.going.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {row.going.map((id) => (
+                        <span
+                          key={id}
+                          className={`rounded-lg px-2 py-1 text-[12.5px] ${
+                            id === me ? "bg-dc-ink text-white" : "bg-dc-bone text-dc-ink"
+                          }`}
                         >
-                          <span className="material-symbols-outlined text-[16px]">how_to_reg</span>
-                          {iAmIn ? "Đã đăng ký" : full ? "Hết chỗ" : "Tôi tham gia"}
-                        </button>
-                        <button
-                          type="button"
-                          disabled={!me || busy === s.id + "out" || iAmOut}
-                          onClick={() => rsvp(s.id, "out")}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-dc-line px-4 py-2 font-dc-display text-[11px] font-bold uppercase tracking-[0.12em] text-dc-ink-2 transition-colors hover:border-dc-ink hover:text-dc-ink disabled:cursor-not-allowed disabled:opacity-35"
-                        >
-                          <span className="material-symbols-outlined text-[16px]">event_busy</span>
-                          {iAmOut ? "Đã báo vắng" : "Không đi"}
-                        </button>
-                      </div>
-                    )}
-                  </Card>
-                );
-              })}
-            </div>
+                          {nameOf[id] || id}
+                        </span>
+                      ))}
+                      {row.out.length > 0 && (
+                        <span className="px-1 py-1 text-[12.5px] text-dc-ink-2">
+                          · vắng: {row.out.map((id) => nameOf[id] || id).join(", ")}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  {s.note ? <p className="text-[13px] text-dc-ink-2">{s.note}</p> : null}
+
+                  {!s.cancelled && (
+                    <div className="flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        disabled={!me || busy === s.id + "in" || full || iAmIn}
+                        onClick={() => rsvp(s.id, "in")}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-dc-ink px-4 py-2 font-dc-display text-[11px] font-bold uppercase tracking-[0.12em] text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-35"
+                      >
+                        <span className="material-symbols-outlined text-[16px]">how_to_reg</span>
+                        {iAmIn ? "Đã đăng ký" : full ? "Hết chỗ" : "Tôi tham gia"}
+                      </button>
+                      <button
+                        type="button"
+                        disabled={!me || busy === s.id + "out" || iAmOut}
+                        onClick={() => rsvp(s.id, "out")}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-dc-line px-4 py-2 font-dc-display text-[11px] font-bold uppercase tracking-[0.12em] text-dc-ink-2 transition-colors hover:border-dc-ink hover:text-dc-ink disabled:cursor-not-allowed disabled:opacity-35"
+                      >
+                        <span className="material-symbols-outlined text-[16px]">event_busy</span>
+                        {iAmOut ? "Đã báo vắng" : "Không đi"}
+                      </button>
+                    </div>
+                  )}
+                </Card>
+              );
+            })}
           </div>
-        ))
+        </div>
+      )}
+
+      {/* Buổi đã đá: thẻ gọn, hai cột, cả thẻ là một link sang trang buổi. */}
+      {past.length > 0 && (
+        <div>
+          <h2 className="mb-3 flex items-center gap-2 font-dc-display text-[11px] font-bold uppercase tracking-[0.18em] text-dc-ink-2">
+            Đã đá
+            <span className="tabular-nums text-dc-ink-2/60">{past.length} buổi</span>
+          </h2>
+          <div className="grid gap-3 lg:grid-cols-2">
+            {past.map((s) => {
+              const row = rowOf(s);
+              return (
+                <Card key={s.id} href={hrefOf(s)} className={`flex flex-col gap-3 p-4 ${s.cancelled ? "opacity-60" : ""}`}>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="font-dc-display text-[15px] font-bold leading-tight text-dc-ink">
+                        {weekdayOf(s.startsAt)}, {fmtDate(s.startsAt)}
+                      </p>
+                      <p className="mt-0.5 text-[12.5px] text-dc-ink-2">
+                        {relativeDay(s.startsAt)} · {s.venue?.name}
+                      </p>
+                    </div>
+                    <p className="shrink-0 text-right font-dc-display text-[13px] font-bold tabular-nums text-dc-ink-2">
+                      {row.going.length}
+                      <span className="text-dc-ink-2/60">/{s.capacity}</span>
+                    </p>
+                  </div>
+
+                  {s.cancelled ? (
+                    <p className="text-[12.5px] text-dc-ink-2">Đã huỷ{s.cancelReason ? ` · ${s.cancelReason}` : ""}</p>
+                  ) : s.result ? (
+                    <SessionResult result={s.result} sport={s.sport} nameOf={nameOf} variant="card" />
+                  ) : (
+                    <p className="text-[12.5px] text-dc-ink-2">Chưa nhập kết quả.</p>
+                  )}
+                </Card>
+              );
+            })}
+          </div>
+        </div>
       )}
 
       {/* Lịch cố định */}
       <div className="rounded-2xl border border-dc-line bg-white p-5">
         <h2 className="font-dc-display text-[11px] font-bold uppercase tracking-[0.18em] text-dc-ink-2">Lịch cố định</h2>
-        <ul className="mt-3 grid gap-3 md:grid-cols-3">
+        <ul className={`mt-3 grid gap-3 ${COLS[Math.min(templates.length, 3)] || ""}`}>
           {templates.map((t) => (
-            <li key={t.id} className="rounded-xl border border-dc-line bg-dc-paper px-4 py-3">
+            <li
+              key={t.id}
+              className={`rounded-xl border border-dc-line bg-dc-paper px-4 py-3 ${
+                templates.length > 1 ? "" : "max-w-card-max"
+              }`}
+            >
               <p className="font-dc-display text-[14px] font-bold text-dc-ink">{WEEKDAYS[t.weekday]}</p>
               <p className="text-[13px] text-dc-ink-2">
                 {t.start}–{t.end} · {t.venue}
@@ -224,13 +278,4 @@ export default function SessionList({ sessions, members, templates, shared }) {
       </div>
     </div>
   );
-}
-
-function weekLabel(date) {
-  const d = new Date(date + "T00:00:00Z");
-  const day = d.getUTCDay();
-  const monday = new Date(d.getTime() - ((day + 6) % 7) * 86400000);
-  const sunday = new Date(monday.getTime() + 6 * 86400000);
-  const f = (x) => `${String(x.getUTCDate()).padStart(2, "0")}/${String(x.getUTCMonth() + 1).padStart(2, "0")}`;
-  return `Tuần ${f(monday)} – ${f(sunday)}`;
 }

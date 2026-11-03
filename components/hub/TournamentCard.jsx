@@ -1,14 +1,18 @@
 import Link from "next/link";
 import { fmtDate, memberName, podiumOf, venueById } from "@/lib/dc42";
 import { Chip, StatusChip } from "./ui";
+import SeasonPicker from "./SeasonPicker";
 
 /* Thẻ một giải, dựng theo nhịp thẻ competition của EWC:
    đầu thẻ (chip đơn vị + trạng thái, tên giải, thể thức) -> khối podium nền xám, hàng đầu tô gold
    -> danh sách thông số label ↔ value kẻ mảnh -> nút CTA tràn ngang ở đáy.
    Thẻ không bọc trong <a> — CTA và tên giải là hai link riêng, tránh anchor lồng anchor. */
 
-export default function TournamentCard({ tournament: t, sportSlug }) {
+export default function TournamentCard({ tournament: t, sportSlug, league, seasons }) {
   const href = `/the-thao/${sportSlug}/giai-dau/${t.slug}`;
+  // Giải nhiều mùa: thẻ mang tên giải, mùa nào đang hiện thì do bộ chọn mùa nói.
+  const multi = (seasons || []).length > 1;
+  const title = multi && league?.name ? league.name : t.name;
   const podium = podiumOf(t);
   const venue = venueById(t.venueId);
   const played = (t.matches || []).filter((m) => m.status === "done").length;
@@ -41,16 +45,27 @@ export default function TournamentCard({ tournament: t, sportSlug }) {
         <div className="flex flex-wrap items-center gap-2">
           <Chip tone={t.host === "TMA" ? "neutral" : "gold"}>{t.host}</Chip>
           <StatusChip status={t.status} />
-          <span className="ml-auto font-dc-display text-[10px] font-bold uppercase tracking-[0.14em] text-dc-ink-2">
-            Mùa {t.season}
-          </span>
+          {/* Giải nhiều mùa đã có bộ chọn mùa ngay dưới tên -> không lặp lại nhãn mùa ở đây. */}
+          {multi ? null : (
+            <span className="ml-auto font-dc-display text-[10px] font-bold uppercase tracking-[0.14em] text-dc-ink-2">
+              Mùa {t.season}
+            </span>
+          )}
         </div>
 
         <Link href={href} className="font-dc-display text-[21px] font-bold leading-tight text-dc-ink hover:text-dc-gold">
-          {t.name}
+          {title}
         </Link>
 
-        {t.format ? <p className="text-[13px] text-dc-ink-2">{t.format}</p> : null}
+        {multi ? (
+          <SeasonPicker seasons={seasons} current={t.slug} sportSlug={sportSlug} size="sm" className="pt-0.5" />
+        ) : null}
+
+        {t.format ? (
+          <p className="text-[13px] text-dc-ink-2">
+            {[multi ? t.division : null, t.format].filter(Boolean).join(" · ")}
+          </p>
+        ) : null}
       </div>
 
       {podium ? <Podium podium={podium} /> : null}
