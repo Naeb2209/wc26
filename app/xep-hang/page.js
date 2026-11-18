@@ -138,13 +138,34 @@ export default function RankingPage() {
         {scorers.length === 0 ? (
           <EmptyState icon="sports_soccer" title="Chưa có dữ liệu bàn thắng" />
         ) : (
-          <ol className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
+          <ol className="grid items-start gap-2 md:grid-cols-2 lg:grid-cols-3">
             {scorers.map((s, i) => (
-              <li key={s.memberId} className="flex items-center gap-3 rounded-2xl border border-dc-line bg-white px-5 py-3.5">
-                <span className="w-5 font-dc-display text-[13px] font-bold tabular-nums text-dc-ink-2">{i + 1}</span>
-                <span className="min-w-0 flex-1 truncate font-dc-display text-[15px] font-bold text-dc-ink">{s.name}</span>
-                <span className="hidden text-[12.5px] text-dc-ink-2 sm:block">{s.team}</span>
-                <span className="font-dc-display text-[18px] font-bold tabular-nums text-dc-gold">{s.goals}</span>
+              <li key={s.memberId} className="rounded-2xl border border-dc-line bg-white">
+                {/* Bấm vào dòng để xổ ra số bàn từng mùa — <details> nên khỏi cần JS phía client. */}
+                <details className="group">
+                  <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-3.5 [&::-webkit-details-marker]:hidden">
+                    <span className="w-5 font-dc-display text-[13px] font-bold tabular-nums text-dc-ink-2">{i + 1}</span>
+                    <span className="min-w-0 flex-1 truncate font-dc-display text-[15px] font-bold text-dc-ink">{s.name}</span>
+                    <span className="hidden text-[12.5px] text-dc-ink-2 sm:block">{s.team}</span>
+                    <span className="font-dc-display text-[18px] font-bold tabular-nums text-dc-gold">{s.goals}</span>
+                    <span className="material-symbols-outlined text-[18px] text-dc-ink-2 transition-transform group-open:rotate-180">
+                      expand_more
+                    </span>
+                  </summary>
+                  <ul className="flex flex-col gap-1.5 border-t border-dc-line px-5 py-3">
+                    {s.seasons.map((t) => (
+                      <li key={t.slug} className="flex items-center gap-3 text-[13px]">
+                        <Link
+                          href={`/the-thao/${sportSlug(t.sport)}/giai-dau/${t.slug}`}
+                          className="min-w-0 flex-1 truncate text-dc-ink-2 hover:text-dc-ink"
+                        >
+                          {t.name}
+                        </Link>
+                        <span className="font-dc-display font-bold tabular-nums text-dc-ink">{t.goals}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
               </li>
             ))}
           </ol>
