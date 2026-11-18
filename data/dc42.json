@@ -77,7 +77,6 @@
     { "id": "m40", "name": "Duy Nguyễn", "short": "Duy Nguyễn", "number": "26", "team": "DC42", "sports": [ "football" ], "tier": 3 },
     { "id": "m41", "name": "Phước Nguyễn", "short": "Phước Nguyễn", "number": "99", "team": "DC42", "sports": [ "football" ], "tier": 3 },
     { "id": "m42", "name": "Tài Ngụy", "short": "Tài Ngụy", "number": "11", "team": "DC42", "sports": [ "football" ], "tier": 3 },
-    { "id": "m43", "name": "Vũ Tạ", "short": "Vũ Tạ", "team": "DC42", "sports": [ "football" ], "tier": 3 },
     { "id": "m45", "name": "Vũ Đặng", "short": "Vũ Đặng", "team": "DC42", "sports": [ "football" ], "tier": 3 },
     { "id": "m46", "name": "Trí Hồ", "short": "Trí Hồ", "team": "DC42", "sports": [ "football" ], "tier": 3 },
     { "id": "m47", "name": "Luân La", "short": "Luân La", "team": "DC42", "sports": [ "football" ], "tier": 3 }
@@ -718,9 +717,9 @@
       "teams": [ "t-dzapbong", "t-hocon", "t-dzapco", "t-thichbong", "t-bug", "t-gatdzo", "t-baocon" ],
       "matches": [
         { "id": "dg723-v1-dzapco-baocon", "round": "Vòng 1", "home": "t-dzapco", "away": "t-baocon", "hs": 7, "as": 1, "status": "done" },
-        { "id": "dg723-v1-dzapbong-bug", "round": "Vòng 1", "home": "t-dzapbong", "away": "t-bug", "hs": 3, "as": 1, "status": "done", "goals": [ { "m": "m29" }, { "m": "m31" }, { "m": "m43" } ] },
+        { "id": "dg723-v1-dzapbong-bug", "round": "Vòng 1", "home": "t-dzapbong", "away": "t-bug", "hs": 3, "as": 1, "status": "done", "goals": [ { "m": "m29" }, { "m": "m31" }, { "m": "m30" } ] },
         { "id": "dg723-v1-gatdzo-thichbong", "round": "Vòng 1", "home": "t-gatdzo", "away": "t-thichbong", "hs": 1, "as": 6, "status": "done", "goals": [ { "m": "m39" } ] },
-        { "id": "dg723-v2-dzapbong-gatdzo", "round": "Vòng 2", "home": "t-dzapbong", "away": "t-gatdzo", "hs": 5, "as": 1, "status": "done", "goals": [ { "m": "m22", "n": 2 }, { "m": "m29" }, { "m": "m43" }, { "m": "m37" }, { "m": "m21" } ] },
+        { "id": "dg723-v2-dzapbong-gatdzo", "round": "Vòng 2", "home": "t-dzapbong", "away": "t-gatdzo", "hs": 5, "as": 1, "status": "done", "goals": [ { "m": "m22", "n": 2 }, { "m": "m29" }, { "m": "m30" }, { "m": "m37" }, { "m": "m21" } ] },
         { "id": "dg723-v2-baocon-thichbong", "round": "Vòng 2", "home": "t-baocon", "away": "t-thichbong", "hs": 5, "as": 0, "status": "done" },
         { "id": "dg723-v2-hocon-bug", "round": "Vòng 2", "home": "t-hocon", "away": "t-bug", "hs": 7, "as": 1, "status": "done" },
         { "id": "dg723-v3-thichbong-dzapco", "round": "Vòng 3", "home": "t-thichbong", "away": "t-dzapco", "hs": 9, "as": 0, "status": "done" },
