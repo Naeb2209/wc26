@@ -242,12 +242,13 @@
       "templateId": "st-football-thu",
       "date": "2026-11-18",
       "capacity": 18,
+      "split": "17:15",
       "splitTeams": 3,
       "pots": [
         ["Nhân", "Huy Hòe", "Duy"],
         ["Tuân", "Hậu", "Bean"],
         ["Nhật", "Vũ Đặng", "aTai"],
-        ["Đông", "Nghĩa", "Tú"],
+        ["Đông", "Tú"],
         ["Nam", "Hảo", "Vũ"],
         ["Đạt G", "Hoàng", "Heiniken"]
       ]
