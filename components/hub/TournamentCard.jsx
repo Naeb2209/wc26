@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fmtDate, memberName, podiumOf, venueById } from "@/lib/dc42";
+import { coverOf, fmtDate, memberName, podiumOf, venueById } from "@/lib/dc42";
 import { Chip, StatusChip } from "./ui";
 import SeasonPicker from "./SeasonPicker";
 
@@ -14,6 +14,7 @@ export default function TournamentCard({ tournament: t, sportSlug, league, seaso
   const multi = (seasons || []).length > 1;
   const title = multi && league?.name ? league.name : t.name;
   const podium = podiumOf(t);
+  const cover = coverOf(t.slug);
   const venue = venueById(t.venueId);
   const played = (t.matches || []).filter((m) => m.status === "done").length;
 
@@ -28,7 +29,10 @@ export default function TournamentCard({ tournament: t, sportSlug, league, seaso
     .join(" · ");
 
   const specs = [
-    { label: "Thời gian", value: `${fmtDate(t.startDate)} – ${fmtDate(t.endDate)}`, nums: true },
+    // Mùa cũ gõ tay từ bản tường thuật không có ngày -> bỏ hẳn dòng, không để " – " trơ ra.
+    t.startDate && t.endDate
+      ? { label: "Thời gian", value: `${fmtDate(t.startDate)} – ${fmtDate(t.endDate)}`, nums: true }
+      : null,
     venue ? { label: "Sân", value: venue.name } : null,
     scale ? { label: "Quy mô", value: scale, nums: true } : null,
     t.topScorer
@@ -41,6 +45,21 @@ export default function TournamentCard({ tournament: t, sportSlug, league, seaso
 
   return (
     <article className="flex flex-col overflow-hidden rounded-2xl border border-dc-line bg-white">
+      {/* Mùa nào có ảnh thì mở đầu thẻ bằng một tấm — mùa chưa góp ảnh vẫn giữ nguyên bố cục cũ. */}
+      {cover ? (
+        <Link href={href} className="group relative block aspect-[16/9] overflow-hidden bg-dc-bone">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={cover.url}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+          <span className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/45 to-transparent" />
+        </Link>
+      ) : null}
+
       <div className="flex flex-col gap-2.5 px-6 pb-5 pt-5">
         <div className="flex flex-wrap items-center gap-2">
           <Chip tone={t.host === "TMA" ? "neutral" : "gold"}>{t.host}</Chip>

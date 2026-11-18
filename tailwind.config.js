@@ -14,10 +14,18 @@ module.exports = {
         "dc-gold": "#987c4b",
         "dc-gold-deep": "#7d6339",
         "dc-gold-soft": "#f0e7d6",
+        // Hạng huy chương ở phòng danh hiệu — hạ bão hoà cho cùng tông đất với gold/ink.
+        "dc-silver": "#8d9196",
+        "dc-bronze": "#a1703f",
         "dc-bone": "#ededed",
         "dc-paper": "#faf8f5",
         "dc-line": "#e2ded6",
         "dc-pitch": "#2f6b45",
+        // Màu áo khi bốc thăm chia đội — hạ bão hoà cho cùng tông đất với gold/ink của hub,
+        // thay cho đỏ/xanh/vàng nguyên bản của Tailwind vốn chói hơn hẳn phần còn lại.
+        "dc-kit-red": "#a4453f",
+        "dc-kit-blue": "#3d6b8e",
+        "dc-kit-yellow": "#c08f2c",
         "dc-court": "#1f5f8b",
         "dc-social": "#8c3a52",
         "dc-fantasy": "#6b4a86",

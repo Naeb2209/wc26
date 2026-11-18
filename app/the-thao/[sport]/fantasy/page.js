@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { defaultSeasonOf, leagueSeasons, predictionLeaguesOf, sportBySlug, sports } from "@/lib/dc42";
 import { EmptyState, PageHeader, Section, Stat } from "@/components/hub/ui";
@@ -18,12 +19,17 @@ export async function generateMetadata({ params }) {
   return sp ? { title: `Fantasy ${sp.name.toLowerCase()} | DC42 Hub` } : {};
 }
 
-export default async function FantasyPage({ params }) {
+export default async function FantasyPage({ params, searchParams }) {
   const { sport } = await params;
   const sp = sportBySlug(sport);
   if (!sp || !sp.hasPrediction) notFound();
 
-  const leagues = predictionLeaguesOf(sp.id);
+  // Bấm một thẻ Fantasy ở trang môn thì sang đây với ?giai= -> chỉ mở đúng giải đó,
+  // không dội lại cả hai thẻ y như trang vừa rời đi.
+  const sq = (await searchParams) || {};
+  const all = predictionLeaguesOf(sp.id);
+  const only = all.find((l) => l.slug === sq.giai) || null;
+  const leagues = only ? [only] : all;
   const allSeasons = leagues.flatMap(leagueSeasons);
   const running = allSeasons.filter((x) => x.status === "running").length;
   const bets = allSeasons.reduce((n, s) => n + (s.predictions || []).length, 0);
@@ -34,8 +40,12 @@ export default async function FantasyPage({ params }) {
 
       <PageHeader
         eyebrow={`${sp.name} · Fantasy`}
-        title="Chơi cùng các giải lớn"
-        lede="Fantasy dựa trên giải bên ngoài — World Cup, Premier League. Mỗi giải gom mọi mùa, chọn mùa ngay trên thẻ; mini game dự đoán của mùa nằm luôn trong thẻ."
+        title={only ? only.name : "Chơi cùng các giải lớn"}
+        lede={
+          only
+            ? only.note
+            : "Fantasy dựa trên giải bên ngoài — World Cup, Premier League. Mỗi giải gom mọi mùa, chọn mùa ngay trên thẻ; mini game dự đoán của mùa nằm luôn trong thẻ."
+        }
       />
 
       <Section>
@@ -47,7 +57,20 @@ export default async function FantasyPage({ params }) {
         </div>
       </Section>
 
-      <Section title="Fantasy" hint="Chọn đội hình từ cầu thủ thật, tính điểm theo từng vòng.">
+      <Section
+        title="Fantasy"
+        hint="Chọn đội hình từ cầu thủ thật, tính điểm theo từng vòng."
+        action={
+          only ? (
+            <Link
+              href={`/the-thao/${sp.slug}/fantasy`}
+              className="font-dc-display text-[11px] font-bold uppercase tracking-[0.14em] text-dc-gold"
+            >
+              Tất cả {all.length} giải →
+            </Link>
+          ) : undefined
+        }
+      >
         {leagues.length === 0 ? (
           <EmptyState icon="stadium" title="Chưa có giải Fantasy nào" />
         ) : (

@@ -1,53 +1,52 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import { fmtDate, fmtTime, formatFee, relativeDay, weekdayOf, WEEKDAYS } from "@/lib/dc42";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { fmtDate, fmtTime, formatFee, relativeDay, splitAt, splitsTeams, weekdayOf, WEEKDAYS } from "@/lib/dc42";
 import { Card, Chip, EmptyState, SportChip } from "./ui";
 import SessionResult from "./SessionResult";
-
-const ME_KEY = "dc42:me";
+import TeamDraw from "./TeamDraw";
+import LoginBox from "./LoginBox";
 
 // Số cột của lưới lịch cố định, theo số mẫu buổi thực có.
 const COLS = { 2: "md:grid-cols-2", 3: "md:grid-cols-3" };
 
 /* Danh sách buổi giao lưu + điểm danh.
-   Chưa có đăng nhập -> người dùng tự chọn tên mình một lần, lưu ở localStorage.
-   (Đây là chỗ thay bằng tài khoản thật khi có SSO.)
+   Muốn điểm danh thì phải đăng nhập: server lấy danh tính từ cookie đã ký, nên không ai
+   điểm danh hộ người khác được. Tài khoản khai sẵn trong data — xem lib/auth.js.
 
    Buổi sắp tới: thẻ đầy đủ, có danh sách đăng ký và hai nút điểm danh.
    Buổi đã đá: thẻ gọn xếp hai cột, chỉ bảng đội + hiệu số; bấm vào thẻ mở trang buổi. */
 
-export default function SessionList({ sessions, members, templates, shared, sportSlug }) {
-  const [me, setMe] = useState("");
+export default function SessionList({ sessions, members, templates, shared, sportSlug, farmKing, streaks }) {
+  const [user, setUser] = useState(null);
+  const loginRef = useRef(null);
+  const me = user?.memberId || "";
   const [state, setState] = useState(() =>
     Object.fromEntries(sessions.map((s) => [s.id, { going: s.going, out: s.out, slotsLeft: s.slotsLeft }]))
   );
   const [busy, setBusy] = useState(null);
   const [error, setError] = useState("");
 
+  // Cookie là httpOnly nên client không đọc được -> hỏi server xem ai đang đăng nhập.
   useEffect(() => {
-    try {
-      setMe(localStorage.getItem(ME_KEY) || "");
-    } catch {
-      /* trình duyệt chặn storage -> vẫn xem được, chỉ không nhớ tên */
-    }
+    let alive = true;
+    fetch("/api/auth")
+      .then((r) => r.json())
+      .then((d) => alive && d.ok && setUser(d.user))
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
   }, []);
 
   const nameOf = useMemo(() => Object.fromEntries(members.map((m) => [m.id, m.short || m.name])), [members]);
 
-  const pickMe = (id) => {
-    setMe(id);
-    try {
-      localStorage.setItem(ME_KEY, id);
-    } catch {
-      /* bỏ qua */
-    }
-  };
-
   async function rsvp(sessionId, status) {
     if (!me) {
-      setError("Chọn tên của bạn trước khi điểm danh.");
+      setError("Đăng nhập trước đã.");
+      loginRef.current?.focus();
+      loginRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
       return;
     }
     setBusy(sessionId + status);
@@ -56,7 +55,7 @@ export default function SessionList({ sessions, members, templates, shared, spor
       const res = await fetch("/api/rsvp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId, memberId: me, status }),
+        body: JSON.stringify({ sessionId, status }),
       });
       const data = await res.json();
       if (!data.ok) {
@@ -71,6 +70,17 @@ export default function SessionList({ sessions, members, templates, shared, spor
     }
   }
 
+  // Một đồng hồ cho cả trang: đếm ngược và mốc khoá điểm danh phải nhảy cùng một nhịp,
+  // không thì có cửa sổ vài chục giây vừa lộ đội vừa còn điểm danh được.
+  // null = chưa mount -> server và client render giống nhau.
+  const [now, setNow] = useState(null);
+  useEffect(() => {
+    setNow(Date.now());
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const locked = (s) => splitsTeams(s) && now !== null && now >= splitAt(s);
+
   const upcoming = useMemo(() => sessions.filter((s) => !s.past), [sessions]);
   const past = useMemo(() => sessions.filter((s) => s.past), [sessions]);
   const hrefOf = (s) => `/the-thao/${sportSlug}/giao-luu/${encodeURIComponent(s.id)}`;
@@ -78,27 +88,15 @@ export default function SessionList({ sessions, members, templates, shared, spor
 
   return (
     <div className="flex flex-col gap-8">
-      {/* Chọn tên */}
-      <div className="flex flex-col gap-3 rounded-2xl border border-dc-line bg-dc-paper px-5 py-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="font-dc-display text-[10px] font-bold uppercase tracking-[0.16em] text-dc-gold">Bạn là ai?</p>
-          <p className="mt-0.5 text-[13.5px] text-dc-ink-2">
-            Chọn tên để điểm danh. {shared ? "Danh sách dùng chung cho cả nhóm." : "Chưa nối KV nên điểm danh chỉ lưu tạm trên server này."}
-          </p>
+      {/* Hai bảng vàng mở đầu trang: ghi nhiều nhất và đi đều nhất. Có đủ cả hai thì xếp cạnh nhau. */}
+      {farmKing || streaks ? (
+        <div className={`grid gap-3 ${farmKing && streaks ? "lg:grid-cols-2" : ""}`}>
+          {farmKing}
+          {streaks}
         </div>
-        <select
-          value={me}
-          onChange={(e) => pickMe(e.target.value)}
-          className="w-full rounded-xl border border-dc-line bg-white px-3 py-2.5 font-dc-display text-[13px] font-bold uppercase tracking-[0.08em] text-dc-ink md:w-64"
-        >
-          <option value="">— Chọn tên —</option>
-          {members.map((m) => (
-            <option key={m.id} value={m.id}>
-              {m.name}
-            </option>
-          ))}
-        </select>
-      </div>
+      ) : null}
+
+      <LoginBox user={user} onChange={setUser} focusRef={loginRef} shared={shared} />
 
       {error ? (
         <p className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[13.5px] text-red-700">
@@ -182,28 +180,48 @@ export default function SessionList({ sessions, members, templates, shared, spor
                     </div>
                   )}
 
+                  {!s.cancelled && splitsTeams(s) && (
+                    <TeamDraw session={s} going={row.going} nameOf={nameOf} now={now} />
+                  )}
+
                   {s.note ? <p className="text-[13px] text-dc-ink-2">{s.note}</p> : null}
 
                   {!s.cancelled && (
                     <div className="flex flex-wrap gap-2">
                       <button
                         type="button"
-                        disabled={!me || busy === s.id + "in" || full || iAmIn}
+                        disabled={busy === s.id + "in" || (me && (full || iAmIn)) || locked(s)}
                         onClick={() => rsvp(s.id, "in")}
                         className="inline-flex items-center gap-1.5 rounded-full bg-dc-ink px-4 py-2 font-dc-display text-[11px] font-bold uppercase tracking-[0.12em] text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-35"
                       >
                         <span className="material-symbols-outlined text-[16px]">how_to_reg</span>
-                        {iAmIn ? "Đã đăng ký" : full ? "Hết chỗ" : "Tôi tham gia"}
+                        {!me
+                          ? "Đăng nhập để điểm danh"
+                          : iAmIn
+                            ? "Đã đăng ký"
+                            : locked(s)
+                              ? "Đã chốt"
+                              : full
+                                ? "Hết chỗ"
+                                : "Tôi tham gia"}
                       </button>
                       <button
                         type="button"
-                        disabled={!me || busy === s.id + "out" || iAmOut}
+                        disabled={busy === s.id + "out" || (me && iAmOut) || locked(s)}
                         onClick={() => rsvp(s.id, "out")}
                         className="inline-flex items-center gap-1.5 rounded-full border border-dc-line px-4 py-2 font-dc-display text-[11px] font-bold uppercase tracking-[0.12em] text-dc-ink-2 transition-colors hover:border-dc-ink hover:text-dc-ink disabled:cursor-not-allowed disabled:opacity-35"
                       >
                         <span className="material-symbols-outlined text-[16px]">event_busy</span>
                         {iAmOut ? "Đã báo vắng" : "Không đi"}
                       </button>
+
+                      <Link
+                        href={hrefOf(s)}
+                        className="ml-auto inline-flex items-center gap-1.5 self-center font-dc-display text-[11px] font-bold uppercase tracking-[0.12em] text-dc-ink-2 transition-colors hover:text-dc-gold"
+                      >
+                        Xem toàn trang
+                        <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                      </Link>
                     </div>
                   )}
                 </Card>
@@ -217,7 +235,7 @@ export default function SessionList({ sessions, members, templates, shared, spor
       {past.length > 0 && (
         <div>
           <h2 className="mb-3 flex items-center gap-2 font-dc-display text-[11px] font-bold uppercase tracking-[0.18em] text-dc-ink-2">
-            Đã đá
+            Buổi đã qua
             <span className="tabular-nums text-dc-ink-2/60">{past.length} buổi</span>
           </h2>
           <div className="grid gap-3 lg:grid-cols-2">

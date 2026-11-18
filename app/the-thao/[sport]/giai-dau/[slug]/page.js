@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import {
   fmtDate,
   fmtTime,
+  focusTeamsOf,
   leagueById,
   mediaFor,
   memberName,
@@ -19,9 +20,12 @@ import {
   venueById,
   weekdayOf,
 } from "@/lib/dc42";
-import { Card, Chip, EmptyState, MediaTile, PageHeader, Section, SportChip, Stat, StatusChip } from "@/components/hub/ui";
+import { Card, Chip, EmptyState, PageHeader, Section, SportChip, Stat, StatusChip } from "@/components/hub/ui";
 import SportNav from "@/components/hub/SportNav";
 import SeasonPicker from "@/components/hub/SeasonPicker";
+import PhotoSlider from "@/components/hub/PhotoSlider";
+import SeasonAlbum from "@/components/hub/SeasonAlbum";
+import MatchTimeline from "@/components/hub/MatchTimeline";
 
 // Trang tĩnh nhưng có nhãn thời gian tương đối ("còn 3 ngày") -> làm mới mỗi giờ.
 export const revalidate = 3600;
@@ -43,23 +47,48 @@ export default async function TournamentPage({ params }) {
   // Chặn đường dẫn lệch môn, ví dụ /the-thao/cau-long/giai-dau/tma-futsal-league-2026.
   if (!sp || !t || t.sport !== sp.id) notFound();
 
-  // focusTeam: giải của đơn vị ngoài (TMA) chỉ liệt kê trận của đội DC — BXH bên trên vẫn tính đủ các đội.
+  // Giải của đơn vị ngoài chỉ liệt kê trận của đội DC — BXH bên trên vẫn tính đủ các đội.
+  // DG7 League Cup mỗi mùa DC góp hai đội nên đây là một mảng.
+  const focus = focusTeamsOf(t);
   const { played: allPlayed, upcoming: allUpcoming } = splitMatches(t);
-  const mine = (m) => !t.focusTeam || m.home === t.focusTeam || m.away === t.focusTeam;
+  const mine = (m) => focus.length === 0 || focus.includes(m.home) || focus.includes(m.away);
   const played = allPlayed.filter(mine);
   const upcoming = allUpcoming.filter(mine);
   // Một danh sách duy nhất: trận chưa đá lên đầu, rồi tới trận đã đá mới nhất trước.
   const timeline = [...upcoming, ...played];
+  // Dựng sẵn chữ ở đây để khối danh sách (client, có bộ lọc đội) không phải kéo cả dc42.json xuống máy.
+  const timelineRows = timeline.map((m) => {
+    const done = m.status === "done";
+    const football = t.sport === "football";
+    return {
+      id: m.id,
+      done,
+      teams: [m.home, m.away],
+      lead: done ? m.round || weekdayOf(m.date) : weekdayOf(m.date),
+      when: fmtDate(m.date) + (done ? "" : ` · ${fmtTime(m.date)}`),
+      home: football ? teamName(m.home) : m.home || "?",
+      away: football ? teamName(m.away) : m.away || "?",
+      score: done ? (football ? `${m.hs} – ${m.as}` : m.score) : "vs",
+      goals: (m.goals || []).map((g) => ({ id: g.m, name: memberName(g.m), n: g.n || 1 })),
+    };
+  });
+  // Mùa có hai đội của DC thì cho lọc theo từng đội.
+  const focusChips = focus.map((id) => ({ id, name: teamName(id) }));
   const table = standingsOf(t);
   const scorers = scorersOf(t).slice(0, 6);
   // Đội hình mùa này: chỉ những giải có khai roster mới hiện. Số áo lấy theo mùa.
   const roster = rosterOf(t);
   const album = mediaFor(t.slug);
+  const photos = album.filter((m) => m.type === "image" && m.url);
   const venue = venueById(t.venueId);
   const isFootball = t.sport === "football";
   // Giải nhiều mùa (vd TMA Futsal League): tiêu đề mang tên giải, mùa do bộ chọn mùa nói.
   const seasons = siblingSeasonsOf(t);
   const league = seasons.length > 1 ? leagueById(t.league) : null;
+  // Album gom cả giải: mỗi mùa có ảnh là một pill, mùa đang xem mở sẵn.
+  const seasonAlbums = (seasons.length > 1 ? seasons : [t])
+    .map((s) => ({ slug: s.slug, season: s.season, items: mediaFor(s.slug) }))
+    .filter((a) => a.items.length > 0);
 
   return (
     <>
@@ -86,14 +115,29 @@ export default async function TournamentPage({ params }) {
         }
       />
 
-      {league ? (
+      {/* Hàng chọn mùa nằm ngay trên băng ảnh: đổi mùa là đổi cả ảnh lẫn số liệu bên dưới.
+          Giới thiệu giải đã nằm ở lede của trang nên không lặp lại ở đây nữa. */}
+      {league || photos.length > 0 ? (
         <Section>
-          <div className="rounded-2xl border border-dc-line bg-white px-5 py-4">
-            <SeasonPicker seasons={seasons} current={t.slug} sportSlug={sp.slug} />
-            <p className="mt-2 text-[13px] text-dc-ink-2">
-              {league.blurb || "Mỗi mùa có bảng xếp hạng, lịch đấu và đội hình riêng."}
-            </p>
-          </div>
+          {league ? (
+            <SeasonPicker seasons={seasons} current={t.slug} sportSlug={sp.slug} size="sm" className="mb-3" />
+          ) : null}
+
+          {photos.length > 0 ? (
+            // Để tràn hết bề ngang nội dung cho hai tấm kề có chỗ ló ra; cỡ ảnh giữa do
+            // chiều cao băng chuyền quyết định.
+            <div className="w-full">
+              <PhotoSlider items={photos} />
+              <div className="mt-2 flex justify-end">
+                <Link
+                  href="#album"
+                  className="font-dc-display text-[11px] font-bold uppercase tracking-[0.14em] text-dc-gold"
+                >
+                  {photos.length} ảnh mùa này →
+                </Link>
+              </div>
+            </div>
+          ) : null}
         </Section>
       ) : null}
 
@@ -101,7 +145,12 @@ export default async function TournamentPage({ params }) {
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Stat label="Thể thức" value={isFootball ? `${t.teams?.length || 0} đội` : (t.entries?.length || 0) + " cặp"} sub={t.format} />
           <Stat label="Đã đá" value={`${allPlayed.length}`} sub={`Còn ${allUpcoming.length} trận`} />
-          <Stat label="Thời gian" value={fmtDate(t.startDate).slice(0, 5)} sub={`đến ${fmtDate(t.endDate)}`} />
+          {/* Mùa cũ chỉ biết năm thì ô này nói mùa, không để ngày trống. */}
+          {t.startDate ? (
+            <Stat label="Thời gian" value={fmtDate(t.startDate).slice(0, 5)} sub={`đến ${fmtDate(t.endDate)}`} />
+          ) : (
+            <Stat label="Thời gian" value={t.season} sub="Không lưu ngày từng vòng" />
+          )}
           <Stat label="Địa điểm" value={venue?.name?.replace(/^Sân |^NTĐ |^CLB /, "") || "—"} sub={venue?.address} />
         </div>
       </Section>
@@ -130,7 +179,7 @@ export default async function TournamentPage({ params }) {
                   <tbody>
                     {table.map((r, i) => {
                       // Hàng của đội DC được tô nền vàng nhạt cho dễ tìm trong bảng.
-                      const isMine = r.teamId === t.focusTeam;
+                      const isMine = focus.includes(r.teamId);
                       return (
                       <tr
                         key={r.teamId}
@@ -197,66 +246,10 @@ export default async function TournamentPage({ params }) {
       )}
 
       <Section
-        title={t.focusTeam ? `Lịch & kết quả của ${teamName(t.focusTeam)}` : "Lịch & kết quả"}
-        hint={t.focusTeam ? "Chỉ liệt kê trận có đội của DC; bảng xếp hạng bên trên vẫn tính đủ các đội." : undefined}
+        title={focus.length ? `Lịch & kết quả của ${focus.map(teamName).join(" và ")}` : "Lịch & kết quả"}
+        hint={focus.length ? "Chỉ liệt kê trận có đội của DC; bảng xếp hạng bên trên vẫn tính đủ các đội." : undefined}
       >
-        {timeline.length === 0 ? (
-          <EmptyState icon="history" title="Mùa này không lưu chi tiết từng trận" />
-        ) : (
-          <ul className="flex flex-col gap-2">
-            {timeline.map((m) => {
-              const done = m.status === "done";
-              return (
-                <li key={m.id} className="flex flex-wrap items-center gap-x-4 gap-y-1 rounded-2xl border border-dc-line bg-white px-5 py-4">
-                  <div className="w-[86px] shrink-0">
-                    <p className={`font-dc-display text-[11px] font-bold uppercase tracking-[0.1em] ${done ? "text-dc-ink-2" : "text-dc-gold"}`}>
-                      {done ? m.round || weekdayOf(m.date) : weekdayOf(m.date)}
-                    </p>
-                    <p className="text-[13px] tabular-nums text-dc-ink-2">
-                      {fmtDate(m.date)}
-                      {done ? "" : ` · ${fmtTime(m.date)}`}
-                    </p>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-dc-display text-[15.5px] font-bold text-dc-ink">
-                      {isFootball ? (
-                        <>
-                          {teamName(m.home)}{" "}
-                          <span className={done ? "text-dc-gold" : "text-dc-ink-2"}>{done ? `${m.hs} – ${m.as}` : "vs"}</span>{" "}
-                          {teamName(m.away)}
-                        </>
-                      ) : (
-                        <>
-                          {m.home || "?"} <span className={done ? "text-dc-gold" : "text-dc-ink-2"}>{done ? m.score : "vs"}</span>{" "}
-                          {m.away || "?"}
-                        </>
-                      )}
-                    </p>
-                    {m.goals?.length ? (
-                      <p className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[12.5px] text-dc-ink-2">
-                        {m.goals.map((g, gi) => (
-                          <span key={`${m.id}-${g.m}`} className="inline-flex items-center gap-1">
-                            {gi > 0 ? <span className="text-dc-line">·</span> : null}
-                            {memberName(g.m)}
-                            {/* Mỗi bàn một quả bóng, thay cho ×2 / ×3. */}
-                            <span className="inline-flex items-center text-dc-gold" title={`${g.n} bàn`}>
-                              {Array.from({ length: g.n || 1 }).map((_, k) => (
-                                <span key={k} className="material-symbols-outlined text-[14px] leading-none">
-                                  sports_soccer
-                                </span>
-                              ))}
-                            </span>
-                          </span>
-                        ))}
-                      </p>
-                    ) : null}
-                  </div>
-                  {!done ? <Chip tone="gold">Chưa đá</Chip> : null}
-                </li>
-              );
-            })}
-          </ul>
-        )}
+        <MatchTimeline items={timelineRows} teams={focusChips} />
       </Section>
 
       {!t.roster?.length && (scorers.length > 0 || t.topScorer) && (
@@ -285,15 +278,15 @@ export default async function TournamentPage({ params }) {
         </div>
       )}
 
-      <Section title="Album của giải" hint={album.length ? `${album.length} ảnh & video` : undefined}>
-        {album.length === 0 ? (
+      <Section
+        id="album"
+        title={league ? "Album các mùa" : "Album của giải"}
+        hint={league ? "Ảnh của mọi mùa gom về đây — đổi mùa ngay tại chỗ." : undefined}
+      >
+        {seasonAlbums.length === 0 ? (
           <EmptyState icon="photo_library" title="Chưa có ảnh cho giải này" hint="Ảnh anh em góp sẽ tự hiện ở đây và trong tab Moments." />
         ) : (
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-            {album.map((m) => (
-              <MediaTile key={m.id} item={m} />
-            ))}
-          </div>
+          <SeasonAlbum albums={seasonAlbums} current={t.slug} />
         )}
       </Section>
     </>

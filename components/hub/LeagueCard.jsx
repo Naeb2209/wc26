@@ -155,24 +155,50 @@ function PredictionList({ list }) {
         Mini game dự đoán
       </p>
       <ul className="grid grid-cols-[16px_auto_minmax(6.5rem,1fr)] items-start gap-x-2 gap-y-2 text-[13px]">
-        {bets.map((b) => (
-          <li key={b.id} className="contents">
+        {bets.map((b) => {
+          const winners = b.winners || [];
+          const answer = b.answer || (b.status === "open" ? "đang mở" : "chờ kết quả");
+          const icon = (
             <span className="material-symbols-outlined mt-px text-[16px] leading-none text-dc-ink-2">
               {b.icon || "casino"}
             </span>
-            <span className="font-semibold text-dc-ink">{b.question}</span>
-            <span className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
-              <span className="text-dc-ink-2">
-                — {b.answer || (b.status === "open" ? "đang mở" : "chờ kết quả")}
+          );
+
+          // Câu dễ, cả chục người cùng trúng -> một chip nhét hết tên sẽ tràn khỏi thẻ.
+          // Dòng đó bỏ lưới 3 cột, chiếm trọn bề ngang và xuống hàng riêng cho danh sách tên.
+          if (winners.length > 3) {
+            return (
+              <li key={b.id} className="col-span-3 flex flex-col gap-1.5">
+                <span className="flex items-start gap-2">
+                  {icon}
+                  <span className="font-semibold text-dc-ink">{b.question}</span>
+                  <span className="min-w-0 text-dc-ink-2">— {answer}</span>
+                </span>
+                <span className="flex flex-wrap items-center gap-x-2 gap-y-1 pl-6">
+                  <Chip tone="gold" icon="emoji_events">
+                    {winners.length} người trúng
+                  </Chip>
+                  <span className="min-w-0 text-[12.5px] text-dc-ink-2">{winners.join(" · ")}</span>
+                </span>
+              </li>
+            );
+          }
+
+          return (
+            <li key={b.id} className="contents">
+              {icon}
+              <span className="font-semibold text-dc-ink">{b.question}</span>
+              <span className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+                <span className="text-dc-ink-2">— {answer}</span>
+                {winners.length ? (
+                  <Chip tone="gold" icon="emoji_events" className="ml-auto shrink-0">
+                    {winners.join(", ")}
+                  </Chip>
+                ) : null}
               </span>
-              {b.winners?.length ? (
-                <Chip tone="gold" icon="emoji_events" className="ml-auto shrink-0">
-                  {b.winners.join(", ")}
-                </Chip>
-              ) : null}
-            </span>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

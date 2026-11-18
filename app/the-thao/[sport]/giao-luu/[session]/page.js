@@ -9,6 +9,7 @@ import {
   relativeDay,
   scoreWord,
   sessionResult,
+  splitsTeams,
   sportBySlug,
   weekdayOf,
 } from "@/lib/dc42";
@@ -16,6 +17,7 @@ import { getRsvp, rosterOf } from "@/lib/dc42-rsvp";
 import { Chip, EmptyState, PageHeader, Section, Stat } from "@/components/hub/ui";
 import SportNav from "@/components/hub/SportNav";
 import SessionResult from "@/components/hub/SessionResult";
+import TeamDraw from "@/components/hub/TeamDraw";
 
 // Buổi sinh ra từ mẫu lặp hằng tuần nên không có danh sách hữu hạn để dựng sẵn.
 export const dynamic = "force-dynamic";
@@ -62,12 +64,12 @@ export default async function SessionPage({ params }) {
 
       <Section>
         <div className="mb-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <Stat label="Có mặt" value={`${going.length}/${s.capacity}`} />
+          <Stat label={s.cancelled ? "Đã chốt" : "Có mặt"} value={`${going.length}/${s.capacity}`} />
           <Stat label="Tiền sân" value={formatFee(s.fee)} />
           <Stat label="Chủ kèo" value={s.host?.short || s.host?.name || "—"} />
           <Stat
             label={result ? `Tổng ${word}` : "Trạng thái"}
-            value={result ? String(result.goals) : past ? "Đã đá" : "Chưa đá"}
+            value={result ? String(result.goals) : s.cancelled ? "Đã huỷ" : past ? "Đã đá" : "Chưa đá"}
             sub={result ? `${result.matches.length} trận · ${result.table.length} đội` : null}
           />
         </div>
@@ -76,6 +78,8 @@ export default async function SessionPage({ params }) {
           <EmptyState icon="event_busy" title="Buổi này đã huỷ" hint={s.cancelReason || undefined} />
         ) : result ? (
           <SessionResult result={result} sport={s.sport} />
+        ) : splitsTeams(s) ? (
+          <TeamDraw session={s} going={going} variant="page" />
         ) : (
           <EmptyState
             icon="groups"
@@ -88,10 +92,11 @@ export default async function SessionPage({ params }) {
           />
         )}
 
-        {/* Ai đi / ai báo vắng — phần này đúng cho cả buổi chưa đá lẫn buổi đã đá. */}
+        {/* Ai đi / ai báo vắng — phần này đúng cho cả buổi chưa đá lẫn buổi đã đá.
+            Buổi huỷ thì danh sách chỉ còn là người đã chốt đi, không ai ra sân cả. */}
         <div className="mt-7 rounded-2xl border border-dc-line bg-white p-5">
           <h2 className="font-dc-display text-[11px] font-bold uppercase tracking-[0.18em] text-dc-ink-2">
-            Danh sách {past ? "đã đi" : "đăng ký"} · {going.length}
+            Danh sách {s.cancelled ? "đã chốt" : past ? "đã đi" : "đăng ký"} · {going.length}
           </h2>
           <div className="mt-3 flex flex-wrap gap-1.5">
             {going.length === 0 ? (

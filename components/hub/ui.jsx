@@ -6,6 +6,9 @@ import Link from "next/link";
 export const SPORT_META = {
   football: { name: "Bóng đá", icon: "sports_soccer", text: "text-dc-pitch", bg: "bg-dc-pitch/10", ring: "ring-dc-pitch/30" },
   badminton: { name: "Cầu lông", icon: "sports_tennis", text: "text-dc-court", bg: "bg-dc-court/10", ring: "ring-dc-court/30" },
+  // Chạy bộ chưa có hub riêng (không nằm trong sports[]), mới chỉ góp mặt ở phòng danh hiệu
+  // — khai ở đây để chip có tên và icon đàng hoàng thay vì rơi về nhãn rỗng.
+  running: { name: "Chạy bộ", icon: "directions_run", text: "text-dc-gold", bg: "bg-dc-gold/10", ring: "ring-dc-gold/30" },
 };
 
 export function sportMeta(id) {
@@ -47,9 +50,9 @@ export function PageHeader({ eyebrow, title, lede, aside, wide = false }) {
   );
 }
 
-export function Section({ title, hint, action, children, className = "", wide = false }) {
+export function Section({ id, title, hint, action, children, className = "", wide = false }) {
   return (
-    <section className={`mx-auto w-full py-10 ${wide ? BOX.wide : BOX.normal} ${className}`}>
+    <section id={id} className={`mx-auto w-full scroll-mt-6 py-10 ${wide ? BOX.wide : BOX.normal} ${className}`}>
       {(title || action) && (
         <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3">
           <div>
@@ -199,9 +202,12 @@ export function MediaTile({ item, className = "" }) {
         </span>
         {item.type === "video" ? "Video" : "Ảnh"}
       </span>
-      <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-3 pb-3 pt-8 text-[13px] font-medium leading-snug text-white">
-        {item.caption}
-      </figcaption>
+      {/* Ảnh không khai chú thích thì bỏ hẳn dải chữ — để trống thì chỉ còn vệt tối vô nghĩa. */}
+      {item.caption ? (
+        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-3 pb-3 pt-8 text-[13px] font-medium leading-snug text-white">
+          {item.caption}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }

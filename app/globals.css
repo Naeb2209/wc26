@@ -1315,3 +1315,33 @@ body {
     opacity: 0.7;
   }
 }
+
+/* ============================================================
+   Ngọn lửa "Giữ chuỗi" (components/hub/FlameIcon.jsx)
+   Icon Material lay nhẹ như lửa thật: hơi nghiêng và co giãn lệch trục,
+   không phải rung đều. Nhịp chậm để nằm cạnh con số vẫn đọc được số.
+   ============================================================ */
+.dc-flame {
+  display: inline-block;
+  transform-origin: 50% 88%;
+  animation: dc-flame-lick 2.6s ease-in-out infinite;
+}
+
+@keyframes dc-flame-lick {
+  0%,
+  100% {
+    transform: scale(1, 1) rotate(0deg);
+  }
+  30% {
+    transform: scale(1.05, 0.96) rotate(-2.5deg);
+  }
+  65% {
+    transform: scale(0.96, 1.06) rotate(2.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dc-flame {
+    animation: none;
+  }
+}

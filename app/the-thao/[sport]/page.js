@@ -5,6 +5,7 @@ import {
   fmtTime,
   formatFee,
   defaultSeasonOf,
+  groupByLeague,
   predictionLeaguesOf,
   recentResults,
   relativeDay,
@@ -19,6 +20,7 @@ import { getRsvp, rosterOf } from "@/lib/dc42-rsvp";
 import { Card, Chip, EmptyState, PageHeader, Section, Stat, StatusChip } from "@/components/hub/ui";
 import SportNav from "@/components/hub/SportNav";
 import SportHero from "@/components/hub/SportHero";
+import TournamentCard from "@/components/hub/TournamentCard";
 
 export const dynamic = "force-dynamic";
 
@@ -38,21 +40,24 @@ export default async function SportOverviewPage({ params }) {
   if (!sp) notFound();
 
   const sum = sportSummary(sp.id);
-  // Cửa sổ 3 tuần: mỗi môn có 1 buổi/tuần nên vừa đủ 3 thẻ lấp kín hàng.
-  // Stat "buổi kế tiếp" lấy từ đúng danh sách này (buổi đã huỷ thì nhảy sang buổi sau),
-  // để con số trên stat không bao giờ lệch với các thẻ ngay bên dưới.
+  // Vẫn lấy cửa sổ 3 tuần để biết buổi nào bị huỷ, nhưng ở hub chỉ hiện đúng buổi kế tiếp —
+  // ba buổi giống hệt nhau xếp cạnh nhau chỉ khác mỗi ngày thì thừa; ai cần đủ lịch thì vào tab
+  // Giao lưu. Stat "buổi kế tiếp" lấy từ đúng danh sách này nên không lệch với thẻ bên dưới.
   // Kéo cả điểm danh vào đây (giống tab Giao lưu): hero hứa "buổi kế tiếp còn chỗ hay không",
   // thẻ chỉ in sức chứa thì chưa trả lời được câu đó.
   const sessions = await Promise.all(
     upcomingSessionsOf(sp.id, 3).map(async (x) => ({ ...x, ...rosterOf(x, await getRsvp(x.id)) }))
   );
-  const nextSessions = sessions.slice(0, 3);
   const nextPlayable = sessions.find((s) => !s.cancelled) || null;
+  // Thẻ duy nhất chính là buổi mà stat đang trỏ tới; cả ba tuần đều huỷ thì hiện buổi gần nhất.
+  const nextSessions = [nextPlayable || sessions[0]].filter(Boolean);
   const tours = sortedTournamentsOf(sp.id);
   const running = tours.filter((t) => t.status === "running");
   const leagues = predictionLeaguesOf(sp.id);
   const results = recentResults(20).filter((r) => r.sport === sp.id).slice(0, 4);
-  const shownTours = running.length > 0 ? running : tours.slice(0, 2);
+  // Gom theo giải trước rồi mới cắt: giải nhiều mùa chỉ chiếm một thẻ (có bộ chọn mùa),
+  // không thì hai mùa liền nhau của cùng một giải ăn hết chỗ và nhìn như thẻ trùng.
+  const shownGroups = groupByLeague(running.length > 0 ? running : tours).slice(0, 2);
 
   return (
     <>
@@ -102,7 +107,7 @@ export default async function SportOverviewPage({ params }) {
           {nextSessions.length === 0 ? (
             <EmptyState icon="event_busy" title="Ba tuần tới chưa có buổi nào" />
           ) : (
-            <div className={`grid gap-3 ${nextSessions.length > 1 ? "md:grid-cols-3" : ""}`}>
+            <div className={`grid gap-3 ${nextSessions.length > 1 ? "md:grid-cols-3" : "max-w-card-max"}`}>
               {nextSessions.map((s) => (
                 <Card key={s.id} href={`/the-thao/${sp.slug}/giao-luu#${s.id}`} className="flex flex-col gap-2 p-5">
                   <div className="flex items-center gap-2">
@@ -134,33 +139,24 @@ export default async function SportOverviewPage({ params }) {
             href={`/the-thao/${sp.slug}/giai-dau`}
             className="font-dc-display text-[11px] font-bold uppercase tracking-[0.14em] text-dc-gold"
           >
-            Tất cả {tours.length} giải →
+            Tất cả {sum.tournaments} giải →
           </Link>
         }
       >
         {tours.length === 0 ? (
           <EmptyState icon="emoji_events" title="Chưa có giải nào cho môn này" />
         ) : (
-          // Chỉ chia đôi khi có từ 2 giải trở lên; một giải thì để thẻ căng hết bề ngang
-          // thay vì bỏ trống nửa phải.
-          <div className={`grid gap-4 ${shownTours.length > 1 ? "md:grid-cols-2" : ""}`}>
-            {shownTours.map((t) => (
-              <Card
-                key={t.slug}
-                href={`/the-thao/${sp.slug}/giai-dau/${t.slug}`}
-                className="flex w-full max-w-card-max flex-col gap-3 p-6"
-              >
-                <div className="flex flex-wrap items-center gap-2">
-                  <Chip tone={t.host === "TMA" ? "neutral" : "gold"}>{t.host}</Chip>
-                  <StatusChip status={t.status} />
-                  <Chip>Mùa {t.season}</Chip>
-                </div>
-                <p className="font-dc-display text-[21px] font-bold leading-tight text-dc-ink">{t.name}</p>
-                <p className="text-body-md text-dc-ink-2">{t.summary}</p>
-                <p className="text-[13px] tabular-nums text-dc-ink-2">
-                  {fmtDate(t.startDate)} – {fmtDate(t.endDate)}
-                </p>
-              </Card>
+          // Chỉ chia đôi khi có từ 2 giải trở lên; một giải thì chặn bề ngang lại
+          // thay vì để thẻ kéo dài hết khung.
+          <div className={`grid gap-4 ${shownGroups.length > 1 ? "md:grid-cols-2" : "max-w-card-max"}`}>
+            {shownGroups.map((g) => (
+              <TournamentCard
+                key={g.current.slug}
+                tournament={g.current}
+                league={g.league}
+                seasons={g.seasons}
+                sportSlug={sp.slug}
+              />
             ))}
           </div>
         )}
@@ -206,7 +202,7 @@ export default async function SportOverviewPage({ params }) {
               </Link>
             }
           >
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className={`grid gap-4 ${leagues.length > 1 ? "md:grid-cols-2" : "max-w-card-max"}`}>
               {leagues.map((l) => {
                 const cur = defaultSeasonOf(l);
                 const bets = (cur?.predictions || []).length;
@@ -214,8 +210,10 @@ export default async function SportOverviewPage({ params }) {
                 return (
                   <Card
                     key={l.slug}
-                    href={`/the-thao/${sp.slug}/fantasy#${l.slug}`}
-                    className="flex w-full max-w-card-max flex-col overflow-hidden"
+                    href={`/the-thao/${sp.slug}/fantasy?giai=${l.slug}`}
+                    // Nằm trong lưới hai cột thì thẻ ăn trọn cột — max-w-card-max chỉ dành cho thẻ đứng
+                    // một mình, để đây thì mép phải hụt so với khối "Giải đấu trong năm" ngay trên.
+                    className="flex w-full flex-col overflow-hidden"
                   >
                     <div className="flex items-center justify-center gap-2 border-b border-dc-line bg-dc-paper px-5 py-2.5">
                       <Chip tone="fantasy" icon="stadium">

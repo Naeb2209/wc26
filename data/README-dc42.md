@@ -37,7 +37,9 @@ Thêm một phần tử vào `sports[]` là có ngay hub + hai trang con:
 }
 ```
 
-`hasPrediction: true` mới hiện tab "Fantasy" (hiện chỉ bóng đá). Muốn môn mới có màu riêng
+`hasPrediction: true` mới hiện tab "Fantasy" (hiện chỉ bóng đá). Khoá tuỳ chọn `statsFrom`
+("YYYY-MM-DD") là mốc tính lại các bảng nội bộ của môn — xem "Bảng nội bộ & mốc tính lại".
+Muốn môn mới có màu riêng
 thì thêm khoá vào `SPORT_META` trong `components/hub/ui.jsx` và token `dc-*` trong `tailwind.config.js`;
 không thêm thì dùng màu trung tính, không vỡ.
 
@@ -83,6 +85,78 @@ Huỷ hoặc đổi một buổi cụ thể thì thêm vào `sessionOverrides[]`
 
 Override cũng ghi đè được `venueId`, `start`, `end`, `capacity`, `note`.
 
+### Tài khoản đăng nhập
+
+Muốn điểm danh thì phải đăng nhập. Tài khoản khai trong `accounts[]`, mỗi dòng buộc một
+tên đăng nhập với một member:
+
+```json
+"accounts": [
+  { "u": "quan", "m": "m01" },
+  { "u": "hoanganh", "m": "m02" }
+]
+```
+
+- `u`: tên đăng nhập, viết thường không dấu. `m`: id trong `members[]`.
+- **Mật khẩu dùng chung cho mọi tài khoản**, lấy từ biến môi trường `DC42_PASSWORD`
+  (không khai thì mặc định `123`).
+- `DC42_AUTH_SECRET` là khoá ký cookie phiên — **phải đặt khi deploy thật**, không thì
+  dùng khoá dev ai cũng đoán được và tự ký cookie thành người khác.
+- Phiên lưu ở cookie httpOnly 30 ngày. API `/api/rsvp` lấy memberId từ cookie chứ không
+  lấy từ body, nên không điểm danh hộ người khác được.
+- Ai không có trong `accounts[]` thì không đăng nhập, cũng không điểm danh được.
+
+Đây là rào chắn kiểu nội bộ, không phải bảo mật thật: mật khẩu dùng chung nghĩa là ai biết
+tên đăng nhập của người khác đều vào được. Muốn chắc thì nối SSO — chỗ thay nằm gọn trong
+`lib/auth.js`.
+
+### Bốc thăm chia đội (bóng đá)
+
+Mẫu buổi bóng đá khai `"splitTeams": 2` (hoặc 3). Trước giờ đá **2 tiếng**, thẻ buổi đếm
+ngược; hết giờ thì điểm danh khoá lại và đội bốc ra hiện luôn.
+
+**Cách nhanh nhất: khai thẳng POT.** Ban tổ chức tự xếp pot thì bỏ `pots` vào override của
+ngày đó, mỗi pot là một mảng. Phần tử nhận cả memberId lẫn tên viết thẳng, nên người lạ chưa
+có trong `members[]` vẫn bốc được và hiện đúng như khai:
+
+```json
+{
+  "templateId": "st-football-thu",
+  "date": "2026-11-04",
+  "capacity": 18,
+  "splitTeams": 3,
+  "pots": [
+    ["Huy", "SV", "con chim đen"],
+    ["Bean", "Duy", "Đông"]
+  ]
+}
+```
+
+Khai `pots` rồi thì `tier` và danh sách điểm danh không còn ảnh hưởng tới việc chia — pot
+nói gì thì bốc nấy. Số người mỗi pot nên bằng số đội; pot lẻ người thì ai dư về đội ít nhất.
+
+Không khai `pots` thì hub tự suy ra từ trình độ. Cách chia: mỗi cầu thủ có `"tier"` trong `members[]` (1 = cứng nhất). Người đi được xếp
+theo tier rồi cắt thành từng POT đúng bằng số đội — POT 1 là nhóm cứng nhất. Mỗi POT quay
+random rồi rải mỗi đội một người, nên đội nào cũng có đúng một người ở mỗi mức trình độ.
+POT cuối lẻ người thì ai dư về đội đang ít người nhất.
+
+Nguồn ngẫu nhiên là **drand** — beacon công khai, 3 giây một round. Hub lấy đúng round được
+công bố tại mốc chốt: trước giờ đó không ai biết nó là số mấy, sau giờ đó ai tra cũng ra cùng
+một số. Nhờ vậy kết quả vừa không đoán trước được, vừa giống nhau ở mọi máy mà không phải lưu
+gì; cuối khối có link tới đúng round để ai muốn cũng kiểm chứng lại được.
+
+Gọi drand hỏng (mạng chặn, beacon chưa ra) thì rơi về seed dự phòng tính từ id buổi + danh
+sách đi — vẫn giống nhau ở mọi máy, chỉ kém ở chỗ ai đọc code thì tính trước được; khối sẽ
+nói rõ là đang dùng bản dự phòng.
+
+Hiệu ứng chạy theo lịch cố định tính từ mốc chốt, nên ai mở cùng lúc thì xem cùng một lượt
+quay; vào muộn thì các lượt đã qua hiện thẳng, không tua lại. Không khai `tier` thì coi như
+yếu nhất, rơi vào POT cuối.
+
+Mặc định chốt trước giờ đá 2 tiếng (`SPLIT_LEAD_MS` trong `lib/dc42.js`). Một buổi cần giờ
+khác thì khai `"split": "16:30"` trong override của ngày đó — lấy đúng giờ đã khai, không lùi
+theo giờ đá nữa.
+
 ### Chia đội và kết quả một buổi
 
 Buổi đã đá thì khai `teams[]` (2 hoặc 3 đội) + `matches[]` vào chính override của ngày đó.
@@ -110,6 +184,10 @@ Buổi đã đá thì khai `teams[]` (2 hoặc 3 đội) + `matches[]` vào chí
 - Điểm: thắng 3, hoà 1. Xếp theo điểm → hiệu số → số bàn thắng.
 - Cầu lông dùng đúng cấu trúc này, chỉ khác chữ hiển thị: "bàn" đổi thành "điểm".
 - Chỉ buổi đã qua mới hiện khối kết quả; buổi sắp tới vẫn là khối điểm danh.
+- Hai đội thì chỉ hiện tỉ số giữa hai bên; ba đội mới hiện bảng xếp và cột hiệu số.
+- Mục **Vua farm gà** ở trang Giao lưu cộng `goals` của mọi buổi trong năm gần nhất
+  có kết quả. Buổi không khai `matches` thì không tính, nên muốn ai đó lên bảng vàng
+  phải khai kết quả buổi đó.
 
 ## Thêm một giải
 
@@ -134,6 +212,12 @@ Buổi đã đá thì khai `teams[]` (2 hoặc 3 đội) + `matches[]` vào chí
 - `focusTeam`: id một đội → khối "Lịch & kết quả" chỉ liệt kê trận của đội đó (dùng cho giải của TMA, không phải giải DC tự tổ
   chức). BXH và số trận ở phần đầu trang vẫn tính đủ các đội. Trên **thẻ giải** ở trang danh sách, nếu đội này nằm
   ngoài top 3 thì vẫn được ghim thêm một dòng (nền gold nhạt) để biết DC đang đứng đâu.
+- `focusTeams`: mảng id, dùng khi DC góp **nhiều đội** trong cùng một giải (DG7 League Cup: hai đội mỗi mùa).
+  Mọi chỗ đọc `focusTeam` đều đi qua `focusTeamsOf()` nên khai dạng nào cũng chạy; đội nào ngoài top 3 cũng
+  được ghim riêng một dòng.
+- Mùa gõ tay từ bản tường thuật có thể **không có ngày**: bỏ hẳn `startDate` / `endDate` và `date` của từng
+  trận, chỉ giữ `round`. Thẻ giải tự giấu dòng "Thời gian", ô stat nói mùa thay cho ngày, và trận không ngày
+  thì không lọt vào "Kết quả gần nhất" (không xếp được vào dòng thời gian).
 - `standingNote`: dòng chú thích dưới BXH. Không khai thì dùng câu mầu "hai đội dẫn đầu vào chung kết".
 
 ### Giải nhiều mùa (bộ chọn mùa)
@@ -220,6 +304,14 @@ trong [`components/hub/EventDecor.jsx`](../components/hub/EventDecor.jsx).
 - Chưa có link ảnh thật: bỏ trống, ô sẽ hiện nền chuyển sắc theo `tone` (1–6) kèm chú thích.
 - Có link rồi: thêm `"url": "https://…"`. Ảnh ngoài domain cần khai trong `next.config.mjs` nếu chuyển
   sang `next/image`; hiện `MediaTile` dùng thẻ `img` thường nên link nào cũng chạy.
+- File nội bộ để ở `public/media/<slug hoạt động>/01.webp` (clip thì `.mp4`) rồi khai
+  `"url": "/media/<slug>/01.webp"` — thay ảnh sau này chỉ cần ghi đè đúng tên file.
+- `"type": "video"` có `url` thì dải DC Moments ở trang chủ tự chạy clip, câm và lặp, lấy luôn khung
+  hình đầu làm bìa; ô ngang (ô to nhất dải) ưu tiên dành cho clip.
+- `"pin"` đặt mục vào đúng chỗ trong dải DC Moments: `true` là ô đầu, số là ô thứ mấy (`"pin": 2`
+  là ô thứ hai). Dải vốn xếp theo ngày hoạt động, nên đây là cách khoe một tấm cũ mà không phải sửa
+  ngày của cả album. Lưu ý ô ngang vẫn ưu tiên clip, nên số thứ tự đếm trên danh sách mục chứ không
+  phải trên các cột đã dựng.
 
 ## Điểm danh (phần duy nhất không nằm trong JSON)
 
@@ -314,4 +406,26 @@ bảng điểm thì trỏ `href` tới trang tương ứng — hiện chỉ `fan
   chuyên cần ở tab Xếp hạng. Hiện phải nhập tay; khi điểm danh chạy ổn định thì có thể sinh tự động
   từ KV vào cuối mỗi buổi.
 - `honours[]`: cúp và danh hiệu theo năm. `kind: "member"` thì `winner` là id thành viên,
-  `kind: "team"` thì `winner` là tên đội dạng chữ.
+  `kind: "team"` thì `winner` là tên đội dạng chữ. Giải đồng đội của nhiều người ngang hàng thì
+  dùng `winners: ["m30", "m32"]` thay cho `winner` — phần tử là id thành viên hoặc tên viết tay
+  cho người chưa có trong `members[]`. Khai thêm `tournament: "<slug giải>"` thì thẻ có nút
+  "Xem giải →". Môn chỉ xuất hiện ở đây (vd `running`) không cần nằm trong `sports[]`, chỉ cần
+  một mục trong `SPORT_META` của `components/hub/ui.jsx` để chip có tên và icon.
+  `rank: "gold" | "silver" | "bronze"` quyết định vạch màu, viền và icon của thẻ — để trống cho
+  giải phụ (phong cách, khuyến khích) thì thẻ ở tông trung tính.
+
+## Bảng nội bộ & mốc tính lại
+
+Tab Giao lưu có hai bảng vàng của riêng sân nhà, cùng đọc từ dữ liệu buổi:
+
+- **Vua farm gà** — ai ghi nhiều nhất ở các buổi nội bộ, tính từ `matches[]` trong `sessionOverrides`.
+- **Giữ chuỗi** — ai có mặt liên tiếp nhiều buổi nhất, tính từ `attendanceLog[]`. Vắng một buổi là
+  chuỗi về 0, nhưng buổi khai `cancelled: true` (và dòng sổ rỗng người) **không** phải một mắt xích:
+  mưa huỷ sân thì không ai đáng bị đứt chuỗi, chuỗi nối thẳng qua tuần đó.
+
+Muốn tính lại từ đầu thì khai `statsFrom: "YYYY-MM-DD"` trong `sports[]` của môn đó — cả hai bảng
+và cả bảng chuyên cần ở tab Xếp hạng đều bỏ qua mọi buổi trước mốc, không phải xoá sổ cũ. Chưa có
+buổi nào sau mốc thì hai khối vẫn hiện ở dạng mở hàng thay vì biến mất.
+
+Bật/tắt hai bảng cho từng môn ở `INTERNAL_BOARDS` trong `app/the-thao/[sport]/giao-luu/page.js` —
+môn nào chưa ghi sổ đều tay thì để ngoài, còn hơn bày ra con số sai.

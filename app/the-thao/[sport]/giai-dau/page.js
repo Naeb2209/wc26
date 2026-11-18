@@ -18,6 +18,7 @@ const HOSTS = [
   { value: "all", label: "Tất cả" },
   { value: "DC", label: "DC" },
   { value: "TMA", label: "TMA" },
+  { value: "DG7", label: "DG7" },
 ];
 
 function hrefFor(sport, host, status) {

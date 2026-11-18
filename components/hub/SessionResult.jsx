@@ -7,10 +7,10 @@ import { memberName, scoreWord } from "@/lib/dc42";
    Đội hình đã kèm số bàn mỗi người nên không có danh sách ghi bàn thứ hai lặp lại. */
 
 const DOT = {
-  red: "bg-red-500",
-  blue: "bg-blue-500",
-  yellow: "bg-amber-400",
-  green: "bg-emerald-500",
+  red: "bg-dc-kit-red",
+  blue: "bg-dc-kit-blue",
+  yellow: "bg-dc-kit-yellow",
+  green: "bg-dc-pitch",
   light: "bg-white ring-1 ring-inset ring-dc-line",
   dark: "bg-dc-ink",
 };
@@ -22,11 +22,28 @@ function Dot({ color, className = "h-2.5 w-2.5" }) {
   return <span aria-hidden="true" className={`${className} shrink-0 rounded-full ${DOT[color] || "bg-dc-ink-2"}`} />;
 }
 
+/* Một bên của dòng tỉ số hai đội. Bên phải lật ngược để chấm màu nằm sát mép ngoài. */
+function Side({ team, lead, mirrored = false }) {
+  return (
+    <span
+      className={`flex min-w-0 items-center gap-2 rounded px-2 py-1.5 ${mirrored ? "flex-row-reverse" : ""} ${
+        lead ? "bg-dc-gold text-white" : "bg-white text-dc-ink"
+      }`}
+    >
+      <Dot color={team.color} />
+      <span className="truncate font-dc-display text-[13px] font-bold">{team.name}</span>
+    </span>
+  );
+}
+
 export default function SessionResult({ result, sport, nameOf, variant = "page" }) {
   if (!result) return null;
 
   const { table, matches, scorers } = result;
   const full = variant === "page";
+  // Hai đội thì bảng xếp hạng chỉ là hai dòng nói lại đúng một tỉ số -> thay bằng
+  // chính tỉ số cộng dồn giữa hai bên. Ba đội mới cần bảng và cột hiệu số.
+  const head2head = table.length === 2;
   const word = scoreWord(sport);
   const teamName = Object.fromEntries(table.map((t) => [t.id, t.name]));
   const colorOf = (id) => table.find((t) => t.id === id)?.color;
@@ -35,13 +52,27 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
   const listOf = (goals) => goals.map((g) => `${nameOrId(g.id)}${g.goals > 1 ? ` ${g.goals}` : ""}`).join(", ");
 
   return (
-    <div className={`flex flex-col gap-3 rounded-xl bg-dc-paper ${full ? "p-5" : "p-3"}`}>
+    // Trong lưới thẻ: khối kết quả giãn hết chiều cao thẻ để buổi 2 đội và buổi 3 đội
+    // cạnh nhau có hai khối bằng nhau; phần tỉ số tự căn giữa chỗ trống dôi ra.
+    <div className={`flex flex-col gap-3 rounded-xl bg-dc-paper ${full ? "p-5" : "grow p-3"}`}>
       <div className="flex items-center justify-between gap-3">
         <p className={label}>Kết quả buổi · {table.length} đội</p>
         <p className={`${label} tabular-nums`}>{matches.length} trận</p>
       </div>
 
-      {/* Bảng đội: tên ↔ tỉ số cộng dồn ↔ hiệu số. Cột hiệu số là thứ cần liếc nhanh nhất. */}
+      {/* Hai đội: một dòng tỉ số, bên dẫn tô gold. Hoà thì cả hai để trắng. */}
+      {head2head ? (
+        <div
+          className={`grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-3 ${full ? "" : "my-auto"}`}
+        >
+          <Side team={table[0]} lead={table[0].pts > table[1].pts} />
+          <span className="font-dc-display text-[17px] font-bold tabular-nums text-dc-ink">
+            {table[0].gf}–{table[1].gf}
+          </span>
+          <Side team={table[1]} lead={table[1].pts > table[0].pts} mirrored />
+        </div>
+      ) : (
+      /* Ba đội: bảng tên ↔ tỉ số cộng dồn ↔ hiệu số. Cột hiệu số là thứ cần liếc nhanh nhất. */
       <ul className="flex flex-col gap-1">
         {table.map((t, i) => (
           <li
@@ -64,6 +95,7 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
           </li>
         ))}
       </ul>
+      )}
 
       {/* Thẻ trong lưới chỉ điểm mặt vài người ghi nhiều nhất; chi tiết nằm ở trang buổi. */}
       {!full && scorers.length > 0 && (
