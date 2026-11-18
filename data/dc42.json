@@ -245,12 +245,12 @@
       "split": "17:15",
       "splitTeams": 3,
       "pots": [
-        ["Nhân", "Huy Hòe", "Duy"],
-        ["Tuân", "Hậu", "Bean"],
-        ["Nhật", "Vũ Đặng", "aTai"],
-        ["Đông", "Tú"],
+        ["Nhân", "Huy Hòe", "Vũ Đặng"],
+        ["Đông", "Hậu", "Bean"],
+        ["Nhật", "Heiniken", "aTai"],
+        ["Duy", "Tuân", "Tú"],
         ["Nam", "Hảo", "Vũ"],
-        ["Đạt G", "Hoàng", "Heiniken"]
+        ["Đạt G", "Hoàng"]
       ]
     }
   ],
