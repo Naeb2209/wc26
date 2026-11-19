@@ -192,7 +192,7 @@
       "fee": 50000,
       "host": "m13",
       "note": "2 sân. Cầu do CLB lo, ai đi thì chia tiền sân.",
-      "regulars": ["m13", "m14", "m02", "m07", "m11", "m15", "m16"]
+      "regulars": []
     }
   ],
   "sessionOverrides": [
