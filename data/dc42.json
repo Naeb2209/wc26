@@ -250,6 +250,22 @@
         ["Duy", "Tuân", "Tú"],
         ["Nam", "Hảo", "Vũ"],
         ["Đạt G", "Hoàng"]
+      ],
+      "teams": [
+        { "id": "do", "name": "Đỏ", "color": "red", "members": ["Huy Hòe", "m20", "m33", "m27", "m32", "Hoàng"] },
+        { "id": "xanh", "name": "Xanh", "color": "blue", "members": ["Nhân", "m22", "Heiniken", "m26", "m30", "Đạt G"] },
+        { "id": "vang", "name": "Vàng", "color": "yellow", "members": ["m45", "Bean", "aTai", "m29", "Nam"] }
+      ],
+      "matches": [
+        { "a": "xanh", "b": "vang", "as": 2, "bs": 0, "goals": [{ "m": "m30", "n": 2 }] },
+        { "a": "xanh", "b": "do", "as": 1, "bs": 0, "goals": [{ "m": "Đạt G" }] },
+        { "a": "xanh", "b": "vang", "as": 2, "bs": 1, "goals": [{ "m": "Nhân" }, { "m": "m30" }, { "m": "Nam" }] },
+        { "a": "do", "b": "vang", "as": 2, "bs": 0, "goals": [{ "m": "m32" }], "note": "1 bàn phản lưới nhà của Duy" },
+        { "a": "do", "b": "xanh", "as": 0, "bs": 0 },
+        { "a": "vang", "b": "xanh", "as": 1, "bs": 0, "goals": [{ "m": "Bean" }] },
+        { "a": "vang", "b": "do", "as": 1, "bs": 0, "goals": [{ "m": "Nam" }] },
+        { "a": "vang", "b": "xanh", "as": 1, "bs": 0, "goals": [{ "m": "m29" }] },
+        { "a": "do", "b": "xanh", "as": 1, "bs": 0, "goals": [{ "m": "m20" }] }
       ]
     }
   ],
