@@ -1053,6 +1053,7 @@
   ],
 
   "attendanceLog": [
+    {"date": "2026-11-18", "sport": "football", "members": ["Huy Hòe", "m20", "m33", "m27", "m32", "Hoàng", "Nhân", "m22", "Heiniken", "m26", "m30", "Đạt G", "m45", "Bean", "aTai", "m29", "Nam"]},
     {"date": "2026-09-03", "sport": "badminton", "members": ["m13", "m14", "m02", "m07", "m11"]},
     {"date": "2026-08-27", "sport": "football", "members": ["m01", "m02", "m03", "m05", "m06", "m08", "m10", "m12", "m04"]},
     {"date": "2026-08-27", "sport": "badminton", "members": ["m13", "m16", "m15"]},
