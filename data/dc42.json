@@ -265,7 +265,8 @@
         { "a": "vang", "b": "xanh", "as": 1, "bs": 0, "goals": [{ "m": "Bean" }] },
         { "a": "vang", "b": "do", "as": 1, "bs": 0, "goals": [{ "m": "Nam" }] },
         { "a": "vang", "b": "xanh", "as": 1, "bs": 0, "goals": [{ "m": "m29" }] },
-        { "a": "do", "b": "xanh", "as": 1, "bs": 0, "goals": [{ "m": "m20" }] }
+        { "a": "do", "b": "xanh", "as": 1, "bs": 0, "goals": [{ "m": "m20" }] },
+        { "a": "xanh", "b": "do", "as": 1, "bs": 0, "goals": [{ "m": "m22" }] }
       ]
     }
   ],
