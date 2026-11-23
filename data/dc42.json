@@ -131,6 +131,10 @@
     { "id": "t-dc17b", "name": "DC17B", "sport": "football", "short": "DC17B" }
   ],
 
+  "passwordResets": {
+    "duytrinh": "2026-11-23T14:57:00+07:00"
+  },
+
   "accounts": [
     { "u": "quan", "m": "m01" },
     { "u": "hoanganh", "m": "m02" },
