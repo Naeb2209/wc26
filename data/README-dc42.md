@@ -98,17 +98,23 @@ tên đăng nhập với một member:
 ```
 
 - `u`: tên đăng nhập, viết thường không dấu. `m`: id trong `members[]`.
-- **Mật khẩu dùng chung cho mọi tài khoản**, lấy từ biến môi trường `DC42_PASSWORD`
-  (không khai thì mặc định `123`).
+- Người chưa có trong `accounts[]` **tự đăng ký** trên trang Giao lưu (nút Đăng ký). Tài
+  khoản đó lưu ở KV (`dc42:accounts`), không nằm trong file này.
+- **Mỗi người một mật khẩu riêng**, hash scrypt lưu ở KV (`dc42:passwords`).
+- **Mật khẩu nhóm** `DC42_PASSWORD` (mặc định `123`) chỉ còn hai việc: làm cửa chặn lúc đăng
+  ký, và cho tài khoản trong `accounts[]` chưa có mật khẩu riêng vào lần đầu. Vào xong hub bắt
+  đặt mật khẩu riêng mới cho điểm danh; đặt rồi thì mật khẩu nhóm không mở được tài khoản đó.
 - `DC42_AUTH_SECRET` là khoá ký cookie phiên — **phải đặt khi deploy thật**, không thì
   dùng khoá dev ai cũng đoán được và tự ký cookie thành người khác.
-- Phiên lưu ở cookie httpOnly 30 ngày. API `/api/rsvp` lấy memberId từ cookie chứ không
-  lấy từ body, nên không điểm danh hộ người khác được.
-- Ai không có trong `accounts[]` thì không đăng nhập, cũng không điểm danh được.
+- Phiên lưu ở cookie httpOnly 30 ngày. Đặt/đổi mật khẩu thì mọi cookie cũ của tài khoản đó
+  hết hiệu lực. API `/api/rsvp` lấy memberId từ cookie chứ không lấy từ body.
 
-Đây là rào chắn kiểu nội bộ, không phải bảo mật thật: mật khẩu dùng chung nghĩa là ai biết
-tên đăng nhập của người khác đều vào được. Muốn chắc thì nối SSO — chỗ thay nằm gọn trong
-`lib/auth.js`.
+**Quên mật khẩu:** thêm username kèm mốc giờ vào `passwordResets` ở gốc file này rồi deploy.
+Mật khẩu đặt trước mốc đó bị bỏ qua — người đó vào lại bằng mật khẩu nhóm và đặt cái mới:
+
+```json
+"passwordResets": { "bean": "2026-11-23T20:00:00+07:00" }
+```
 
 ### Bốc thăm chia đội (bóng đá)
 

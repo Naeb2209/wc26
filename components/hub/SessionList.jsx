@@ -48,6 +48,10 @@ export default function SessionList({ sessions, members, templates, shared, spor
       loginRef.current?.("login", "Đăng nhập (hoặc đăng ký nếu là lần đầu) để điểm danh buổi này.");
       return;
     }
+    if (user?.needsPassword) {
+      loginRef.current?.("password", "Đặt mật khẩu riêng trước, xong là điểm danh được ngay.");
+      return;
+    }
     setBusy(sessionId + status);
     setError("");
     try {
@@ -58,6 +62,16 @@ export default function SessionList({ sessions, members, templates, shared, spor
       });
       const data = await res.json();
       if (!data.ok) {
+        if (data.needsPassword) {
+          loginRef.current?.("password", "Đặt mật khẩu riêng trước, xong là điểm danh được ngay.");
+          return;
+        }
+        if (res.status === 401) {
+          // Phiên hết hạn hoặc bị đá ra vì chủ tài khoản vừa đổi mật khẩu.
+          setUser(null);
+          loginRef.current?.("login", "Phiên đăng nhập đã hết — đăng nhập lại nhé.");
+          return;
+        }
         setError(data.error || "Không lưu được điểm danh.");
         return;
       }

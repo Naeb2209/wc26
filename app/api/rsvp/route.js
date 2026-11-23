@@ -24,6 +24,11 @@ export async function POST(req) {
 
   const who = await sessionFrom(req);
   if (!who) return NextResponse.json({ ok: false, error: "Đăng nhập trước đã" }, { status: 401 });
+  // Vào bằng mật khẩu nhóm thì phải đặt mật khẩu riêng trước, không thì ai biết mật khẩu
+  // nhóm cũng điểm danh hộ được.
+  if (who.needsPassword) {
+    return NextResponse.json({ ok: false, error: "Đặt mật khẩu riêng trước đã", needsPassword: true }, { status: 403 });
+  }
 
   // Danh tính lấy từ cookie đã ký, không lấy từ body -> không điểm danh hộ người khác được.
   const memberId = who.member.id;

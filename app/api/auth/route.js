@@ -1,14 +1,12 @@
 import { NextResponse } from "next/server";
-import { COOKIE_NAME, login, sessionFrom, setSessionCookie } from "@/lib/auth";
+import { COOKIE_NAME, login, publicUser, sessionFrom, setSessionCookie } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
-
-const shape = (s) => ({ username: s.username, memberId: s.member.id, name: s.member.short || s.member.name });
 
 /** Ai đang đăng nhập ở máy này. */
 export async function GET(req) {
   const s = await sessionFrom(req);
-  return NextResponse.json({ ok: true, user: s ? shape(s) : null });
+  return NextResponse.json({ ok: true, user: s ? publicUser(s) : null });
 }
 
 /** Đăng nhập: { username, password }. */
@@ -23,7 +21,7 @@ export async function POST(req) {
   const s = await login(body?.username, body?.password);
   if (!s) return NextResponse.json({ ok: false, error: "Sai tên đăng nhập hoặc mật khẩu" }, { status: 401 });
 
-  return setSessionCookie(NextResponse.json({ ok: true, user: shape(s) }), s.username);
+  return setSessionCookie(NextResponse.json({ ok: true, user: publicUser(s) }), s.username);
 }
 
 /** Đăng xuất. */
