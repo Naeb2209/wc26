@@ -22,7 +22,7 @@ export async function POST(req) {
     return NextResponse.json({ ok: false, error: "Body JSON không hợp lệ" }, { status: 400 });
   }
 
-  const who = sessionFrom(req);
+  const who = await sessionFrom(req);
   if (!who) return NextResponse.json({ ok: false, error: "Đăng nhập trước đã" }, { status: 401 });
 
   // Danh tính lấy từ cookie đã ký, không lấy từ body -> không điểm danh hộ người khác được.
