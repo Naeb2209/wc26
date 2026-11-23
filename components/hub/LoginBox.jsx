@@ -291,6 +291,21 @@ export default function LoginBox({ user, onChange, openRef, shared }) {
               </span>
               {busy ? "Đang gửi…" : signingUp ? "Tạo tài khoản" : settingPassword ? "Lưu mật khẩu" : "Đăng nhập"}
             </button>
+            {/* Quên mật khẩu: chưa có email nên không tự đặt lại được — xổ ra cách nhờ reset. */}
+            {mode === "login" ? (
+              <details className="group rounded-2xl bg-dc-bone px-4 py-3 text-[13px] text-dc-ink-2">
+                <summary className="flex cursor-pointer list-none items-center justify-between font-semibold text-dc-ink [&::-webkit-details-marker]:hidden">
+                  Quên mật khẩu?
+                  <span className="material-symbols-outlined text-[18px] transition-transform group-open:rotate-180">expand_more</span>
+                </summary>
+                <ol className="mt-2 list-decimal space-y-1 pl-4">
+                  <li>Nhắn chủ kèo (hoặc admin nhóm) tên đăng nhập của bạn để được reset.</li>
+                  <li>Khi được báo đã reset, đăng nhập bằng tên đăng nhập + <b>mật khẩu nhóm</b>.</li>
+                  <li>Hub tự chuyển sang bước <b>Đặt mật khẩu riêng</b> — đặt mật khẩu mới là xong.</li>
+                </ol>
+                <p className="mt-2">Quên luôn tên đăng nhập? Hỏi chủ kèo, tên đăng nhập không phải bí mật.</p>
+              </details>
+            ) : null}
           </form>
         </div>
       ) : null}
