@@ -44,9 +44,8 @@ export default function SessionList({ sessions, members, templates, shared, spor
 
   async function rsvp(sessionId, status) {
     if (!me) {
-      setError("Đăng nhập trước đã.");
-      loginRef.current?.focus();
-      loginRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+      // Mở thẳng modal đăng nhập, khỏi bắt người ta cuộn lên tìm ô đăng nhập.
+      loginRef.current?.("login", "Đăng nhập (hoặc đăng ký nếu là lần đầu) để điểm danh buổi này.");
       return;
     }
     setBusy(sessionId + status);
@@ -96,7 +95,7 @@ export default function SessionList({ sessions, members, templates, shared, spor
         </div>
       ) : null}
 
-      <LoginBox user={user} onChange={setUser} focusRef={loginRef} shared={shared} />
+      <LoginBox user={user} onChange={setUser} openRef={loginRef} shared={shared} />
 
       {error ? (
         <p className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[13.5px] text-red-700">
