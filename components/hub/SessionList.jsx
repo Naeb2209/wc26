@@ -11,6 +11,8 @@ import { useAuth } from "./AuthProvider";
 
 // Số cột của lưới lịch cố định, theo số mẫu buổi thực có.
 const COLS = { 2: "md:grid-cols-2", 3: "md:grid-cols-3" };
+// Nhãn đầu dòng "Đi 12" / "Vắng 3", cố định bề ngang để tên hai dòng thẳng cột.
+const ROW_LABEL = "w-[64px] shrink-0 font-dc-display text-[10px] font-bold uppercase tracking-[0.14em]";
 
 /* Danh sách buổi giao lưu + điểm danh.
    Muốn điểm danh thì phải đăng nhập: server lấy danh tính từ cookie đã ký, nên không ai
@@ -162,25 +164,46 @@ export default function SessionList({ sessions, members, templates, shared, spor
                     />
                   </div>
 
-                  {row.going.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5">
-                      {row.going.map((id) => (
-                        <span
-                          key={id}
-                          className={`rounded-lg px-2 py-1 text-[12.5px] ${
-                            id === me ? "bg-dc-ink text-white" : "bg-dc-bone text-dc-ink"
-                          }`}
-                        >
-                          {nameOf[id] || id}
-                        </span>
-                      ))}
+                  {/* Đi và vắng mỗi bên một dòng có nhãn + số. Vắng để chữ xám, không đóng khung,
+                      để nhìn là biết không tính vào sĩ số; chưa ai đi thì vẫn thấy ai đã báo vắng. */}
+                  {row.going.length > 0 || row.out.length > 0 ? (
+                    <div className="flex flex-col gap-2">
+                      {row.going.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          <span className={`${ROW_LABEL} text-dc-ink`}>
+                            Đi <span className="tabular-nums text-dc-ink-2">{row.going.length}</span>
+                          </span>
+                          {row.going.map((id) => (
+                            <span
+                              key={id}
+                              className={`rounded-lg px-2 py-1 text-[12.5px] ${
+                                id === me ? "bg-dc-ink text-white" : "bg-dc-bone text-dc-ink"
+                              }`}
+                            >
+                              {nameOf[id] || id}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                       {row.out.length > 0 && (
-                        <span className="px-1 py-1 text-[12.5px] text-dc-ink-2">
-                          · vắng: {row.out.map((id) => nameOf[id] || id).join(", ")}
-                        </span>
+                        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                          <span className={`${ROW_LABEL} text-dc-ink-2`}>
+                            Vắng <span className="tabular-nums">{row.out.length}</span>
+                          </span>
+                          {row.out.map((id) => (
+                            <span
+                              key={id}
+                              className={`text-[12.5px] line-through decoration-dc-ink-2/40 ${
+                                id === me ? "font-semibold text-dc-ink" : "text-dc-ink-2"
+                              }`}
+                            >
+                              {nameOf[id] || id}
+                            </span>
+                          ))}
+                        </div>
                       )}
                     </div>
-                  )}
+                  ) : null}
 
                   {!s.cancelled && splitsTeams(s) && (
                     <TeamDraw session={s} going={row.going} nameOf={nameOf} now={now} />
