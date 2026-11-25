@@ -257,15 +257,22 @@ export default function TeamDraw({ session, going, nameOf = {}, now, variant = "
       )}
 
       {!done ? (
-        !big && (
-          <p className="mt-2 text-[12.5px] text-dc-ink-2">
-            {!draw
-              ? "Chưa đủ người để chia đội — điểm danh thêm đã."
-              : (session.pots || []).length
-                ? `${draw.pots.length} pot ban tổ chức đã xếp, mỗi pot quay random rải đều ${draw.count} đội.`
-                : "Chia theo POT trình độ, mỗi POT quay random rải đều các đội. Điểm danh khoá khi hết giờ."}
-          </p>
-        )
+        <>
+          {!big && (
+            <p className="mt-2 text-[12.5px] text-dc-ink-2">
+              {!draw
+                ? "Chưa đủ người để chia đội — điểm danh thêm đã."
+                : (session.pots || []).length
+                  ? `${draw.pots.length} pot ban tổ chức đã xếp, mỗi pot quay random rải đều ${draw.count} đội.`
+                  : "Chia theo POT trình độ, mỗi POT quay random rải đều các đội. Điểm danh khoá khi hết giờ."}
+            </p>
+          )}
+          {/* Pot ban tổ chức tự xếp thì bày ra trước giờ quay để mọi người xem trước. Pot suy
+              từ tier thì giữ kín: nó đổi theo điểm danh và lộ trình độ từng người. */}
+          {draw && (session.pots || []).length > 0 ? (
+            <PotGrid pots={draw.pots} hot={null} kitOf={{}} nameOrId={nameOrId} full={full} />
+          ) : null}
+        </>
       ) : !draw ? (
         <p className="mt-2 text-[12.5px] text-dc-ink-2">Chưa đủ người để chia đội.</p>
       ) : (
@@ -333,40 +340,10 @@ export default function TeamDraw({ session, going, nameOf = {}, now, variant = "
             ))}
           </div>
 
-          {/* Pot chỉ hiện ở trang riêng; trong thẻ danh sách đã có nhãn pot trên từng dòng đội,
-              bày thêm lưới pot nữa là thừa chỗ. */}
+          {/* Sau giờ quay, pot chỉ hiện ở trang riêng; trong thẻ danh sách đã có nhãn pot trên
+              từng dòng đội, bày thêm lưới pot nữa là thừa chỗ. */}
           {full && (
-          <div className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
-            {draw.pots.map((pot, i) => (
-              <div
-                key={i}
-                className={`rounded-lg border px-2.5 py-2 ${
-                  spinning && spinning.pot === i
-                    ? "border-dc-gold bg-dc-gold-soft"
-                    : "border-dc-line bg-white"
-                }`}
-              >
-                <p className="pb-1.5 font-dc-display text-[9.5px] font-bold uppercase tracking-[0.12em] text-dc-ink-2">
-                  Pot {i + 1}
-                </p>
-                <div className="flex flex-wrap gap-1">
-                  {pot.map((id) => {
-                    const at = kitOf[id];
-                    return (
-                      <span
-                        key={id}
-                        className={`rounded-full px-2 py-0.5 text-[12px] ${
-                          at ? CHIP[at] || "bg-dc-ink text-white" : "border border-dc-line text-dc-ink-2"
-                        }`}
-                      >
-                        {nameOrId(id)}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
+            <PotGrid pots={draw.pots} hot={spinning ? spinning.pot : null} kitOf={kitOf} nameOrId={nameOrId} full />
           )}
 
           {finished && (
@@ -400,6 +377,39 @@ export default function TeamDraw({ session, going, nameOf = {}, now, variant = "
           )}
         </>
       )}
+    </div>
+  );
+}
+
+/* Lưới pot: mỗi ô một pot, chip tên ăn màu áo khi người đó đã về đội; pot đang quay sáng vàng. */
+function PotGrid({ pots, hot, kitOf, nameOrId, full }) {
+  return (
+    <div className={`grid sm:grid-cols-2 lg:grid-cols-3 ${full ? "mt-4 gap-2.5" : "mt-3 gap-2"}`}>
+      {pots.map((pot, i) => (
+        <div
+          key={i}
+          className={`rounded-lg border px-2.5 py-2 ${hot === i ? "border-dc-gold bg-dc-gold-soft" : "border-dc-line bg-white"}`}
+        >
+          <p className="pb-1.5 font-dc-display text-[9.5px] font-bold uppercase tracking-[0.12em] text-dc-ink-2">
+            Pot {i + 1}
+          </p>
+          <div className="flex flex-wrap gap-1">
+            {pot.map((id) => {
+              const kit = kitOf[id];
+              return (
+                <span
+                  key={id}
+                  className={`rounded-full px-2 py-0.5 text-[12px] ${
+                    kit ? CHIP[kit] || "bg-dc-ink text-white" : "border border-dc-line text-dc-ink-2"
+                  }`}
+                >
+                  {nameOrId(id)}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
