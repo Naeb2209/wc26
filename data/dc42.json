@@ -281,11 +281,11 @@
       "split": "16:30",
       "splitTeams": 3,
       "pots": [
-        ["Huyh", "umano", "Vũ Đặng"],
-        ["Hoàng", "Tungoo", "Sơn Hoàng"],
-        ["Đạt G", "Kha", "CuKiRella"],
+        ["CuKiRella", "umano", "Vũ Đặng"],
+        ["Kha", "Tungoo", "Sơn Hoàng"],
+        ["Huyh", "Hoàng", "Đạt G"],
         ["Nicky", "TC", "Tai"],
-        ["Phương Nam", "Vũ Đỗ", "How"],
+        ["Phương Nam", "Vũ Đỗ", "Duy Trịnh"],
         ["dong ng", "hau", "Bean"]
       ]
     }
