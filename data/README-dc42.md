@@ -118,8 +118,12 @@ Mật khẩu đặt trước mốc đó bị bỏ qua — người đó vào l�
 
 ### Bốc thăm chia đội (bóng đá)
 
-Mẫu buổi bóng đá khai `"splitTeams": 2` (hoặc 3). Trước giờ đá **2 tiếng**, thẻ buổi đếm
-ngược; hết giờ thì điểm danh khoá lại và đội bốc ra hiện luôn.
+Mẫu buổi bóng đá khai `"splitTeams": 2` để bật bốc thăm. Trước giờ đá **2 tiếng**, thẻ buổi
+đếm ngược; hết giờ thì điểm danh khoá lại và đội bốc ra hiện luôn.
+
+**Số đội tự tính theo số người:** trên 16 người thì chia **3 đội** (Đỏ / Xanh / Vàng), từ 16 trở
+xuống thì 2 đội (áo sáng / áo tối). Muốn chốt cứng cho một ngày thì khai `"splitTeams": 2`
+hoặc `3` trong override của ngày đó — có khai là theo đúng, không đếm người nữa.
 
 **Cách nhanh nhất: khai thẳng POT.** Ban tổ chức tự xếp pot thì bỏ `pots` vào override của
 ngày đó, mỗi pot là một mảng. Phần tử nhận cả memberId lẫn tên viết thẳng, nên người lạ chưa
