@@ -36,6 +36,23 @@ function Side({ team, lead, mirrored = false }) {
   );
 }
 
+/* Số bàn của một người. Bóng đá: mỗi bàn một quả bóng (giống danh sách trận của giải);
+   môn khác tính điểm nên vẫn để số. Bóng đá chỉ 1 bàn mà `one` = false thì không vẽ gì. */
+function Tally({ n, ball, one = true, className = "" }) {
+  if (!n || (n === 1 && !one && !ball)) return null;
+  if (!ball) return <span className={`font-dc-display font-bold tabular-nums text-dc-gold ${className}`}>{n}</span>;
+  return (
+    <span className={`inline-flex items-center text-dc-gold ${className}`} title={`${n} bàn`}>
+      {Array.from({ length: n }).map((_, k) => (
+        <span key={k} aria-hidden="true" className="material-symbols-outlined text-[13px] leading-none">
+          sports_soccer
+        </span>
+      ))}
+      <span className="sr-only">{n} bàn</span>
+    </span>
+  );
+}
+
 export default function SessionResult({ result, sport, nameOf, variant = "page" }) {
   if (!result) return null;
 
@@ -49,7 +66,19 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
   const colorOf = (id) => table.find((t) => t.id === id)?.color;
   // Trang buổi chạy ở server nên không có sẵn map tên; tra thẳng từ dữ liệu hub.
   const nameOrId = (id) => nameOf?.[id] || memberName(id);
-  const listOf = (goals) => goals.map((g) => `${nameOrId(g.id)}${g.goals > 1 ? ` ${g.goals}` : ""}`).join(", ");
+  const ball = sport === "football";
+  // Người ghi của một bên trong một trận. Môn tính điểm giữ kiểu cũ: chỉ ghi số khi > 1.
+  const listOf = (goals, align = "") => (
+    <span className={`inline-flex flex-wrap items-center gap-x-1.5 gap-y-0.5 ${align}`}>
+      {goals.map((g, i) => (
+        <span key={g.id} className="inline-flex items-center gap-1">
+          {nameOrId(g.id)}
+          <Tally n={g.goals} ball={ball} one={false} />
+          {i < goals.length - 1 ? <span className="-ml-1 text-dc-ink-2/60">,</span> : null}
+        </span>
+      ))}
+    </span>
+  );
 
   return (
     // Trong lưới thẻ: khối kết quả giãn hết chiều cao thẻ để buổi 2 đội và buổi 3 đội
@@ -104,7 +133,7 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
           {scorers.slice(0, 3).map((s, i) => (
             <span key={s.id}>
               {i > 0 ? " · " : ""}
-              {nameOrId(s.id)} <span className="font-dc-display font-bold tabular-nums text-dc-gold">{s.goals}</span>
+              {nameOrId(s.id)} <Tally n={s.goals} ball={ball} className="align-[-2px]" />
             </span>
           ))}
           {scorers.length > 3 ? <span className="text-dc-ink-2/70"> · +{scorers.length - 3} người</span> : null}
@@ -128,12 +157,16 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
                 </span>
                 <span className="truncate font-dc-display font-bold text-dc-ink">{teamName[m.b] || m.b}</span>
 
-                <span className="text-right text-[11.5px] leading-snug text-dc-ink-2">{listOf(m.goalsA)}</span>
+                <span className="text-right text-[11.5px] leading-snug text-dc-ink-2">
+                  {listOf(m.goalsA, "justify-end")}
+                </span>
                 <span aria-hidden="true" />
                 <span className="text-[11.5px] leading-snug text-dc-ink-2">{listOf(m.goalsB)}</span>
 
                 {m.others.length > 0 && (
-                  <span className="col-span-3 text-center text-[11.5px] text-dc-ink-2">{listOf(m.others)}</span>
+                  <span className="col-span-3 text-center text-[11.5px] text-dc-ink-2">
+                    {listOf(m.others, "justify-center")}
+                  </span>
                 )}
               </li>
             ))}
@@ -159,9 +192,7 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
                       }`}
                     >
                       {nameOrId(pl.id)}
-                      {pl.goals ? (
-                        <span className="font-dc-display font-bold tabular-nums text-dc-gold">{pl.goals}</span>
-                      ) : null}
+                      <Tally n={pl.goals} ball={ball} />
                     </span>
                   ))}
                 </div>
