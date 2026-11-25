@@ -118,7 +118,7 @@ Mật khẩu đặt trước mốc đó bị bỏ qua — người đó vào l�
 
 ### Bốc thăm chia đội (bóng đá)
 
-Mẫu buổi bóng đá khai `"splitTeams": 2` để bật bốc thăm. Trước giờ đá **2 tiếng**, thẻ buổi
+Mẫu buổi bóng đá khai `"splitTeams": 2` để bật bốc thăm. Tới giờ quay (`split`, mặc định trước giờ đá **2 tiếng**), thẻ buổi
 đếm ngược; hết giờ thì điểm danh khoá lại và đội bốc ra hiện luôn.
 
 **Số đội tự tính theo số người:** trên 16 người thì chia **3 đội** (Đỏ / Xanh / Vàng), từ 16 trở
@@ -163,9 +163,9 @@ Hiệu ứng chạy theo lịch cố định tính từ mốc chốt, nên ai m�
 quay; vào muộn thì các lượt đã qua hiện thẳng, không tua lại. Không khai `tier` thì coi như
 yếu nhất, rơi vào POT cuối.
 
-Mặc định chốt trước giờ đá 2 tiếng (`SPLIT_LEAD_MS` trong `lib/dc42.js`). Một buổi cần giờ
-khác thì khai `"split": "16:30"` trong override của ngày đó — lấy đúng giờ đã khai, không lùi
-theo giờ đá nữa.
+Mẫu buổi đá thứ 4 khai `"split": "17:00"` nên tuần nào cũng quay lúc 17:00. Mẫu nào không khai
+`split` thì chốt trước giờ đá 2 tiếng (`SPLIT_LEAD_MS` trong `lib/dc42.js`). Một buổi cần giờ
+khác thì khai `"split": "16:30"` trong override của ngày đó — override thắng mẫu.
 
 ### Chia đội và kết quả một buổi
 
