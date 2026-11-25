@@ -170,6 +170,7 @@ export default function MomentsRail({ items = [] }) {
                 big={col.kind === "wide"}
                 compact={col.kind === "split"}
                 onOpen={() => setOpen(items.indexOf(m))}
+                hold={open !== null}
               />
             ))}
           </div>
@@ -220,16 +221,23 @@ function Arrow({ dir, onClick, disabled }) {
   );
 }
 
-function MomentTile({ item, big = false, compact = false, onOpen }) {
+function MomentTile({ item, big = false, compact = false, onOpen, hold = false }) {
   const tone = TONES[((item.tone || 1) - 1) % TONES.length];
   const clipRef = useRef(null);
+  // `hold`: đang mở lightbox — ô nằm sau lớp phủ, chạy tiếp chỉ tốn pin.
+  const holdRef = useRef(hold);
+  const syncRef = useRef(() => {});
 
   // Clip tự chạy câm và lặp lại, như một ảnh động — ô video đứng im giữa dải ảnh nhìn
   // như hỏng. Trình duyệt chỉ cho tự chạy khi video đang câm, mà React 18 không phải lúc
   // nào cũng gắn `muted` vào thẻ lúc hydrate — nên ép câm bằng tay trước khi play().
-  // Một lần play() lúc mount là chưa đủ: video chưa tải xong, hoặc trình duyệt chặn (điện
-  // thoại tiết kiệm pin, tab chạy nền) thì clip đứng im luôn. Nên thử lại khi video sẵn
-  // sàng, khi tab hiện lại, và ở lần chạm / bấm đầu tiên trên trang.
+  //
+  // Chỉ tải và chạy khi ô sắp vào khung nhìn: dải Moments nằm dưới màn hình đầu, tải sẵn
+  // clip vài MB lúc mở trang là tốn 4G và giành băng thông của phần trên. Khuất đi (cuộn
+  // qua, lướt dải sang chỗ khác, tab ẩn, mở lightbox) thì dừng cho đỡ pin.
+  //
+  // Trình duyệt vẫn có lúc chặn play() (điện thoại tiết kiệm pin…), nên thử lại khi video
+  // sẵn sàng, khi tab hiện lại, và ở lần chạm / bấm đầu tiên trên trang.
   useEffect(() => {
     const el = clipRef.current;
     if (!el) return;
@@ -237,27 +245,55 @@ function MomentTile({ item, big = false, compact = false, onOpen }) {
 
     el.muted = true;
     el.defaultMuted = true;
-    const tryPlay = () => {
-      if (el.paused && !document.hidden) el.play().catch(() => {});
+
+    // Trình duyệt quá cũ không có IntersectionObserver thì coi như luôn thấy — như trước.
+    let seen = typeof IntersectionObserver === "undefined";
+    const sync = () => {
+      if (seen && !document.hidden && !holdRef.current) {
+        if (el.paused) el.play().catch(() => {});
+      } else if (!el.paused) {
+        el.pause();
+      }
     };
-    tryPlay();
+    syncRef.current = sync;
+
+    let io;
+    if (!seen) {
+      io = new IntersectionObserver(
+        ([entry]) => {
+          seen = entry.isIntersecting;
+          // Chạm tới mép khung (cộng lề 200px) mới bắt đầu tải, để cuộn tới là có hình.
+          if (seen && el.preload !== "auto") el.preload = "auto";
+          sync();
+        },
+        { rootMargin: "200px" }
+      );
+      io.observe(el);
+    } else {
+      el.preload = "auto";
+      sync();
+    }
 
     const kick = { once: true, passive: true };
-    el.addEventListener("loadeddata", tryPlay);
-    el.addEventListener("canplay", tryPlay);
-    document.addEventListener("visibilitychange", tryPlay);
-    window.addEventListener("pointerdown", tryPlay, kick);
-    window.addEventListener("touchstart", tryPlay, kick);
-    window.addEventListener("scroll", tryPlay, kick);
+    el.addEventListener("loadeddata", sync);
+    el.addEventListener("canplay", sync);
+    document.addEventListener("visibilitychange", sync);
+    window.addEventListener("pointerdown", sync, kick);
+    window.addEventListener("touchstart", sync, kick);
     return () => {
-      el.removeEventListener("loadeddata", tryPlay);
-      el.removeEventListener("canplay", tryPlay);
-      document.removeEventListener("visibilitychange", tryPlay);
-      window.removeEventListener("pointerdown", tryPlay);
-      window.removeEventListener("touchstart", tryPlay);
-      window.removeEventListener("scroll", tryPlay);
+      io?.disconnect();
+      el.removeEventListener("loadeddata", sync);
+      el.removeEventListener("canplay", sync);
+      document.removeEventListener("visibilitychange", sync);
+      window.removeEventListener("pointerdown", sync);
+      window.removeEventListener("touchstart", sync);
     };
   }, []);
+
+  useEffect(() => {
+    holdRef.current = hold;
+    syncRef.current();
+  }, [hold]);
 
   return (
     <button
@@ -274,7 +310,7 @@ function MomentTile({ item, big = false, compact = false, onOpen }) {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="none"
           aria-hidden="true"
           style={{ objectPosition: item.focus || undefined }}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
