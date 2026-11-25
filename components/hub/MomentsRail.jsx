@@ -225,13 +225,38 @@ function MomentTile({ item, big = false, compact = false, onOpen }) {
   const clipRef = useRef(null);
 
   // Clip tự chạy câm và lặp lại, như một ảnh động — ô video đứng im giữa dải ảnh nhìn
-  // như hỏng. Gọi play() trong effect thay vì đặt autoPlay: thuộc tính này chỉ ăn ở lần
-  // render đầu, mà lúc đó còn chưa biết người dùng có tắt hiệu ứng chuyển động hay không.
+  // như hỏng. Trình duyệt chỉ cho tự chạy khi video đang câm, mà React 18 không phải lúc
+  // nào cũng gắn `muted` vào thẻ lúc hydrate — nên ép câm bằng tay trước khi play().
+  // Một lần play() lúc mount là chưa đủ: video chưa tải xong, hoặc trình duyệt chặn (điện
+  // thoại tiết kiệm pin, tab chạy nền) thì clip đứng im luôn. Nên thử lại khi video sẵn
+  // sàng, khi tab hiện lại, và ở lần chạm / bấm đầu tiên trên trang.
   useEffect(() => {
     const el = clipRef.current;
     if (!el) return;
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
-    el.play().catch(() => {});
+
+    el.muted = true;
+    el.defaultMuted = true;
+    const tryPlay = () => {
+      if (el.paused && !document.hidden) el.play().catch(() => {});
+    };
+    tryPlay();
+
+    const kick = { once: true, passive: true };
+    el.addEventListener("loadeddata", tryPlay);
+    el.addEventListener("canplay", tryPlay);
+    document.addEventListener("visibilitychange", tryPlay);
+    window.addEventListener("pointerdown", tryPlay, kick);
+    window.addEventListener("touchstart", tryPlay, kick);
+    window.addEventListener("scroll", tryPlay, kick);
+    return () => {
+      el.removeEventListener("loadeddata", tryPlay);
+      el.removeEventListener("canplay", tryPlay);
+      document.removeEventListener("visibilitychange", tryPlay);
+      window.removeEventListener("pointerdown", tryPlay);
+      window.removeEventListener("touchstart", tryPlay);
+      window.removeEventListener("scroll", tryPlay);
+    };
   }, []);
 
   return (
