@@ -29,21 +29,91 @@ const BOX = {
   wide: "max-w-[1640px] px-3 sm:px-4 md:px-6",
 };
 
-export function PageHeader({ eyebrow, title, lede, aside, wide = false }) {
+/* Lớp nền của hero tối: ảnh (nếu có) + lớp phủ, hoặc ánh vàng/đỏ trên nền mực. */
+export function HeroBackdrop({ image }) {
   return (
-    <header className="border-b border-dc-line bg-white">
-      <div className={`mx-auto w-full py-10 md:py-14 ${wide ? BOX.wide : BOX.normal}`}>
+    <>
+      {image ? (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={image} alt="" aria-hidden="true" className="ewc-hero__img" />
+          <span className="ewc-hero__shade" aria-hidden="true" />
+        </>
+      ) : (
+        <span className="ewc-hero__glow" aria-hidden="true" />
+      )}
+    </>
+  );
+}
+
+/* Nút kính mờ "Cuộn xem thêm" ở chân hero, đúng nhịp EWC: nhãn 12px in hoa + nút tròn mũi tên. */
+export function ScrollCue({ href = "#noi-dung", label = "Cuộn xem thêm" }) {
+  return (
+    <a
+      href={href}
+      className="group mx-auto flex w-fit items-center gap-3.5 rounded-[18px] bg-white/15 p-1.5 ps-[22px] backdrop-blur-[32px] transition-colors hover:bg-white/25"
+    >
+      <span className="font-dc-display text-[12px] font-bold uppercase tracking-[0.12em] text-white">{label}</span>
+      <span className="grid size-[42px] place-items-center rounded-full bg-white/10">
+        <span className="material-symbols-outlined text-[20px] text-white transition-transform group-hover:translate-y-0.5">
+          arrow_downward
+        </span>
+      </span>
+    </a>
+  );
+}
+
+/* Header trang theo hero của EWC: nền mực tràn ngang, chip chuyển sắc, tiêu đề display trắng.
+   - hero: bản cao, canh giữa, có nút "Cuộn xem thêm" — dùng cho các tab cấp một trên rail.
+   - mặc định: bản gọn canh trái — dùng cho trang con (tab trong môn, chi tiết giải/bài) để
+     đổi tab không phải cuộn qua cả màn hình hero.
+   - image: ảnh nền (đã phủ tối); không có thì dùng ánh vàng/đỏ trên nền mực. */
+export function PageHeader({ eyebrow, title, lede, aside, wide = false, hero = false, image = null }) {
+  const box = wide ? BOX.wide : BOX.normal;
+
+  if (hero) {
+    return (
+      <>
+        <header className="ewc-hero">
+          <HeroBackdrop image={image} />
+          <div
+            className={`mx-auto flex min-h-[360px] w-full flex-col items-center justify-center gap-8 pb-8 pt-14 text-center md:min-h-[460px] md:pb-10 md:pt-20 ${box}`}
+          >
+            <div className="flex w-full max-w-4xl flex-col items-center">
+              {eyebrow ? <span className="ewc-chip">{eyebrow}</span> : null}
+              <h1 className="mt-5 font-dc-display text-[40px] font-bold uppercase italic leading-[0.95] tracking-tight text-white sm:text-[52px] md:text-[72px]">
+                {title}
+              </h1>
+              {lede ? <p className="mt-5 max-w-[60ch] text-body-lg text-white/75">{lede}</p> : null}
+              {aside ? <div className="mt-7">{aside}</div> : null}
+            </div>
+            <ScrollCue />
+          </div>
+        </header>
+        <span id="noi-dung" className="block scroll-mt-4" aria-hidden="true" />
+      </>
+    );
+  }
+
+  return (
+    <header className="ewc-hero">
+      <HeroBackdrop image={image} />
+      <div className={`mx-auto w-full py-10 md:py-14 ${box}`}>
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-            <h1 className="mt-3 font-dc-display text-[34px] font-bold italic leading-[1.02] tracking-tight text-dc-ink md:text-[52px]">
+            {eyebrow ? <span className="ewc-chip">{eyebrow}</span> : null}
+            <h1 className="mt-4 font-dc-display text-[34px] font-bold italic leading-[1.02] tracking-tight text-white md:text-[52px]">
               {title}
             </h1>
             {/* Chừa sẵn 2 dòng cho lede: đổi tab trong cùng một môn thì header không nhảy chiều cao.
                 Lede dài hơn 2 dòng vẫn nở bình thường. */}
-            {lede ? <p className="mt-4 max-w-[62ch] text-body-lg text-dc-ink-2 md:min-h-14">{lede}</p> : null}
+            {lede ? <p className="mt-4 max-w-[62ch] text-body-lg text-white/70 md:min-h-14">{lede}</p> : null}
           </div>
-          {aside ? <div className="shrink-0">{aside}</div> : null}
+          {/* aside ở các trang con (chip môn/trạng thái, tác giả bài) vốn vẽ cho nền trắng:
+              đặt trong khay trắng như ô "Select Year" trên hero EWC thay vì đổi màu từng chip. */}
+          {aside ? (
+            <div className="w-fit shrink-0 rounded-2xl bg-white p-2.5 text-dc-ink shadow-[0_8px_24px_rgba(0,0,0,0.25)]">{aside}</div>
+          ) : null}
         </div>
       </div>
     </header>

@@ -4,6 +4,7 @@ import {
   fmtDate,
   fmtTime,
   getHub,
+  heroImage,
   media,
   memberName,
   posts,
@@ -14,7 +15,7 @@ import {
   upcomingFeed,
   weekdayOf,
 } from "@/lib/dc42";
-import { Card, Chip, EmptyState, LeagueLogo, Section, SportChip, StatusChip } from "@/components/hub/ui";
+import { Card, Chip, EmptyState, HeroBackdrop, LeagueLogo, ScrollCue, Section, SportChip, StatusChip } from "@/components/hub/ui";
 import MomentsRail from "@/components/hub/MomentsRail";
 
 export const dynamic = "force-dynamic";
@@ -77,46 +78,53 @@ export default function HomePage() {
   return (
     <>
       {/* Hero: hoạt động gần nhất */}
-      <header className="border-b border-dc-line bg-dc-ink text-white">
-        <div className="mx-auto w-full max-w-container-max px-margin-mobile py-12 md:px-margin-desktop md:py-16">
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <p className="font-dc-display text-[11px] font-bold uppercase tracking-[0.22em] text-dc-gold">
-                {hub.org.tagline}
-              </p>
-              <h1 className="mt-3 font-dc-display text-[38px] font-bold italic leading-[0.98] tracking-tight md:text-[62px]">
-                Tuần này DC có gì
-              </h1>
-              <p className="mt-4 max-w-[58ch] text-body-lg text-white/70">
-                Kèo giao lưu, giải đang đá, sự kiện sắp tới và toàn bộ ảnh cũ — gom về một chỗ thay vì trôi trong chat.
-              </p>
-            </div>
+      {/* Hero kiểu trang chủ EWC: ảnh Moments mới nhất phủ tối, chip chuyển sắc, tiêu đề display
+          canh giữa; hoạt động gần nhất nằm trong khung kính mờ ngay dưới, chân hero là nút cuộn. */}
+      <header className="ewc-hero">
+        <HeroBackdrop image={heroImage()} />
+        <div className="mx-auto flex min-h-[420px] w-full max-w-container-max flex-col items-center justify-center gap-9 px-margin-mobile pb-8 pt-14 text-center md:min-h-[540px] md:px-margin-desktop md:pb-10 md:pt-20">
+          <div className="flex w-full max-w-4xl flex-col items-center">
+            <span className="ewc-chip">{hub.org.tagline}</span>
+            <h1 className="mt-5 font-dc-display text-[42px] font-bold uppercase italic leading-[0.95] tracking-tight text-white sm:text-[56px] md:text-[80px]">
+              Tuần này DC có gì
+            </h1>
+            <p className="mt-5 max-w-[58ch] text-body-lg text-white/75">
+              Kèo giao lưu, giải đang đá, sự kiện sắp tới và toàn bộ ảnh cũ — gom về một chỗ thay vì trôi trong chat.
+            </p>
 
             {next && (
               <Link
                 href={next.href}
-                className="group w-full max-w-md rounded-2xl border border-white/15 bg-white/5 p-6 transition-colors hover:border-dc-gold/60 hover:bg-white/10"
+                className="group mt-8 flex w-full max-w-xl items-center gap-4 rounded-[20px] border border-white/15 bg-white/10 p-3 pe-4 text-left backdrop-blur-[24px] transition-colors hover:border-dc-gold/60 hover:bg-white/15"
               >
-                <p className="font-dc-display text-[10px] font-bold uppercase tracking-[0.18em] text-dc-gold">
-                  Gần nhất · {relativeDay(next.at)}
-                </p>
-                <p className="mt-2 font-dc-display text-[24px] font-bold leading-tight">{next.title}</p>
-                <p className="mt-1 text-body-md text-white/70">
-                  {weekdayOf(next.at)}, {fmtDate(next.at)}
-                  {fmtTime(next.at) ? ` · ${fmtTime(next.at)}` : ""}
-                  {next.place ? ` · ${next.place}` : ""}
-                </p>
-                <span className="mt-4 inline-flex items-center gap-1.5 font-dc-display text-[11px] font-bold uppercase tracking-[0.14em] text-white">
-                  Xem chi tiết
-                  <span className="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-0.5">
+                <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-white/10">
+                  <span className="material-symbols-outlined text-[28px] text-[#d1b26e]">{KIND_ICON[next.kind] || "event"}</span>
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-dc-display text-[10px] font-bold uppercase tracking-[0.18em] text-[#d1b26e]">
+                    Gần nhất · {relativeDay(next.at)}
+                  </span>
+                  <span className="mt-0.5 block truncate font-dc-display text-[19px] font-bold leading-tight text-white md:text-[22px]">
+                    {next.title}
+                  </span>
+                  <span className="mt-0.5 block truncate text-[13.5px] text-white/70">
+                    {weekdayOf(next.at)}, {fmtDate(next.at)}
+                    {fmtTime(next.at) ? ` · ${fmtTime(next.at)}` : ""}
+                    {next.place ? ` · ${next.place}` : ""}
+                  </span>
+                </span>
+                <span className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 transition-colors group-hover:bg-dc-gold">
+                  <span className="material-symbols-outlined text-[20px] text-white transition-transform group-hover:translate-x-0.5">
                     arrow_forward
                   </span>
                 </span>
               </Link>
             )}
           </div>
+          <ScrollCue />
         </div>
       </header>
+      <span id="noi-dung" className="block scroll-mt-4" aria-hidden="true" />
 
       {/* Thông báo ghim */}
       {pinned.length > 0 && (

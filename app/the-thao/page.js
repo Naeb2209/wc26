@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { leagueSeasons, predictionLeaguesOf, sportSummary, sports } from "@/lib/dc42";
+import { heroImage, leagueSeasons, predictionLeaguesOf, sportSummary, sports } from "@/lib/dc42";
 import { PageHeader, Section, sportMeta } from "@/components/hub/ui";
 
 export const dynamic = "force-dynamic";
@@ -15,6 +15,8 @@ export default function SportsHubPage() {
   return (
     <>
       <PageHeader
+        hero
+        image={heroImage((a) => a.sport, 4)}
         eyebrow="Thể thao"
         title="Chọn môn"
         lede="Mỗi môn gồm kèo giao lưu hằng tuần và giải đấu trong năm — bóng đá thêm phần Fantasy. Bấm vào một môn để xem cụ thể."

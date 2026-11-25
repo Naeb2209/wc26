@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { albums, fmtDate, media, mediaYears, memberName } from "@/lib/dc42";
+import { albums, fmtDate, heroImage, media, mediaYears, memberName } from "@/lib/dc42";
 import { Card, Chip, EmptyState, MediaTile, PageHeader, Section, SportChip, Stat } from "@/components/hub/ui";
 
 export const dynamic = "force-dynamic";
@@ -23,6 +23,8 @@ export default async function MomentsPage({ searchParams }) {
   return (
     <>
       <PageHeader
+        hero
+        image={heroImage()}
         eyebrow="Moments"
         title="Kho ảnh của DC"
         lede="Mỗi album gắn với một hoạt động — mở giải hay sự kiện nào thì thấy đúng album của nó, không cần đăng lại."

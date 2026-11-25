@@ -189,3 +189,9 @@ Thêm script vào `package.json`:
 - Trang **Giải đấu** dựng lại theo template EWC: `TournamentCard` (podium + bảng thông số + CTA tràn
   ngang), tab lọc gạch chân theo trạng thái kèm số đếm, `podiumOf()` trong `lib/dc42.js`.
 - Sửa canh hàng thẻ Fantasy: `min-h` hàng chọn mùa, viền nút CTA, `mt-auto` khối mini game.
+- **Giao diện kiểu EWC cho các tab** (25/11/2026): `PageHeader` giờ là hero tối (`hero` = bản cao canh giữa có
+  nút "Cuộn xem thêm", mặc định = bản gọn cho trang con, `image` = ảnh nền lấy qua `heroImage()` trong
+  `lib/dc42.js`); trang chủ cùng kiểu. Bảng tin = lưới thẻ EWC News + tìm không dấu (`?q=`) + phân trang
+  (`?trang=`). Xếp hạng = thẻ nhà vô địch kiểu Legacy + ô "Hạng #n" + thẻ Champions cho phòng danh hiệu.
+  Sự kiện = ô ảnh kiểu Fan Fest, chưa có ảnh thì dùng màu + hoạ tiết theme. CSS chung: khối `.ewc-*` cuối
+  `app/globals.css`.
