@@ -287,6 +287,11 @@
         ["Nicky", "TC", "Tai"],
         ["Phương Nam", "Vũ Đỗ", "Duy Trịnh"],
         ["dong ng", "hau", "Bean"]
+      ],
+      "teams": [
+        { "id": "do", "name": "Đỏ", "color": "red", "members": ["Vũ Đặng", "Tungoo", "Hoàng", "Nicky", "Vũ Đỗ", "dong ng"] },
+        { "id": "xanh", "name": "Xanh", "color": "blue", "members": ["CuKiRella", "Sơn Hoàng", "Huyh", "Tai", "Duy Trịnh", "Bean", "How"] },
+        { "id": "vang", "name": "Vàng", "color": "yellow", "members": ["umano", "Kha", "Đạt G", "TC", "Phương Nam", "hau"] }
       ]
     }
   ],

@@ -189,13 +189,23 @@ export default function TeamDraw({ session, going, nameOf = {}, now, variant = "
 
   // Đội dựng dần theo số lượt đã chốt, để màn hình bám đúng tiến trình.
   // Giữ cả pick (có số pot) để mỗi dòng nói được người đó ra từ pot nào.
+  // Người ban tổ chức thêm tay sau khi bốc (đến muộn, bù người): khai trong teams[] của override.
+  // Chỉ nối người chưa có trong kết quả bốc vào cuối đội, khi bốc xong — không đụng tới pot nên
+  // kết quả bốc giữ nguyên.
+  const drawn = new Set(picks.map((p) => p.id));
+  const addedTo = Object.fromEntries(
+    (session.teams || []).map((t) => [t.id, (t.members || []).filter((id) => !drawn.has(id))])
+  );
   const live = (draw?.teams || []).map((t) => {
     const mine = settled.filter((p) => p.teamId === t.id);
-    return { ...t, picks: mine, members: mine.map((p) => p.id) };
+    const extra = finished ? addedTo[t.id] || [] : [];
+    return { ...t, picks: mine, extra, members: [...mine.map((p) => p.id), ...extra] };
   });
 
   // Số suất mỗi đội -> dựng sẵn ô trống, nhìn ra ngay còn thiếu mấy người.
+  // Đội có người thêm tay thì nở thêm ô cho riêng đội đó, đội khác không mọc ô trống.
   const perTeam = draw ? Math.ceil(picks.length / draw.count) : 0;
+  const slotsOf = (t) => Math.max(perTeam, t.members.length);
   // Tra ngược: ai đã về đội nào, để chip trong pot ăn màu áo.
   const kitOf = Object.fromEntries(settled.map((p) => [p.id, draw?.teams.find((t) => t.id === p.teamId)?.color]));
 
@@ -311,14 +321,15 @@ export default function TeamDraw({ session, going, nameOf = {}, now, variant = "
                   <Dot color={t.color} className={full ? "h-3 w-3" : "h-2.5 w-2.5"} />
                   {t.name}
                   <span className="ml-auto tabular-nums text-dc-ink-2">
-                    {t.members.length}/{perTeam}
+                    {t.members.length}/{slotsOf(t)}
                   </span>
                 </p>
                 <span aria-hidden="true" className={`block h-1 ${DOT[t.color] || "bg-dc-ink-2"}`} />
 
                 <ul className={full ? "px-3 py-1.5" : "px-2.5 py-1"}>
-                  {Array.from({ length: perTeam }, (_, k) => {
+                  {Array.from({ length: slotsOf(t) }, (_, k) => {
                     const row = t.picks[k];
+                    const added = row ? null : t.extra[k - t.picks.length];
                     return (
                       <li
                         key={k}
@@ -327,10 +338,10 @@ export default function TeamDraw({ session, going, nameOf = {}, now, variant = "
                         }`}
                       >
                         <span className="font-dc-display text-[9.5px] font-bold uppercase tracking-[0.1em] text-dc-gold">
-                          {row ? `Pot ${row.pot + 1}` : ""}
+                          {row ? `Pot ${row.pot + 1}` : added ? "Thêm" : ""}
                         </span>
-                        <span className={`truncate ${row ? "text-dc-ink" : "text-dc-ink-2/45"}`}>
-                          {row ? nameOrId(row.id) : "—"}
+                        <span className={`truncate ${row || added ? "text-dc-ink" : "text-dc-ink-2/45"}`}>
+                          {row ? nameOrId(row.id) : added ? nameOrId(added) : "—"}
                         </span>
                       </li>
                     );
