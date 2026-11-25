@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fmtDate, fmtTime, formatFee, relativeDay, splitAt, splitsTeams, weekdayOf, WEEKDAYS } from "@/lib/dc42";
 import { Card, Chip, EmptyState, SportChip } from "./ui";
 import SessionResult from "./SessionResult";
 import TeamDraw from "./TeamDraw";
 import LoginBox from "./LoginBox";
+import { useAuth } from "./AuthProvider";
 
 // Số cột của lưới lịch cố định, theo số mẫu buổi thực có.
 const COLS = { 2: "md:grid-cols-2", 3: "md:grid-cols-3" };
@@ -19,8 +20,8 @@ const COLS = { 2: "md:grid-cols-2", 3: "md:grid-cols-3" };
    Buổi đã đá: thẻ gọn xếp hai cột, chỉ bảng đội + hiệu số; bấm vào thẻ mở trang buổi. */
 
 export default function SessionList({ sessions, members, templates, shared, sportSlug, farmKing, streaks }) {
-  const [user, setUser] = useState(null);
-  const loginRef = useRef(null);
+  // Ai đang đăng nhập + modal đăng nhập dùng chung toàn site (AuthProvider ở layout).
+  const { user, setUser, openAuth } = useAuth();
   const me = user?.memberId || "";
   const [state, setState] = useState(() =>
     Object.fromEntries(sessions.map((s) => [s.id, { going: s.going, out: s.out, slotsLeft: s.slotsLeft }]))
@@ -28,28 +29,16 @@ export default function SessionList({ sessions, members, templates, shared, spor
   const [busy, setBusy] = useState(null);
   const [error, setError] = useState("");
 
-  // Cookie là httpOnly nên client không đọc được -> hỏi server xem ai đang đăng nhập.
-  useEffect(() => {
-    let alive = true;
-    fetch("/api/auth")
-      .then((r) => r.json())
-      .then((d) => alive && d.ok && setUser(d.user))
-      .catch(() => {});
-    return () => {
-      alive = false;
-    };
-  }, []);
-
   const nameOf = useMemo(() => Object.fromEntries(members.map((m) => [m.id, m.short || m.name])), [members]);
 
   async function rsvp(sessionId, status) {
     if (!me) {
       // Mở thẳng modal đăng nhập, khỏi bắt người ta cuộn lên tìm ô đăng nhập.
-      loginRef.current?.("login", "Đăng nhập (hoặc đăng ký nếu là lần đầu) để điểm danh buổi này.");
+      openAuth("login", "Đăng nhập (hoặc đăng ký nếu là lần đầu) để điểm danh buổi này.");
       return;
     }
     if (user?.needsPassword) {
-      loginRef.current?.("password", "Đặt mật khẩu riêng trước, xong là điểm danh được ngay.");
+      openAuth("password", "Đặt mật khẩu riêng trước, xong là điểm danh được ngay.");
       return;
     }
     setBusy(sessionId + status);
@@ -63,13 +52,13 @@ export default function SessionList({ sessions, members, templates, shared, spor
       const data = await res.json();
       if (!data.ok) {
         if (data.needsPassword) {
-          loginRef.current?.("password", "Đặt mật khẩu riêng trước, xong là điểm danh được ngay.");
+          openAuth("password", "Đặt mật khẩu riêng trước, xong là điểm danh được ngay.");
           return;
         }
         if (res.status === 401) {
           // Phiên hết hạn hoặc bị đá ra vì chủ tài khoản vừa đổi mật khẩu.
           setUser(null);
-          loginRef.current?.("login", "Phiên đăng nhập đã hết — đăng nhập lại nhé.");
+          openAuth("login", "Phiên đăng nhập đã hết — đăng nhập lại nhé.");
           return;
         }
         setError(data.error || "Không lưu được điểm danh.");
@@ -109,7 +98,7 @@ export default function SessionList({ sessions, members, templates, shared, spor
         </div>
       ) : null}
 
-      <LoginBox user={user} onChange={setUser} openRef={loginRef} shared={shared} />
+      <LoginBox shared={shared} />
 
       {error ? (
         <p className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[13.5px] text-red-700">

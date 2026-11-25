@@ -2,6 +2,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import SideRail from "@/components/SideRail";
 import Footer from "@/components/Footer";
+import AuthProvider from "@/components/hub/AuthProvider";
 
 export const metadata = {
   title: "DC42 Hub",
@@ -29,9 +30,12 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="bg-background text-on-background antialiased min-h-screen flex flex-col pb-[74px] md:pb-0 md:pl-[110px]">
-        <SideRail />
-        <div className="flex-grow flex flex-col">{children}</div>
-        <Footer />
+        {/* Đăng nhập dùng chung toàn site: menu tài khoản trên rail + trang điểm danh. */}
+        <AuthProvider>
+          <SideRail />
+          <div className="flex-grow flex flex-col">{children}</div>
+          <Footer />
+        </AuthProvider>
         <Analytics />
       </body>
     </html>

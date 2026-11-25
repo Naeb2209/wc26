@@ -892,6 +892,89 @@ body {
   }
 }
 
+/* Ô tài khoản ở chân rail: chữ cái đầu + tên, bấm xổ menu Điểm danh / Đổi mật khẩu / Đăng xuất. */
+.rail__account {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+.rail__avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--rail-gold);
+  color: #ffffff;
+  font-family: "Chakra Petch", "Be Vietnam Pro", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
+}
+.rail__avatar-dot {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #dc2626;
+  box-shadow: 0 0 0 2px var(--rail-ink);
+}
+.rail__flyout--account {
+  bottom: 6px;
+}
+.rail__account-head {
+  margin: 4px 10px 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eeeeee;
+}
+.rail__account-name {
+  font-family: "Chakra Petch", "Be Vietnam Pro", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--rail-ink);
+}
+.rail__account-user {
+  font-size: 12px;
+  color: #6b6b6b;
+}
+.rail__account-warn {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #b91c1c;
+}
+button.rail__flyout-item {
+  width: 100%;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.rail__flyout-item--danger,
+.rail__flyout-item--danger .material-symbols-outlined {
+  color: #b91c1c;
+}
+@media (max-width: 767px) {
+  .rail__account {
+    width: auto;
+    height: 100%;
+  }
+  .rail__avatar {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+  .rail__account .rail__label {
+    max-width: 72px;
+  }
+  .rail__flyout--account {
+    bottom: calc(100% + 10px);
+  }
+}
+
 /* Dải mờ ở mép phải khi thanh cuộn ngang (mobile) — cho biết còn nội dung bên phải. */
 @media (max-width: 767px) {
   .fade-right-mask {
