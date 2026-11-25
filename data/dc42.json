@@ -274,6 +274,19 @@
         { "a": "do", "b": "xanh", "as": 1, "bs": 0, "goals": [{ "m": "m20" }] },
         { "a": "xanh", "b": "do", "as": 1, "bs": 0, "goals": [{ "m": "m22" }] }
       ]
+    },
+    {
+      "templateId": "st-football-thu",
+      "date": "2026-11-25",
+      "splitTeams": 3,
+      "pots": [
+        ["Huyh", "umano", "Vũ Đặng"],
+        ["Hoàng", "Tungoo", "Sơn Hoàng"],
+        ["Đạt G", "Kha", "CuKiRella"],
+        ["Nicky", "TC", "Tai"],
+        ["Phương Nam", "Vũ Đỗ", "How"],
+        ["dong ng", "hau", "Bean"]
+      ]
     }
   ],
 
