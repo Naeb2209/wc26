@@ -278,6 +278,7 @@
     {
       "templateId": "st-football-thu",
       "date": "2026-11-25",
+      "split": "16:30",
       "splitTeams": 3,
       "pots": [
         ["Huyh", "umano", "Vũ Đặng"],
