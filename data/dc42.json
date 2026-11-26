@@ -281,17 +281,34 @@
       "split": "16:30",
       "splitTeams": 3,
       "pots": [
-        ["CuKiRella", "umano", "Vũ Đặng"],
+        ["CuKiRella", "Nhân", "Vũ Đặng"],
         ["Kha", "Tungoo", "Sơn Hoàng"],
-        ["Huyh", "Hoàng", "Đạt G"],
-        ["Nicky", "TC", "Tai"],
-        ["Phương Nam", "Vũ Đỗ", "Duy Trịnh"],
-        ["dong ng", "hau", "Bean"]
+        ["m25", "Hoàng", "Đạt G"],
+        ["m31", "TC", "Tai"],
+        ["Nam", "Vũ Đỗ", "m29"],
+        ["dong ng", "m20", "Bean"]
       ],
       "teams": [
-        { "id": "do", "name": "Đỏ", "color": "red", "members": ["Vũ Đặng", "Tungoo", "Hoàng", "Nicky", "Vũ Đỗ", "dong ng"] },
-        { "id": "xanh", "name": "Xanh", "color": "blue", "members": ["CuKiRella", "Sơn Hoàng", "Huyh", "Tai", "Duy Trịnh", "Bean", "How"] },
-        { "id": "vang", "name": "Vàng", "color": "yellow", "members": ["umano", "Kha", "Đạt G", "TC", "Phương Nam", "hau"] }
+        { "id": "do", "name": "Đỏ", "color": "red", "members": ["Vũ Đặng", "Tungoo", "Hoàng", "m31", "Vũ Đỗ", "dong ng"] },
+        { "id": "xanh", "name": "Xanh", "color": "blue", "members": ["CuKiRella", "Sơn Hoàng", "m25", "Tai", "m29", "Bean", "m32"] },
+        { "id": "vang", "name": "Vàng", "color": "yellow", "members": ["Nhân", "Kha", "Đạt G", "TC", "Nam", "m20"] }
+      ],
+      "matches": [
+        { "a": "do", "b": "vang", "as": 0, "bs": 2, "goals": [{ "m": "Đạt G", "t": "vang" }, { "m": "Nam", "t": "vang" }] },
+        { "a": "vang", "b": "xanh", "as": 1, "bs": 0, "goals": [{ "m": "Đồng", "t": "vang", "og": true }] },
+        { "a": "do", "b": "vang", "as": 0, "bs": 2, "goals": [{ "m": "Nhân", "n": 2, "t": "vang" }] },
+        { "a": "do", "b": "xanh", "as": 1, "bs": 1, "goals": [{ "m": "m32", "t": "xanh" }, { "m": "m31", "t": "do" }] },
+        { "a": "xanh", "b": "vang", "as": 0, "bs": 1, "goals": [{ "m": "Nam", "t": "vang" }] },
+        { "a": "do", "b": "vang", "as": 2, "bs": 1, "goals": [{ "m": "Đạt G", "t": "vang" }, { "m": "m31", "n": 2, "t": "do" }] },
+        { "a": "xanh", "b": "do", "as": 0, "bs": 0 },
+        { "a": "xanh", "b": "vang", "as": 1, "bs": 1, "goals": [{ "m": "m20", "t": "vang" }, { "m": "Bean", "t": "xanh" }] },
+        { "a": "do", "b": "vang", "as": 1, "bs": 0, "goals": [{ "m": "m31", "t": "do" }] },
+        { "a": "xanh", "b": "do", "as": 0, "bs": 2, "goals": [{ "m": "m31", "n": 2, "t": "do" }] },
+        { "a": "vang", "b": "do", "as": 2, "bs": 0, "goals": [{ "m": "Nhân", "t": "vang" }, { "m": "Đạt G", "t": "vang" }] },
+        { "a": "xanh", "b": "do", "as": 2, "bs": 1, "goals": [{ "m": "m25", "t": "xanh" }, { "m": "m32", "t": "xanh" }, { "m": "Kha", "t": "do" }] },
+        { "a": "xanh", "b": "vang", "as": 2, "bs": 0, "goals": [{ "m": "m29", "t": "xanh" }, { "m": "m32", "t": "xanh" }] },
+        { "a": "do", "b": "vang", "as": 2, "bs": 0, "goals": [{ "m": "m31", "n": 2, "t": "do" }] },
+        { "a": "xanh", "b": "do", "as": 2, "bs": 0, "goals": [{ "m": "Bean", "t": "xanh" }, { "m": "m29", "t": "xanh" }] }
       ]
     }
   ],
@@ -1079,6 +1096,7 @@
   ],
 
   "attendanceLog": [
+    {"date": "2026-11-25", "sport": "football", "members": ["m45", "Tungoo", "Hoàng", "m31", "m30", "m22", "CuKiRella", "Sơn Hoàng", "m25", "aTai", "m29", "Bean", "m32", "Nhân", "Kha", "Đạt G", "TC", "Nam", "m20"]},
     {"date": "2026-11-18", "sport": "football", "members": ["Huy Hòe", "m20", "m33", "m27", "m32", "Hoàng", "Nhân", "m22", "Heiniken", "m26", "m30", "Đạt G", "m45", "Bean", "aTai", "m29", "Nam"]},
     {"date": "2026-09-03", "sport": "badminton", "members": ["m13", "m14", "m02", "m07", "m11"]},
     {"date": "2026-08-27", "sport": "football", "members": ["m01", "m02", "m03", "m05", "m06", "m08", "m10", "m12", "m04"]},
