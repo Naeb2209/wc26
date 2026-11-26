@@ -154,7 +154,7 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
                   {teamName[m.a] || m.a}
                 </span>
                 <span className="font-dc-display font-bold tabular-nums text-dc-ink">
-                  {m.as}–{m.bs}
+                  {m.unknown ? "?–?" : `${m.as}–${m.bs}`}
                 </span>
                 <span className="truncate font-dc-display font-bold text-dc-ink">{teamName[m.b] || m.b}</span>
 
@@ -174,8 +174,10 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
                   </span>
                 )}
                 {/* Ghi chú trận (phản lưới nhà…) — không có thì trận không người ghi để lại dòng trống. */}
-                {m.note ? (
-                  <span className="col-span-3 text-center text-[11.5px] italic text-dc-ink-2">{m.note}</span>
+                {m.note || m.unknown ? (
+                  <span className="col-span-3 text-center text-[11.5px] italic text-dc-ink-2">
+                    {m.note || "Không rõ kết quả — không tính vào bảng xếp"}
+                  </span>
                 ) : null}
               </li>
             ))}

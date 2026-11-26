@@ -193,6 +193,8 @@ Buổi đã đá thì khai `teams[]` (2 hoặc 3 đội) + `matches[]` vào chí
 - `t` (tuỳ chọn): id đội ghi bàn đó, vd `{ "m": "m31", "n": 2, "t": "do" }`. Dùng khi tên người ghi
   không khớp tên trong `teams[].members` (pot khai bằng nickname) — không khai thì tên người ghi rơi
   vào giữa, không nằm về bên đội nào. Có `t` thì tên luôn hiện dưới đúng đội.
+- Trận đã đá nhưng không nhớ tỉ số: chỉ khai `{ "a": "xanh", "b": "vang" }` (bỏ `as`/`bs`). Trận vẫn hiện
+  đúng thứ tự với tỉ số `?–?`, nhưng không tính vào bảng xếp và người ghi bàn.
 - Phản lưới nhà: `{ "m": "Đồng", "t": "vang", "og": true }` — `t` là **đội được hưởng** bàn đó. Tên hiện
   bên đội đó kèm chữ OG, và không tính vào số bàn của người đá phản (bảng ghi bàn, Vua farm gà).
 - `color`: `red` · `blue` · `yellow` · `green` · `light` · `dark` — chỉ để chấm màu trước tên đội.
