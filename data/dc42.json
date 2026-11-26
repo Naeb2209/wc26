@@ -305,7 +305,7 @@
         { "a": "do", "b": "vang", "as": 1, "bs": 0, "goals": [{ "m": "m31", "t": "do" }] },
         { "a": "xanh", "b": "do", "as": 0, "bs": 2, "goals": [{ "m": "m31", "n": 2, "t": "do" }] },
         { "a": "vang", "b": "do", "as": 2, "bs": 0, "goals": [{ "m": "Nhân", "t": "vang" }, { "m": "Đạt G", "t": "vang" }] },
-        { "a": "xanh", "b": "do", "as": 2, "bs": 1, "goals": [{ "m": "m25", "t": "xanh" }, { "m": "m32", "t": "xanh" }, { "m": "Kha", "t": "do" }] },
+        { "a": "xanh", "b": "vang", "as": 2, "bs": 1, "goals": [{ "m": "m25", "t": "xanh" }, { "m": "m32", "t": "xanh" }, { "m": "Kha", "t": "vang" }] },
         { "a": "xanh", "b": "vang", "as": 2, "bs": 0, "goals": [{ "m": "m29", "t": "xanh" }, { "m": "m32", "t": "xanh" }] },
         { "a": "do", "b": "vang", "as": 2, "bs": 0, "goals": [{ "m": "m31", "n": 2, "t": "do" }] },
         { "a": "xanh", "b": "do", "as": 2, "bs": 0, "goals": [{ "m": "Bean", "t": "xanh" }, { "m": "m29", "t": "xanh" }] }
