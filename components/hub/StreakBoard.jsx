@@ -41,19 +41,18 @@ export default function StreakBoard({ data }) {
 
   return (
     <div className="overflow-hidden rounded-2xl border border-dc-gold/40 bg-dc-gold-soft">
-      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 px-5 pt-4">
-        <div>
-          <p className="flex items-center gap-1.5 font-dc-display text-[11px] font-bold uppercase tracking-[0.18em] text-dc-gold">
-            <FlameIcon streak={alive ? top.streak : 0} size={17} lit={alive} className="text-dc-gold" />
-            Giữ chuỗi
-          </p>
-          <p className="mt-0.5 text-[13px] text-dc-ink-2">
-            {alive
-              ? `${data.holders} người đang có mặt liên tiếp từ 2 buổi trở lên.`
-              : "Chưa ai nối được 2 buổi liền — tuần sau là mở hàng."}
-          </p>
-        </div>
-        <p className="font-dc-display text-[10px] font-bold uppercase tracking-[0.14em] text-dc-ink-2 tabular-nums">
+      {/* Cùng khuôn đầu thẻ với Vua farm gà để hai thẻ cạnh nhau thẳng hàng. */}
+      <div className="px-5 pt-4">
+        <p className="flex items-center gap-1.5 font-dc-display text-[11px] font-bold uppercase tracking-[0.18em] text-dc-gold">
+          <FlameIcon streak={alive ? top.streak : 0} size={17} lit={alive} className="text-dc-gold" />
+          Giữ chuỗi
+        </p>
+        <p className="mt-0.5 text-[13px] text-dc-ink-2">
+          {alive
+            ? `${data.holders} người đang có mặt liên tiếp từ 2 buổi trở lên.`
+            : "Chưa ai nối được 2 buổi liền — tuần sau là mở hàng."}
+        </p>
+        <p className="mt-2 font-dc-display text-[10px] font-bold uppercase tracking-[0.14em] text-dc-ink-2 tabular-nums">
           Tính tới buổi {fmtDayMonth(data.last)} · {data.sessions} buổi đã ghi sổ
         </p>
       </div>
@@ -91,11 +90,11 @@ export default function StreakBoard({ data }) {
         </div>
       ) : null}
 
-      <ul className="mt-3 flex flex-col px-5 pb-4">
+      <ul className={`${alive ? "mt-1" : "mt-3"} flex flex-col px-5 pb-4`}>
         {(alive ? rows.slice(1) : rows).map((r, i) => (
           <li
             key={r.id}
-            className="grid grid-cols-[18px_minmax(0,1fr)_auto] items-center gap-x-3 border-b border-dc-gold/20 py-2 text-[13.5px] last:border-b-0"
+            className="grid min-h-[37px] grid-cols-[18px_minmax(0,1fr)_auto] items-center gap-x-3 border-b border-dc-gold/20 py-2 text-[13.5px] last:border-b-0"
           >
             <span className="font-dc-display text-[11px] font-bold tabular-nums text-dc-ink-2">
               {i + (alive ? 2 : 1)}
