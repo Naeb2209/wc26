@@ -71,9 +71,10 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
   const listOf = (goals, align = "") => (
     <span className={`inline-flex flex-wrap items-center gap-x-1.5 gap-y-0.5 ${align}`}>
       {goals.map((g, i) => (
-        <span key={g.id} className="inline-flex items-center gap-1">
+        <span key={`${g.id}${g.og ? "-og" : ""}`} className="inline-flex items-center gap-1">
           {nameOrId(g.id)}
           <Tally n={g.goals} ball={ball} one={false} />
+          {g.og ? <span className="font-dc-display text-[10px] font-bold uppercase tracking-[0.08em] text-dc-ink-2">OG</span> : null}
           {i < goals.length - 1 ? <span className="-ml-1 text-dc-ink-2/60">,</span> : null}
         </span>
       ))}
@@ -157,17 +158,25 @@ export default function SessionResult({ result, sport, nameOf, variant = "page" 
                 </span>
                 <span className="truncate font-dc-display font-bold text-dc-ink">{teamName[m.b] || m.b}</span>
 
-                <span className="text-right text-[11.5px] leading-snug text-dc-ink-2">
-                  {listOf(m.goalsA, "justify-end")}
-                </span>
-                <span aria-hidden="true" />
-                <span className="text-[11.5px] leading-snug text-dc-ink-2">{listOf(m.goalsB)}</span>
+                {m.goalsA.length > 0 || m.goalsB.length > 0 ? (
+                  <>
+                    <span className="text-right text-[11.5px] leading-snug text-dc-ink-2">
+                      {listOf(m.goalsA, "justify-end")}
+                    </span>
+                    <span aria-hidden="true" />
+                    <span className="text-[11.5px] leading-snug text-dc-ink-2">{listOf(m.goalsB)}</span>
+                  </>
+                ) : null}
 
                 {m.others.length > 0 && (
                   <span className="col-span-3 text-center text-[11.5px] text-dc-ink-2">
                     {listOf(m.others, "justify-center")}
                   </span>
                 )}
+                {/* Ghi chú trận (phản lưới nhà…) — không có thì trận không người ghi để lại dòng trống. */}
+                {m.note ? (
+                  <span className="col-span-3 text-center text-[11.5px] italic text-dc-ink-2">{m.note}</span>
+                ) : null}
               </li>
             ))}
           </ul>

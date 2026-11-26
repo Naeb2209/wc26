@@ -190,6 +190,11 @@ Buổi đã đá thì khai `teams[]` (2 hoặc 3 đội) + `matches[]` vào chí
 
 - `a` / `b` trỏ tới `teams[].id`; `as` / `bs` là tỉ số trận đó. Ba đội thì cứ khai đủ các cặp đã đá.
 - `goals`: `{ "m": "<memberId>", "n": <số bàn> }`, bỏ `n` nghĩa là 1 bàn.
+- `t` (tuỳ chọn): id đội ghi bàn đó, vd `{ "m": "m31", "n": 2, "t": "do" }`. Dùng khi tên người ghi
+  không khớp tên trong `teams[].members` (pot khai bằng nickname) — không khai thì tên người ghi rơi
+  vào giữa, không nằm về bên đội nào. Có `t` thì tên luôn hiện dưới đúng đội.
+- Phản lưới nhà: `{ "m": "Đồng", "t": "vang", "og": true }` — `t` là **đội được hưởng** bàn đó. Tên hiện
+  bên đội đó kèm chữ OG, và không tính vào số bàn của người đá phản (bảng ghi bàn, Vua farm gà).
 - `color`: `red` · `blue` · `yellow` · `green` · `light` · `dark` — chỉ để chấm màu trước tên đội.
 - Điểm: thắng 3, hoà 1. Xếp theo điểm → hiệu số → số bàn thắng.
 - Cầu lông dùng đúng cấu trúc này, chỉ khác chữ hiển thị: "bàn" đổi thành "điểm".
